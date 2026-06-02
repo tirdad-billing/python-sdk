@@ -1,6 +1,6 @@
 [project]
 name = "tirdad-sdk"
-version = "2.1.14"
+version = "2.1.13"
 description = "Python Client SDK for the Tirdad API."
 authors = [{ name = "Tirdad" },]
 readme = "README.md"

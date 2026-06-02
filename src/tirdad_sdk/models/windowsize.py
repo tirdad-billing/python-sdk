@@ -7,7 +7,6 @@ from typing import Literal, Union
 
 WindowSize = Union[
     Literal[
-        "MONTH",
         "MINUTE",
         "15MIN",
         "30MIN",
@@ -17,6 +16,7 @@ WindowSize = Union[
         "12HOUR",
         "DAY",
         "WEEK",
+        "MONTH",
     ],
     UnrecognizedStr,
 ]
