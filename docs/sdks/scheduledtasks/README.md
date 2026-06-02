@@ -74,7 +74,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.scheduled_tasks.create_scheduled_task(connection_id="<id>", entity_type="credit_topups", interval="hourly", job_config={})
+    res = tirdad.scheduled_tasks.create_scheduled_task(connection_id="<id>", entity_type="credit_usage", interval="custom", job_config={})
 
     # Handle response
     print(res)

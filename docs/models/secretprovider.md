@@ -6,7 +6,7 @@
 from tirdad_sdk.models import SecretProvider
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: SecretProvider = "tirdad"
+value: SecretProvider = "flexprice"
 ```
 
 
@@ -14,7 +14,7 @@ value: SecretProvider = "tirdad"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
-- `"tirdad"`
+- `"flexprice"`
 - `"stripe"`
 - `"s3"`
 - `"hubspot"`

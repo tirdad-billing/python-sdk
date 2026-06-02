@@ -6,7 +6,7 @@
 from tirdad_sdk.models import WindowSize
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: WindowSize = "MINUTE"
+value: WindowSize = "MONTH"
 ```
 
 
@@ -14,6 +14,7 @@ value: WindowSize = "MINUTE"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
+- `"MONTH"`
 - `"MINUTE"`
 - `"15MIN"`
 - `"30MIN"`
@@ -23,4 +24,3 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"12HOUR"`
 - `"DAY"`
 - `"WEEK"`
-- `"MONTH"`

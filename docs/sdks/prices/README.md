@@ -27,7 +27,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.prices.create_price(billing_model="PACKAGE", billing_period="HALF_YEARLY", currency="Serbian Dinar", entity_id="<id>", entity_type="PRICE", invoice_cadence="ARREAR", price_unit_type="CUSTOM", type_="USAGE")
+    res = tirdad.prices.create_price(billing_model="FLAT_FEE", billing_period="DAILY", currency="Dong", entity_id="<id>", entity_type="PRICE", invoice_cadence="ADVANCE", price_unit_type="FIAT", type_="FIXED")
 
     # Handle response
     print(res)

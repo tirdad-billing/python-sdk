@@ -451,7 +451,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.wallets.top_up_wallet(id="<id>", transaction_reason="MANUAL_BALANCE_DEBIT")
+    res = tirdad.wallets.top_up_wallet(id="<id>", transaction_reason="CREDIT_ADJUSTMENT")
 
     # Handle response
     print(res)
