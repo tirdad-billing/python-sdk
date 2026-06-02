@@ -1,0 +1,18 @@
+# AddonFilter
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `addon_ids`                                                          | List[*str*]                                                          | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `end_time`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `expand`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `filters`                                                            | List[[models.FilterCondition](../models/filtercondition.md)]         | :heavy_minus_sign:                                                   | filters allows complex filtering based on multiple fields            |
+| `limit`                                                              | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `lookup_keys`                                                        | List[*str*]                                                          | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `offset`                                                             | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `order`                                                              | [Optional[models.AddonFilterOrder]](../models/addonfilterorder.md)   | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `sort`                                                               | List[[models.SortCondition](../models/sortcondition.md)]             | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `start_time`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `status`                                                             | [Optional[models.Status]](../models/status.md)                       | :heavy_minus_sign:                                                   | N/A                                                                  |

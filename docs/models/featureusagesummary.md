@@ -1,0 +1,16 @@
+# FeatureUsageSummary
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `current_usage`                                                      | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `feature`                                                            | [Optional[models.FeatureResponse]](../models/featureresponse.md)     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `is_enabled`                                                         | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `is_soft_limit`                                                      | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `is_unlimited`                                                       | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `next_usage_reset_at`                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `sources`                                                            | List[[models.EntitlementSource](../models/entitlementsource.md)]     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `total_limit`                                                        | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `usage_percent`                                                      | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |

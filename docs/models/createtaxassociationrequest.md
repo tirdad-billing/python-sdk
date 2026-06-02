@@ -1,0 +1,15 @@
+# CreateTaxAssociationRequest
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `auto_apply`                                                         | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `currency`                                                           | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `entity_id`                                                          | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `entity_type`                                                        | [Optional[models.TaxRateEntityType]](../models/taxrateentitytype.md) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `external_customer_id`                                               | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `metadata`                                                           | Dict[str, *str*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `priority`                                                           | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `tax_rate_code`                                                      | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |

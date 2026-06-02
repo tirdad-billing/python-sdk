@@ -1,0 +1,15 @@
+# WalletFilter
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `alert_enabled`                                                      | *Optional[bool]*                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `expand`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `limit`                                                              | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `offset`                                                             | *Optional[int]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `order`                                                              | [Optional[models.WalletFilterOrder]](../models/walletfilterorder.md) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `sort`                                                               | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `status`                                                             | [Optional[models.WalletStatus]](../models/walletstatus.md)           | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `wallet_ids`                                                         | List[*str*]                                                          | :heavy_minus_sign:                                                   | N/A                                                                  |

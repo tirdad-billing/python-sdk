@@ -1,0 +1,12 @@
+# ChangedSubscription
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `action`                                                                             | [Optional[models.ChangedSubscriptionAction]](../models/changedsubscriptionaction.md) | :heavy_minus_sign:                                                                   | created \| updated                                                                   |
+| `current_period_end`                                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects)                 | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `id`                                                                                 | *Optional[str]*                                                                      | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `status`                                                                             | [Optional[models.SubscriptionStatus]](../models/subscriptionstatus.md)               | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `trial_end`                                                                          | [date](https://docs.python.org/3/library/datetime.html#date-objects)                 | :heavy_minus_sign:                                                                   | N/A                                                                                  |

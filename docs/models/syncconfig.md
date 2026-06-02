@@ -1,0 +1,16 @@
+# SyncConfig
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `customer`                                                               | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `deal`                                                                   | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `invoice`                                                                | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `invoice_sync_settings`                                                  | [Optional[models.InvoiceSyncSettings]](../models/invoicesyncsettings.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `payment`                                                                | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `plan`                                                                   | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `quote`                                                                  | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `s3`                                                                     | [Optional[models.S3ExportConfig]](../models/s3exportconfig.md)           | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `subscription`                                                           | [Optional[models.EntitySyncConfig]](../models/entitysyncconfig.md)       | :heavy_minus_sign:                                                       | N/A                                                                      |

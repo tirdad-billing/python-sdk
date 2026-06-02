@@ -1,0 +1,17 @@
+# CostsheetFilter
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `costsheet_i_ds`                                                 | List[*str*]                                                      | :heavy_minus_sign:                                               | CostsheetIDs allows filtering by specific costsheet IDs          |
+| `environment_id`                                                 | *Optional[str]*                                                  | :heavy_minus_sign:                                               | EnvironmentID filters by specific environment ID                 |
+| `filters`                                                        | List[[models.FilterCondition](../models/filtercondition.md)]     | :heavy_minus_sign:                                               | Filters contains custom filtering conditions                     |
+| `lookup_key`                                                     | *Optional[str]*                                                  | :heavy_minus_sign:                                               | LookupKey filters by lookup key                                  |
+| `name`                                                           | *Optional[str]*                                                  | :heavy_minus_sign:                                               | Name filters by costsheet name                                   |
+| `query_filter`                                                   | [Optional[models.QueryFilter]](../models/queryfilter.md)         | :heavy_minus_sign:                                               | N/A                                                              |
+| `sort`                                                           | List[[models.SortCondition](../models/sortcondition.md)]         | :heavy_minus_sign:                                               | Sort specifies result ordering preferences                       |
+| `status`                                                         | [Optional[models.Status]](../models/status.md)                   | :heavy_minus_sign:                                               | N/A                                                              |
+| `tenant_id`                                                      | *Optional[str]*                                                  | :heavy_minus_sign:                                               | TenantID filters by specific tenant ID                           |
+| `time_range_filter`                                              | [Optional[models.TimeRangeFilter]](../models/timerangefilter.md) | :heavy_minus_sign:                                               | N/A                                                              |

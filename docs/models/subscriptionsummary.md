@@ -1,0 +1,15 @@
+# SubscriptionSummary
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `archived_at`                                                          | [date](https://docs.python.org/3/library/datetime.html#date-objects)   | :heavy_minus_sign:                                                     | archived_at timestamp (for old subscriptions)                          |
+| `billing_anchor`                                                       | [date](https://docs.python.org/3/library/datetime.html#date-objects)   | :heavy_minus_sign:                                                     | billing_anchor of the subscription                                     |
+| `created_at`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects)   | :heavy_minus_sign:                                                     | created_at timestamp                                                   |
+| `current_period_end`                                                   | [date](https://docs.python.org/3/library/datetime.html#date-objects)   | :heavy_minus_sign:                                                     | current_period_end of the subscription                                 |
+| `current_period_start`                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects)   | :heavy_minus_sign:                                                     | current_period_start of the subscription                               |
+| `id`                                                                   | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | id of the subscription                                                 |
+| `plan_id`                                                              | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | plan_id of the subscription                                            |
+| `status`                                                               | [Optional[models.SubscriptionStatus]](../models/subscriptionstatus.md) | :heavy_minus_sign:                                                     | N/A                                                                    |

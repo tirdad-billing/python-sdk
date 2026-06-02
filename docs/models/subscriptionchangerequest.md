@@ -1,0 +1,17 @@
+# SubscriptionChangeRequest
+
+Request object for changing a subscription plan (upgrade/downgrade)
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `billing_cadence`                                                          | [models.BillingCadence](../models/billingcadence.md)                       | :heavy_check_mark:                                                         | N/A                                                                        |
+| `billing_cycle`                                                            | [models.BillingCycle](../models/billingcycle.md)                           | :heavy_check_mark:                                                         | N/A                                                                        |
+| `billing_period`                                                           | [models.BillingPeriod](../models/billingperiod.md)                         | :heavy_check_mark:                                                         | N/A                                                                        |
+| `billing_period_count`                                                     | *Optional[int]*                                                            | :heavy_minus_sign:                                                         | billing_period_count is the billing period count for the new subscription  |
+| `change_at`                                                                | [Optional[models.ScheduleType]](../models/scheduletype.md)                 | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `metadata`                                                                 | Dict[str, *str*]                                                           | :heavy_minus_sign:                                                         | metadata contains additional key-value pairs for storing extra information |
+| `proration_behavior`                                                       | [models.ProrationBehavior](../models/prorationbehavior.md)                 | :heavy_check_mark:                                                         | N/A                                                                        |
+| `target_plan_id`                                                           | *str*                                                                      | :heavy_check_mark:                                                         | target_plan_id is the ID of the new plan to change to (required)           |
