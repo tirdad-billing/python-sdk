@@ -9,15 +9,15 @@ Type-safe Python client for the Tirdad API: billing, metering, and subscription 
 ## Installation
 
 ```bash
-pip install flexprice
+pip install tirdad-sdk
 ```
 
 With uv or poetry:
 
 ```bash
-uv add flexprice
+uv add tirdad-sdk
 # or
-poetry add flexprice
+poetry add tirdad-sdk
 ```
 
 Runnable samples are in the `examples/` directory.
@@ -37,7 +37,7 @@ Initialize the client, create a customer, ingest an event:
 
 ```python
 import os
-from flexprice import Tirdad
+from tirdad_sdk import Tirdad
 
 api_key = os.getenv("TIRDAD_API_KEY", "YOUR_API_KEY")
 server_url = os.getenv(
@@ -69,7 +69,7 @@ The same client supports async when used as an async context manager:
 ```python
 import asyncio
 import os
-from flexprice import Tirdad
+from tirdad_sdk import Tirdad
 
 async def main():
     server_url = os.getenv(
@@ -96,7 +96,7 @@ asyncio.run(main())
 
 - Pass your API key as `api_key_auth` when creating the client. The SDK sends it in the `x-api-key` header.
 - Set `TIRDAD_API_HOST` to a full URL (see [Environment](#environment)) or use the default `https://api.tirdad.ai/v1`.
-- Prefer environment variables; get keys from your [Tirdad dashboard](https://app.flexprice.io) or docs.
+- Prefer environment variables; get keys from your [Tirdad dashboard](https://app.tirdad.io) or docs.
 
 ## Error handling
 
@@ -104,14 +104,14 @@ API errors are raised as exceptions. Catch them and inspect the response as need
 
 ```python
 try:
-    with Tirdad(server_url="...", api_key_auth="...") as flexprice:
-        result = flexprice.events.ingest_event(request={...})
+    with Tirdad(server_url="...", api_key_auth="...") as tirdad:
+        result = tirdad.events.ingest_event(request={...})
 except Exception as e:
     print(f"Error: {e}")
     # Inspect status code and body if available on the exception
 ```
 
-See the [API docs](https://docs.flexprice.io) for error formats and status codes.
+See the [API docs](https://docs.tirdad.io) for error formats and status codes.
 
 ## Features
 
@@ -120,13 +120,13 @@ See the [API docs](https://docs.flexprice.io) for error formats and status codes
 - Type-safe request/response models (Pydantic)
 - Built-in retries and error handling
 
-For a full list of operations, see the [API reference](https://docs.flexprice.io) and the [examples](examples/) in this repo.
+For a full list of operations, see the [API reference](https://docs.tirdad.io) and the [examples](examples/) in this repo.
 
 ## Troubleshooting
 
 - **Missing or invalid API key:** Ensure `api_key_auth` is set (or set `TIRDAD_API_KEY` and pass it in). Keys are for server-side use only.
 - **Wrong server URL:** Use a full URL such as `https://api.tirdad.ai/v1` (include `/v1`; no trailing slash).
-- **4xx/5xx on ingest:** Event ingest returns 202 Accepted; for errors, check request fields (`event_name`, `external_customer_id`, `properties`, `source`) against the [API docs](https://docs.flexprice.io).
+- **4xx/5xx on ingest:** Event ingest returns 202 Accepted; for errors, check request fields (`event_name`, `external_customer_id`, `properties`, `source`) against the [API docs](https://docs.tirdad.io).
 
 ## Handling Webhooks
 
@@ -142,7 +142,7 @@ Tirdad sends webhook events to your server for async updates on payments, invoic
 
 ```python
 import json
-from flexprice.models import (
+from tirdad_sdk.models import (
     WebhookDtoPaymentWebhookPayload,
     WebhookDtoSubscriptionWebhookPayload,
     WebhookDtoInvoiceWebhookPayload,
@@ -192,6 +192,6 @@ def handle_webhook(raw_body: str) -> None:
 
 ## Documentation
 
-- [Tirdad API documentation](https://docs.flexprice.io)
+- [Tirdad API documentation](https://docs.tirdad.io)
 - [Python SDK examples](examples/) in this repo
 - [SDK integration tests](../tests/README.md) — different `TIRDAD_API_HOST` shape for automated tests
