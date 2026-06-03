@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
-id: c967d539-4633-4b3b-bce3-d4d3eadd91db
+id: b032a672-c7ce-4e59-959d-5ca64b26140a
 management:
   docChecksum: 522fc994120ac7fb423ae0f15e57d572
   docVersion: "1.0"
   speakeasyVersion: 1.770.0
   generationVersion: 2.893.0
-  releaseVersion: 2.1.16
-  configChecksum: 3c70232bde0e0ee88df444f7ae021a0d
+  releaseVersion: 2.1.17
+  configChecksum: 48cb05aada4102c9a7a0c09b93fed960
   published: true
 persistentEdits:
-  generation_id: 528f17e9-11ac-458a-bcac-f1d11bd66758
-  pristine_commit_hash: 4b9935e726e22c57129305b3b2f781516d268805
-  pristine_tree_hash: 1bf4b00c45b09b29a3b65d85a4820cfb5c563e24
+  generation_id: be2aa184-d7bf-4e81-a808-0b4485751521
+  pristine_commit_hash: e6e97bbe4c1b69578a594fe0836c4c857a366032
+  pristine_tree_hash: 7e7e60e214cae3baecbcc2a7a7165919b4ec9e2b
 features:
   python:
     additionalDependencies: 1.1.0
@@ -2429,8 +2429,8 @@ trackedFiles:
     pristine_git_object: 8839a462c0547e8d64470c45a8f613e6702e47f8
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:bbd0fa56d933f5c9a9b3bca1b38055d81bef42ca
-    pristine_git_object: 7818b382e233c8be940a26aceca7274c91d6f524
+    last_write_checksum: sha1:1ccd61f97ef87db5898eb6779efbf03343f63486
+    pristine_git_object: 3365526874c8b2426cee15fb8debd9559ab856c1
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -2453,8 +2453,8 @@ trackedFiles:
     pristine_git_object: 72f7cbe868bdb65e7ba2882ddbd6f9aa860e3c46
   src/tirdad_sdk/_version.py:
     id: 55a4ad0b1139
-    last_write_checksum: sha1:1605843366eb8b90c647948c2e8bd65014243f40
-    pristine_git_object: 27af0e95f448c139c4fcec559572ddf39f610390
+    last_write_checksum: sha1:7948f181c864a686ddc4540e15c582dd8fdfd2b9
+    pristine_git_object: e79f9160e28596ee80b400534d53a3063d5e723c
   src/tirdad_sdk/addons.py:
     id: a4eea8ce5eda
     last_write_checksum: sha1:9ae880c0eb5e4f36c3e4f32bbdb861f7805a3522
