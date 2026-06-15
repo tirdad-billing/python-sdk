@@ -11,6 +11,8 @@ DebugTrackerStatus = Union[
         "not_found",
         "found",
         "error",
+        "processing",
+        "attributed",
     ],
     UnrecognizedStr,
 ]

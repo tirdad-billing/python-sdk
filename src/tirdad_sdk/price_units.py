@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class PriceUnits(BaseSDK):
@@ -236,7 +236,7 @@ class PriceUnits(BaseSDK):
         conversion_rate: str,
         name: str,
         symbol: str,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -281,7 +281,7 @@ class PriceUnits(BaseSDK):
             base_currency=base_currency,
             code=code,
             conversion_rate=conversion_rate,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
             symbol=symbol,
         )
@@ -361,7 +361,7 @@ class PriceUnits(BaseSDK):
         conversion_rate: str,
         name: str,
         symbol: str,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -406,7 +406,7 @@ class PriceUnits(BaseSDK):
             base_currency=base_currency,
             code=code,
             conversion_rate=conversion_rate,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
             symbol=symbol,
         )
@@ -678,14 +678,19 @@ class PriceUnits(BaseSDK):
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         order: Optional[models.PriceUnitFilterOrder] = None,
-        price_unit_ids: Optional[List[str]] = None,
+        price_unit_ids: Optional[Iterable[str]] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -732,7 +737,7 @@ class PriceUnits(BaseSDK):
             limit=limit,
             offset=offset,
             order=order,
-            price_unit_ids=price_unit_ids,
+            price_unit_ids=utils.unmarshal(price_unit_ids, Optional[List[str]]),
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
@@ -811,14 +816,19 @@ class PriceUnits(BaseSDK):
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         order: Optional[models.PriceUnitFilterOrder] = None,
-        price_unit_ids: Optional[List[str]] = None,
+        price_unit_ids: Optional[Iterable[str]] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -865,7 +875,7 @@ class PriceUnits(BaseSDK):
             limit=limit,
             offset=offset,
             order=order,
-            price_unit_ids=price_unit_ids,
+            price_unit_ids=utils.unmarshal(price_unit_ids, Optional[List[str]]),
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
@@ -1126,7 +1136,7 @@ class PriceUnits(BaseSDK):
         self,
         *,
         id: str,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1158,7 +1168,7 @@ class PriceUnits(BaseSDK):
         request = models.UpdatePriceUnitRequestRequest(
             id=id,
             body=models.UpdatePriceUnitRequest(
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -1229,7 +1239,7 @@ class PriceUnits(BaseSDK):
         self,
         *,
         id: str,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1261,7 +1271,7 @@ class PriceUnits(BaseSDK):
         request = models.UpdatePriceUnitRequestRequest(
             id=id,
             body=models.UpdatePriceUnitRequest(
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )

@@ -14,6 +14,11 @@ from typing_extensions import NotRequired, TypedDict
 class CancelSubscriptionRequestTypedDict(TypedDict):
     cancellation_type: CancellationType
     cancel_at: NotRequired[datetime]
+    r"""CancelAt is the exact date/time when the subscription should be cancelled.
+    Required for cancellation_type \"scheduled_date\"; optional for \"immediate\" (past dates only — backdated cancellation).
+    For \"scheduled_date\", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
+    For \"immediate\", accepts past/current dates only; use \"scheduled_date\" for future dates.
+    """
     cancel_immediately_inovice_policy: NotRequired[CancelImmediatelyInvoicePolicy]
     proration_behavior: NotRequired[ProrationBehavior]
     reason: NotRequired[str]
@@ -24,6 +29,11 @@ class CancelSubscriptionRequest(BaseModel):
     cancellation_type: CancellationType
 
     cancel_at: Optional[datetime] = None
+    r"""CancelAt is the exact date/time when the subscription should be cancelled.
+    Required for cancellation_type \"scheduled_date\"; optional for \"immediate\" (past dates only — backdated cancellation).
+    For \"scheduled_date\", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
+    For \"immediate\", accepts past/current dates only; use \"scheduled_date\" for future dates.
+    """
 
     cancel_immediately_inovice_policy: Optional[CancelImmediatelyInvoicePolicy] = None
 

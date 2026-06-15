@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Users(BaseSDK):
@@ -15,7 +15,8 @@ class Users(BaseSDK):
         *,
         type_: models.UserType,
         email: Optional[str] = None,
-        roles: Optional[List[str]] = None,
+        name: Optional[str] = None,
+        roles: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -27,6 +28,7 @@ class Users(BaseSDK):
 
         :param type:
         :param email: Required when type is \"user\"
+        :param name: Display name; optional for service accounts
         :param roles: Required when type is \"service_account\"
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -45,7 +47,8 @@ class Users(BaseSDK):
 
         request = models.CreateUserRequest(
             email=email,
-            roles=roles,
+            name=name,
+            roles=utils.unmarshal(roles, Optional[List[str]]),
             type=type_,
         )
 
@@ -121,7 +124,8 @@ class Users(BaseSDK):
         *,
         type_: models.UserType,
         email: Optional[str] = None,
-        roles: Optional[List[str]] = None,
+        name: Optional[str] = None,
+        roles: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -133,6 +137,7 @@ class Users(BaseSDK):
 
         :param type:
         :param email: Required when type is \"user\"
+        :param name: Display name; optional for service accounts
         :param roles: Required when type is \"service_account\"
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -151,7 +156,8 @@ class Users(BaseSDK):
 
         request = models.CreateUserRequest(
             email=email,
-            roles=roles,
+            name=name,
+            roles=utils.unmarshal(roles, Optional[List[str]]),
             type=type_,
         )
 
@@ -405,7 +411,8 @@ class Users(BaseSDK):
     def update_user(
         self,
         *,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
+        name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -413,9 +420,10 @@ class Users(BaseSDK):
     ) -> models.UpdateUserResponse:
         r"""Update current user
 
-        Update the current authenticated user. Only metadata updates are supported.
+        Update the current authenticated user. Supports name and metadata updates.
 
         :param metadata:
+        :param name:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -432,7 +440,8 @@ class Users(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.UpdateUserRequest(
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+            name=name,
         )
 
         req = self._build_request(
@@ -505,7 +514,8 @@ class Users(BaseSDK):
     async def update_user_async(
         self,
         *,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
+        name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -513,9 +523,10 @@ class Users(BaseSDK):
     ) -> models.UpdateUserResponse:
         r"""Update current user
 
-        Update the current authenticated user. Only metadata updates are supported.
+        Update the current authenticated user. Supports name and metadata updates.
 
         :param metadata:
+        :param name:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -532,7 +543,8 @@ class Users(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.UpdateUserRequest(
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+            name=name,
         )
 
         req = self._build_request_async(
@@ -608,19 +620,24 @@ class Users(BaseSDK):
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         order: Optional[models.UserFilterOrder] = None,
-        roles: Optional[List[str]] = None,
+        roles: Optional[Iterable[str]] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
         type_: Optional[models.UserType] = None,
-        user_ids: Optional[List[str]] = None,
+        user_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -666,12 +683,12 @@ class Users(BaseSDK):
             limit=limit,
             offset=offset,
             order=order,
-            roles=roles,
+            roles=utils.unmarshal(roles, Optional[List[str]]),
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
             type=type_,
-            user_ids=user_ids,
+            user_ids=utils.unmarshal(user_ids, Optional[List[str]]),
         )
 
         req = self._build_request(
@@ -747,19 +764,24 @@ class Users(BaseSDK):
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         order: Optional[models.UserFilterOrder] = None,
-        roles: Optional[List[str]] = None,
+        roles: Optional[Iterable[str]] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
         type_: Optional[models.UserType] = None,
-        user_ids: Optional[List[str]] = None,
+        user_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -805,12 +827,12 @@ class Users(BaseSDK):
             limit=limit,
             offset=offset,
             order=order,
-            roles=roles,
+            roles=utils.unmarshal(roles, Optional[List[str]]),
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
             type=type_,
-            user_ids=user_ids,
+            user_ids=utils.unmarshal(user_ids, Optional[List[str]]),
         )
 
         req = self._build_request_async(
@@ -858,6 +880,414 @@ class Users(BaseSDK):
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.ListUsersResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def update_service_account(
+        self,
+        *,
+        id: str,
+        name: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.UpdateServiceAccountResponse:
+        r"""Update service account
+
+        Update a service account by ID (name only).
+
+        :param id: Service Account ID
+        :param name:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateServiceAccountRequestRequest(
+            id=id,
+            body=models.UpdateServiceAccountRequest(
+                name=name,
+            ),
+        )
+
+        req = self._build_request(
+            method="PUT",
+            path="/users/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.UpdateServiceAccountRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="updateServiceAccount",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.UpdateServiceAccountResponse, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def update_service_account_async(
+        self,
+        *,
+        id: str,
+        name: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.UpdateServiceAccountResponse:
+        r"""Update service account
+
+        Update a service account by ID (name only).
+
+        :param id: Service Account ID
+        :param name:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateServiceAccountRequestRequest(
+            id=id,
+            body=models.UpdateServiceAccountRequest(
+                name=name,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="PUT",
+            path="/users/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.UpdateServiceAccountRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="updateServiceAccount",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.UpdateServiceAccountResponse, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def delete_service_account(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ):
+        r"""Delete service account
+
+        Soft-delete (archive) a service account by ID.
+
+        :param id: Service Account ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.DeleteServiceAccountRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="DELETE",
+            path="/users/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteServiceAccount",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def delete_service_account_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ):
+        r"""Delete service account
+
+        Soft-delete (archive) a service account by ID.
+
+        :param id: Service Account ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.DeleteServiceAccountRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/users/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteServiceAccount",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
             )

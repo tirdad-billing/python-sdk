@@ -11,6 +11,7 @@ FailurePointType = Union[
         "meter_lookup",
         "price_lookup",
         "subscription_line_item_lookup",
+        "attributed_to_customer",
     ],
     UnrecognizedStr,
 ]

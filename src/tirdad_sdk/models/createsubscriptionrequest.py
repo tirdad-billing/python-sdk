@@ -31,6 +31,10 @@ from .overridelineitemrequest import (
 from .paymentbehavior import PaymentBehavior
 from .paymentterms import PaymentTerms
 from .prorationbehavior import ProrationBehavior
+from .subscriptioncouponinput import (
+    SubscriptionCouponInput,
+    SubscriptionCouponInputTypedDict,
+)
 from .subscriptioninheritanceconfig import (
     SubscriptionInheritanceConfig,
     SubscriptionInheritanceConfigTypedDict,
@@ -74,6 +78,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
     commitment_duration: NotRequired[BillingPeriod]
     coupons: NotRequired[List[str]]
+    r"""Deprecated: use SubscriptionCoupons instead."""
     credit_grants: NotRequired[List[CreateCreditGrantRequestTypedDict]]
     r"""Credit grants to be applied when subscription is created"""
     customer_id: NotRequired[str]
@@ -96,6 +101,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
     r"""LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)"""
     line_item_coupons: NotRequired[Dict[str, List[str]]]
+    r"""Deprecated: use SubscriptionCoupons instead."""
     line_items: NotRequired[List[CreateSubscriptionLineItemRequestTypedDict]]
     r"""LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices"""
     lookup_key: NotRequired[str]
@@ -112,6 +118,10 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     r"""Phases represents subscription phases to be created with the subscription"""
     proration_behavior: NotRequired[ProrationBehavior]
     start_date: NotRequired[datetime]
+    subscription_coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
+    r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
+    Accepts coupon_code; optionally targets a line item via price_id.
+    """
     subscription_status: NotRequired[SubscriptionStatus]
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
     r"""tax_rate_overrides is the tax rate overrides	to be applied to the subscription"""
@@ -158,6 +168,7 @@ class CreateSubscriptionRequest(BaseModel):
     commitment_duration: Optional[BillingPeriod] = None
 
     coupons: Optional[List[str]] = None
+    r"""Deprecated: use SubscriptionCoupons instead."""
 
     credit_grants: Optional[List[CreateCreditGrantRequest]] = None
     r"""Credit grants to be applied when subscription is created"""
@@ -190,6 +201,7 @@ class CreateSubscriptionRequest(BaseModel):
     r"""LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)"""
 
     line_item_coupons: Optional[Dict[str, List[str]]] = None
+    r"""Deprecated: use SubscriptionCoupons instead."""
 
     line_items: Optional[List[CreateSubscriptionLineItemRequest]] = None
     r"""LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices"""
@@ -217,6 +229,11 @@ class CreateSubscriptionRequest(BaseModel):
     proration_behavior: Optional[ProrationBehavior] = None
 
     start_date: Optional[datetime] = None
+
+    subscription_coupons: Optional[List[SubscriptionCouponInput]] = None
+    r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
+    Accepts coupon_code; optionally targets a line item via price_id.
+    """
 
     subscription_status: Optional[SubscriptionStatus] = None
 
@@ -262,6 +279,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "phases",
                 "proration_behavior",
                 "start_date",
+                "subscription_coupons",
                 "subscription_status",
                 "tax_rate_overrides",
                 "trial_period_days",

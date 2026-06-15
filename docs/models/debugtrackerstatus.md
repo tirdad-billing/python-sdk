@@ -18,3 +18,5 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"not_found"`
 - `"found"`
 - `"error"`
+- `"processing"`
+- `"attributed"`

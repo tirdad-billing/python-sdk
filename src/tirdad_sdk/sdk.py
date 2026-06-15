@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.addons import Addons
     from tirdad_sdk.alerts import Alerts
     from tirdad_sdk.costs import Costs
+    from tirdad_sdk.coupon_associations import CouponAssociations
     from tirdad_sdk.coupons import Coupons
     from tirdad_sdk.credit_grants import CreditGrants
     from tirdad_sdk.credit_notes import CreditNotes
@@ -55,6 +56,7 @@ class Tirdad(BaseSDK):
     alerts: "Alerts"
     costs: "Costs"
     coupons: "Coupons"
+    coupon_associations: "CouponAssociations"
     credit_grants: "CreditGrants"
     credit_notes: "CreditNotes"
     customers: "Customers"
@@ -86,6 +88,7 @@ class Tirdad(BaseSDK):
         "alerts": ("tirdad_sdk.alerts", "Alerts"),
         "costs": ("tirdad_sdk.costs", "Costs"),
         "coupons": ("tirdad_sdk.coupons", "Coupons"),
+        "coupon_associations": ("tirdad_sdk.coupon_associations", "CouponAssociations"),
         "credit_grants": ("tirdad_sdk.credit_grants", "CreditGrants"),
         "credit_notes": ("tirdad_sdk.credit_notes", "CreditNotes"),
         "customers": ("tirdad_sdk.customers", "Customers"),

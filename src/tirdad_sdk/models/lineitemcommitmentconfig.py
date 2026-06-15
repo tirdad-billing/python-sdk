@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 from .billingperiod import BillingPeriod
+from .commitmentbucketrequest import (
+    CommitmentBucketRequest,
+    CommitmentBucketRequestTypedDict,
+)
 from .commitmenttype import CommitmentType
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -15,6 +19,12 @@ class LineItemCommitmentConfigTypedDict(TypedDict):
     commitment_duration: NotRequired[BillingPeriod]
     commitment_quantity: NotRequired[float]
     r"""CommitmentQuantity is the minimum quantity committed for this line item"""
+    commitment_time_buckets: NotRequired[List[CommitmentBucketRequestTypedDict]]
+    r"""CommitmentTimeBuckets defines per-bucket commitment + inline price for
+    windows whose start UTC hour falls within each configured bucket. Each
+    bucket carries its own price (materialized by the service). Requires
+    IsWindowCommitment=true.
+    """
     commitment_type: NotRequired[CommitmentType]
     enable_true_up: NotRequired[bool]
     r"""EnableTrueUp determines if true-up fee should be applied when usage is below commitment"""
@@ -32,6 +42,13 @@ class LineItemCommitmentConfig(BaseModel):
 
     commitment_quantity: Optional[float] = None
     r"""CommitmentQuantity is the minimum quantity committed for this line item"""
+
+    commitment_time_buckets: Optional[List[CommitmentBucketRequest]] = None
+    r"""CommitmentTimeBuckets defines per-bucket commitment + inline price for
+    windows whose start UTC hour falls within each configured bucket. Each
+    bucket carries its own price (materialized by the service). Requires
+    IsWindowCommitment=true.
+    """
 
     commitment_type: Optional[CommitmentType] = None
 
@@ -51,6 +68,7 @@ class LineItemCommitmentConfig(BaseModel):
                 "commitment_amount",
                 "commitment_duration",
                 "commitment_quantity",
+                "commitment_time_buckets",
                 "commitment_type",
                 "enable_true_up",
                 "is_window_commitment",

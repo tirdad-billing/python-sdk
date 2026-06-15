@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Prices(BaseSDK):
@@ -26,10 +26,10 @@ class Prices(BaseSDK):
         description: Optional[str] = None,
         display_name: Optional[str] = None,
         end_date: Optional[datetime] = None,
-        filter_values: Optional[Dict[str, List[str]]] = None,
+        filter_values: Optional[Mapping[str, Iterable[str]]] = None,
         group_id: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         meter_id: Optional[str] = None,
         min_quantity: Optional[int] = None,
         price_unit_config: Optional[
@@ -38,7 +38,10 @@ class Prices(BaseSDK):
         start_date: Optional[datetime] = None,
         tier_mode: Optional[models.BillingTier] = None,
         tiers: Optional[
-            Union[List[models.CreatePriceTier], List[models.CreatePriceTierTypedDict]]
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
         ] = None,
         transform_quantity: Optional[
             Union[models.PriceTransformQuantity, models.PriceTransformQuantityTypedDict]
@@ -104,11 +107,13 @@ class Prices(BaseSDK):
             end_date=end_date,
             entity_id=entity_id,
             entity_type=entity_type,
-            filter_values=filter_values,
+            filter_values=utils.unmarshal(
+                filter_values, Optional[Dict[str, List[str]]]
+            ),
             group_id=group_id,
             invoice_cadence=invoice_cadence,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             meter_id=meter_id,
             min_quantity=min_quantity,
             price_unit_config=utils.get_pydantic_model(
@@ -210,10 +215,10 @@ class Prices(BaseSDK):
         description: Optional[str] = None,
         display_name: Optional[str] = None,
         end_date: Optional[datetime] = None,
-        filter_values: Optional[Dict[str, List[str]]] = None,
+        filter_values: Optional[Mapping[str, Iterable[str]]] = None,
         group_id: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         meter_id: Optional[str] = None,
         min_quantity: Optional[int] = None,
         price_unit_config: Optional[
@@ -222,7 +227,10 @@ class Prices(BaseSDK):
         start_date: Optional[datetime] = None,
         tier_mode: Optional[models.BillingTier] = None,
         tiers: Optional[
-            Union[List[models.CreatePriceTier], List[models.CreatePriceTierTypedDict]]
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
         ] = None,
         transform_quantity: Optional[
             Union[models.PriceTransformQuantity, models.PriceTransformQuantityTypedDict]
@@ -288,11 +296,13 @@ class Prices(BaseSDK):
             end_date=end_date,
             entity_id=entity_id,
             entity_type=entity_type,
-            filter_values=filter_values,
+            filter_values=utils.unmarshal(
+                filter_values, Optional[Dict[str, List[str]]]
+            ),
             group_id=group_id,
             invoice_cadence=invoice_cadence,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             meter_id=meter_id,
             min_quantity=min_quantity,
             price_unit_config=utils.get_pydantic_model(
@@ -382,7 +392,8 @@ class Prices(BaseSDK):
         self,
         *,
         items: Union[
-            List[models.CreatePriceRequest], List[models.CreatePriceRequestTypedDict]
+            Iterable[models.CreatePriceRequest],
+            Iterable[models.CreatePriceRequestTypedDict],
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -484,7 +495,8 @@ class Prices(BaseSDK):
         self,
         *,
         items: Union[
-            List[models.CreatePriceRequest], List[models.CreatePriceRequestTypedDict]
+            Iterable[models.CreatePriceRequest],
+            Iterable[models.CreatePriceRequestTypedDict],
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -780,20 +792,24 @@ class Prices(BaseSDK):
         self,
         *,
         allow_expired_prices: Optional[bool] = False,
+        billing_periods: Optional[Iterable[models.BillingPeriod]] = None,
         end_time: Optional[datetime] = None,
-        entity_ids: Optional[List[str]] = None,
+        entity_ids: Optional[Iterable[str]] = None,
         entity_type: Optional[models.PriceEntityType] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
-        meter_ids: Optional[List[str]] = None,
+        meter_ids: Optional[Iterable[str]] = None,
         offset: Optional[int] = None,
         order: Optional[models.PriceFilterOrder] = None,
         parent_price_id: Optional[str] = None,
-        plan_ids: Optional[List[str]] = None,
-        price_ids: Optional[List[str]] = None,
+        plan_ids: Optional[Iterable[str]] = None,
+        price_ids: Optional[Iterable[str]] = None,
         sort: Optional[str] = None,
         start_date_lt: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -809,6 +825,7 @@ class Prices(BaseSDK):
         Use when listing or searching prices (e.g. plan builder or catalog). Returns a paginated list; supports filtering and sorting.
 
         :param allow_expired_prices:
+        :param billing_periods:
         :param end_time:
         :param entity_ids:
         :param entity_type:
@@ -843,20 +860,23 @@ class Prices(BaseSDK):
 
         request = models.PriceFilter(
             allow_expired_prices=allow_expired_prices,
+            billing_periods=utils.unmarshal(
+                billing_periods, Optional[List[models.BillingPeriod]]
+            ),
             end_time=end_time,
-            entity_ids=entity_ids,
+            entity_ids=utils.unmarshal(entity_ids, Optional[List[str]]),
             entity_type=entity_type,
             expand=expand,
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
             limit=limit,
-            meter_ids=meter_ids,
+            meter_ids=utils.unmarshal(meter_ids, Optional[List[str]]),
             offset=offset,
             order=order,
             parent_price_id=parent_price_id,
-            plan_ids=plan_ids,
-            price_ids=price_ids,
+            plan_ids=utils.unmarshal(plan_ids, Optional[List[str]]),
+            price_ids=utils.unmarshal(price_ids, Optional[List[str]]),
             sort=sort,
             start_date_lt=start_date_lt,
             start_time=start_time,
@@ -935,20 +955,24 @@ class Prices(BaseSDK):
         self,
         *,
         allow_expired_prices: Optional[bool] = False,
+        billing_periods: Optional[Iterable[models.BillingPeriod]] = None,
         end_time: Optional[datetime] = None,
-        entity_ids: Optional[List[str]] = None,
+        entity_ids: Optional[Iterable[str]] = None,
         entity_type: Optional[models.PriceEntityType] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
-        meter_ids: Optional[List[str]] = None,
+        meter_ids: Optional[Iterable[str]] = None,
         offset: Optional[int] = None,
         order: Optional[models.PriceFilterOrder] = None,
         parent_price_id: Optional[str] = None,
-        plan_ids: Optional[List[str]] = None,
-        price_ids: Optional[List[str]] = None,
+        plan_ids: Optional[Iterable[str]] = None,
+        price_ids: Optional[Iterable[str]] = None,
         sort: Optional[str] = None,
         start_date_lt: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -964,6 +988,7 @@ class Prices(BaseSDK):
         Use when listing or searching prices (e.g. plan builder or catalog). Returns a paginated list; supports filtering and sorting.
 
         :param allow_expired_prices:
+        :param billing_periods:
         :param end_time:
         :param entity_ids:
         :param entity_type:
@@ -998,20 +1023,23 @@ class Prices(BaseSDK):
 
         request = models.PriceFilter(
             allow_expired_prices=allow_expired_prices,
+            billing_periods=utils.unmarshal(
+                billing_periods, Optional[List[models.BillingPeriod]]
+            ),
             end_time=end_time,
-            entity_ids=entity_ids,
+            entity_ids=utils.unmarshal(entity_ids, Optional[List[str]]),
             entity_type=entity_type,
             expand=expand,
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
             limit=limit,
-            meter_ids=meter_ids,
+            meter_ids=utils.unmarshal(meter_ids, Optional[List[str]]),
             offset=offset,
             order=order,
             parent_price_id=parent_price_id,
-            plan_ids=plan_ids,
-            price_ids=price_ids,
+            plan_ids=utils.unmarshal(plan_ids, Optional[List[str]]),
+            price_ids=utils.unmarshal(price_ids, Optional[List[str]]),
             sort=sort,
             start_date_lt=start_date_lt,
             start_time=start_time,
@@ -1291,14 +1319,20 @@ class Prices(BaseSDK):
         effective_from: Optional[str] = None,
         group_id: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         price_unit_amount: Optional[str] = None,
         price_unit_tiers: Optional[
-            Union[List[models.CreatePriceTier], List[models.CreatePriceTierTypedDict]]
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
         ] = None,
         tier_mode: Optional[models.BillingTier] = None,
         tiers: Optional[
-            Union[List[models.CreatePriceTier], List[models.CreatePriceTierTypedDict]]
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
         ] = None,
         transform_quantity: Optional[
             Union[models.PriceTransformQuantity, models.PriceTransformQuantityTypedDict]
@@ -1355,7 +1389,7 @@ class Prices(BaseSDK):
                 effective_from=effective_from,
                 group_id=group_id,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 price_unit_amount=price_unit_amount,
                 price_unit_tiers=utils.get_pydantic_model(
                     price_unit_tiers, Optional[List[models.CreatePriceTier]]
@@ -1448,14 +1482,20 @@ class Prices(BaseSDK):
         effective_from: Optional[str] = None,
         group_id: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         price_unit_amount: Optional[str] = None,
         price_unit_tiers: Optional[
-            Union[List[models.CreatePriceTier], List[models.CreatePriceTierTypedDict]]
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
         ] = None,
         tier_mode: Optional[models.BillingTier] = None,
         tiers: Optional[
-            Union[List[models.CreatePriceTier], List[models.CreatePriceTierTypedDict]]
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
         ] = None,
         transform_quantity: Optional[
             Union[models.PriceTransformQuantity, models.PriceTransformQuantityTypedDict]
@@ -1512,7 +1552,7 @@ class Prices(BaseSDK):
                 effective_from=effective_from,
                 group_id=group_id,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 price_unit_amount=price_unit_amount,
                 price_unit_tiers=utils.get_pydantic_model(
                     price_unit_tiers, Optional[List[models.CreatePriceTier]]

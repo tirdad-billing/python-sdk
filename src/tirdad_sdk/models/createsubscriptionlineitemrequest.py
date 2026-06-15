@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .billingperiod import BillingPeriod
+from .commitmentbucketrequest import (
+    CommitmentBucketRequest,
+    CommitmentBucketRequestTypedDict,
+)
 from .commitmenttype import CommitmentType
 from .prorationbehavior import ProrationBehavior
 from .subscriptionpricecreaterequest import (
@@ -11,7 +15,7 @@ from .subscriptionpricecreaterequest import (
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -21,6 +25,7 @@ class CreateSubscriptionLineItemRequestTypedDict(TypedDict):
     commitment_duration: NotRequired[BillingPeriod]
     commitment_overage_factor: NotRequired[float]
     commitment_quantity: NotRequired[float]
+    commitment_time_buckets: NotRequired[List[CommitmentBucketRequestTypedDict]]
     commitment_true_up_enabled: NotRequired[bool]
     commitment_type: NotRequired[CommitmentType]
     commitment_windowed: NotRequired[bool]
@@ -45,6 +50,8 @@ class CreateSubscriptionLineItemRequest(BaseModel):
     commitment_overage_factor: Optional[float] = None
 
     commitment_quantity: Optional[float] = None
+
+    commitment_time_buckets: Optional[List[CommitmentBucketRequest]] = None
 
     commitment_true_up_enabled: Optional[bool] = None
 
@@ -79,6 +86,7 @@ class CreateSubscriptionLineItemRequest(BaseModel):
                 "commitment_duration",
                 "commitment_overage_factor",
                 "commitment_quantity",
+                "commitment_time_buckets",
                 "commitment_true_up_enabled",
                 "commitment_type",
                 "commitment_windowed",

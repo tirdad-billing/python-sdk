@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Events(BaseSDK):
@@ -17,7 +17,7 @@ class Events(BaseSDK):
         external_customer_id: str,
         customer_id: Optional[str] = None,
         event_id: Optional[str] = None,
-        properties: Optional[Dict[str, str]] = None,
+        properties: Optional[Mapping[str, str]] = None,
         source: Optional[str] = None,
         timestamp: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -56,7 +56,7 @@ class Events(BaseSDK):
             event_id=event_id,
             event_name=event_name,
             external_customer_id=external_customer_id,
-            properties=properties,
+            properties=utils.unmarshal(properties, Optional[Dict[str, str]]),
             source=source,
             timestamp=timestamp,
         )
@@ -135,7 +135,7 @@ class Events(BaseSDK):
         external_customer_id: str,
         customer_id: Optional[str] = None,
         event_id: Optional[str] = None,
-        properties: Optional[Dict[str, str]] = None,
+        properties: Optional[Mapping[str, str]] = None,
         source: Optional[str] = None,
         timestamp: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -174,7 +174,7 @@ class Events(BaseSDK):
             event_id=event_id,
             event_name=event_name,
             external_customer_id=external_customer_id,
-            properties=properties,
+            properties=utils.unmarshal(properties, Optional[Dict[str, str]]),
             source=source,
             timestamp=timestamp,
         )
@@ -249,14 +249,15 @@ class Events(BaseSDK):
     def get_usage_analytics(
         self,
         *,
+        breakdown_bucket: Optional[bool] = None,
         end_time: Optional[datetime] = None,
-        expand: Optional[List[str]] = None,
+        expand: Optional[Iterable[str]] = None,
         external_customer_id: Optional[str] = None,
-        feature_ids: Optional[List[str]] = None,
-        group_by: Optional[List[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
+        group_by: Optional[Iterable[str]] = None,
         include_children: Optional[bool] = None,
-        property_filters: Optional[Dict[str, List[str]]] = None,
-        sources: Optional[List[str]] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
+        sources: Optional[Iterable[str]] = None,
         start_time: Optional[datetime] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -268,6 +269,10 @@ class Events(BaseSDK):
 
         Use when building analytics views (e.g. usage by feature or customer over time). Supports filtering, grouping, and time-series breakdown.
 
+        :param breakdown_bucket: BreakdownBucket when true augments each time-series point with BucketID/PriceID
+            and appends a BucketSummaries rollup to each item. Requires WindowSize to be set
+            and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
+            Default: false (opt-in, backward compatible).
         :param end_time:
         :param expand: allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\"
         :param external_customer_id: ExternalCustomerID is the single external customer ID.
@@ -296,14 +301,17 @@ class Events(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.GetUsageAnalyticsRequest(
+            breakdown_bucket=breakdown_bucket,
             end_time=end_time,
-            expand=expand,
+            expand=utils.unmarshal(expand, Optional[List[str]]),
             external_customer_id=external_customer_id,
-            feature_ids=feature_ids,
-            group_by=group_by,
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
+            group_by=utils.unmarshal(group_by, Optional[List[str]]),
             include_children=include_children,
-            property_filters=property_filters,
-            sources=sources,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
+            sources=utils.unmarshal(sources, Optional[List[str]]),
             start_time=start_time,
             window_size=window_size,
         )
@@ -378,14 +386,15 @@ class Events(BaseSDK):
     async def get_usage_analytics_async(
         self,
         *,
+        breakdown_bucket: Optional[bool] = None,
         end_time: Optional[datetime] = None,
-        expand: Optional[List[str]] = None,
+        expand: Optional[Iterable[str]] = None,
         external_customer_id: Optional[str] = None,
-        feature_ids: Optional[List[str]] = None,
-        group_by: Optional[List[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
+        group_by: Optional[Iterable[str]] = None,
         include_children: Optional[bool] = None,
-        property_filters: Optional[Dict[str, List[str]]] = None,
-        sources: Optional[List[str]] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
+        sources: Optional[Iterable[str]] = None,
         start_time: Optional[datetime] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -397,6 +406,10 @@ class Events(BaseSDK):
 
         Use when building analytics views (e.g. usage by feature or customer over time). Supports filtering, grouping, and time-series breakdown.
 
+        :param breakdown_bucket: BreakdownBucket when true augments each time-series point with BucketID/PriceID
+            and appends a BucketSummaries rollup to each item. Requires WindowSize to be set
+            and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
+            Default: false (opt-in, backward compatible).
         :param end_time:
         :param expand: allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\"
         :param external_customer_id: ExternalCustomerID is the single external customer ID.
@@ -425,14 +438,17 @@ class Events(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.GetUsageAnalyticsRequest(
+            breakdown_bucket=breakdown_bucket,
             end_time=end_time,
-            expand=expand,
+            expand=utils.unmarshal(expand, Optional[List[str]]),
             external_customer_id=external_customer_id,
-            feature_ids=feature_ids,
-            group_by=group_by,
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
+            group_by=utils.unmarshal(group_by, Optional[List[str]]),
             include_children=include_children,
-            property_filters=property_filters,
-            sources=sources,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
+            sources=utils.unmarshal(sources, Optional[List[str]]),
             start_time=start_time,
             window_size=window_size,
         )
@@ -508,7 +524,8 @@ class Events(BaseSDK):
         self,
         *,
         events: Union[
-            List[models.IngestEventRequest], List[models.IngestEventRequestTypedDict]
+            Iterable[models.IngestEventRequest],
+            Iterable[models.IngestEventRequestTypedDict],
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -610,7 +627,8 @@ class Events(BaseSDK):
         self,
         *,
         events: Union[
-            List[models.IngestEventRequest], List[models.IngestEventRequestTypedDict]
+            Iterable[models.IngestEventRequest],
+            Iterable[models.IngestEventRequestTypedDict],
         ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -894,7 +912,7 @@ class Events(BaseSDK):
         offset: Optional[int] = None,
         order: Optional[str] = None,
         page_size: Optional[int] = None,
-        property_filters: Optional[Dict[str, List[str]]] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
         sort: Optional[str] = None,
         source: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -947,7 +965,9 @@ class Events(BaseSDK):
             offset=offset,
             order=order,
             page_size=page_size,
-            property_filters=property_filters,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
             sort=sort,
             source=source,
             start_time=start_time,
@@ -1032,7 +1052,7 @@ class Events(BaseSDK):
         offset: Optional[int] = None,
         order: Optional[str] = None,
         page_size: Optional[int] = None,
-        property_filters: Optional[Dict[str, List[str]]] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
         sort: Optional[str] = None,
         source: Optional[str] = None,
         start_time: Optional[datetime] = None,
@@ -1085,7 +1105,9 @@ class Events(BaseSDK):
             offset=offset,
             order=order,
             page_size=page_size,
-            property_filters=property_filters,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
             sort=sort,
             source=source,
             start_time=start_time,
@@ -1168,7 +1190,7 @@ class Events(BaseSDK):
         customer_id: Optional[str] = None,
         end_time: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
-        filters: Optional[Dict[str, List[str]]] = None,
+        filters: Optional[Mapping[str, Iterable[str]]] = None,
         group_by_property: Optional[str] = None,
         multiplier: Optional[str] = None,
         property_name: Optional[str] = None,
@@ -1235,7 +1257,7 @@ class Events(BaseSDK):
             end_time=end_time,
             event_name=event_name,
             external_customer_id=external_customer_id,
-            filters=filters,
+            filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
             group_by_property=group_by_property,
             multiplier=multiplier,
             property_name=property_name,
@@ -1320,7 +1342,7 @@ class Events(BaseSDK):
         customer_id: Optional[str] = None,
         end_time: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
-        filters: Optional[Dict[str, List[str]]] = None,
+        filters: Optional[Mapping[str, Iterable[str]]] = None,
         group_by_property: Optional[str] = None,
         multiplier: Optional[str] = None,
         property_name: Optional[str] = None,
@@ -1387,7 +1409,7 @@ class Events(BaseSDK):
             end_time=end_time,
             event_name=event_name,
             external_customer_id=external_customer_id,
-            filters=filters,
+            filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
             group_by_property=group_by_property,
             multiplier=multiplier,
             property_name=property_name,
@@ -1471,7 +1493,7 @@ class Events(BaseSDK):
         customer_id: Optional[str] = None,
         end_time: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
-        filters: Optional[Dict[str, List[str]]] = None,
+        filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -1528,7 +1550,7 @@ class Events(BaseSDK):
             customer_id=customer_id,
             end_time=end_time,
             external_customer_id=external_customer_id,
-            filters=filters,
+            filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
             meter_id=meter_id,
             start_time=start_time,
             window_size=window_size,
@@ -1610,7 +1632,7 @@ class Events(BaseSDK):
         customer_id: Optional[str] = None,
         end_time: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
-        filters: Optional[Dict[str, List[str]]] = None,
+        filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -1667,7 +1689,7 @@ class Events(BaseSDK):
             customer_id=customer_id,
             end_time=end_time,
             external_customer_id=external_customer_id,
-            filters=filters,
+            filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
             meter_id=meter_id,
             start_time=start_time,
             window_size=window_size,

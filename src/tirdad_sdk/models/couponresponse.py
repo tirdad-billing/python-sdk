@@ -14,6 +14,7 @@ from typing_extensions import NotRequired, TypedDict
 class CouponResponseTypedDict(TypedDict):
     amount_off: NotRequired[str]
     cadence: NotRequired[CouponCadence]
+    coupon_code: NotRequired[str]
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     currency: NotRequired[str]
@@ -39,6 +40,8 @@ class CouponResponse(BaseModel):
     amount_off: Optional[str] = None
 
     cadence: Optional[CouponCadence] = None
+
+    coupon_code: Optional[str] = None
 
     created_at: Optional[datetime] = None
 
@@ -84,6 +87,7 @@ class CouponResponse(BaseModel):
             [
                 "amount_off",
                 "cadence",
+                "coupon_code",
                 "created_at",
                 "created_by",
                 "currency",

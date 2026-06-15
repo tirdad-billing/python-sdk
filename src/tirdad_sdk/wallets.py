@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Wallets(BaseSDK):
@@ -443,7 +443,7 @@ class Wallets(BaseSDK):
         initial_credits_expiry_date_utc: Optional[str] = None,
         initial_credits_to_load: Optional[str] = "0",
         initial_credits_to_load_expiry_date: Optional[int] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         price_unit: Optional[str] = None,
         topup_conversion_rate: Optional[str] = None,
         wallet_type: Optional[models.WalletType] = None,
@@ -512,7 +512,7 @@ class Wallets(BaseSDK):
             initial_credits_expiry_date_utc=initial_credits_expiry_date_utc,
             initial_credits_to_load=initial_credits_to_load,
             initial_credits_to_load_expiry_date=initial_credits_to_load_expiry_date,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             price_unit=price_unit,
             topup_conversion_rate=topup_conversion_rate,
             wallet_type=wallet_type,
@@ -600,7 +600,7 @@ class Wallets(BaseSDK):
         initial_credits_expiry_date_utc: Optional[str] = None,
         initial_credits_to_load: Optional[str] = "0",
         initial_credits_to_load_expiry_date: Optional[int] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         price_unit: Optional[str] = None,
         topup_conversion_rate: Optional[str] = None,
         wallet_type: Optional[models.WalletType] = None,
@@ -669,7 +669,7 @@ class Wallets(BaseSDK):
             initial_credits_expiry_date_utc=initial_credits_expiry_date_utc,
             initial_credits_to_load=initial_credits_to_load,
             initial_credits_to_load_expiry_date=initial_credits_to_load_expiry_date,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             price_unit=price_unit,
             topup_conversion_rate=topup_conversion_rate,
             wallet_type=wallet_type,
@@ -752,7 +752,7 @@ class Wallets(BaseSDK):
         order: Optional[models.WalletFilterOrder] = None,
         sort: Optional[str] = None,
         status: Optional[models.WalletStatus] = None,
-        wallet_ids: Optional[List[str]] = None,
+        wallet_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -793,7 +793,7 @@ class Wallets(BaseSDK):
             order=order,
             sort=sort,
             status=status,
-            wallet_ids=wallet_ids,
+            wallet_ids=utils.unmarshal(wallet_ids, Optional[List[str]]),
         )
 
         req = self._build_request(
@@ -875,7 +875,7 @@ class Wallets(BaseSDK):
         order: Optional[models.WalletFilterOrder] = None,
         sort: Optional[str] = None,
         status: Optional[models.WalletStatus] = None,
-        wallet_ids: Optional[List[str]] = None,
+        wallet_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -916,7 +916,7 @@ class Wallets(BaseSDK):
             order=order,
             sort=sort,
             status=status,
-            wallet_ids=wallet_ids,
+            wallet_ids=utils.unmarshal(wallet_ids, Optional[List[str]]),
         )
 
         req = self._build_request_async(
@@ -998,7 +998,10 @@ class Wallets(BaseSDK):
         expiry_date_after: Optional[str] = None,
         expiry_date_before: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         id: Optional[str] = None,
         limit: Optional[int] = None,
@@ -1008,7 +1011,9 @@ class Wallets(BaseSDK):
         reference_id: Optional[str] = None,
         reference_type: Optional[str] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -1163,7 +1168,10 @@ class Wallets(BaseSDK):
         expiry_date_after: Optional[str] = None,
         expiry_date_before: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         id: Optional[str] = None,
         limit: Optional[int] = None,
@@ -1173,7 +1181,9 @@ class Wallets(BaseSDK):
         reference_id: Optional[str] = None,
         reference_type: Optional[str] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -1524,7 +1534,7 @@ class Wallets(BaseSDK):
             Union[models.WalletConfig, models.WalletConfigTypedDict]
         ] = None,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1568,7 +1578,7 @@ class Wallets(BaseSDK):
                 ),
                 config=utils.get_pydantic_model(config, Optional[models.WalletConfig]),
                 description=description,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -1652,7 +1662,7 @@ class Wallets(BaseSDK):
             Union[models.WalletConfig, models.WalletConfigTypedDict]
         ] = None,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1696,7 +1706,7 @@ class Wallets(BaseSDK):
                 ),
                 config=utils.get_pydantic_model(config, Optional[models.WalletConfig]),
                 description=description,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -2172,7 +2182,7 @@ class Wallets(BaseSDK):
         description: Optional[str] = None,
         expiry_date_utc: Optional[str] = None,
         idempotency_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -2223,7 +2233,7 @@ class Wallets(BaseSDK):
                 description=description,
                 expiry_date_utc=expiry_date_utc,
                 idempotency_key=idempotency_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 priority=priority,
                 transaction_reason=transaction_reason,
             ),
@@ -2306,7 +2316,7 @@ class Wallets(BaseSDK):
         description: Optional[str] = None,
         expiry_date_utc: Optional[str] = None,
         idempotency_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -2357,7 +2367,7 @@ class Wallets(BaseSDK):
                 description=description,
                 expiry_date_utc=expiry_date_utc,
                 idempotency_key=idempotency_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 priority=priority,
                 transaction_reason=transaction_reason,
             ),

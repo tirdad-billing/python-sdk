@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, List, Mapping, Optional, Union
+from typing import Any, Iterable, List, Mapping, Optional, Union
 
 
 class Groups(BaseSDK):
@@ -229,16 +229,21 @@ class Groups(BaseSDK):
         entity_type: Optional[str] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
-        group_ids: Optional[List[str]] = None,
+        group_ids: Optional[Iterable[str]] = None,
         limit: Optional[int] = None,
         lookup_key: Optional[str] = None,
         name: Optional[str] = None,
         offset: Optional[int] = None,
         order: Optional[models.GroupFilterOrder] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -286,7 +291,7 @@ class Groups(BaseSDK):
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
-            group_ids=group_ids,
+            group_ids=utils.unmarshal(group_ids, Optional[List[str]]),
             limit=limit,
             lookup_key=lookup_key,
             name=name,
@@ -371,16 +376,21 @@ class Groups(BaseSDK):
         entity_type: Optional[str] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
-        group_ids: Optional[List[str]] = None,
+        group_ids: Optional[Iterable[str]] = None,
         limit: Optional[int] = None,
         lookup_key: Optional[str] = None,
         name: Optional[str] = None,
         offset: Optional[int] = None,
         order: Optional[models.GroupFilterOrder] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -428,7 +438,7 @@ class Groups(BaseSDK):
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
-            group_ids=group_ids,
+            group_ids=utils.unmarshal(group_ids, Optional[List[str]]),
             limit=limit,
             lookup_key=lookup_key,
             name=name,

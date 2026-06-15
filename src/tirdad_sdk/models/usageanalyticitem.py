@@ -3,6 +3,7 @@
 from __future__ import annotations
 from .addon import Addon, AddonTypedDict
 from .aggregationtype import AggregationType
+from .bucketsummary import BucketSummary, BucketSummaryTypedDict
 from .commitmentinfo import CommitmentInfo, CommitmentInfoTypedDict
 from .feature import Feature, FeatureTypedDict
 from .group_group import GroupGroup, GroupGroupTypedDict
@@ -26,6 +27,10 @@ class UsageAnalyticItemTypedDict(TypedDict):
     add_on_id: NotRequired[str]
     addon: NotRequired[AddonTypedDict]
     aggregation_type: NotRequired[AggregationType]
+    bucket_summaries: NotRequired[List[BucketSummaryTypedDict]]
+    r"""BucketSummaries is populated only when BreakdownBucket=true. Contains one
+    entry per defined CommitmentTimeBucket plus one for out-of-bucket usage.
+    """
     commitment_info: NotRequired[CommitmentInfoTypedDict]
     currency: NotRequired[str]
     event_count: NotRequired[int]
@@ -70,6 +75,11 @@ class UsageAnalyticItem(BaseModel):
     addon: Optional[Addon] = None
 
     aggregation_type: Optional[AggregationType] = None
+
+    bucket_summaries: Optional[List[BucketSummary]] = None
+    r"""BucketSummaries is populated only when BreakdownBucket=true. Contains one
+    entry per defined CommitmentTimeBucket plus one for out-of-bucket usage.
+    """
 
     commitment_info: Optional[CommitmentInfo] = None
 
@@ -142,6 +152,7 @@ class UsageAnalyticItem(BaseModel):
                 "add_on_id",
                 "addon",
                 "aggregation_type",
+                "bucket_summaries",
                 "commitment_info",
                 "currency",
                 "event_count",

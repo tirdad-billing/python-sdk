@@ -9,6 +9,10 @@ from .overridelineitemrequest import (
     OverrideLineItemRequest,
     OverrideLineItemRequestTypedDict,
 )
+from .subscriptioncouponinput import (
+    SubscriptionCouponInput,
+    SubscriptionCouponInputTypedDict,
+)
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -19,10 +23,10 @@ from typing_extensions import NotRequired, TypedDict
 class SubscriptionPhaseCreateRequestTypedDict(TypedDict):
     start_date: datetime
     coupons: NotRequired[List[str]]
-    r"""Coupons represents subscription-level coupons to be applied to this phase"""
+    r"""Deprecated: use SubscriptionCoupons instead."""
     end_date: NotRequired[datetime]
     line_item_coupons: NotRequired[Dict[str, List[str]]]
-    r"""LineItemCoupons represents line item-level coupons (map of line_item_id to coupon IDs)"""
+    r"""Deprecated: use SubscriptionCoupons instead."""
     line_items: NotRequired[List[CreateSubscriptionLineItemRequestTypedDict]]
     r"""LineItems are extra line items to add during this phase, primarily one-time charges.
     Each item's start_date defaults to the phase's start_date when not provided.
@@ -32,18 +36,20 @@ class SubscriptionPhaseCreateRequestTypedDict(TypedDict):
     r"""OverrideLineItems allows customizing specific prices for this phase
     If not provided, phase will use the same line items as the subscription (plan prices)
     """
+    subscription_coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
+    r"""SubscriptionCoupons is the preferred way to attach coupons to this phase."""
 
 
 class SubscriptionPhaseCreateRequest(BaseModel):
     start_date: datetime
 
     coupons: Optional[List[str]] = None
-    r"""Coupons represents subscription-level coupons to be applied to this phase"""
+    r"""Deprecated: use SubscriptionCoupons instead."""
 
     end_date: Optional[datetime] = None
 
     line_item_coupons: Optional[Dict[str, List[str]]] = None
-    r"""LineItemCoupons represents line item-level coupons (map of line_item_id to coupon IDs)"""
+    r"""Deprecated: use SubscriptionCoupons instead."""
 
     line_items: Optional[List[CreateSubscriptionLineItemRequest]] = None
     r"""LineItems are extra line items to add during this phase, primarily one-time charges.
@@ -57,6 +63,9 @@ class SubscriptionPhaseCreateRequest(BaseModel):
     If not provided, phase will use the same line items as the subscription (plan prices)
     """
 
+    subscription_coupons: Optional[List[SubscriptionCouponInput]] = None
+    r"""SubscriptionCoupons is the preferred way to attach coupons to this phase."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -67,6 +76,7 @@ class SubscriptionPhaseCreateRequest(BaseModel):
                 "line_items",
                 "metadata",
                 "override_line_items",
+                "subscription_coupons",
             ]
         )
         serialized = handler(self)

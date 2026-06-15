@@ -12,6 +12,8 @@ class CreateUserRequestTypedDict(TypedDict):
     type: UserType
     email: NotRequired[str]
     r"""Required when type is \"user\" """
+    name: NotRequired[str]
+    r"""Display name; optional for service accounts"""
     roles: NotRequired[List[str]]
     r"""Required when type is \"service_account\" """
 
@@ -22,12 +24,15 @@ class CreateUserRequest(BaseModel):
     email: Optional[str] = None
     r"""Required when type is \"user\" """
 
+    name: Optional[str] = None
+    r"""Display name; optional for service accounts"""
+
     roles: Optional[List[str]] = None
     r"""Required when type is \"service_account\" """
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["email", "roles"])
+        optional_fields = set(["email", "name", "roles"])
         serialized = handler(self)
         m = {}
 

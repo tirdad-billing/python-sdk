@@ -8,6 +8,11 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class UsageAnalyticPointTypedDict(TypedDict):
+    bucket_id: NotRequired[str]
+    r"""Bucket identity (only populated when BreakdownBucket=true and the line item
+    has CommitmentTimeBuckets). Empty strings indicate out-of-bucket windows.
+    """
+    bucket_price_id: NotRequired[str]
     computed_commitment_utilized_amount: NotRequired[str]
     r"""Commitment breakdown (only populated for windowed commitments)"""
     computed_overage_amount: NotRequired[str]
@@ -20,6 +25,13 @@ class UsageAnalyticPointTypedDict(TypedDict):
 
 
 class UsageAnalyticPoint(BaseModel):
+    bucket_id: Optional[str] = None
+    r"""Bucket identity (only populated when BreakdownBucket=true and the line item
+    has CommitmentTimeBuckets). Empty strings indicate out-of-bucket windows.
+    """
+
+    bucket_price_id: Optional[str] = None
+
     computed_commitment_utilized_amount: Optional[str] = None
     r"""Commitment breakdown (only populated for windowed commitments)"""
 
@@ -40,6 +52,8 @@ class UsageAnalyticPoint(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "bucket_id",
+                "bucket_price_id",
                 "computed_commitment_utilized_amount",
                 "computed_overage_amount",
                 "computed_true_up_amount",

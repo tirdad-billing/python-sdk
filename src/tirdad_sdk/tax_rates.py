@@ -5,7 +5,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Dict, Iterable, List, Mapping, Optional
 
 
 class TaxRates(BaseSDK):
@@ -20,8 +20,8 @@ class TaxRates(BaseSDK):
         scope: Optional[models.Scope] = None,
         start_time: Optional[str] = None,
         status: Optional[models.GetTaxRatesStatus] = None,
-        taxrate_codes: Optional[List[str]] = None,
-        taxrate_ids: Optional[List[str]] = None,
+        taxrate_codes: Optional[Iterable[str]] = None,
+        taxrate_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -65,8 +65,8 @@ class TaxRates(BaseSDK):
             scope=scope,
             start_time=start_time,
             status=status,
-            taxrate_codes=taxrate_codes,
-            taxrate_ids=taxrate_ids,
+            taxrate_codes=utils.unmarshal(taxrate_codes, Optional[List[str]]),
+            taxrate_ids=utils.unmarshal(taxrate_ids, Optional[List[str]]),
         )
 
         req = self._build_request(
@@ -144,8 +144,8 @@ class TaxRates(BaseSDK):
         scope: Optional[models.Scope] = None,
         start_time: Optional[str] = None,
         status: Optional[models.GetTaxRatesStatus] = None,
-        taxrate_codes: Optional[List[str]] = None,
-        taxrate_ids: Optional[List[str]] = None,
+        taxrate_codes: Optional[Iterable[str]] = None,
+        taxrate_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -189,8 +189,8 @@ class TaxRates(BaseSDK):
             scope=scope,
             start_time=start_time,
             status=status,
-            taxrate_codes=taxrate_codes,
-            taxrate_ids=taxrate_ids,
+            taxrate_codes=utils.unmarshal(taxrate_codes, Optional[List[str]]),
+            taxrate_ids=utils.unmarshal(taxrate_ids, Optional[List[str]]),
         )
 
         req = self._build_request_async(
@@ -264,7 +264,7 @@ class TaxRates(BaseSDK):
         name: str,
         description: Optional[str] = None,
         fixed_value: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         percentage_value: Optional[str] = None,
         scope: Optional[models.TaxRateScope] = None,
         tax_rate_type: Optional[models.TaxRateType] = None,
@@ -304,7 +304,7 @@ class TaxRates(BaseSDK):
             code=code,
             description=description,
             fixed_value=fixed_value,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
             percentage_value=percentage_value,
             scope=scope,
@@ -385,7 +385,7 @@ class TaxRates(BaseSDK):
         name: str,
         description: Optional[str] = None,
         fixed_value: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         percentage_value: Optional[str] = None,
         scope: Optional[models.TaxRateScope] = None,
         tax_rate_type: Optional[models.TaxRateType] = None,
@@ -425,7 +425,7 @@ class TaxRates(BaseSDK):
             code=code,
             description=description,
             fixed_value=fixed_value,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
             percentage_value=percentage_value,
             scope=scope,
@@ -699,7 +699,7 @@ class TaxRates(BaseSDK):
         id: str,
         code: Optional[str] = None,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         tax_rate_status: Optional[models.TaxRateStatus] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -737,7 +737,7 @@ class TaxRates(BaseSDK):
             body=models.UpdateTaxRateRequest(
                 code=code,
                 description=description,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
                 tax_rate_status=tax_rate_status,
             ),
@@ -816,7 +816,7 @@ class TaxRates(BaseSDK):
         id: str,
         code: Optional[str] = None,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         tax_rate_status: Optional[models.TaxRateStatus] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -854,7 +854,7 @@ class TaxRates(BaseSDK):
             body=models.UpdateTaxRateRequest(
                 code=code,
                 description=description,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
                 tax_rate_status=tax_rate_status,
             ),

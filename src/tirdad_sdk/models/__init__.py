@@ -58,6 +58,10 @@ if TYPE_CHECKING:
         AttemptInvoicePaymentRequest,
         AttemptInvoicePaymentRequestTypedDict,
     )
+    from .attributedtocustomerresult import (
+        AttributedToCustomerResult,
+        AttributedToCustomerResultTypedDict,
+    )
     from .autotopup import AutoTopup, AutoTopupTypedDict
     from .billingcadence import BillingCadence
     from .billingcycle import BillingCycle
@@ -66,6 +70,8 @@ if TYPE_CHECKING:
     from .billingperiod import BillingPeriod
     from .billingperiodinfo import BillingPeriodInfo, BillingPeriodInfoTypedDict
     from .billingtier import BillingTier
+    from .bucket import Bucket, BucketTypedDict
+    from .bucketsummary import BucketSummary, BucketSummaryTypedDict
     from .bulkingesteventrequest import (
         BulkIngestEventRequest,
         BulkIngestEventRequestTypedDict,
@@ -120,6 +126,10 @@ if TYPE_CHECKING:
     from .cloneplanop import ClonePlanRequestRequest, ClonePlanRequestRequestTypedDict
     from .cloneplanrequest import ClonePlanRequest, ClonePlanRequestTypedDict
     from .collectionmethod import CollectionMethod
+    from .commitmentbucketrequest import (
+        CommitmentBucketRequest,
+        CommitmentBucketRequestTypedDict,
+    )
     from .commitmentinfo import CommitmentInfo, CommitmentInfoTypedDict
     from .commitmenttype import CommitmentType
     from .costanalyticitem import CostAnalyticItem, CostAnalyticItemTypedDict
@@ -344,6 +354,10 @@ if TYPE_CHECKING:
         DeleteScheduledTaskRequest,
         DeleteScheduledTaskRequestTypedDict,
     )
+    from .deleteserviceaccountop import (
+        DeleteServiceAccountRequest,
+        DeleteServiceAccountRequestTypedDict,
+    )
     from .deletesubscriptionlineitemop import (
         DeleteSubscriptionLineItemRequestRequest,
         DeleteSubscriptionLineItemRequestRequestTypedDict,
@@ -357,6 +371,10 @@ if TYPE_CHECKING:
         DeleteTaxAssociationRequestTypedDict,
     )
     from .deletetaxrateop import DeleteTaxRateRequest, DeleteTaxRateRequestTypedDict
+    from .delinkintegrationmappingrequest import (
+        DelinkIntegrationMappingRequest,
+        DelinkIntegrationMappingRequestTypedDict,
+    )
     from .downloadtaskexportop import (
         DownloadTaskExportRequest,
         DownloadTaskExportRequestTypedDict,
@@ -428,6 +446,10 @@ if TYPE_CHECKING:
     from .getcostsheetresponse import (
         GetCostsheetResponse,
         GetCostsheetResponseTypedDict,
+    )
+    from .getcouponassociationop import (
+        GetCouponAssociationRequest,
+        GetCouponAssociationRequestTypedDict,
     )
     from .getcouponop import GetCouponRequest, GetCouponRequestTypedDict
     from .getcreditgrantop import GetCreditGrantRequest, GetCreditGrantRequestTypedDict
@@ -598,6 +620,7 @@ if TYPE_CHECKING:
     from .groupfilter import GroupFilter, GroupFilterOrder, GroupFilterTypedDict
     from .groupresponse import GroupResponse, GroupResponseTypedDict
     from .ingesteventrequest import IngestEventRequest, IngestEventRequestTypedDict
+    from .inheritanceaction import InheritanceAction
     from .integrationconfigentry import (
         IntegrationConfigEntry,
         IntegrationConfigEntryTypedDict,
@@ -656,6 +679,14 @@ if TYPE_CHECKING:
     from .listcostsheetresponse import (
         ListCostsheetResponse,
         ListCostsheetResponseTypedDict,
+    )
+    from .listcouponassociationsop import (
+        ListCouponAssociationsRequest,
+        ListCouponAssociationsRequestTypedDict,
+    )
+    from .listcouponassociationsresponse import (
+        ListCouponAssociationsResponse,
+        ListCouponAssociationsResponseTypedDict,
     )
     from .listcouponsresponse import ListCouponsResponse, ListCouponsResponseTypedDict
     from .listcreditgrantapplicationsresponse import (
@@ -771,6 +802,10 @@ if TYPE_CHECKING:
     from .meter_meter import MeterMeter, MeterMeterTypedDict
     from .metermatchingresult import MeterMatchingResult, MeterMatchingResultTypedDict
     from .meterresponse import MeterResponse, MeterResponseTypedDict
+    from .meterusageattribution import (
+        MeterUsageAttribution,
+        MeterUsageAttributionTypedDict,
+    )
     from .models_temporalworkflowresult import (
         ModelsTemporalWorkflowResult,
         ModelsTemporalWorkflowResultTypedDict,
@@ -882,6 +917,11 @@ if TYPE_CHECKING:
     from .sortdirection import SortDirection
     from .sourceusageitem import SourceUsageItem, SourceUsageItemTypedDict
     from .status import Status
+    from .submodifycouponaction import SubModifyCouponAction
+    from .submodifycouponparams import (
+        SubModifyCouponParams,
+        SubModifyCouponParamsTypedDict,
+    )
     from .submodifygroupedinvoicingparams import (
         SubModifyGroupedInvoicingParams,
         SubModifyGroupedInvoicingParamsTypedDict,
@@ -894,6 +934,8 @@ if TYPE_CHECKING:
         SubModifyQuantityChangeRequest,
         SubModifyQuantityChangeRequestTypedDict,
     )
+    from .submodifytaxaction import SubModifyTaxAction
+    from .submodifytaxparams import SubModifyTaxParams, SubModifyTaxParamsTypedDict
     from .submodifytrialendrequest import (
         SubModifyTrialEndRequest,
         SubModifyTrialEndRequestTypedDict,
@@ -919,6 +961,10 @@ if TYPE_CHECKING:
         SubscriptionChangeRequestTypedDict,
     )
     from .subscriptionchangetype import SubscriptionChangeType
+    from .subscriptioncouponinput import (
+        SubscriptionCouponInput,
+        SubscriptionCouponInputTypedDict,
+    )
     from .subscriptionentitlementsresponse import (
         SubscriptionEntitlementsResponse,
         SubscriptionEntitlementsResponseTypedDict,
@@ -1014,6 +1060,7 @@ if TYPE_CHECKING:
         TerminateWalletRequest,
         TerminateWalletRequestTypedDict,
     )
+    from .timeofdaybucket import TimeOfDayBucket, TimeOfDayBucketTypedDict
     from .timerangefilter import TimeRangeFilter, TimeRangeFilterTypedDict
     from .topupwalletop import (
         TopUpWalletRequestRequest,
@@ -1144,6 +1191,18 @@ if TYPE_CHECKING:
     from .updatescheduledtaskrequest import (
         UpdateScheduledTaskRequest,
         UpdateScheduledTaskRequestTypedDict,
+    )
+    from .updateserviceaccountop import (
+        UpdateServiceAccountRequestRequest,
+        UpdateServiceAccountRequestRequestTypedDict,
+    )
+    from .updateserviceaccountrequest import (
+        UpdateServiceAccountRequest,
+        UpdateServiceAccountRequestTypedDict,
+    )
+    from .updateserviceaccountresponse import (
+        UpdateServiceAccountResponse,
+        UpdateServiceAccountResponseTypedDict,
     )
     from .updatesubscriptionlineitemop import (
         UpdateSubscriptionLineItemRequestRequest,
@@ -1337,6 +1396,8 @@ __all__ = [
     "ApplicationStatus",
     "AttemptInvoicePaymentRequest",
     "AttemptInvoicePaymentRequestTypedDict",
+    "AttributedToCustomerResult",
+    "AttributedToCustomerResultTypedDict",
     "AutoTopup",
     "AutoTopupTypedDict",
     "BillingCadence",
@@ -1348,6 +1409,10 @@ __all__ = [
     "BillingPeriodInfo",
     "BillingPeriodInfoTypedDict",
     "BillingTier",
+    "Bucket",
+    "BucketSummary",
+    "BucketSummaryTypedDict",
+    "BucketTypedDict",
     "BulkIngestEventRequest",
     "BulkIngestEventRequestTypedDict",
     "CancelImmediatelyInvoicePolicy",
@@ -1389,6 +1454,8 @@ __all__ = [
     "ClonePlanRequestRequestTypedDict",
     "ClonePlanRequestTypedDict",
     "CollectionMethod",
+    "CommitmentBucketRequest",
+    "CommitmentBucketRequestTypedDict",
     "CommitmentInfo",
     "CommitmentInfoTypedDict",
     "CommitmentType",
@@ -1567,6 +1634,8 @@ __all__ = [
     "DeletePriceUnitRequestTypedDict",
     "DeleteScheduledTaskRequest",
     "DeleteScheduledTaskRequestTypedDict",
+    "DeleteServiceAccountRequest",
+    "DeleteServiceAccountRequestTypedDict",
     "DeleteSubscriptionLineItemRequest",
     "DeleteSubscriptionLineItemRequestRequest",
     "DeleteSubscriptionLineItemRequestRequestTypedDict",
@@ -1575,6 +1644,8 @@ __all__ = [
     "DeleteTaxAssociationRequestTypedDict",
     "DeleteTaxRateRequest",
     "DeleteTaxRateRequestTypedDict",
+    "DelinkIntegrationMappingRequest",
+    "DelinkIntegrationMappingRequestTypedDict",
     "DownloadTaskExportRequest",
     "DownloadTaskExportRequestTypedDict",
     "EntitlementEntityType",
@@ -1645,6 +1716,8 @@ __all__ = [
     "GetCostsheetRequestTypedDict",
     "GetCostsheetResponse",
     "GetCostsheetResponseTypedDict",
+    "GetCouponAssociationRequest",
+    "GetCouponAssociationRequestTypedDict",
     "GetCouponRequest",
     "GetCouponRequestTypedDict",
     "GetCreditGrantRequest",
@@ -1774,6 +1847,7 @@ __all__ = [
     "GroupedInvoicingAction",
     "IngestEventRequest",
     "IngestEventRequestTypedDict",
+    "InheritanceAction",
     "IntegrationConfigEntry",
     "IntegrationConfigEntryTypedDict",
     "IntegrationConfigResponse",
@@ -1818,6 +1892,10 @@ __all__ = [
     "ListAllSubscriptionSchedulesRequestTypedDict",
     "ListCostsheetResponse",
     "ListCostsheetResponseTypedDict",
+    "ListCouponAssociationsRequest",
+    "ListCouponAssociationsRequestTypedDict",
+    "ListCouponAssociationsResponse",
+    "ListCouponAssociationsResponseTypedDict",
     "ListCouponsResponse",
     "ListCouponsResponseTypedDict",
     "ListCreditGrantApplicationsResponse",
@@ -1900,6 +1978,8 @@ __all__ = [
     "MeterMeterTypedDict",
     "MeterResponse",
     "MeterResponseTypedDict",
+    "MeterUsageAttribution",
+    "MeterUsageAttributionTypedDict",
     "ModelsTemporalWorkflowResult",
     "ModelsTemporalWorkflowResultTypedDict",
     "OverrideEntitlementRequest",
@@ -2012,12 +2092,18 @@ __all__ = [
     "SourceUsageItem",
     "SourceUsageItemTypedDict",
     "Status",
+    "SubModifyCouponAction",
+    "SubModifyCouponParams",
+    "SubModifyCouponParamsTypedDict",
     "SubModifyGroupedInvoicingParams",
     "SubModifyGroupedInvoicingParamsTypedDict",
     "SubModifyInheritanceRequest",
     "SubModifyInheritanceRequestTypedDict",
     "SubModifyQuantityChangeRequest",
     "SubModifyQuantityChangeRequestTypedDict",
+    "SubModifyTaxAction",
+    "SubModifyTaxParams",
+    "SubModifyTaxParamsTypedDict",
     "SubModifyTrialEndRequest",
     "SubModifyTrialEndRequestTypedDict",
     "SubscriptionChangeExecuteResponse",
@@ -2027,6 +2113,8 @@ __all__ = [
     "SubscriptionChangeRequest",
     "SubscriptionChangeRequestTypedDict",
     "SubscriptionChangeType",
+    "SubscriptionCouponInput",
+    "SubscriptionCouponInputTypedDict",
     "SubscriptionEntitlementsResponse",
     "SubscriptionEntitlementsResponseTypedDict",
     "SubscriptionFilter",
@@ -2100,6 +2188,8 @@ __all__ = [
     "TenantResponseTypedDict",
     "TerminateWalletRequest",
     "TerminateWalletRequestTypedDict",
+    "TimeOfDayBucket",
+    "TimeOfDayBucketTypedDict",
     "TimeRangeFilter",
     "TimeRangeFilterTypedDict",
     "TopUpWalletRequest",
@@ -2179,6 +2269,12 @@ __all__ = [
     "UpdateScheduledTaskRequestRequest",
     "UpdateScheduledTaskRequestRequestTypedDict",
     "UpdateScheduledTaskRequestTypedDict",
+    "UpdateServiceAccountRequest",
+    "UpdateServiceAccountRequestRequest",
+    "UpdateServiceAccountRequestRequestTypedDict",
+    "UpdateServiceAccountRequestTypedDict",
+    "UpdateServiceAccountResponse",
+    "UpdateServiceAccountResponseTypedDict",
     "UpdateSubscriptionLineItemRequest",
     "UpdateSubscriptionLineItemRequestRequest",
     "UpdateSubscriptionLineItemRequestRequestTypedDict",
@@ -2324,6 +2420,8 @@ _dynamic_imports: dict[str, str] = {
     "ApplicationStatus": ".applicationstatus",
     "AttemptInvoicePaymentRequest": ".attemptinvoicepaymentop",
     "AttemptInvoicePaymentRequestTypedDict": ".attemptinvoicepaymentop",
+    "AttributedToCustomerResult": ".attributedtocustomerresult",
+    "AttributedToCustomerResultTypedDict": ".attributedtocustomerresult",
     "AutoTopup": ".autotopup",
     "AutoTopupTypedDict": ".autotopup",
     "BillingCadence": ".billingcadence",
@@ -2335,6 +2433,10 @@ _dynamic_imports: dict[str, str] = {
     "BillingPeriodInfo": ".billingperiodinfo",
     "BillingPeriodInfoTypedDict": ".billingperiodinfo",
     "BillingTier": ".billingtier",
+    "Bucket": ".bucket",
+    "BucketTypedDict": ".bucket",
+    "BucketSummary": ".bucketsummary",
+    "BucketSummaryTypedDict": ".bucketsummary",
     "BulkIngestEventRequest": ".bulkingesteventrequest",
     "BulkIngestEventRequestTypedDict": ".bulkingesteventrequest",
     "CancelImmediatelyInvoicePolicy": ".cancelimmediatelyinvoicepolicy",
@@ -2376,6 +2478,8 @@ _dynamic_imports: dict[str, str] = {
     "ClonePlanRequest": ".cloneplanrequest",
     "ClonePlanRequestTypedDict": ".cloneplanrequest",
     "CollectionMethod": ".collectionmethod",
+    "CommitmentBucketRequest": ".commitmentbucketrequest",
+    "CommitmentBucketRequestTypedDict": ".commitmentbucketrequest",
     "CommitmentInfo": ".commitmentinfo",
     "CommitmentInfoTypedDict": ".commitmentinfo",
     "CommitmentType": ".commitmenttype",
@@ -2552,6 +2656,8 @@ _dynamic_imports: dict[str, str] = {
     "DeletePriceUnitRequestTypedDict": ".deletepriceunitop",
     "DeleteScheduledTaskRequest": ".deletescheduledtaskop",
     "DeleteScheduledTaskRequestTypedDict": ".deletescheduledtaskop",
+    "DeleteServiceAccountRequest": ".deleteserviceaccountop",
+    "DeleteServiceAccountRequestTypedDict": ".deleteserviceaccountop",
     "DeleteSubscriptionLineItemRequestRequest": ".deletesubscriptionlineitemop",
     "DeleteSubscriptionLineItemRequestRequestTypedDict": ".deletesubscriptionlineitemop",
     "DeleteSubscriptionLineItemRequest": ".deletesubscriptionlineitemrequest",
@@ -2560,6 +2666,8 @@ _dynamic_imports: dict[str, str] = {
     "DeleteTaxAssociationRequestTypedDict": ".deletetaxassociationop",
     "DeleteTaxRateRequest": ".deletetaxrateop",
     "DeleteTaxRateRequestTypedDict": ".deletetaxrateop",
+    "DelinkIntegrationMappingRequest": ".delinkintegrationmappingrequest",
+    "DelinkIntegrationMappingRequestTypedDict": ".delinkintegrationmappingrequest",
     "DownloadTaskExportRequest": ".downloadtaskexportop",
     "DownloadTaskExportRequestTypedDict": ".downloadtaskexportop",
     "EntitlementEntityType": ".entitlemententitytype",
@@ -2626,6 +2734,8 @@ _dynamic_imports: dict[str, str] = {
     "GetCostsheetRequestTypedDict": ".getcostsheetop",
     "GetCostsheetResponse": ".getcostsheetresponse",
     "GetCostsheetResponseTypedDict": ".getcostsheetresponse",
+    "GetCouponAssociationRequest": ".getcouponassociationop",
+    "GetCouponAssociationRequestTypedDict": ".getcouponassociationop",
     "GetCouponRequest": ".getcouponop",
     "GetCouponRequestTypedDict": ".getcouponop",
     "GetCreditGrantRequest": ".getcreditgrantop",
@@ -2757,6 +2867,7 @@ _dynamic_imports: dict[str, str] = {
     "GroupResponseTypedDict": ".groupresponse",
     "IngestEventRequest": ".ingesteventrequest",
     "IngestEventRequestTypedDict": ".ingesteventrequest",
+    "InheritanceAction": ".inheritanceaction",
     "IntegrationConfigEntry": ".integrationconfigentry",
     "IntegrationConfigEntryTypedDict": ".integrationconfigentry",
     "IntegrationConfigResponse": ".integrationconfigresponse",
@@ -2799,6 +2910,10 @@ _dynamic_imports: dict[str, str] = {
     "ListAPIKeysRequestTypedDict": ".listapikeysop",
     "ListCostsheetResponse": ".listcostsheetresponse",
     "ListCostsheetResponseTypedDict": ".listcostsheetresponse",
+    "ListCouponAssociationsRequest": ".listcouponassociationsop",
+    "ListCouponAssociationsRequestTypedDict": ".listcouponassociationsop",
+    "ListCouponAssociationsResponse": ".listcouponassociationsresponse",
+    "ListCouponAssociationsResponseTypedDict": ".listcouponassociationsresponse",
     "ListCouponsResponse": ".listcouponsresponse",
     "ListCouponsResponseTypedDict": ".listcouponsresponse",
     "ListCreditGrantApplicationsResponse": ".listcreditgrantapplicationsresponse",
@@ -2881,6 +2996,8 @@ _dynamic_imports: dict[str, str] = {
     "MeterMatchingResultTypedDict": ".metermatchingresult",
     "MeterResponse": ".meterresponse",
     "MeterResponseTypedDict": ".meterresponse",
+    "MeterUsageAttribution": ".meterusageattribution",
+    "MeterUsageAttributionTypedDict": ".meterusageattribution",
     "ModelsTemporalWorkflowResult": ".models_temporalworkflowresult",
     "ModelsTemporalWorkflowResultTypedDict": ".models_temporalworkflowresult",
     "OverrideEntitlementRequest": ".overrideentitlementrequest",
@@ -2988,12 +3105,18 @@ _dynamic_imports: dict[str, str] = {
     "SourceUsageItem": ".sourceusageitem",
     "SourceUsageItemTypedDict": ".sourceusageitem",
     "Status": ".status",
+    "SubModifyCouponAction": ".submodifycouponaction",
+    "SubModifyCouponParams": ".submodifycouponparams",
+    "SubModifyCouponParamsTypedDict": ".submodifycouponparams",
     "SubModifyGroupedInvoicingParams": ".submodifygroupedinvoicingparams",
     "SubModifyGroupedInvoicingParamsTypedDict": ".submodifygroupedinvoicingparams",
     "SubModifyInheritanceRequest": ".submodifyinheritancerequest",
     "SubModifyInheritanceRequestTypedDict": ".submodifyinheritancerequest",
     "SubModifyQuantityChangeRequest": ".submodifyquantitychangerequest",
     "SubModifyQuantityChangeRequestTypedDict": ".submodifyquantitychangerequest",
+    "SubModifyTaxAction": ".submodifytaxaction",
+    "SubModifyTaxParams": ".submodifytaxparams",
+    "SubModifyTaxParamsTypedDict": ".submodifytaxparams",
     "SubModifyTrialEndRequest": ".submodifytrialendrequest",
     "SubModifyTrialEndRequestTypedDict": ".submodifytrialendrequest",
     "SubscriptionSubscriptionLineItem": ".subscription_subscriptionlineitem",
@@ -3007,6 +3130,8 @@ _dynamic_imports: dict[str, str] = {
     "SubscriptionChangeRequest": ".subscriptionchangerequest",
     "SubscriptionChangeRequestTypedDict": ".subscriptionchangerequest",
     "SubscriptionChangeType": ".subscriptionchangetype",
+    "SubscriptionCouponInput": ".subscriptioncouponinput",
+    "SubscriptionCouponInputTypedDict": ".subscriptioncouponinput",
     "SubscriptionEntitlementsResponse": ".subscriptionentitlementsresponse",
     "SubscriptionEntitlementsResponseTypedDict": ".subscriptionentitlementsresponse",
     "SubscriptionFilter": ".subscriptionfilter",
@@ -3078,6 +3203,8 @@ _dynamic_imports: dict[str, str] = {
     "TenantResponseTypedDict": ".tenantresponse",
     "TerminateWalletRequest": ".terminatewalletop",
     "TerminateWalletRequestTypedDict": ".terminatewalletop",
+    "TimeOfDayBucket": ".timeofdaybucket",
+    "TimeOfDayBucketTypedDict": ".timeofdaybucket",
     "TimeRangeFilter": ".timerangefilter",
     "TimeRangeFilterTypedDict": ".timerangefilter",
     "TopUpWalletRequestRequest": ".topupwalletop",
@@ -3156,6 +3283,12 @@ _dynamic_imports: dict[str, str] = {
     "UpdateScheduledTaskRequestRequestTypedDict": ".updatescheduledtaskop",
     "UpdateScheduledTaskRequest": ".updatescheduledtaskrequest",
     "UpdateScheduledTaskRequestTypedDict": ".updatescheduledtaskrequest",
+    "UpdateServiceAccountRequestRequest": ".updateserviceaccountop",
+    "UpdateServiceAccountRequestRequestTypedDict": ".updateserviceaccountop",
+    "UpdateServiceAccountRequest": ".updateserviceaccountrequest",
+    "UpdateServiceAccountRequestTypedDict": ".updateserviceaccountrequest",
+    "UpdateServiceAccountResponse": ".updateserviceaccountresponse",
+    "UpdateServiceAccountResponseTypedDict": ".updateserviceaccountresponse",
     "UpdateSubscriptionLineItemRequestRequest": ".updatesubscriptionlineitemop",
     "UpdateSubscriptionLineItemRequestRequestTypedDict": ".updatesubscriptionlineitemop",
     "UpdateSubscriptionLineItemRequest": ".updatesubscriptionlineitemrequest",

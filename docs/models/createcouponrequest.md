@@ -7,6 +7,7 @@
 | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
 | `amount_off`                                       | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                |
 | `cadence`                                          | [models.CouponCadence](../models/couponcadence.md) | :heavy_check_mark:                                 | N/A                                                |
+| `coupon_code`                                      | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                |
 | `currency`                                         | *Optional[str]*                                    | :heavy_minus_sign:                                 | N/A                                                |
 | `duration_in_periods`                              | *Optional[int]*                                    | :heavy_minus_sign:                                 | N/A                                                |
 | `max_redemptions`                                  | *Optional[int]*                                    | :heavy_minus_sign:                                 | N/A                                                |

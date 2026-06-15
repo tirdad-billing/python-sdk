@@ -1,0 +1,15 @@
+# CommitmentBucketRequest
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `commitment_type`                                                      | [Optional[models.CommitmentType]](../models/commitmenttype.md)         | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `commitment_value`                                                     | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `end`                                                                  | [Optional[models.Bucket]](../models/bucket.md)                         | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `id`                                                                   | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `overage_factor`                                                       | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `price`                                                                | [Optional[models.CreatePriceRequest]](../models/createpricerequest.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `start`                                                                | [Optional[models.Bucket]](../models/bucket.md)                         | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `true_up_enabled`                                                      | *Optional[bool]*                                                       | :heavy_minus_sign:                                                     | N/A                                                                    |

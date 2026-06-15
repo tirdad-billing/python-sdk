@@ -9,14 +9,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class UpdateUserRequestTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
+    name: NotRequired[str]
 
 
 class UpdateUserRequest(BaseModel):
     metadata: Optional[Dict[str, str]] = None
 
+    name: Optional[str] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["metadata"])
+        optional_fields = set(["metadata", "name"])
         serialized = handler(self)
         m = {}
 

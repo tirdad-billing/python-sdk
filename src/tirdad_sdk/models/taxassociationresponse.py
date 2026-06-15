@@ -18,6 +18,8 @@ class TaxAssociationResponseTypedDict(TypedDict):
     created_by: NotRequired[str]
     currency: NotRequired[str]
     r"""Currency"""
+    end_date: NotRequired[datetime]
+    r"""EndDate is the optional date until which this association is active"""
     entity_id: NotRequired[str]
     r"""ID of the entity this tax rate applies to"""
     entity_type: NotRequired[TaxRateEntityType]
@@ -29,6 +31,8 @@ class TaxAssociationResponseTypedDict(TypedDict):
     r"""Metadata holds the value of the \"metadata\" field."""
     priority: NotRequired[int]
     r"""Priority for tax resolution (lower number = higher priority)"""
+    start_date: NotRequired[datetime]
+    r"""StartDate is the date from which this association is active"""
     status: NotRequired[Status]
     tax_rate: NotRequired[TaxRateResponseTypedDict]
     tax_rate_id: NotRequired[str]
@@ -49,6 +53,9 @@ class TaxAssociationResponse(BaseModel):
     currency: Optional[str] = None
     r"""Currency"""
 
+    end_date: Optional[datetime] = None
+    r"""EndDate is the optional date until which this association is active"""
+
     entity_id: Optional[str] = None
     r"""ID of the entity this tax rate applies to"""
 
@@ -65,6 +72,9 @@ class TaxAssociationResponse(BaseModel):
 
     priority: Optional[int] = None
     r"""Priority for tax resolution (lower number = higher priority)"""
+
+    start_date: Optional[datetime] = None
+    r"""StartDate is the date from which this association is active"""
 
     status: Optional[Status] = None
 
@@ -87,12 +97,14 @@ class TaxAssociationResponse(BaseModel):
                 "created_at",
                 "created_by",
                 "currency",
+                "end_date",
                 "entity_id",
                 "entity_type",
                 "environment_id",
                 "id",
                 "metadata",
                 "priority",
+                "start_date",
                 "status",
                 "tax_rate",
                 "tax_rate_id",

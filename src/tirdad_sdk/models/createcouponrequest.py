@@ -14,6 +14,7 @@ class CreateCouponRequestTypedDict(TypedDict):
     name: str
     type: CouponType
     amount_off: NotRequired[str]
+    coupon_code: NotRequired[str]
     currency: NotRequired[str]
     duration_in_periods: NotRequired[int]
     max_redemptions: NotRequired[int]
@@ -32,6 +33,8 @@ class CreateCouponRequest(BaseModel):
     type: CouponType
 
     amount_off: Optional[str] = None
+
+    coupon_code: Optional[str] = None
 
     currency: Optional[str] = None
 
@@ -54,6 +57,7 @@ class CreateCouponRequest(BaseModel):
         optional_fields = set(
             [
                 "amount_off",
+                "coupon_code",
                 "currency",
                 "duration_in_periods",
                 "max_redemptions",

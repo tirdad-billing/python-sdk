@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Plans(BaseSDK):
@@ -17,7 +17,7 @@ class Plans(BaseSDK):
         description: Optional[str] = None,
         display_order: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -51,7 +51,7 @@ class Plans(BaseSDK):
             description=description,
             display_order=display_order,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
         )
 
@@ -129,7 +129,7 @@ class Plans(BaseSDK):
         description: Optional[str] = None,
         display_order: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -163,7 +163,7 @@ class Plans(BaseSDK):
             description=description,
             display_order=display_order,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
         )
 
@@ -240,16 +240,21 @@ class Plans(BaseSDK):
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         offset: Optional[int] = None,
         order: Optional[models.PlanFilterOrder] = None,
-        plan_ids: Optional[List[str]] = None,
+        plan_ids: Optional[Iterable[str]] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -297,10 +302,10 @@ class Plans(BaseSDK):
             ),
             limit=limit,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             offset=offset,
             order=order,
-            plan_ids=plan_ids,
+            plan_ids=utils.unmarshal(plan_ids, Optional[List[str]]),
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
@@ -379,16 +384,21 @@ class Plans(BaseSDK):
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         offset: Optional[int] = None,
         order: Optional[models.PlanFilterOrder] = None,
-        plan_ids: Optional[List[str]] = None,
+        plan_ids: Optional[Iterable[str]] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -436,10 +446,10 @@ class Plans(BaseSDK):
             ),
             limit=limit,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             offset=offset,
             order=order,
-            plan_ids=plan_ids,
+            plan_ids=utils.unmarshal(plan_ids, Optional[List[str]]),
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
@@ -713,7 +723,7 @@ class Plans(BaseSDK):
         description: Optional[str] = None,
         display_order: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -751,7 +761,7 @@ class Plans(BaseSDK):
                 description=description,
                 display_order=display_order,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -830,7 +840,7 @@ class Plans(BaseSDK):
         description: Optional[str] = None,
         display_order: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -868,7 +878,7 @@ class Plans(BaseSDK):
                 description=description,
                 display_order=display_order,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -1141,7 +1151,7 @@ class Plans(BaseSDK):
         description: Optional[str] = None,
         display_order: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1179,7 +1189,7 @@ class Plans(BaseSDK):
                 description=description,
                 display_order=display_order,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -1258,7 +1268,7 @@ class Plans(BaseSDK):
         description: Optional[str] = None,
         display_order: Optional[int] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1296,7 +1306,7 @@ class Plans(BaseSDK):
                 description=description,
                 display_order=display_order,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )

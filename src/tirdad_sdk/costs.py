@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Costs(BaseSDK):
@@ -16,7 +16,7 @@ class Costs(BaseSDK):
         name: str,
         description: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -48,7 +48,7 @@ class Costs(BaseSDK):
         request = models.CreateCostsheetRequest(
             description=description,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
         )
 
@@ -125,7 +125,7 @@ class Costs(BaseSDK):
         name: str,
         description: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -157,7 +157,7 @@ class Costs(BaseSDK):
         request = models.CreateCostsheetRequest(
             description=description,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
         )
 
@@ -412,9 +412,9 @@ class Costs(BaseSDK):
         self,
         *,
         end_time: Optional[datetime] = None,
-        expand: Optional[List[str]] = None,
+        expand: Optional[Iterable[str]] = None,
         external_customer_id: Optional[str] = None,
-        feature_ids: Optional[List[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         start_time: Optional[datetime] = None,
@@ -451,9 +451,9 @@ class Costs(BaseSDK):
 
         request = models.GetCostAnalyticsRequest(
             end_time=end_time,
-            expand=expand,
+            expand=utils.unmarshal(expand, Optional[List[str]]),
             external_customer_id=external_customer_id,
-            feature_ids=feature_ids,
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
             limit=limit,
             offset=offset,
             start_time=start_time,
@@ -532,9 +532,9 @@ class Costs(BaseSDK):
         self,
         *,
         end_time: Optional[datetime] = None,
-        expand: Optional[List[str]] = None,
+        expand: Optional[Iterable[str]] = None,
         external_customer_id: Optional[str] = None,
-        feature_ids: Optional[List[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         start_time: Optional[datetime] = None,
@@ -571,9 +571,9 @@ class Costs(BaseSDK):
 
         request = models.GetCostAnalyticsRequest(
             end_time=end_time,
-            expand=expand,
+            expand=utils.unmarshal(expand, Optional[List[str]]),
             external_customer_id=external_customer_id,
-            feature_ids=feature_ids,
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
             limit=limit,
             offset=offset,
             start_time=start_time,
@@ -652,9 +652,9 @@ class Costs(BaseSDK):
         self,
         *,
         end_time: Optional[datetime] = None,
-        expand: Optional[List[str]] = None,
+        expand: Optional[Iterable[str]] = None,
         external_customer_id: Optional[str] = None,
-        feature_ids: Optional[List[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         start_time: Optional[datetime] = None,
@@ -691,9 +691,9 @@ class Costs(BaseSDK):
 
         request = models.GetCostAnalyticsRequest(
             end_time=end_time,
-            expand=expand,
+            expand=utils.unmarshal(expand, Optional[List[str]]),
             external_customer_id=external_customer_id,
-            feature_ids=feature_ids,
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
             limit=limit,
             offset=offset,
             start_time=start_time,
@@ -772,9 +772,9 @@ class Costs(BaseSDK):
         self,
         *,
         end_time: Optional[datetime] = None,
-        expand: Optional[List[str]] = None,
+        expand: Optional[Iterable[str]] = None,
         external_customer_id: Optional[str] = None,
-        feature_ids: Optional[List[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         start_time: Optional[datetime] = None,
@@ -811,9 +811,9 @@ class Costs(BaseSDK):
 
         request = models.GetCostAnalyticsRequest(
             end_time=end_time,
-            expand=expand,
+            expand=utils.unmarshal(expand, Optional[List[str]]),
             external_customer_id=external_customer_id,
-            feature_ids=feature_ids,
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
             limit=limit,
             offset=offset,
             start_time=start_time,
@@ -891,10 +891,13 @@ class Costs(BaseSDK):
     def query_costsheet(
         self,
         *,
-        costsheet_i_ds: Optional[List[str]] = None,
+        costsheet_i_ds: Optional[Iterable[str]] = None,
         environment_id: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         lookup_key: Optional[str] = None,
         name: Optional[str] = None,
@@ -902,7 +905,9 @@ class Costs(BaseSDK):
             Union[models.QueryFilter, models.QueryFilterTypedDict]
         ] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         status: Optional[models.Status] = None,
         tenant_id: Optional[str] = None,
@@ -944,7 +949,7 @@ class Costs(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CostsheetFilter(
-            costsheet_i_ds=costsheet_i_ds,
+            costsheet_i_ds=utils.unmarshal(costsheet_i_ds, Optional[List[str]]),
             environment_id=environment_id,
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
@@ -1032,10 +1037,13 @@ class Costs(BaseSDK):
     async def query_costsheet_async(
         self,
         *,
-        costsheet_i_ds: Optional[List[str]] = None,
+        costsheet_i_ds: Optional[Iterable[str]] = None,
         environment_id: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         lookup_key: Optional[str] = None,
         name: Optional[str] = None,
@@ -1043,7 +1051,9 @@ class Costs(BaseSDK):
             Union[models.QueryFilter, models.QueryFilterTypedDict]
         ] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         status: Optional[models.Status] = None,
         tenant_id: Optional[str] = None,
@@ -1085,7 +1095,7 @@ class Costs(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CostsheetFilter(
-            costsheet_i_ds=costsheet_i_ds,
+            costsheet_i_ds=utils.unmarshal(costsheet_i_ds, Optional[List[str]]),
             environment_id=environment_id,
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
@@ -1376,7 +1386,7 @@ class Costs(BaseSDK):
         id: str,
         description: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1412,7 +1422,7 @@ class Costs(BaseSDK):
             body=models.UpdateCostsheetRequest(
                 description=description,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )
@@ -1490,7 +1500,7 @@ class Costs(BaseSDK):
         id: str,
         description: Optional[str] = None,
         lookup_key: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1526,7 +1536,7 @@ class Costs(BaseSDK):
             body=models.UpdateCostsheetRequest(
                 description=description,
                 lookup_key=lookup_key,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
         )

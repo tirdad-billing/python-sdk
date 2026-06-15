@@ -8,10 +8,11 @@ from .price_price import PricePrice, PricePriceTypedDict
 from .pricetype import PriceType
 from .status import Status
 from .subscriptionlineitementitytype import SubscriptionLineItemEntityType
+from .timeofdaybucket import TimeOfDayBucket, TimeOfDayBucketTypedDict
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -25,6 +26,7 @@ class SubscriptionSubscriptionLineItemTypedDict(TypedDict):
     commitment_duration: NotRequired[BillingPeriod]
     commitment_overage_factor: NotRequired[str]
     commitment_quantity: NotRequired[str]
+    commitment_time_buckets: NotRequired[List[TimeOfDayBucketTypedDict]]
     commitment_true_up_enabled: NotRequired[bool]
     commitment_type: NotRequired[CommitmentType]
     commitment_windowed: NotRequired[bool]
@@ -74,6 +76,8 @@ class SubscriptionSubscriptionLineItem(BaseModel):
     commitment_overage_factor: Optional[str] = None
 
     commitment_quantity: Optional[str] = None
+
+    commitment_time_buckets: Optional[List[TimeOfDayBucket]] = None
 
     commitment_true_up_enabled: Optional[bool] = None
 
@@ -148,6 +152,7 @@ class SubscriptionSubscriptionLineItem(BaseModel):
                 "commitment_duration",
                 "commitment_overage_factor",
                 "commitment_quantity",
+                "commitment_time_buckets",
                 "commitment_true_up_enabled",
                 "commitment_type",
                 "commitment_windowed",

@@ -7,7 +7,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Invoices(BaseSDK):
@@ -220,12 +220,14 @@ class Invoices(BaseSDK):
         amount_paid: Optional[str] = None,
         billing_period: Optional[str] = None,
         billing_reason: Optional[models.InvoiceBillingReason] = None,
-        coupons: Optional[List[str]] = None,
+        coupons: Optional[Iterable[str]] = None,
         description: Optional[str] = None,
         due_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
         invoice_coupons: Optional[
-            Union[List[models.InvoiceCoupon], List[models.InvoiceCouponTypedDict]]
+            Union[
+                Iterable[models.InvoiceCoupon], Iterable[models.InvoiceCouponTypedDict]
+            ]
         ] = None,
         invoice_number: Optional[str] = None,
         invoice_pdf_url: Optional[str] = None,
@@ -234,28 +236,34 @@ class Invoices(BaseSDK):
         issue_date: Optional[datetime] = None,
         line_item_coupons: Optional[
             Union[
-                List[models.InvoiceLineItemCoupon],
-                List[models.InvoiceLineItemCouponTypedDict],
+                Iterable[models.InvoiceLineItemCoupon],
+                Iterable[models.InvoiceLineItemCouponTypedDict],
             ]
         ] = None,
         line_items: Optional[
             Union[
-                List[models.CreateInvoiceLineItemRequest],
-                List[models.CreateInvoiceLineItemRequestTypedDict],
+                Iterable[models.CreateInvoiceLineItemRequest],
+                Iterable[models.CreateInvoiceLineItemRequestTypedDict],
             ]
         ] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         payment_status: Optional[models.PaymentStatus] = None,
         period_end: Optional[datetime] = None,
         period_start: Optional[datetime] = None,
         prepared_tax_rates: Optional[
-            Union[List[models.TaxRateResponse], List[models.TaxRateResponseTypedDict]]
+            Union[
+                Iterable[models.TaxRateResponse],
+                Iterable[models.TaxRateResponseTypedDict],
+            ]
         ] = None,
         subscription_id: Optional[str] = None,
         tax_rate_overrides: Optional[
-            Union[List[models.TaxRateOverride], List[models.TaxRateOverrideTypedDict]]
+            Union[
+                Iterable[models.TaxRateOverride],
+                Iterable[models.TaxRateOverrideTypedDict],
+            ]
         ] = None,
-        tax_rates: Optional[List[str]] = None,
+        tax_rates: Optional[Iterable[str]] = None,
         total_prepaid_applied: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -316,7 +324,7 @@ class Invoices(BaseSDK):
             amount_paid=amount_paid,
             billing_period=billing_period,
             billing_reason=billing_reason,
-            coupons=coupons,
+            coupons=utils.unmarshal(coupons, Optional[List[str]]),
             currency=currency,
             customer_id=customer_id,
             description=description,
@@ -336,7 +344,7 @@ class Invoices(BaseSDK):
             line_items=utils.get_pydantic_model(
                 line_items, Optional[List[models.CreateInvoiceLineItemRequest]]
             ),
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             payment_status=payment_status,
             period_end=period_end,
             period_start=period_start,
@@ -348,7 +356,7 @@ class Invoices(BaseSDK):
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
             ),
-            tax_rates=tax_rates,
+            tax_rates=utils.unmarshal(tax_rates, Optional[List[str]]),
             total=total,
             total_prepaid_applied=total_prepaid_applied,
         )
@@ -431,12 +439,14 @@ class Invoices(BaseSDK):
         amount_paid: Optional[str] = None,
         billing_period: Optional[str] = None,
         billing_reason: Optional[models.InvoiceBillingReason] = None,
-        coupons: Optional[List[str]] = None,
+        coupons: Optional[Iterable[str]] = None,
         description: Optional[str] = None,
         due_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
         invoice_coupons: Optional[
-            Union[List[models.InvoiceCoupon], List[models.InvoiceCouponTypedDict]]
+            Union[
+                Iterable[models.InvoiceCoupon], Iterable[models.InvoiceCouponTypedDict]
+            ]
         ] = None,
         invoice_number: Optional[str] = None,
         invoice_pdf_url: Optional[str] = None,
@@ -445,28 +455,34 @@ class Invoices(BaseSDK):
         issue_date: Optional[datetime] = None,
         line_item_coupons: Optional[
             Union[
-                List[models.InvoiceLineItemCoupon],
-                List[models.InvoiceLineItemCouponTypedDict],
+                Iterable[models.InvoiceLineItemCoupon],
+                Iterable[models.InvoiceLineItemCouponTypedDict],
             ]
         ] = None,
         line_items: Optional[
             Union[
-                List[models.CreateInvoiceLineItemRequest],
-                List[models.CreateInvoiceLineItemRequestTypedDict],
+                Iterable[models.CreateInvoiceLineItemRequest],
+                Iterable[models.CreateInvoiceLineItemRequestTypedDict],
             ]
         ] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         payment_status: Optional[models.PaymentStatus] = None,
         period_end: Optional[datetime] = None,
         period_start: Optional[datetime] = None,
         prepared_tax_rates: Optional[
-            Union[List[models.TaxRateResponse], List[models.TaxRateResponseTypedDict]]
+            Union[
+                Iterable[models.TaxRateResponse],
+                Iterable[models.TaxRateResponseTypedDict],
+            ]
         ] = None,
         subscription_id: Optional[str] = None,
         tax_rate_overrides: Optional[
-            Union[List[models.TaxRateOverride], List[models.TaxRateOverrideTypedDict]]
+            Union[
+                Iterable[models.TaxRateOverride],
+                Iterable[models.TaxRateOverrideTypedDict],
+            ]
         ] = None,
-        tax_rates: Optional[List[str]] = None,
+        tax_rates: Optional[Iterable[str]] = None,
         total_prepaid_applied: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -527,7 +543,7 @@ class Invoices(BaseSDK):
             amount_paid=amount_paid,
             billing_period=billing_period,
             billing_reason=billing_reason,
-            coupons=coupons,
+            coupons=utils.unmarshal(coupons, Optional[List[str]]),
             currency=currency,
             customer_id=customer_id,
             description=description,
@@ -547,7 +563,7 @@ class Invoices(BaseSDK):
             line_items=utils.get_pydantic_model(
                 line_items, Optional[List[models.CreateInvoiceLineItemRequest]]
             ),
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             payment_status=payment_status,
             period_end=period_end,
             period_start=period_start,
@@ -559,7 +575,7 @@ class Invoices(BaseSDK):
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
             ),
-            tax_rates=tax_rates,
+            tax_rates=utils.unmarshal(tax_rates, Optional[List[str]]),
             total=total,
             total_prepaid_applied=total_prepaid_applied,
         )
@@ -861,26 +877,31 @@ class Invoices(BaseSDK):
         expand: Optional[str] = None,
         external_customer_id: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
-        invoice_ids: Optional[List[str]] = None,
-        invoice_status: Optional[List[models.InvoiceStatus]] = None,
+        invoice_ids: Optional[Iterable[str]] = None,
+        invoice_status: Optional[Iterable[models.InvoiceStatus]] = None,
         invoice_type: Optional[models.InvoiceType] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         order: Optional[models.InvoiceFilterOrder] = None,
-        payment_status: Optional[List[models.PaymentStatus]] = None,
+        payment_status: Optional[Iterable[models.PaymentStatus]] = None,
         period_end_gte: Optional[str] = None,
         period_end_lte: Optional[str] = None,
         period_start_gte: Optional[str] = None,
         period_start_lte: Optional[str] = None,
         skip_line_items: Optional[bool] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
-        subscription_customer_id: Optional[List[str]] = None,
+        subscription_customer_id: Optional[Iterable[str]] = None,
         subscription_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -953,13 +974,17 @@ class Invoices(BaseSDK):
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
-            invoice_ids=invoice_ids,
-            invoice_status=invoice_status,
+            invoice_ids=utils.unmarshal(invoice_ids, Optional[List[str]]),
+            invoice_status=utils.unmarshal(
+                invoice_status, Optional[List[models.InvoiceStatus]]
+            ),
             invoice_type=invoice_type,
             limit=limit,
             offset=offset,
             order=order,
-            payment_status=payment_status,
+            payment_status=utils.unmarshal(
+                payment_status, Optional[List[models.PaymentStatus]]
+            ),
             period_end_gte=period_end_gte,
             period_end_lte=period_end_lte,
             period_start_gte=period_start_gte,
@@ -968,7 +993,9 @@ class Invoices(BaseSDK):
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
-            subscription_customer_id=subscription_customer_id,
+            subscription_customer_id=utils.unmarshal(
+                subscription_customer_id, Optional[List[str]]
+            ),
             subscription_id=subscription_id,
         )
 
@@ -1051,26 +1078,31 @@ class Invoices(BaseSDK):
         expand: Optional[str] = None,
         external_customer_id: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
-        invoice_ids: Optional[List[str]] = None,
-        invoice_status: Optional[List[models.InvoiceStatus]] = None,
+        invoice_ids: Optional[Iterable[str]] = None,
+        invoice_status: Optional[Iterable[models.InvoiceStatus]] = None,
         invoice_type: Optional[models.InvoiceType] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         order: Optional[models.InvoiceFilterOrder] = None,
-        payment_status: Optional[List[models.PaymentStatus]] = None,
+        payment_status: Optional[Iterable[models.PaymentStatus]] = None,
         period_end_gte: Optional[str] = None,
         period_end_lte: Optional[str] = None,
         period_start_gte: Optional[str] = None,
         period_start_lte: Optional[str] = None,
         skip_line_items: Optional[bool] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
-        subscription_customer_id: Optional[List[str]] = None,
+        subscription_customer_id: Optional[Iterable[str]] = None,
         subscription_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1143,13 +1175,17 @@ class Invoices(BaseSDK):
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
-            invoice_ids=invoice_ids,
-            invoice_status=invoice_status,
+            invoice_ids=utils.unmarshal(invoice_ids, Optional[List[str]]),
+            invoice_status=utils.unmarshal(
+                invoice_status, Optional[List[models.InvoiceStatus]]
+            ),
             invoice_type=invoice_type,
             limit=limit,
             offset=offset,
             order=order,
-            payment_status=payment_status,
+            payment_status=utils.unmarshal(
+                payment_status, Optional[List[models.PaymentStatus]]
+            ),
             period_end_gte=period_end_gte,
             period_end_lte=period_end_lte,
             period_start_gte=period_start_gte,
@@ -1158,7 +1194,9 @@ class Invoices(BaseSDK):
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
             start_time=start_time,
             status=status,
-            subscription_customer_id=subscription_customer_id,
+            subscription_customer_id=utils.unmarshal(
+                subscription_customer_id, Optional[List[str]]
+            ),
             subscription_id=subscription_id,
         )
 
@@ -1234,7 +1272,7 @@ class Invoices(BaseSDK):
         *,
         id: str,
         expand_by_source: Optional[bool] = None,
-        group_by: Optional[List[str]] = None,
+        group_by: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1265,7 +1303,7 @@ class Invoices(BaseSDK):
         request = models.GetInvoiceRequest(
             id=id,
             expand_by_source=expand_by_source,
-            group_by=group_by,
+            group_by=utils.unmarshal(group_by, Optional[List[str]]),
         )
 
         req = self._build_request(
@@ -1337,7 +1375,7 @@ class Invoices(BaseSDK):
         *,
         id: str,
         expand_by_source: Optional[bool] = None,
-        group_by: Optional[List[str]] = None,
+        group_by: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1368,7 +1406,7 @@ class Invoices(BaseSDK):
         request = models.GetInvoiceRequest(
             id=id,
             expand_by_source=expand_by_source,
-            group_by=group_by,
+            group_by=utils.unmarshal(group_by, Optional[List[str]]),
         )
 
         req = self._build_request_async(
@@ -1441,7 +1479,7 @@ class Invoices(BaseSDK):
         id: str,
         due_date: Optional[datetime] = None,
         invoice_pdf_url: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1475,7 +1513,7 @@ class Invoices(BaseSDK):
             body=models.UpdateInvoiceRequest(
                 due_date=due_date,
                 invoice_pdf_url=invoice_pdf_url,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             ),
         )
 
@@ -1552,7 +1590,7 @@ class Invoices(BaseSDK):
         id: str,
         due_date: Optional[datetime] = None,
         invoice_pdf_url: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1586,7 +1624,7 @@ class Invoices(BaseSDK):
             body=models.UpdateInvoiceRequest(
                 due_date=due_date,
                 invoice_pdf_url=invoice_pdf_url,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             ),
         )
 

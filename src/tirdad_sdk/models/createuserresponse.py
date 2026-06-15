@@ -14,6 +14,7 @@ class CreateUserResponseTypedDict(TypedDict):
     r"""Empty for service accounts"""
     id: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
+    name: NotRequired[str]
     password: NotRequired[str]
     roles: NotRequired[List[str]]
     tenant: NotRequired[TenantResponseTypedDict]
@@ -28,6 +29,8 @@ class CreateUserResponse(BaseModel):
 
     metadata: Optional[Dict[str, str]] = None
 
+    name: Optional[str] = None
+
     password: Optional[str] = None
 
     roles: Optional[List[str]] = None
@@ -39,7 +42,7 @@ class CreateUserResponse(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["email", "id", "metadata", "password", "roles", "tenant", "type"]
+            ["email", "id", "metadata", "name", "password", "roles", "tenant", "type"]
         )
         serialized = handler(self)
         m = {}

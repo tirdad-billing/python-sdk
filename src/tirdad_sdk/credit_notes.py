@@ -5,7 +5,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class CreditNotes(BaseSDK):
@@ -18,12 +18,12 @@ class CreditNotes(BaseSDK):
         idempotency_key: Optional[str] = None,
         line_items: Optional[
             Union[
-                List[models.CreateCreditNoteLineItemRequest],
-                List[models.CreateCreditNoteLineItemRequestTypedDict],
+                Iterable[models.CreateCreditNoteLineItemRequest],
+                Iterable[models.CreateCreditNoteLineItemRequestTypedDict],
             ]
         ] = None,
         memo: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         process_credit_note: Optional[bool] = True,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -67,7 +67,7 @@ class CreditNotes(BaseSDK):
                 line_items, Optional[List[models.CreateCreditNoteLineItemRequest]]
             ),
             memo=memo,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             process_credit_note=process_credit_note,
             reason=reason,
         )
@@ -151,12 +151,12 @@ class CreditNotes(BaseSDK):
         idempotency_key: Optional[str] = None,
         line_items: Optional[
             Union[
-                List[models.CreateCreditNoteLineItemRequest],
-                List[models.CreateCreditNoteLineItemRequestTypedDict],
+                Iterable[models.CreateCreditNoteLineItemRequest],
+                Iterable[models.CreateCreditNoteLineItemRequestTypedDict],
             ]
         ] = None,
         memo: Optional[str] = None,
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[Mapping[str, str]] = None,
         process_credit_note: Optional[bool] = True,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -200,7 +200,7 @@ class CreditNotes(BaseSDK):
                 line_items, Optional[List[models.CreateCreditNoteLineItemRequest]]
             ),
             memo=memo,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             process_credit_note=process_credit_note,
             reason=reason,
         )

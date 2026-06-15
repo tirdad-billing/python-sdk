@@ -6,7 +6,7 @@ from tirdad_sdk import models, utils
 from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
 
 
 class Addons(BaseSDK):
@@ -16,7 +16,7 @@ class Addons(BaseSDK):
         lookup_key: str,
         name: str,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
+        metadata: Optional[Mapping[str, Any]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -48,7 +48,7 @@ class Addons(BaseSDK):
         request = models.CreateAddonRequest(
             description=description,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
             name=name,
         )
 
@@ -125,7 +125,7 @@ class Addons(BaseSDK):
         lookup_key: str,
         name: str,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
+        metadata: Optional[Mapping[str, Any]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -157,7 +157,7 @@ class Addons(BaseSDK):
         request = models.CreateAddonRequest(
             description=description,
             lookup_key=lookup_key,
-            metadata=metadata,
+            metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
             name=name,
         )
 
@@ -425,18 +425,23 @@ class Addons(BaseSDK):
     def query_addon(
         self,
         *,
-        addon_ids: Optional[List[str]] = None,
+        addon_ids: Optional[Iterable[str]] = None,
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
-        lookup_keys: Optional[List[str]] = None,
+        lookup_keys: Optional[Iterable[str]] = None,
         offset: Optional[int] = None,
         order: Optional[models.AddonFilterOrder] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -476,14 +481,14 @@ class Addons(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.AddonFilter(
-            addon_ids=addon_ids,
+            addon_ids=utils.unmarshal(addon_ids, Optional[List[str]]),
             end_time=end_time,
             expand=expand,
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
             limit=limit,
-            lookup_keys=lookup_keys,
+            lookup_keys=utils.unmarshal(lookup_keys, Optional[List[str]]),
             offset=offset,
             order=order,
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
@@ -561,18 +566,23 @@ class Addons(BaseSDK):
     async def query_addon_async(
         self,
         *,
-        addon_ids: Optional[List[str]] = None,
+        addon_ids: Optional[Iterable[str]] = None,
         end_time: Optional[datetime] = None,
         expand: Optional[str] = None,
         filters: Optional[
-            Union[List[models.FilterCondition], List[models.FilterConditionTypedDict]]
+            Union[
+                Iterable[models.FilterCondition],
+                Iterable[models.FilterConditionTypedDict],
+            ]
         ] = None,
         limit: Optional[int] = None,
-        lookup_keys: Optional[List[str]] = None,
+        lookup_keys: Optional[Iterable[str]] = None,
         offset: Optional[int] = None,
         order: Optional[models.AddonFilterOrder] = None,
         sort: Optional[
-            Union[List[models.SortCondition], List[models.SortConditionTypedDict]]
+            Union[
+                Iterable[models.SortCondition], Iterable[models.SortConditionTypedDict]
+            ]
         ] = None,
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
@@ -612,14 +622,14 @@ class Addons(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.AddonFilter(
-            addon_ids=addon_ids,
+            addon_ids=utils.unmarshal(addon_ids, Optional[List[str]]),
             end_time=end_time,
             expand=expand,
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
             limit=limit,
-            lookup_keys=lookup_keys,
+            lookup_keys=utils.unmarshal(lookup_keys, Optional[List[str]]),
             offset=offset,
             order=order,
             sort=utils.get_pydantic_model(sort, Optional[List[models.SortCondition]]),
@@ -893,7 +903,7 @@ class Addons(BaseSDK):
         *,
         id: str,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
+        metadata: Optional[Mapping[str, Any]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -927,7 +937,7 @@ class Addons(BaseSDK):
             id=id,
             body=models.UpdateAddonRequest(
                 description=description,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
                 name=name,
             ),
         )
@@ -1004,7 +1014,7 @@ class Addons(BaseSDK):
         *,
         id: str,
         description: Optional[str] = None,
-        metadata: Optional[Dict[str, Any]] = None,
+        metadata: Optional[Mapping[str, Any]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1038,7 +1048,7 @@ class Addons(BaseSDK):
             id=id,
             body=models.UpdateAddonRequest(
                 description=description,
-                metadata=metadata,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
                 name=name,
             ),
         )

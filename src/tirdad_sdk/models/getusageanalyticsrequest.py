@@ -10,6 +10,12 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class GetUsageAnalyticsRequestTypedDict(TypedDict):
+    breakdown_bucket: NotRequired[bool]
+    r"""BreakdownBucket when true augments each time-series point with BucketID/PriceID
+    and appends a BucketSummaries rollup to each item. Requires WindowSize to be set
+    and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
+    Default: false (opt-in, backward compatible).
+    """
     end_time: NotRequired[datetime]
     expand: NotRequired[List[str]]
     r"""allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\" """
@@ -32,6 +38,13 @@ class GetUsageAnalyticsRequestTypedDict(TypedDict):
 
 
 class GetUsageAnalyticsRequest(BaseModel):
+    breakdown_bucket: Optional[bool] = None
+    r"""BreakdownBucket when true augments each time-series point with BucketID/PriceID
+    and appends a BucketSummaries rollup to each item. Requires WindowSize to be set
+    and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
+    Default: false (opt-in, backward compatible).
+    """
+
     end_time: Optional[datetime] = None
 
     expand: Optional[List[str]] = None
@@ -65,6 +78,7 @@ class GetUsageAnalyticsRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "breakdown_bucket",
                 "end_time",
                 "expand",
                 "external_customer_id",

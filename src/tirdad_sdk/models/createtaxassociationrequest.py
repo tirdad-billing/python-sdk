@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .taxrateentitytype import TaxRateEntityType
+from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, Optional
@@ -12,11 +13,15 @@ class CreateTaxAssociationRequestTypedDict(TypedDict):
     tax_rate_code: str
     auto_apply: NotRequired[bool]
     currency: NotRequired[str]
+    end_date: NotRequired[datetime]
+    r"""EndDate sets when this association expires. Must be after StartDate when both are provided."""
     entity_id: NotRequired[str]
     entity_type: NotRequired[TaxRateEntityType]
     external_customer_id: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     priority: NotRequired[int]
+    start_date: NotRequired[datetime]
+    r"""StartDate sets when this association becomes active. Defaults to now if omitted."""
 
 
 class CreateTaxAssociationRequest(BaseModel):
@@ -25,6 +30,9 @@ class CreateTaxAssociationRequest(BaseModel):
     auto_apply: Optional[bool] = None
 
     currency: Optional[str] = None
+
+    end_date: Optional[datetime] = None
+    r"""EndDate sets when this association expires. Must be after StartDate when both are provided."""
 
     entity_id: Optional[str] = None
 
@@ -36,17 +44,22 @@ class CreateTaxAssociationRequest(BaseModel):
 
     priority: Optional[int] = None
 
+    start_date: Optional[datetime] = None
+    r"""StartDate sets when this association becomes active. Defaults to now if omitted."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
                 "auto_apply",
                 "currency",
+                "end_date",
                 "entity_id",
                 "entity_type",
                 "external_customer_id",
                 "metadata",
                 "priority",
+                "start_date",
             ]
         )
         serialized = handler(self)

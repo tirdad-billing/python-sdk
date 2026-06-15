@@ -18,3 +18,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"meter_lookup"`
 - `"price_lookup"`
 - `"subscription_line_item_lookup"`
+- `"attributed_to_customer"`

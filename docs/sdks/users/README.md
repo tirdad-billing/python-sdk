@@ -8,6 +8,8 @@
 * [get_user_info](#get_user_info) - Get current user
 * [update_user](#update_user) - Update current user
 * [query_user](#query_user) - Query users
+* [update_service_account](#update_service_account) - Update service account
+* [delete_service_account](#delete_service_account) - Delete service account
 
 ## create_user
 
@@ -37,6 +39,7 @@ with Tirdad(
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `type`                                                              | [models.UserType](../../models/usertype.md)                         | :heavy_check_mark:                                                  | N/A                                                                 |
 | `email`                                                             | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Required when type is "user"                                        |
+| `name`                                                              | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Display name; optional for service accounts                         |
 | `roles`                                                             | List[*str*]                                                         | :heavy_minus_sign:                                                  | Required when type is "service_account"                             |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
@@ -94,7 +97,7 @@ with Tirdad(
 
 ## update_user
 
-Update the current authenticated user. Only metadata updates are supported.
+Update the current authenticated user. Supports name and metadata updates.
 
 ### Example Usage
 
@@ -119,6 +122,7 @@ with Tirdad(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `metadata`                                                          | Dict[str, *str*]                                                    | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `name`                                                              | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -182,5 +186,83 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## update_service_account
+
+Update a service account by ID (name only).
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="updateServiceAccount" method="put" path="/users/{id}" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.users.update_service_account(id="<id>", name="<value>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Service Account ID                                                  |
+| `name`                                                              | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.UpdateServiceAccountResponse](../../models/updateserviceaccountresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## delete_service_account
+
+Soft-delete (archive) a service account by ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="deleteServiceAccount" method="delete" path="/users/{id}" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    tirdad.users.delete_service_account(id="<id>")
+
+    # Use the SDK ...
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Service Account ID                                                  |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
