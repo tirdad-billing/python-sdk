@@ -15,12 +15,10 @@ class SubModifyCouponParamsTypedDict(TypedDict):
     r"""Required when action=\"remove\". ID of the CouponAssociation to soft-delete."""
     coupon_code: NotRequired[str]
     r"""Required for action=\"add\". Coupon code of the coupon to attach."""
-    effective_date: NotRequired[datetime]
-    r"""Optional. When to apply the change; defaults to now if omitted."""
     end_date: NotRequired[datetime]
     r"""Optional. When the coupon association ends."""
     start_date: NotRequired[datetime]
-    r"""Optional. When the coupon association starts; defaults to EffectiveDate."""
+    r"""Optional. When the coupon association starts; defaults to now."""
     subscription_id: NotRequired[str]
     r"""Optional. Apply at subscription level. Mutually exclusive with SubscriptionLineItemID."""
     subscription_line_item_id: NotRequired[str]
@@ -36,14 +34,11 @@ class SubModifyCouponParams(BaseModel):
     coupon_code: Optional[str] = None
     r"""Required for action=\"add\". Coupon code of the coupon to attach."""
 
-    effective_date: Optional[datetime] = None
-    r"""Optional. When to apply the change; defaults to now if omitted."""
-
     end_date: Optional[datetime] = None
     r"""Optional. When the coupon association ends."""
 
     start_date: Optional[datetime] = None
-    r"""Optional. When the coupon association starts; defaults to EffectiveDate."""
+    r"""Optional. When the coupon association starts; defaults to now."""
 
     subscription_id: Optional[str] = None
     r"""Optional. Apply at subscription level. Mutually exclusive with SubscriptionLineItemID."""
@@ -57,7 +52,6 @@ class SubModifyCouponParams(BaseModel):
             [
                 "association_id",
                 "coupon_code",
-                "effective_date",
                 "end_date",
                 "start_date",
                 "subscription_id",

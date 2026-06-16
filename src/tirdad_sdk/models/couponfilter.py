@@ -17,6 +17,7 @@ CouponFilterOrder = Literal[
 
 
 class CouponFilterTypedDict(TypedDict):
+    coupon_codes: NotRequired[List[str]]
     coupon_ids: NotRequired[List[str]]
     expand: NotRequired[str]
     filters: NotRequired[List[FilterConditionTypedDict]]
@@ -28,6 +29,8 @@ class CouponFilterTypedDict(TypedDict):
 
 
 class CouponFilter(BaseModel):
+    coupon_codes: Optional[List[str]] = None
+
     coupon_ids: Optional[List[str]] = None
 
     expand: Optional[str] = None
@@ -48,6 +51,7 @@ class CouponFilter(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "coupon_codes",
                 "coupon_ids",
                 "expand",
                 "filters",

@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [create_coupon](#create_coupon) - Create coupon
+* [get_coupon_by_code](#get_coupon_by_code) - Get coupon by code
 * [query_coupon](#query_coupon) - Query coupons
 * [get_coupon](#get_coupon) - Get coupon
 * [update_coupon](#update_coupon) - Update coupon
@@ -63,6 +64,47 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## get_coupon_by_code
+
+Use when resolving a coupon by promo code (e.g. checkout or validation).
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getCouponByCode" method="get" path="/coupons/code/{code}" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.coupons.get_coupon_by_code(code="<value>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `code`                                                              | *str*                                                               | :heavy_check_mark:                                                  | Coupon code                                                         |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.CouponResponse](../../models/couponresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## query_coupon
 
 Use when listing or searching coupons (e.g. promo management). Returns a paginated list; supports filtering and sorting.
@@ -89,6 +131,7 @@ with Tirdad(
 
 | Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `coupon_codes`                                                          | List[*str*]                                                             | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `coupon_ids`                                                            | List[*str*]                                                             | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `expand`                                                                | *Optional[str]*                                                         | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `filters`                                                               | List[[models.FilterCondition](../../models/filtercondition.md)]         | :heavy_minus_sign:                                                      | N/A                                                                     |

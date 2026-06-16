@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
-id: 33e706f8-5026-44c4-a2d9-83aff1bbb0dc
+id: 07eb01ac-89c1-4587-978f-cbb3a50dfb58
 management:
-  docChecksum: f98761d6344b3cd02574ec46cb945fcf
+  docChecksum: 2950dc61350207463a68d568f22548a6
   docVersion: "1.0"
   speakeasyVersion: 1.778.0
   generationVersion: 2.904.2
-  releaseVersion: 2.1.18
-  configChecksum: 15ec21ace92ab547f19cfc3891c153a6
+  releaseVersion: 2.1.19
+  configChecksum: e259b92aff84295420b0eeda29092cce
   published: true
 persistentEdits:
-  generation_id: 019906a2-3b3c-45f1-9d45-3d82647655ff
-  pristine_commit_hash: 72a155813e34cbfad4b63a1b308c4ea92e55f180
-  pristine_tree_hash: aa71bb234649d04c96b6eb65ee46726644878eb4
+  generation_id: 869564de-e1c4-48bd-8d5a-e66d7b98aec2
+  pristine_commit_hash: 0348ae8c6abbaedb0616dd9e02efadc62f2a40b9
+  pristine_tree_hash: 5e4d6cb8f38ce309ad3dfec483cde24a2aa3cb96
 features:
   python:
     additionalDependencies: 1.1.0
@@ -349,8 +349,8 @@ trackedFiles:
     pristine_git_object: b39a06379ba1cd3f8daeca5319b950fd7dbd7119
   docs/models/couponfilter.md:
     id: 1d3a6958e709
-    last_write_checksum: sha1:d351060dcf4868f60ea0fa4c83b430f107af0c49
-    pristine_git_object: 84e770f41343ba107f0744ef6b1b0be45b951068
+    last_write_checksum: sha1:71dedaaf613578973796f4fe89af2769a45db74c
+    pristine_git_object: d0a679c0b01d4156d3ee9d2bd4eaa4bbcfcbc794
   docs/models/couponfilterorder.md:
     id: 6429a00d9ce6
     last_write_checksum: sha1:306ff347aed13b03f298d7711d1558daf418b3d5
@@ -891,6 +891,10 @@ trackedFiles:
     id: c570c09cbd15
     last_write_checksum: sha1:b04bda31264f3137d6bacedf1f9c8f4055bb21a6
     pristine_git_object: fc806a26b1ddbb4d34bd90298862effb08f1ee72
+  docs/models/getcouponbycoderequest.md:
+    id: 8c78d3dfdc5d
+    last_write_checksum: sha1:9e9f8393e2158df7bf2943a0b00c93931d1bc6d3
+    pristine_git_object: 5d79d97cf16b422cdac5ce925db9e02f894a1315
   docs/models/getcouponrequest.md:
     id: 823eef45b378
     last_write_checksum: sha1:7dd0d824246e0130c72c86195e30012cd200360d
@@ -1753,8 +1757,8 @@ trackedFiles:
     pristine_git_object: f9728a62afafbd6937cd9a5942d5b470cc81481f
   docs/models/submodifycouponparams.md:
     id: b9b0576a77bc
-    last_write_checksum: sha1:81e749b8b598367e877df2f106c7568457fa7896
-    pristine_git_object: 30784b3d4dca9c2c2375de0e71cb3b41d712efa7
+    last_write_checksum: sha1:d7050349bfe6a672a29564b7eec7a3b64d4ea68c
+    pristine_git_object: 47ce29f9fb4dd8b1401dc62fffabd456bb225994
   docs/models/submodifygroupedinvoicingparams.md:
     id: 53a424677b3b
     last_write_checksum: sha1:d5b55886ae807724839f25a518deb4c2b45ac8aa
@@ -2397,8 +2401,8 @@ trackedFiles:
     pristine_git_object: 5751d6689f5bac17084b09bb29ff47a9a712ac37
   docs/sdks/coupons/README.md:
     id: c5a54fa79a72
-    last_write_checksum: sha1:4c6dfdb8bfca53b7dbe46bc766c039845b63159b
-    pristine_git_object: ae0f36206b7ebc0d24ac6d3056db2704bac074dc
+    last_write_checksum: sha1:205f4f3f9963af7e9bdeab8e6800ef8c08447389
+    pristine_git_object: 022f4d311fdf387cc9915d9f4c5de10227217b4a
   docs/sdks/creditgrants/README.md:
     id: 21efd82e7bce
     last_write_checksum: sha1:94b5e32c51b4b9203986c8c94ed950676a2481d1
@@ -2513,8 +2517,8 @@ trackedFiles:
     pristine_git_object: 8839a462c0547e8d64470c45a8f613e6702e47f8
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:9818699505bf4e1163410c2394d85f9511c731e7
-    pristine_git_object: 91474edde711506508f7e73041d2bfba56d4f253
+    last_write_checksum: sha1:f4342567b0cf248556828afcd4df96d0825caa4d
+    pristine_git_object: ce83565a3856deb92ff94d5f7355d609984e9fb6
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -2537,8 +2541,8 @@ trackedFiles:
     pristine_git_object: 72f7cbe868bdb65e7ba2882ddbd6f9aa860e3c46
   src/tirdad_sdk/_version.py:
     id: 55a4ad0b1139
-    last_write_checksum: sha1:81b846fc1e343275e78a03d4a8e6da87787c25c6
-    pristine_git_object: 50775f1950fb49bf79bd873dde7d09533fbf758d
+    last_write_checksum: sha1:1b70b0ae9ebe3fe95700e6cb88f48f6214185f88
+    pristine_git_object: 55092570b6b2f2b9394711977fb66172a2ca4172
   src/tirdad_sdk/addons.py:
     id: a4eea8ce5eda
     last_write_checksum: sha1:39b3ff7641d0aebe00de566de4b5a589109e9775
@@ -2561,8 +2565,8 @@ trackedFiles:
     pristine_git_object: 2b44393e5407e5aebe363d52252973a9af7dd0ff
   src/tirdad_sdk/coupons.py:
     id: 6d2cf7c75d9f
-    last_write_checksum: sha1:b66dcdb77a2e2bf083e2e624e76a52577c72470e
-    pristine_git_object: 3684102267e5eac6c83146c9d5f79200125712df
+    last_write_checksum: sha1:094672c22218e503fc7b6ee318f188a8b6db9bc5
+    pristine_git_object: 29919c58e16005a4a78567a93934c8e9d68ead99
   src/tirdad_sdk/credit_grants.py:
     id: 5eaf00feeb09
     last_write_checksum: sha1:0fdd70eee50a5ea29e7884964ee16a0de5fa8b93
@@ -2609,8 +2613,8 @@ trackedFiles:
     pristine_git_object: 273d705b2aae0113a35535e902d7e4eefdc9459c
   src/tirdad_sdk/models/__init__.py:
     id: 2e433a069963
-    last_write_checksum: sha1:4cad032e9eba1c245195190f67e9dcf408bc92f1
-    pristine_git_object: e78157e0604fe42dc03c520668161ea5b87714c5
+    last_write_checksum: sha1:947ea63948ec6daaccc947eb6d3e4c876673eaa4
+    pristine_git_object: f86f8e202dad9aa6846dedcc47cab6e297379aba
   src/tirdad_sdk/models/activatedraftsubscriptionrequest.py:
     id: dcb35e4f9c51
     last_write_checksum: sha1:3f1293fd6c2602c7fe35f3f1125a7e13632ff671
@@ -2901,8 +2905,8 @@ trackedFiles:
     pristine_git_object: 888664e86ad68763edc4757c35b8757cd6c403f3
   src/tirdad_sdk/models/couponfilter.py:
     id: 5ad1a07c6196
-    last_write_checksum: sha1:4d570dc463776ce5e8186fd0f1fc0ed291ae039f
-    pristine_git_object: 17469a95dbac280de49f01791a2c51a4a38eed29
+    last_write_checksum: sha1:b0495bede9437e667625bb702dc7998aa3e6a353
+    pristine_git_object: 83eef1d8806141c787bbc7705137663a979fee13
   src/tirdad_sdk/models/couponresponse.py:
     id: ea98c948a7d7
     last_write_checksum: sha1:87d361fc0cfc1ffc8ec8b283707ecf76582d1fde
@@ -3443,6 +3447,10 @@ trackedFiles:
     id: 33896a9f677f
     last_write_checksum: sha1:8f39923a4968ce5286cdd3521df48ecaf7755268
     pristine_git_object: 12f4de77df9357bd0cfa240c0205817cf4242ff9
+  src/tirdad_sdk/models/getcouponbycodeop.py:
+    id: 5cfbd275f4da
+    last_write_checksum: sha1:648560e1c66996aa033f3a954c8ce69def4f445a
+    pristine_git_object: 3e54705865240eba7dd62e889e78c72bdc34cd47
   src/tirdad_sdk/models/getcouponop.py:
     id: 6759a3f11793
     last_write_checksum: sha1:2eabd7187d5fb19151a1e29f2c47bef003e2dcbb
@@ -4217,8 +4225,8 @@ trackedFiles:
     pristine_git_object: ffd760d45ac12f71ba00d3da204098ab55884d92
   src/tirdad_sdk/models/submodifycouponparams.py:
     id: 4cdbe002096c
-    last_write_checksum: sha1:5062af17c9fae63e3f3cb3c1ee761ceaf85c2baf
-    pristine_git_object: 2bbb07a5c5ca862ad507d0d73051fb543efcdd0b
+    last_write_checksum: sha1:97008e071555b465766b85a4cf76397367f623a6
+    pristine_git_object: c677f510dd9542e99795626de1d0e12521763048
   src/tirdad_sdk/models/submodifygroupedinvoicingparams.py:
     id: d13a03346996
     last_write_checksum: sha1:6291b754a2a01348d8d61c65d58c9a8ff9f8e28e
@@ -5247,6 +5255,18 @@ examples:
         application/json: {"cadence": "repeated", "name": "<value>", "type": "percentage"}
       responses:
         "201":
+          application/json: {}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  getCouponByCode:
+    speakeasy-default-get-coupon-by-code:
+      parameters:
+        path:
+          code: "<value>"
+      responses:
+        "200":
           application/json: {}
         "400":
           application/json: {}

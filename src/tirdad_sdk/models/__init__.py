@@ -451,6 +451,10 @@ if TYPE_CHECKING:
         GetCouponAssociationRequest,
         GetCouponAssociationRequestTypedDict,
     )
+    from .getcouponbycodeop import (
+        GetCouponByCodeRequest,
+        GetCouponByCodeRequestTypedDict,
+    )
     from .getcouponop import GetCouponRequest, GetCouponRequestTypedDict
     from .getcreditgrantop import GetCreditGrantRequest, GetCreditGrantRequestTypedDict
     from .getcreditnoteop import GetCreditNoteRequest, GetCreditNoteRequestTypedDict
@@ -1718,6 +1722,8 @@ __all__ = [
     "GetCostsheetResponseTypedDict",
     "GetCouponAssociationRequest",
     "GetCouponAssociationRequestTypedDict",
+    "GetCouponByCodeRequest",
+    "GetCouponByCodeRequestTypedDict",
     "GetCouponRequest",
     "GetCouponRequestTypedDict",
     "GetCreditGrantRequest",
@@ -2736,6 +2742,8 @@ _dynamic_imports: dict[str, str] = {
     "GetCostsheetResponseTypedDict": ".getcostsheetresponse",
     "GetCouponAssociationRequest": ".getcouponassociationop",
     "GetCouponAssociationRequestTypedDict": ".getcouponassociationop",
+    "GetCouponByCodeRequest": ".getcouponbycodeop",
+    "GetCouponByCodeRequestTypedDict": ".getcouponbycodeop",
     "GetCouponRequest": ".getcouponop",
     "GetCouponRequestTypedDict": ".getcouponop",
     "GetCreditGrantRequest": ".getcreditgrantop",
