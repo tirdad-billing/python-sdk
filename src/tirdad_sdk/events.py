@@ -1191,6 +1191,7 @@ class Events(BaseSDK):
         end_time: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
         filters: Optional[Mapping[str, Iterable[str]]] = None,
+        group_by: Optional[Iterable[str]] = None,
         group_by_property: Optional[str] = None,
         multiplier: Optional[str] = None,
         property_name: Optional[str] = None,
@@ -1227,9 +1228,16 @@ class Events(BaseSDK):
         :param end_time:
         :param external_customer_id:
         :param filters:
+        :param group_by: GroupBy lists the analytics group_by dimensions.
+            - \"source\"        — group by event source column
+            - \"properties.X\"  — group by JSON property X
         :param group_by_property: GroupByProperty is the property name in event.properties to group by before aggregating.
             When set, aggregation is applied per unique value of this property within each bucket,
             then the per-group results are summed to produce the bucket total.
+
+            Deprecated: prefer GroupBy []string{\"properties.<X>\"} for parity with
+            other analytics endpoints. ToUsageParams translates this field into
+            GroupBy when GroupBy is otherwise empty.
         :param multiplier:
         :param property_name: will be empty/ignored in case of COUNT
         :param start_time:
@@ -1258,6 +1266,7 @@ class Events(BaseSDK):
             event_name=event_name,
             external_customer_id=external_customer_id,
             filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
+            group_by=utils.unmarshal(group_by, Optional[List[str]]),
             group_by_property=group_by_property,
             multiplier=multiplier,
             property_name=property_name,
@@ -1343,6 +1352,7 @@ class Events(BaseSDK):
         end_time: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
         filters: Optional[Mapping[str, Iterable[str]]] = None,
+        group_by: Optional[Iterable[str]] = None,
         group_by_property: Optional[str] = None,
         multiplier: Optional[str] = None,
         property_name: Optional[str] = None,
@@ -1379,9 +1389,16 @@ class Events(BaseSDK):
         :param end_time:
         :param external_customer_id:
         :param filters:
+        :param group_by: GroupBy lists the analytics group_by dimensions.
+            - \"source\"        — group by event source column
+            - \"properties.X\"  — group by JSON property X
         :param group_by_property: GroupByProperty is the property name in event.properties to group by before aggregating.
             When set, aggregation is applied per unique value of this property within each bucket,
             then the per-group results are summed to produce the bucket total.
+
+            Deprecated: prefer GroupBy []string{\"properties.<X>\"} for parity with
+            other analytics endpoints. ToUsageParams translates this field into
+            GroupBy when GroupBy is otherwise empty.
         :param multiplier:
         :param property_name: will be empty/ignored in case of COUNT
         :param start_time:
@@ -1410,6 +1427,7 @@ class Events(BaseSDK):
             event_name=event_name,
             external_customer_id=external_customer_id,
             filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
+            group_by=utils.unmarshal(group_by, Optional[List[str]]),
             group_by_property=group_by_property,
             multiplier=multiplier,
             property_name=property_name,

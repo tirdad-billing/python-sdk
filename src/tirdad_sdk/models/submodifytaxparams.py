@@ -11,10 +11,10 @@ from typing_extensions import NotRequired, TypedDict
 
 class SubModifyTaxParamsTypedDict(TypedDict):
     action: SubModifyTaxAction
-    association_id: NotRequired[str]
-    r"""Required when action=\"remove\". ID of the TaxAssociation to soft-delete."""
     effective_date: NotRequired[datetime]
     r"""Optional. When to apply the change; defaults to now if omitted."""
+    tax_association_id: NotRequired[str]
+    r"""Required when action=\"remove\". ID of the TaxAssociation to soft-delete."""
     tax_rate_id: NotRequired[str]
     r"""Required when action=\"add\". ID of the active tax rate to attach."""
 
@@ -22,18 +22,18 @@ class SubModifyTaxParamsTypedDict(TypedDict):
 class SubModifyTaxParams(BaseModel):
     action: SubModifyTaxAction
 
-    association_id: Optional[str] = None
-    r"""Required when action=\"remove\". ID of the TaxAssociation to soft-delete."""
-
     effective_date: Optional[datetime] = None
     r"""Optional. When to apply the change; defaults to now if omitted."""
+
+    tax_association_id: Optional[str] = None
+    r"""Required when action=\"remove\". ID of the TaxAssociation to soft-delete."""
 
     tax_rate_id: Optional[str] = None
     r"""Required when action=\"add\". ID of the active tax rate to attach."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["association_id", "effective_date", "tax_rate_id"])
+        optional_fields = set(["effective_date", "tax_association_id", "tax_rate_id"])
         serialized = handler(self)
         m = {}
 

@@ -839,6 +839,7 @@ if TYPE_CHECKING:
     from .plan import Plan, PlanTypedDict
     from .planfilter import PlanFilter, PlanFilterOrder, PlanFilterTypedDict
     from .plansummary import PlanSummary, PlanSummaryTypedDict
+    from .pointbucket import PointBucket, PointBucketTypedDict
     from .previewsubscriptionchangeop import (
         PreviewSubscriptionChangeRequest,
         PreviewSubscriptionChangeRequestTypedDict,
@@ -2015,6 +2016,8 @@ __all__ = [
     "PlanSummary",
     "PlanSummaryTypedDict",
     "PlanTypedDict",
+    "PointBucket",
+    "PointBucketTypedDict",
     "PreviewSubscriptionChangeRequest",
     "PreviewSubscriptionChangeRequestTypedDict",
     "PreviewSubscriptionModifyRequest",
@@ -3033,6 +3036,8 @@ _dynamic_imports: dict[str, str] = {
     "PlanFilterTypedDict": ".planfilter",
     "PlanSummary": ".plansummary",
     "PlanSummaryTypedDict": ".plansummary",
+    "PointBucket": ".pointbucket",
+    "PointBucketTypedDict": ".pointbucket",
     "PreviewSubscriptionChangeRequest": ".previewsubscriptionchangeop",
     "PreviewSubscriptionChangeRequestTypedDict": ".previewsubscriptionchangeop",
     "PreviewSubscriptionModifyRequest": ".previewsubscriptionmodifyop",

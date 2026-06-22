@@ -35,10 +35,19 @@ class GetUsageRequestTypedDict(TypedDict):
     end_time: NotRequired[datetime]
     external_customer_id: NotRequired[str]
     filters: NotRequired[Dict[str, List[str]]]
+    group_by: NotRequired[List[str]]
+    r"""GroupBy lists the analytics group_by dimensions.
+    - \"source\"        — group by event source column
+    - \"properties.X\"  — group by JSON property X
+    """
     group_by_property: NotRequired[str]
     r"""GroupByProperty is the property name in event.properties to group by before aggregating.
     When set, aggregation is applied per unique value of this property within each bucket,
     then the per-group results are summed to produce the bucket total.
+
+    Deprecated: prefer GroupBy []string{\"properties.<X>\"} for parity with
+    other analytics endpoints. ToUsageParams translates this field into
+    GroupBy when GroupBy is otherwise empty.
     """
     multiplier: NotRequired[str]
     property_name: NotRequired[str]
@@ -80,10 +89,20 @@ class GetUsageRequest(BaseModel):
 
     filters: Optional[Dict[str, List[str]]] = None
 
+    group_by: Optional[List[str]] = None
+    r"""GroupBy lists the analytics group_by dimensions.
+    - \"source\"        — group by event source column
+    - \"properties.X\"  — group by JSON property X
+    """
+
     group_by_property: Optional[str] = None
     r"""GroupByProperty is the property name in event.properties to group by before aggregating.
     When set, aggregation is applied per unique value of this property within each bucket,
     then the per-group results are summed to produce the bucket total.
+
+    Deprecated: prefer GroupBy []string{\"properties.<X>\"} for parity with
+    other analytics endpoints. ToUsageParams translates this field into
+    GroupBy when GroupBy is otherwise empty.
     """
 
     multiplier: Optional[str] = None
@@ -105,6 +124,7 @@ class GetUsageRequest(BaseModel):
                 "end_time",
                 "external_customer_id",
                 "filters",
+                "group_by",
                 "group_by_property",
                 "multiplier",
                 "property_name",

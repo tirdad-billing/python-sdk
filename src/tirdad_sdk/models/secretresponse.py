@@ -22,9 +22,13 @@ class SecretResponseTypedDict(TypedDict):
     provider: NotRequired[SecretProvider]
     roles: NotRequired[List[str]]
     r"""RBAC roles"""
+    service_account_name: NotRequired[str]
+    r"""name of the service account (populated for service_account user_type)"""
     status: NotRequired[Status]
     type: NotRequired[SecretType]
     updated_at: NotRequired[datetime]
+    user_id: NotRequired[str]
+    r"""user or service account this key belongs to"""
     user_type: NotRequired[UserType]
 
 
@@ -46,11 +50,17 @@ class SecretResponse(BaseModel):
     roles: Optional[List[str]] = None
     r"""RBAC roles"""
 
+    service_account_name: Optional[str] = None
+    r"""name of the service account (populated for service_account user_type)"""
+
     status: Optional[Status] = None
 
     type: Optional[SecretType] = None
 
     updated_at: Optional[datetime] = None
+
+    user_id: Optional[str] = None
+    r"""user or service account this key belongs to"""
 
     user_type: Optional[UserType] = None
 
@@ -66,9 +76,11 @@ class SecretResponse(BaseModel):
                 "name",
                 "provider",
                 "roles",
+                "service_account_name",
                 "status",
                 "type",
                 "updated_at",
+                "user_id",
                 "user_type",
             ]
         )

@@ -11,7 +11,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class SubModifyCouponParamsTypedDict(TypedDict):
     action: SubModifyCouponAction
-    association_id: NotRequired[str]
+    coupon_association_id: NotRequired[str]
     r"""Required when action=\"remove\". ID of the CouponAssociation to soft-delete."""
     coupon_code: NotRequired[str]
     r"""Required for action=\"add\". Coupon code of the coupon to attach."""
@@ -28,7 +28,7 @@ class SubModifyCouponParamsTypedDict(TypedDict):
 class SubModifyCouponParams(BaseModel):
     action: SubModifyCouponAction
 
-    association_id: Optional[str] = None
+    coupon_association_id: Optional[str] = None
     r"""Required when action=\"remove\". ID of the CouponAssociation to soft-delete."""
 
     coupon_code: Optional[str] = None
@@ -50,7 +50,7 @@ class SubModifyCouponParams(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
-                "association_id",
+                "coupon_association_id",
                 "coupon_code",
                 "end_date",
                 "start_date",
