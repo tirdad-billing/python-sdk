@@ -16,7 +16,9 @@ class UpdatePaymentRequestTypedDict(TypedDict):
     payment_gateway: NotRequired[str]
     payment_method_id: NotRequired[str]
     payment_status: NotRequired[str]
+    refunded_at: NotRequired[datetime]
     succeeded_at: NotRequired[datetime]
+    voided_at: NotRequired[datetime]
 
 
 class UpdatePaymentRequest(BaseModel):
@@ -34,7 +36,11 @@ class UpdatePaymentRequest(BaseModel):
 
     payment_status: Optional[str] = None
 
+    refunded_at: Optional[datetime] = None
+
     succeeded_at: Optional[datetime] = None
+
+    voided_at: Optional[datetime] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -47,7 +53,9 @@ class UpdatePaymentRequest(BaseModel):
                 "payment_gateway",
                 "payment_method_id",
                 "payment_status",
+                "refunded_at",
                 "succeeded_at",
+                "voided_at",
             ]
         )
         serialized = handler(self)

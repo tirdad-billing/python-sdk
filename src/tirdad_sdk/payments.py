@@ -123,6 +123,8 @@ class Payments(BaseSDK):
                 operation_id="listPayments",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -268,6 +270,8 @@ class Payments(BaseSDK):
                 operation_id="listPayments",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -404,6 +408,8 @@ class Payments(BaseSDK):
                 operation_id="createPayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions={"x-codegen-request-body-name": "payment"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -540,6 +546,8 @@ class Payments(BaseSDK):
                 operation_id="createPayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions={"x-codegen-request-body-name": "payment"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -637,6 +645,8 @@ class Payments(BaseSDK):
                 operation_id="getPayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -734,6 +744,8 @@ class Payments(BaseSDK):
                 operation_id="getPayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -777,7 +789,9 @@ class Payments(BaseSDK):
         payment_gateway: Optional[str] = None,
         payment_method_id: Optional[str] = None,
         payment_status: Optional[str] = None,
+        refunded_at: Optional[datetime] = None,
         succeeded_at: Optional[datetime] = None,
+        voided_at: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -795,7 +809,9 @@ class Payments(BaseSDK):
         :param payment_gateway:
         :param payment_method_id:
         :param payment_status:
+        :param refunded_at:
         :param succeeded_at:
+        :param voided_at:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -821,7 +837,9 @@ class Payments(BaseSDK):
                 payment_gateway=payment_gateway,
                 payment_method_id=payment_method_id,
                 payment_status=payment_status,
+                refunded_at=refunded_at,
                 succeeded_at=succeeded_at,
+                voided_at=voided_at,
             ),
         )
 
@@ -860,6 +878,8 @@ class Payments(BaseSDK):
                 operation_id="updatePayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions={"x-codegen-request-body-name": "payment"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -903,7 +923,9 @@ class Payments(BaseSDK):
         payment_gateway: Optional[str] = None,
         payment_method_id: Optional[str] = None,
         payment_status: Optional[str] = None,
+        refunded_at: Optional[datetime] = None,
         succeeded_at: Optional[datetime] = None,
+        voided_at: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -921,7 +943,9 @@ class Payments(BaseSDK):
         :param payment_gateway:
         :param payment_method_id:
         :param payment_status:
+        :param refunded_at:
         :param succeeded_at:
+        :param voided_at:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -947,7 +971,9 @@ class Payments(BaseSDK):
                 payment_gateway=payment_gateway,
                 payment_method_id=payment_method_id,
                 payment_status=payment_status,
+                refunded_at=refunded_at,
                 succeeded_at=succeeded_at,
+                voided_at=voided_at,
             ),
         )
 
@@ -986,6 +1012,8 @@ class Payments(BaseSDK):
                 operation_id="updatePayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions={"x-codegen-request-body-name": "payment"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1083,6 +1111,8 @@ class Payments(BaseSDK):
                 operation_id="deletePayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1180,6 +1210,8 @@ class Payments(BaseSDK):
                 operation_id="deletePayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1277,6 +1309,8 @@ class Payments(BaseSDK):
                 operation_id="processPayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1374,6 +1408,8 @@ class Payments(BaseSDK):
                 operation_id="processPayment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Payments"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

@@ -7,13 +7,14 @@ from .featuretype import FeatureType
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class CreateEntitlementRequestTypedDict(TypedDict):
     feature_id: str
     feature_type: FeatureType
+    config_value: NotRequired[Dict[str, Any]]
     end_date: NotRequired[datetime]
     entity_id: NotRequired[str]
     entity_type: NotRequired[EntitlementEntityType]
@@ -31,6 +32,8 @@ class CreateEntitlementRequest(BaseModel):
     feature_id: str
 
     feature_type: FeatureType
+
+    config_value: Optional[Dict[str, Any]] = None
 
     end_date: Optional[datetime] = None
 
@@ -58,6 +61,7 @@ class CreateEntitlementRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "config_value",
                 "end_date",
                 "entity_id",
                 "entity_type",

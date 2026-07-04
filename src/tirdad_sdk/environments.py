@@ -89,6 +89,11 @@ class Environments(BaseSDK):
                 operation_id="cloneEnvironment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Environments"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "write",
+                },
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -203,6 +208,11 @@ class Environments(BaseSDK):
                 operation_id="cloneEnvironment",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Environments"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "write",
+                },
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

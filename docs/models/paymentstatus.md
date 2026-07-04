@@ -22,3 +22,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"FAILED"`
 - `"REFUNDED"`
 - `"PARTIALLY_REFUNDED"`
+- `"VOIDED"`

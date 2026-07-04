@@ -15,6 +15,7 @@ PaymentStatus = Union[
         "FAILED",
         "REFUNDED",
         "PARTIALLY_REFUNDED",
+        "VOIDED",
     ],
     UnrecognizedStr,
 ]

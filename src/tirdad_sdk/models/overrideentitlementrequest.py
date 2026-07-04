@@ -3,13 +3,15 @@
 from __future__ import annotations
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class OverrideEntitlementRequestTypedDict(TypedDict):
     entitlement_id: str
     r"""EntitlementID references the plan/addon entitlement to override"""
+    config_value: NotRequired[Dict[str, Any]]
+    r"""ConfigValue is the config value for config features"""
     is_enabled: NotRequired[bool]
     r"""IsEnabled determines if the entitlement is enabled or disabled"""
     static_value: NotRequired[str]
@@ -24,6 +26,9 @@ class OverrideEntitlementRequest(BaseModel):
     entitlement_id: str
     r"""EntitlementID references the plan/addon entitlement to override"""
 
+    config_value: Optional[Dict[str, Any]] = None
+    r"""ConfigValue is the config value for config features"""
+
     is_enabled: Optional[bool] = None
     r"""IsEnabled determines if the entitlement is enabled or disabled"""
 
@@ -37,7 +42,9 @@ class OverrideEntitlementRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["is_enabled", "static_value", "usage_limit"])
+        optional_fields = set(
+            ["config_value", "is_enabled", "static_value", "usage_limit"]
+        )
         serialized = handler(self)
         m = {}
 

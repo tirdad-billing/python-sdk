@@ -90,7 +90,6 @@ class SubscriptionResponseTypedDict(TypedDict):
     r"""Customer response object containing all customer information"""
     customer_id: NotRequired[str]
     r"""CustomerID is the identifier for the customer in our system"""
-    customer_timezone: NotRequired[str]
     enable_true_up: NotRequired[bool]
     end_date: NotRequired[datetime]
     r"""EndDate is the end date of the subscription"""
@@ -135,6 +134,7 @@ class SubscriptionResponseTypedDict(TypedDict):
     plan-price sync after a successful pass.
     """
     tenant_id: NotRequired[str]
+    timezone: NotRequired[str]
     trial_end: NotRequired[datetime]
     r"""TrialEnd is the end date of the trial period"""
     trial_start: NotRequired[datetime]
@@ -218,8 +218,6 @@ class SubscriptionResponse(BaseModel):
     customer_id: Optional[str] = None
     r"""CustomerID is the identifier for the customer in our system"""
 
-    customer_timezone: Optional[str] = None
-
     enable_true_up: Optional[bool] = None
 
     end_date: Optional[datetime] = None
@@ -290,6 +288,8 @@ class SubscriptionResponse(BaseModel):
 
     tenant_id: Optional[str] = None
 
+    timezone: Optional[str] = None
+
     trial_end: Optional[datetime] = None
     r"""TrialEnd is the end date of the trial period"""
 
@@ -329,7 +329,6 @@ class SubscriptionResponse(BaseModel):
                 "current_period_start",
                 "customer",
                 "customer_id",
-                "customer_timezone",
                 "enable_true_up",
                 "end_date",
                 "environment_id",
@@ -356,6 +355,7 @@ class SubscriptionResponse(BaseModel):
                 "subscription_type",
                 "synced_price_sequence",
                 "tenant_id",
+                "timezone",
                 "trial_end",
                 "trial_start",
                 "updated_at",

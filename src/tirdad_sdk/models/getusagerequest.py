@@ -53,6 +53,7 @@ class GetUsageRequestTypedDict(TypedDict):
     property_name: NotRequired[str]
     r"""will be empty/ignored in case of COUNT"""
     start_time: NotRequired[datetime]
+    timezone: NotRequired[str]
     window_size: NotRequired[WindowSize]
 
 
@@ -112,6 +113,8 @@ class GetUsageRequest(BaseModel):
 
     start_time: Optional[datetime] = None
 
+    timezone: Optional[str] = None
+
     window_size: Optional[WindowSize] = None
 
     @model_serializer(mode="wrap")
@@ -129,6 +132,7 @@ class GetUsageRequest(BaseModel):
                 "multiplier",
                 "property_name",
                 "start_time",
+                "timezone",
                 "window_size",
             ]
         )

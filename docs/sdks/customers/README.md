@@ -7,6 +7,7 @@
 * [update_customer](#update_customer) - Update customer
 * [create_customer](#create_customer) - Create customer
 * [get_customer_by_external_id](#get_customer_by_external_id) - Get customer by external ID
+* [get_customer_entitlements_by_external_id](#get_customer_entitlements_by_external_id) - Get customer entitlements by external ID
 * [query_customer](#query_customer) - Query customers
 * [get_customer_usage_summary](#get_customer_usage_summary) - Get customer usage summary
 * [get_customer](#get_customer) - Get customer
@@ -53,6 +54,7 @@ with Tirdad(
 | `integration_entity_mapping`                                                                                | List[[models.CreateEntityIntegrationMappingRequest](../../models/createentityintegrationmappingrequest.md)] | :heavy_minus_sign:                                                                                          | integration_entity_mapping contains provider integration mappings for this customer                         |
 | `metadata`                                                                                                  | Dict[str, *str*]                                                                                            | :heavy_minus_sign:                                                                                          | metadata contains updated key-value pairs that will replace existing metadata                               |
 | `name`                                                                                                      | *Optional[str]*                                                                                             | :heavy_minus_sign:                                                                                          | name is the updated name or company name for the customer                                                   |
+| `timezone`                                                                                                  | *Optional[str]*                                                                                             | :heavy_minus_sign:                                                                                          | timezone is the updated IANA timezone name for the customer (e.g. "Asia/Kolkata", "America/New_York")       |
 | `retries`                                                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                            | :heavy_minus_sign:                                                                                          | Configuration to override the default retry behavior of the client.                                         |
 
 ### Response
@@ -106,6 +108,7 @@ with Tirdad(
 | `name`                                                                                                                                                                                                        | *Optional[str]*                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                            | name is the full name or company name of the customer                                                                                                                                                         |
 | `skip_onboarding_workflow`                                                                                                                                                                                    | *Optional[bool]*                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                            | skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered<br/>This is used internally when a customer is created via a workflow to prevent infinite loops<br/>Default: false |
 | `tax_rate_overrides`                                                                                                                                                                                          | List[[models.TaxRateOverride](../../models/taxrateoverride.md)]                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                            | tax_rate_overrides contains tax rate configurations to be linked to this customer                                                                                                                             |
+| `timezone`                                                                                                                                                                                                    | *Optional[str]*                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                            | timezone is the customer's IANA timezone name (e.g. "Asia/Kolkata", "America/New_York")<br/>Defaults to "UTC" if not provided                                                                                 |
 | `retries`                                                                                                                                                                                                     | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                            | Configuration to override the default retry behavior of the client.                                                                                                                                           |
 
 ### Response
@@ -152,6 +155,47 @@ with Tirdad(
 ### Response
 
 **[models.CustomerResponse](../../models/customerresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## get_customer_entitlements_by_external_id
+
+Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getCustomerEntitlementsByExternalID" method="get" path="/customers/external/{external_id}/entitlements" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.customers.get_customer_entitlements_by_external_id(external_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `external_id`                                                       | *str*                                                               | :heavy_check_mark:                                                  | Customer External ID                                                |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.CustomerEntitlementsResponse](../../models/customerentitlementsresponse.md)**
 
 ### Errors
 

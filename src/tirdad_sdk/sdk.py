@@ -17,6 +17,7 @@ import weakref
 if TYPE_CHECKING:
     from tirdad_sdk.addons import Addons
     from tirdad_sdk.alerts import Alerts
+    from tirdad_sdk.checkout import Checkout
     from tirdad_sdk.costs import Costs
     from tirdad_sdk.coupon_associations import CouponAssociations
     from tirdad_sdk.coupons import Coupons
@@ -54,6 +55,7 @@ class Tirdad(BaseSDK):
     addons: "Addons"
     entitlements: "Entitlements"
     alerts: "Alerts"
+    checkout: "Checkout"
     costs: "Costs"
     coupons: "Coupons"
     coupon_associations: "CouponAssociations"
@@ -86,6 +88,7 @@ class Tirdad(BaseSDK):
         "addons": ("tirdad_sdk.addons", "Addons"),
         "entitlements": ("tirdad_sdk.entitlements", "Entitlements"),
         "alerts": ("tirdad_sdk.alerts", "Alerts"),
+        "checkout": ("tirdad_sdk.checkout", "Checkout"),
         "costs": ("tirdad_sdk.costs", "Costs"),
         "coupons": ("tirdad_sdk.coupons", "Coupons"),
         "coupon_associations": ("tirdad_sdk.coupon_associations", "CouponAssociations"),

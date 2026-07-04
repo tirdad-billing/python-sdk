@@ -31,6 +31,7 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
+        timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -53,6 +54,7 @@ class Customers(BaseSDK):
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains updated key-value pairs that will replace existing metadata
         :param name: name is the updated name or company name for the customer
+        :param timezone: timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -86,6 +88,7 @@ class Customers(BaseSDK):
                 ),
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
+                timezone=timezone,
             ),
         )
 
@@ -124,6 +127,8 @@ class Customers(BaseSDK):
                 operation_id="updateCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-codegen-request-body-name": "customer"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -177,6 +182,7 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
+        timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -199,6 +205,7 @@ class Customers(BaseSDK):
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains updated key-value pairs that will replace existing metadata
         :param name: name is the updated name or company name for the customer
+        :param timezone: timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -232,6 +239,7 @@ class Customers(BaseSDK):
                 ),
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
+                timezone=timezone,
             ),
         )
 
@@ -270,6 +278,8 @@ class Customers(BaseSDK):
                 operation_id="updateCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-codegen-request-body-name": "customer"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -328,6 +338,7 @@ class Customers(BaseSDK):
                 Iterable[models.TaxRateOverrideTypedDict],
             ]
         ] = None,
+        timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -352,6 +363,8 @@ class Customers(BaseSDK):
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
         :param tax_rate_overrides: tax_rate_overrides contains tax rate configurations to be linked to this customer
+        :param timezone: timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\", \"America/New_York\")
+            Defaults to \"UTC\" if not provided
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -386,6 +399,7 @@ class Customers(BaseSDK):
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
             ),
+            timezone=timezone,
         )
 
         req = self._build_request(
@@ -423,6 +437,11 @@ class Customers(BaseSDK):
                 operation_id="createCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={
+                    "x-codegen-request-body-name": "customer",
+                    "x-scope": "write",
+                },
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -481,6 +500,7 @@ class Customers(BaseSDK):
                 Iterable[models.TaxRateOverrideTypedDict],
             ]
         ] = None,
+        timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -505,6 +525,8 @@ class Customers(BaseSDK):
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
         :param tax_rate_overrides: tax_rate_overrides contains tax rate configurations to be linked to this customer
+        :param timezone: timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\", \"America/New_York\")
+            Defaults to \"UTC\" if not provided
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -539,6 +561,7 @@ class Customers(BaseSDK):
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
             ),
+            timezone=timezone,
         )
 
         req = self._build_request_async(
@@ -576,6 +599,11 @@ class Customers(BaseSDK):
                 operation_id="createCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={
+                    "x-codegen-request-body-name": "customer",
+                    "x-scope": "write",
+                },
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -673,6 +701,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerByExternalId",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -770,6 +800,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerByExternalId",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -779,6 +811,208 @@ class Customers(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.CustomerResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def get_customer_entitlements_by_external_id(
+        self,
+        *,
+        external_id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.CustomerEntitlementsResponse:
+        r"""Get customer entitlements by external ID
+
+        Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
+
+        :param external_id: Customer External ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetCustomerEntitlementsByExternalIDRequest(
+            external_id=external_id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/customers/external/{external_id}/entitlements",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getCustomerEntitlementsByExternalID",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.CustomerEntitlementsResponse, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def get_customer_entitlements_by_external_id_async(
+        self,
+        *,
+        external_id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.CustomerEntitlementsResponse:
+        r"""Get customer entitlements by external ID
+
+        Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
+
+        :param external_id: Customer External ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetCustomerEntitlementsByExternalIDRequest(
+            external_id=external_id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/customers/external/{external_id}/entitlements",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getCustomerEntitlementsByExternalID",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.CustomerEntitlementsResponse, http_res
+            )
         if utils.match_response(http_res, ["400", "404"], "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
@@ -920,6 +1154,8 @@ class Customers(BaseSDK):
                 operation_id="queryCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-codegen-request-body-name": "filter", "x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1070,6 +1306,8 @@ class Customers(BaseSDK):
                 operation_id="queryCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-codegen-request-body-name": "filter", "x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1181,6 +1419,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerUsageSummary",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1294,6 +1534,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerUsageSummary",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1393,6 +1635,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1490,6 +1734,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1587,6 +1833,8 @@ class Customers(BaseSDK):
                 operation_id="deleteCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1684,6 +1932,8 @@ class Customers(BaseSDK):
                 operation_id="deleteCustomer",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1781,6 +2031,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerEntitlements",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1880,6 +2132,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerEntitlements",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1979,6 +2233,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerUpcomingGrants",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -2078,6 +2334,8 @@ class Customers(BaseSDK):
                 operation_id="getCustomerUpcomingGrants",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

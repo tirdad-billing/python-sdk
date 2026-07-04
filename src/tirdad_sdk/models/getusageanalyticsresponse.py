@@ -13,7 +13,10 @@ class GetUsageAnalyticsResponseTypedDict(TypedDict):
     currency: NotRequired[str]
     custom_analytics: NotRequired[List[CustomAnalyticItemTypedDict]]
     items: NotRequired[List[UsageAnalyticItemTypedDict]]
+    subtotal: NotRequired[str]
     total_cost: NotRequired[str]
+    r"""TotalCost is the final cost after discount (Subtotal - TotalDiscount)"""
+    total_discount: NotRequired[str]
 
 
 class GetUsageAnalyticsResponse(BaseModel):
@@ -23,11 +26,25 @@ class GetUsageAnalyticsResponse(BaseModel):
 
     items: Optional[List[UsageAnalyticItem]] = None
 
+    subtotal: Optional[str] = None
+
     total_cost: Optional[str] = None
+    r"""TotalCost is the final cost after discount (Subtotal - TotalDiscount)"""
+
+    total_discount: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["currency", "custom_analytics", "items", "total_cost"])
+        optional_fields = set(
+            [
+                "currency",
+                "custom_analytics",
+                "items",
+                "subtotal",
+                "total_cost",
+                "total_discount",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

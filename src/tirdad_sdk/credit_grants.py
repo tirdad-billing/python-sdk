@@ -132,6 +132,8 @@ class CreditGrants(BaseSDK):
                 operation_id="createCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions={"x-codegen-request-body-name": "credit_grant"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -286,6 +288,8 @@ class CreditGrants(BaseSDK):
                 operation_id="createCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions={"x-codegen-request-body-name": "credit_grant"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -383,6 +387,8 @@ class CreditGrants(BaseSDK):
                 operation_id="getCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -480,6 +486,8 @@ class CreditGrants(BaseSDK):
                 operation_id="getCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -516,6 +524,7 @@ class CreditGrants(BaseSDK):
         self,
         *,
         id: str,
+        end_date: Optional[datetime] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -528,6 +537,7 @@ class CreditGrants(BaseSDK):
         Use when changing a credit grant (e.g. amount or end date). Request body contains the fields to update.
 
         :param id: Credit Grant ID
+        :param end_date:
         :param metadata:
         :param name:
         :param retries: Override the default retry configuration for this method
@@ -548,6 +558,7 @@ class CreditGrants(BaseSDK):
         request = models.UpdateCreditGrantRequestRequest(
             id=id,
             body=models.UpdateCreditGrantRequest(
+                end_date=end_date,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
@@ -588,6 +599,8 @@ class CreditGrants(BaseSDK):
                 operation_id="updateCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions={"x-codegen-request-body-name": "credit_grant"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -624,6 +637,7 @@ class CreditGrants(BaseSDK):
         self,
         *,
         id: str,
+        end_date: Optional[datetime] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -636,6 +650,7 @@ class CreditGrants(BaseSDK):
         Use when changing a credit grant (e.g. amount or end date). Request body contains the fields to update.
 
         :param id: Credit Grant ID
+        :param end_date:
         :param metadata:
         :param name:
         :param retries: Override the default retry configuration for this method
@@ -656,6 +671,7 @@ class CreditGrants(BaseSDK):
         request = models.UpdateCreditGrantRequestRequest(
             id=id,
             body=models.UpdateCreditGrantRequest(
+                end_date=end_date,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
             ),
@@ -696,6 +712,8 @@ class CreditGrants(BaseSDK):
                 operation_id="updateCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions={"x-codegen-request-body-name": "credit_grant"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -805,6 +823,8 @@ class CreditGrants(BaseSDK):
                 operation_id="deleteCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions={"x-codegen-request-body-name": "body"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -914,6 +934,8 @@ class CreditGrants(BaseSDK):
                 operation_id="deleteCreditGrant",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions={"x-codegen-request-body-name": "body"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1011,6 +1033,8 @@ class CreditGrants(BaseSDK):
                 operation_id="getPlanCreditGrants",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1108,6 +1132,8 @@ class CreditGrants(BaseSDK):
                 operation_id="getPlanCreditGrants",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Credit Grants"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

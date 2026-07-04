@@ -44,6 +44,7 @@ class PaymentResponseTypedDict(TypedDict):
     track_attempts: NotRequired[bool]
     updated_at: NotRequired[datetime]
     updated_by: NotRequired[str]
+    voided_at: NotRequired[datetime]
 
 
 class PaymentResponse(BaseModel):
@@ -103,6 +104,8 @@ class PaymentResponse(BaseModel):
 
     updated_by: Optional[str] = None
 
+    voided_at: Optional[datetime] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -135,6 +138,7 @@ class PaymentResponse(BaseModel):
                 "track_attempts",
                 "updated_at",
                 "updated_by",
+                "voided_at",
             ]
         )
         serialized = handler(self)

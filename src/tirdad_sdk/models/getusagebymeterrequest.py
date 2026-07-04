@@ -35,6 +35,7 @@ class GetUsageByMeterRequestTypedDict(TypedDict):
     external_customer_id: NotRequired[str]
     filters: NotRequired[Dict[str, List[str]]]
     start_time: NotRequired[datetime]
+    timezone: NotRequired[str]
     window_size: NotRequired[WindowSize]
 
 
@@ -72,6 +73,8 @@ class GetUsageByMeterRequest(BaseModel):
 
     start_time: Optional[datetime] = None
 
+    timezone: Optional[str] = None
+
     window_size: Optional[WindowSize] = None
 
     @model_serializer(mode="wrap")
@@ -85,6 +88,7 @@ class GetUsageByMeterRequest(BaseModel):
                 "external_customer_id",
                 "filters",
                 "start_time",
+                "timezone",
                 "window_size",
             ]
         )

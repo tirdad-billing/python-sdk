@@ -5,11 +5,12 @@ from .billingperiod import BillingPeriod
 from .entitlementsourceentitytype import EntitlementSourceEntityType
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class EntitlementSourceTypedDict(TypedDict):
+    config_value: NotRequired[Dict[str, Any]]
     entitlement_id: NotRequired[str]
     entity_id: NotRequired[str]
     entity_name: NotRequired[str]
@@ -23,6 +24,8 @@ class EntitlementSourceTypedDict(TypedDict):
 
 
 class EntitlementSource(BaseModel):
+    config_value: Optional[Dict[str, Any]] = None
+
     entitlement_id: Optional[str] = None
 
     entity_id: Optional[str] = None
@@ -47,6 +50,7 @@ class EntitlementSource(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "config_value",
                 "entitlement_id",
                 "entity_id",
                 "entity_name",

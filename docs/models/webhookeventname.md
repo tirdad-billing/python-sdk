@@ -56,3 +56,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"invoice.communication.triggered"`
 - `"credit_note.created"`
 - `"credit_note.updated"`
+- `"checkout.session.initiated"`
+- `"checkout.session.completed"`
+- `"checkout.session.failed"`
+- `"checkout.session.expired"`

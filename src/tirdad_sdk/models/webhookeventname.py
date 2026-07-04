@@ -49,6 +49,10 @@ WebhookEventName = Union[
         "invoice.communication.triggered",
         "credit_note.created",
         "credit_note.updated",
+        "checkout.session.initiated",
+        "checkout.session.completed",
+        "checkout.session.failed",
+        "checkout.session.expired",
     ],
     UnrecognizedStr,
 ]

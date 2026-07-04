@@ -37,6 +37,8 @@ if TYPE_CHECKING:
     from .aggregatedentitlement import (
         AggregatedEntitlement,
         AggregatedEntitlementTypedDict,
+        ConfigValue,
+        ConfigValueTypedDict,
     )
     from .aggregatedfeature import AggregatedFeature, AggregatedFeatureTypedDict
     from .aggregationtype import AggregationType
@@ -110,6 +112,29 @@ if TYPE_CHECKING:
     from .changedresources import ChangedResources, ChangedResourcesTypedDict
     from .changedsubscription import ChangedSubscription, ChangedSubscriptionTypedDict
     from .changedsubscriptionaction import ChangedSubscriptionAction
+    from .checkout_jsonbcheckoutconfiguration import (
+        CheckoutJSONBCheckoutConfiguration,
+        CheckoutJSONBCheckoutConfigurationTypedDict,
+    )
+    from .checkout_jsonbcheckoutproviderresult import (
+        CheckoutJSONBCheckoutProviderResult,
+        CheckoutJSONBCheckoutProviderResultTypedDict,
+    )
+    from .checkout_jsonbcheckoutresult import (
+        CheckoutJSONBCheckoutResult,
+        CheckoutJSONBCheckoutResultTypedDict,
+    )
+    from .checkoutaction import CheckoutAction
+    from .checkoutconfiguration import (
+        CheckoutConfiguration,
+        CheckoutConfigurationTypedDict,
+    )
+    from .checkoutpaymentprovider import CheckoutPaymentProvider
+    from .checkoutsessionresponse import (
+        CheckoutSessionResponse,
+        CheckoutSessionResponseTypedDict,
+    )
+    from .checkoutstatus import CheckoutStatus
     from .cloneenvironmentop import (
         CloneEnvironmentRequestRequest,
         CloneEnvironmentRequestRequestTypedDict,
@@ -136,7 +161,6 @@ if TYPE_CHECKING:
     from .costpoint import CostPoint, CostPointTypedDict
     from .costsheet_filter import CostsheetFilter, CostsheetFilterTypedDict
     from .costsheetresponse import CostsheetResponse, CostsheetResponseTypedDict
-    from .coupon import Coupon, CouponTypedDict
     from .couponapplicationresponse import (
         CouponApplicationResponse,
         CouponApplicationResponseTypedDict,
@@ -171,6 +195,10 @@ if TYPE_CHECKING:
     from .createbulkpriceresponse import (
         CreateBulkPriceResponse,
         CreateBulkPriceResponseTypedDict,
+    )
+    from .createcheckoutsessionrequest import (
+        CreateCheckoutSessionRequest,
+        CreateCheckoutSessionRequestTypedDict,
     )
     from .createcostsheetrequest import (
         CreateCostsheetRequest,
@@ -246,9 +274,17 @@ if TYPE_CHECKING:
         CreateSubscriptionLineItemRequest,
         CreateSubscriptionLineItemRequestTypedDict,
     )
+    from .createsubscriptionparams import (
+        CreateSubscriptionParams,
+        CreateSubscriptionParamsTypedDict,
+    )
     from .createsubscriptionrequest import (
         CreateSubscriptionRequest,
         CreateSubscriptionRequestTypedDict,
+    )
+    from .createsubscriptionresult import (
+        CreateSubscriptionResult,
+        CreateSubscriptionResultTypedDict,
     )
     from .createtaskrequest import CreateTaskRequest, CreateTaskRequestTypedDict
     from .createtaxassociationrequest import (
@@ -315,6 +351,10 @@ if TYPE_CHECKING:
     from .debugtrackerstatus import DebugTrackerStatus
     from .deleteaddonop import DeleteAddonRequest, DeleteAddonRequestTypedDict
     from .deleteapikeyop import DeleteAPIKeyRequest, DeleteAPIKeyRequestTypedDict
+    from .deletecheckoutsessionop import (
+        DeleteCheckoutSessionRequest,
+        DeleteCheckoutSessionRequestTypedDict,
+    )
     from .deletecostsheetop import (
         DeleteCostsheetRequest,
         DeleteCostsheetRequestTypedDict,
@@ -438,6 +478,10 @@ if TYPE_CHECKING:
         GetAddonEntitlementsRequestTypedDict,
     )
     from .getaddonop import GetAddonRequest, GetAddonRequestTypedDict
+    from .getcheckoutsessionop import (
+        GetCheckoutSessionRequest,
+        GetCheckoutSessionRequestTypedDict,
+    )
     from .getcostanalyticsrequest import (
         GetCostAnalyticsRequest,
         GetCostAnalyticsRequestTypedDict,
@@ -461,6 +505,10 @@ if TYPE_CHECKING:
     from .getcustomerbyexternalidop import (
         GetCustomerByExternalIDRequest,
         GetCustomerByExternalIDRequestTypedDict,
+    )
+    from .getcustomerentitlementsbyexternalidop import (
+        GetCustomerEntitlementsByExternalIDRequest,
+        GetCustomerEntitlementsByExternalIDRequestTypedDict,
     )
     from .getcustomerentitlementsop import (
         GetCustomerEntitlementsRequest,
@@ -825,6 +873,8 @@ if TYPE_CHECKING:
     from .paginationresponse import PaginationResponse, PaginationResponseTypedDict
     from .pausemode import PauseMode
     from .pausestatus import PauseStatus
+    from .paymentaction import PaymentAction, PaymentActionTypedDict
+    from .paymentactiontype import PaymentActionType
     from .paymentattemptresponse import (
         PaymentAttemptResponse,
         PaymentAttemptResponseTypedDict,
@@ -1446,6 +1496,19 @@ __all__ = [
     "ChangedSubscription",
     "ChangedSubscriptionAction",
     "ChangedSubscriptionTypedDict",
+    "CheckoutAction",
+    "CheckoutConfiguration",
+    "CheckoutConfigurationTypedDict",
+    "CheckoutJSONBCheckoutConfiguration",
+    "CheckoutJSONBCheckoutConfigurationTypedDict",
+    "CheckoutJSONBCheckoutProviderResult",
+    "CheckoutJSONBCheckoutProviderResultTypedDict",
+    "CheckoutJSONBCheckoutResult",
+    "CheckoutJSONBCheckoutResultTypedDict",
+    "CheckoutPaymentProvider",
+    "CheckoutSessionResponse",
+    "CheckoutSessionResponseTypedDict",
+    "CheckoutStatus",
     "CloneEnvironmentRequest",
     "CloneEnvironmentRequestRequest",
     "CloneEnvironmentRequestRequestTypedDict",
@@ -1464,6 +1527,8 @@ __all__ = [
     "CommitmentInfo",
     "CommitmentInfoTypedDict",
     "CommitmentType",
+    "ConfigValue",
+    "ConfigValueTypedDict",
     "Configuration",
     "ConfigurationTypedDict",
     "CostAnalyticItem",
@@ -1474,7 +1539,6 @@ __all__ = [
     "CostsheetFilterTypedDict",
     "CostsheetResponse",
     "CostsheetResponseTypedDict",
-    "Coupon",
     "CouponApplicationResponse",
     "CouponApplicationResponseTypedDict",
     "CouponAssociationResponse",
@@ -1486,7 +1550,6 @@ __all__ = [
     "CouponResponse",
     "CouponResponseTypedDict",
     "CouponType",
-    "CouponTypedDict",
     "CreateAPIKeyRequest",
     "CreateAPIKeyRequestTypedDict",
     "CreateAPIKeyResponse",
@@ -1503,6 +1566,8 @@ __all__ = [
     "CreateBulkPriceRequestTypedDict",
     "CreateBulkPriceResponse",
     "CreateBulkPriceResponseTypedDict",
+    "CreateCheckoutSessionRequest",
+    "CreateCheckoutSessionRequestTypedDict",
     "CreateCostsheetRequest",
     "CreateCostsheetRequestTypedDict",
     "CreateCostsheetResponse",
@@ -1549,8 +1614,12 @@ __all__ = [
     "CreateSubscriptionLineItemRequestRequest",
     "CreateSubscriptionLineItemRequestRequestTypedDict",
     "CreateSubscriptionLineItemRequestTypedDict",
+    "CreateSubscriptionParams",
+    "CreateSubscriptionParamsTypedDict",
     "CreateSubscriptionRequest",
     "CreateSubscriptionRequestTypedDict",
+    "CreateSubscriptionResult",
+    "CreateSubscriptionResultTypedDict",
     "CreateTaskRequest",
     "CreateTaskRequestTypedDict",
     "CreateTaxAssociationRequest",
@@ -1609,6 +1678,8 @@ __all__ = [
     "DeleteAPIKeyRequestTypedDict",
     "DeleteAddonRequest",
     "DeleteAddonRequestTypedDict",
+    "DeleteCheckoutSessionRequest",
+    "DeleteCheckoutSessionRequestTypedDict",
     "DeleteCostsheetRequest",
     "DeleteCostsheetRequestTypedDict",
     "DeleteCostsheetResponse",
@@ -1715,6 +1786,8 @@ __all__ = [
     "GetAddonEntitlementsRequestTypedDict",
     "GetAddonRequest",
     "GetAddonRequestTypedDict",
+    "GetCheckoutSessionRequest",
+    "GetCheckoutSessionRequestTypedDict",
     "GetCostAnalyticsRequest",
     "GetCostAnalyticsRequestTypedDict",
     "GetCostsheetRequest",
@@ -1733,6 +1806,8 @@ __all__ = [
     "GetCreditNoteRequestTypedDict",
     "GetCustomerByExternalIDRequest",
     "GetCustomerByExternalIDRequestTypedDict",
+    "GetCustomerEntitlementsByExternalIDRequest",
+    "GetCustomerEntitlementsByExternalIDRequestTypedDict",
     "GetCustomerEntitlementsRequest",
     "GetCustomerEntitlementsRequestTypedDict",
     "GetCustomerInvoiceSummaryRequest",
@@ -1997,6 +2072,9 @@ __all__ = [
     "PaginationResponseTypedDict",
     "PauseMode",
     "PauseStatus",
+    "PaymentAction",
+    "PaymentActionType",
+    "PaymentActionTypedDict",
     "PaymentAttemptResponse",
     "PaymentAttemptResponseTypedDict",
     "PaymentBehavior",
@@ -2408,6 +2486,8 @@ _dynamic_imports: dict[str, str] = {
     "AddressTypedDict": ".address",
     "AggregatedEntitlement": ".aggregatedentitlement",
     "AggregatedEntitlementTypedDict": ".aggregatedentitlement",
+    "ConfigValue": ".aggregatedentitlement",
+    "ConfigValueTypedDict": ".aggregatedentitlement",
     "AggregatedFeature": ".aggregatedfeature",
     "AggregatedFeatureTypedDict": ".aggregatedfeature",
     "AggregationType": ".aggregationtype",
@@ -2474,6 +2554,19 @@ _dynamic_imports: dict[str, str] = {
     "ChangedSubscription": ".changedsubscription",
     "ChangedSubscriptionTypedDict": ".changedsubscription",
     "ChangedSubscriptionAction": ".changedsubscriptionaction",
+    "CheckoutJSONBCheckoutConfiguration": ".checkout_jsonbcheckoutconfiguration",
+    "CheckoutJSONBCheckoutConfigurationTypedDict": ".checkout_jsonbcheckoutconfiguration",
+    "CheckoutJSONBCheckoutProviderResult": ".checkout_jsonbcheckoutproviderresult",
+    "CheckoutJSONBCheckoutProviderResultTypedDict": ".checkout_jsonbcheckoutproviderresult",
+    "CheckoutJSONBCheckoutResult": ".checkout_jsonbcheckoutresult",
+    "CheckoutJSONBCheckoutResultTypedDict": ".checkout_jsonbcheckoutresult",
+    "CheckoutAction": ".checkoutaction",
+    "CheckoutConfiguration": ".checkoutconfiguration",
+    "CheckoutConfigurationTypedDict": ".checkoutconfiguration",
+    "CheckoutPaymentProvider": ".checkoutpaymentprovider",
+    "CheckoutSessionResponse": ".checkoutsessionresponse",
+    "CheckoutSessionResponseTypedDict": ".checkoutsessionresponse",
+    "CheckoutStatus": ".checkoutstatus",
     "CloneEnvironmentRequestRequest": ".cloneenvironmentop",
     "CloneEnvironmentRequestRequestTypedDict": ".cloneenvironmentop",
     "CloneEnvironmentRequest": ".cloneenvironmentrequest",
@@ -2500,8 +2593,6 @@ _dynamic_imports: dict[str, str] = {
     "CostsheetFilterTypedDict": ".costsheet_filter",
     "CostsheetResponse": ".costsheetresponse",
     "CostsheetResponseTypedDict": ".costsheetresponse",
-    "Coupon": ".coupon",
-    "CouponTypedDict": ".coupon",
     "CouponApplicationResponse": ".couponapplicationresponse",
     "CouponApplicationResponseTypedDict": ".couponapplicationresponse",
     "CouponAssociationResponse": ".couponassociationresponse",
@@ -2529,6 +2620,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateBulkPriceRequestTypedDict": ".createbulkpricerequest",
     "CreateBulkPriceResponse": ".createbulkpriceresponse",
     "CreateBulkPriceResponseTypedDict": ".createbulkpriceresponse",
+    "CreateCheckoutSessionRequest": ".createcheckoutsessionrequest",
+    "CreateCheckoutSessionRequestTypedDict": ".createcheckoutsessionrequest",
     "CreateCostsheetRequest": ".createcostsheetrequest",
     "CreateCostsheetRequestTypedDict": ".createcostsheetrequest",
     "CreateCostsheetResponse": ".createcostsheetresponse",
@@ -2575,8 +2668,12 @@ _dynamic_imports: dict[str, str] = {
     "CreateSubscriptionLineItemRequestRequestTypedDict": ".createsubscriptionlineitemop",
     "CreateSubscriptionLineItemRequest": ".createsubscriptionlineitemrequest",
     "CreateSubscriptionLineItemRequestTypedDict": ".createsubscriptionlineitemrequest",
+    "CreateSubscriptionParams": ".createsubscriptionparams",
+    "CreateSubscriptionParamsTypedDict": ".createsubscriptionparams",
     "CreateSubscriptionRequest": ".createsubscriptionrequest",
     "CreateSubscriptionRequestTypedDict": ".createsubscriptionrequest",
+    "CreateSubscriptionResult": ".createsubscriptionresult",
+    "CreateSubscriptionResultTypedDict": ".createsubscriptionresult",
     "CreateTaskRequest": ".createtaskrequest",
     "CreateTaskRequestTypedDict": ".createtaskrequest",
     "CreateTaxAssociationRequest": ".createtaxassociationrequest",
@@ -2635,6 +2732,8 @@ _dynamic_imports: dict[str, str] = {
     "DeleteAddonRequestTypedDict": ".deleteaddonop",
     "DeleteAPIKeyRequest": ".deleteapikeyop",
     "DeleteAPIKeyRequestTypedDict": ".deleteapikeyop",
+    "DeleteCheckoutSessionRequest": ".deletecheckoutsessionop",
+    "DeleteCheckoutSessionRequestTypedDict": ".deletecheckoutsessionop",
     "DeleteCostsheetRequest": ".deletecostsheetop",
     "DeleteCostsheetRequestTypedDict": ".deletecostsheetop",
     "DeleteCostsheetResponse": ".deletecostsheetresponse",
@@ -2737,6 +2836,8 @@ _dynamic_imports: dict[str, str] = {
     "GetAddonEntitlementsRequestTypedDict": ".getaddonentitlementsop",
     "GetAddonRequest": ".getaddonop",
     "GetAddonRequestTypedDict": ".getaddonop",
+    "GetCheckoutSessionRequest": ".getcheckoutsessionop",
+    "GetCheckoutSessionRequestTypedDict": ".getcheckoutsessionop",
     "GetCostAnalyticsRequest": ".getcostanalyticsrequest",
     "GetCostAnalyticsRequestTypedDict": ".getcostanalyticsrequest",
     "GetCostsheetRequest": ".getcostsheetop",
@@ -2755,6 +2856,8 @@ _dynamic_imports: dict[str, str] = {
     "GetCreditNoteRequestTypedDict": ".getcreditnoteop",
     "GetCustomerByExternalIDRequest": ".getcustomerbyexternalidop",
     "GetCustomerByExternalIDRequestTypedDict": ".getcustomerbyexternalidop",
+    "GetCustomerEntitlementsByExternalIDRequest": ".getcustomerentitlementsbyexternalidop",
+    "GetCustomerEntitlementsByExternalIDRequestTypedDict": ".getcustomerentitlementsbyexternalidop",
     "GetCustomerEntitlementsRequest": ".getcustomerentitlementsop",
     "GetCustomerEntitlementsRequestTypedDict": ".getcustomerentitlementsop",
     "GetCustomerInvoiceSummaryRequest": ".getcustomerinvoicesummaryop",
@@ -3019,6 +3122,9 @@ _dynamic_imports: dict[str, str] = {
     "PaginationResponseTypedDict": ".paginationresponse",
     "PauseMode": ".pausemode",
     "PauseStatus": ".pausestatus",
+    "PaymentAction": ".paymentaction",
+    "PaymentActionTypedDict": ".paymentaction",
+    "PaymentActionType": ".paymentactiontype",
     "PaymentAttemptResponse": ".paymentattemptresponse",
     "PaymentAttemptResponseTypedDict": ".paymentattemptresponse",
     "PaymentBehavior": ".paymentbehavior",

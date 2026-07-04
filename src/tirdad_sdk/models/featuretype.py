@@ -10,6 +10,7 @@ FeatureType = Union[
         "metered",
         "boolean",
         "static",
+        "config",
     ],
     UnrecognizedStr,
 ]

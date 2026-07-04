@@ -15,6 +15,7 @@ class CouponAssociations(BaseSDK):
         subscription_ids: Optional[Iterable[str]] = None,
         coupon_ids: Optional[Iterable[str]] = None,
         active_only: Optional[bool] = None,
+        expand: Optional[str] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -29,6 +30,7 @@ class CouponAssociations(BaseSDK):
         :param subscription_ids: Filter by subscription IDs (max 100)
         :param coupon_ids: Filter by coupon IDs (max 100)
         :param active_only: Return only currently active associations
+        :param expand: Comma-separated fields: coupon, subscription_line_items, subscription_line_items.prices
         :param limit: Page size
         :param offset: Page offset
         :param retries: Override the default retry configuration for this method
@@ -50,6 +52,7 @@ class CouponAssociations(BaseSDK):
             subscription_ids=utils.unmarshal(subscription_ids, Optional[List[str]]),
             coupon_ids=utils.unmarshal(coupon_ids, Optional[List[str]]),
             active_only=active_only,
+            expand=expand,
             limit=limit,
             offset=offset,
         )
@@ -86,6 +89,8 @@ class CouponAssociations(BaseSDK):
                 operation_id="listCouponAssociations",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Coupon Associations"],
+                extensions={"x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -126,6 +131,7 @@ class CouponAssociations(BaseSDK):
         subscription_ids: Optional[Iterable[str]] = None,
         coupon_ids: Optional[Iterable[str]] = None,
         active_only: Optional[bool] = None,
+        expand: Optional[str] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -140,6 +146,7 @@ class CouponAssociations(BaseSDK):
         :param subscription_ids: Filter by subscription IDs (max 100)
         :param coupon_ids: Filter by coupon IDs (max 100)
         :param active_only: Return only currently active associations
+        :param expand: Comma-separated fields: coupon, subscription_line_items, subscription_line_items.prices
         :param limit: Page size
         :param offset: Page offset
         :param retries: Override the default retry configuration for this method
@@ -161,6 +168,7 @@ class CouponAssociations(BaseSDK):
             subscription_ids=utils.unmarshal(subscription_ids, Optional[List[str]]),
             coupon_ids=utils.unmarshal(coupon_ids, Optional[List[str]]),
             active_only=active_only,
+            expand=expand,
             limit=limit,
             offset=offset,
         )
@@ -197,6 +205,8 @@ class CouponAssociations(BaseSDK):
                 operation_id="listCouponAssociations",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Coupon Associations"],
+                extensions={"x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -296,6 +306,8 @@ class CouponAssociations(BaseSDK):
                 operation_id="getCouponAssociation",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Coupon Associations"],
+                extensions={"x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -393,6 +405,8 @@ class CouponAssociations(BaseSDK):
                 operation_id="getCouponAssociation",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Coupon Associations"],
+                extensions={"x-scope": "read"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

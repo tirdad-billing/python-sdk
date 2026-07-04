@@ -38,6 +38,10 @@ class CustomerTypedDict(TypedDict):
     r"""Name is the name of the customer"""
     status: NotRequired[Status]
     tenant_id: NotRequired[str]
+    timezone: NotRequired[str]
+    r"""Timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\").
+    Defaults to \"UTC\". Inherited by subscriptions at creation time.
+    """
     updated_at: NotRequired[datetime]
     updated_by: NotRequired[str]
 
@@ -87,6 +91,11 @@ class Customer(BaseModel):
 
     tenant_id: Optional[str] = None
 
+    timezone: Optional[str] = None
+    r"""Timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\").
+    Defaults to \"UTC\". Inherited by subscriptions at creation time.
+    """
+
     updated_at: Optional[datetime] = None
 
     updated_by: Optional[str] = None
@@ -111,6 +120,7 @@ class Customer(BaseModel):
                 "name",
                 "status",
                 "tenant_id",
+                "timezone",
                 "updated_at",
                 "updated_by",
             ]

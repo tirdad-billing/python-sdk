@@ -83,7 +83,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.payments.create_payment(amount="883.46", currency="CFP Franc", destination_id="<id>", destination_type="INVOICE", payment_method_type="OFFLINE", process_payment=True, save_card_and_make_default=False)
+    res = tirdad.payments.create_payment(amount="883.46", currency="CFP Franc", destination_id="<id>", destination_type="CUSTOMER", payment_method_type="ACH", process_payment=True, save_card_and_make_default=False)
 
     # Handle response
     print(res)
@@ -196,7 +196,9 @@ with Tirdad(
 | `payment_gateway`                                                    | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
 | `payment_method_id`                                                  | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
 | `payment_status`                                                     | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `refunded_at`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
 | `succeeded_at`                                                       | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `voided_at`                                                          | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
 | `retries`                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)     | :heavy_minus_sign:                                                   | Configuration to override the default retry behavior of the client.  |
 
 ### Response

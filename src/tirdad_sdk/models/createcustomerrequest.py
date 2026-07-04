@@ -46,6 +46,10 @@ class CreateCustomerRequestTypedDict(TypedDict):
     """
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
     r"""tax_rate_overrides contains tax rate configurations to be linked to this customer"""
+    timezone: NotRequired[str]
+    r"""timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\", \"America/New_York\")
+    Defaults to \"UTC\" if not provided
+    """
 
 
 class CreateCustomerRequest(BaseModel):
@@ -95,6 +99,11 @@ class CreateCustomerRequest(BaseModel):
     tax_rate_overrides: Optional[List[TaxRateOverride]] = None
     r"""tax_rate_overrides contains tax rate configurations to be linked to this customer"""
 
+    timezone: Optional[str] = None
+    r"""timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\", \"America/New_York\")
+    Defaults to \"UTC\" if not provided
+    """
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -111,6 +120,7 @@ class CreateCustomerRequest(BaseModel):
                 "name",
                 "skip_onboarding_workflow",
                 "tax_rate_overrides",
+                "timezone",
             ]
         )
         serialized = handler(self)

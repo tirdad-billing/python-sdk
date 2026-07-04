@@ -38,6 +38,8 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""metadata contains updated key-value pairs that will replace existing metadata"""
     name: NotRequired[str]
     r"""name is the updated name or company name for the customer"""
+    timezone: NotRequired[str]
+    r"""timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")"""
 
 
 class UpdateCustomerRequest(BaseModel):
@@ -78,6 +80,9 @@ class UpdateCustomerRequest(BaseModel):
     name: Optional[str] = None
     r"""name is the updated name or company name for the customer"""
 
+    timezone: Optional[str] = None
+    r"""timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -93,6 +98,7 @@ class UpdateCustomerRequest(BaseModel):
                 "integration_entity_mapping",
                 "metadata",
                 "name",
+                "timezone",
             ]
         )
         serialized = handler(self)

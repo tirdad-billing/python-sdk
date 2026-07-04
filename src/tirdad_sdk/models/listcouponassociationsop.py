@@ -15,6 +15,8 @@ class ListCouponAssociationsRequestTypedDict(TypedDict):
     r"""Filter by coupon IDs (max 100)"""
     active_only: NotRequired[bool]
     r"""Return only currently active associations"""
+    expand: NotRequired[str]
+    r"""Comma-separated fields: coupon, subscription_line_items, subscription_line_items.prices"""
     limit: NotRequired[int]
     r"""Page size"""
     offset: NotRequired[int]
@@ -40,6 +42,12 @@ class ListCouponAssociationsRequest(BaseModel):
     ] = None
     r"""Return only currently active associations"""
 
+    expand: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Comma-separated fields: coupon, subscription_line_items, subscription_line_items.prices"""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -55,7 +63,14 @@ class ListCouponAssociationsRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["subscription_ids", "coupon_ids", "active_only", "limit", "offset"]
+            [
+                "subscription_ids",
+                "coupon_ids",
+                "active_only",
+                "expand",
+                "limit",
+                "offset",
+            ]
         )
         serialized = handler(self)
         m = {}

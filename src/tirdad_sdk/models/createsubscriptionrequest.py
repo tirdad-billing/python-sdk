@@ -85,10 +85,6 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     r"""customer_id is the flexprice customer id
     and it is prioritized over external_customer_id in case both are provided.
     """
-    customer_timezone: NotRequired[str]
-    r"""Timezone of the customer.
-    If not set, the default value is UTC.
-    """
     enable_true_up: NotRequired[bool]
     r"""Enable Commitment True Up Fee"""
     end_date: NotRequired[datetime]
@@ -125,6 +121,10 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     subscription_status: NotRequired[SubscriptionStatus]
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
     r"""tax_rate_overrides is the tax rate overrides	to be applied to the subscription"""
+    timezone: NotRequired[str]
+    r"""Timezone of the customer.
+    If not set, the default value is UTC.
+    """
     trial_period_days: NotRequired[int]
     r"""TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
     0 = explicitly no trial (overrides catalog). >0 = override duration in days.
@@ -176,11 +176,6 @@ class CreateSubscriptionRequest(BaseModel):
     customer_id: Optional[str] = None
     r"""customer_id is the flexprice customer id
     and it is prioritized over external_customer_id in case both are provided.
-    """
-
-    customer_timezone: Optional[str] = None
-    r"""Timezone of the customer.
-    If not set, the default value is UTC.
     """
 
     enable_true_up: Optional[bool] = None
@@ -240,6 +235,11 @@ class CreateSubscriptionRequest(BaseModel):
     tax_rate_overrides: Optional[List[TaxRateOverride]] = None
     r"""tax_rate_overrides is the tax rate overrides	to be applied to the subscription"""
 
+    timezone: Optional[str] = None
+    r"""Timezone of the customer.
+    If not set, the default value is UTC.
+    """
+
     trial_period_days: Optional[int] = None
     r"""TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
     0 = explicitly no trial (overrides catalog). >0 = override duration in days.
@@ -260,7 +260,6 @@ class CreateSubscriptionRequest(BaseModel):
                 "coupons",
                 "credit_grants",
                 "customer_id",
-                "customer_timezone",
                 "enable_true_up",
                 "end_date",
                 "external_customer_id",
@@ -282,6 +281,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "subscription_coupons",
                 "subscription_status",
                 "tax_rate_overrides",
+                "timezone",
                 "trial_period_days",
             ]
         )

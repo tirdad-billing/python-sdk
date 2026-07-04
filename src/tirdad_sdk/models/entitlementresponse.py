@@ -9,7 +9,7 @@ from .status import Status
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional, TYPE_CHECKING
+from typing import Any, Dict, Optional, TYPE_CHECKING
 from typing_extensions import NotRequired, TypedDict
 
 if TYPE_CHECKING:
@@ -19,6 +19,7 @@ if TYPE_CHECKING:
 
 class EntitlementResponseTypedDict(TypedDict):
     addon: NotRequired["AddonResponseTypedDict"]
+    config_value: NotRequired[Dict[str, Any]]
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     display_order: NotRequired[int]
@@ -48,6 +49,8 @@ class EntitlementResponseTypedDict(TypedDict):
 
 class EntitlementResponse(BaseModel):
     addon: Optional["AddonResponse"] = None
+
+    config_value: Optional[Dict[str, Any]] = None
 
     created_at: Optional[datetime] = None
 
@@ -103,6 +106,7 @@ class EntitlementResponse(BaseModel):
         optional_fields = set(
             [
                 "addon",
+                "config_value",
                 "created_at",
                 "created_by",
                 "display_order",

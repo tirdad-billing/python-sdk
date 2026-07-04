@@ -39,6 +39,12 @@ class WalletBalanceResponseTypedDict(TypedDict):
     description: NotRequired[str]
     environment_id: NotRequired[str]
     id: NotRequired[str]
+    is_cached_fallback: NotRequired[bool]
+    r"""IsCachedFallback is true whenever the response is sourced from cache:
+    either an explicit cache request, or fallback after a real-time failure.
+    Clients should treat the absence of this field as if it were true and
+    only trust freshness when the server explicitly emits false.
+    """
     metadata: NotRequired[Dict[str, str]]
     name: NotRequired[str]
     real_time_balance: NotRequired[str]
@@ -98,6 +104,13 @@ class WalletBalanceResponse(BaseModel):
 
     id: Optional[str] = None
 
+    is_cached_fallback: Optional[bool] = None
+    r"""IsCachedFallback is true whenever the response is sourced from cache:
+    either an explicit cache request, or fallback after a real-time failure.
+    Clients should treat the absence of this field as if it were true and
+    only trust freshness when the server explicitly emits false.
+    """
+
     metadata: Optional[Dict[str, str]] = None
 
     name: Optional[str] = None
@@ -148,6 +161,7 @@ class WalletBalanceResponse(BaseModel):
                 "description",
                 "environment_id",
                 "id",
+                "is_cached_fallback",
                 "metadata",
                 "name",
                 "real_time_balance",

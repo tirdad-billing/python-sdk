@@ -96,6 +96,8 @@ class Events(BaseSDK):
                 operation_id="ingestEvent",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "event"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -214,6 +216,8 @@ class Events(BaseSDK):
                 operation_id="ingestEvent",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "event"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -351,6 +355,8 @@ class Events(BaseSDK):
                 operation_id="getUsageAnalytics",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -488,6 +494,8 @@ class Events(BaseSDK):
                 operation_id="getUsageAnalytics",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -591,6 +599,8 @@ class Events(BaseSDK):
                 operation_id="ingestEventsBulk",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "event"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -694,6 +704,8 @@ class Events(BaseSDK):
                 operation_id="ingestEventsBulk",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "event"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -784,6 +796,8 @@ class Events(BaseSDK):
                 operation_id="getHuggingfaceInferenceData",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -871,6 +885,8 @@ class Events(BaseSDK):
                 operation_id="getHuggingfaceInferenceData",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1008,6 +1024,8 @@ class Events(BaseSDK):
                 operation_id="listRawEvents",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1148,6 +1166,8 @@ class Events(BaseSDK):
                 operation_id="listRawEvents",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1196,6 +1216,7 @@ class Events(BaseSDK):
         multiplier: Optional[str] = None,
         property_name: Optional[str] = None,
         start_time: Optional[datetime] = None,
+        timezone: Optional[str] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1241,6 +1262,7 @@ class Events(BaseSDK):
         :param multiplier:
         :param property_name: will be empty/ignored in case of COUNT
         :param start_time:
+        :param timezone:
         :param window_size:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1271,6 +1293,7 @@ class Events(BaseSDK):
             multiplier=multiplier,
             property_name=property_name,
             start_time=start_time,
+            timezone=timezone,
             window_size=window_size,
         )
 
@@ -1309,6 +1332,8 @@ class Events(BaseSDK):
                 operation_id="getUsageStatistics",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1357,6 +1382,7 @@ class Events(BaseSDK):
         multiplier: Optional[str] = None,
         property_name: Optional[str] = None,
         start_time: Optional[datetime] = None,
+        timezone: Optional[str] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1402,6 +1428,7 @@ class Events(BaseSDK):
         :param multiplier:
         :param property_name: will be empty/ignored in case of COUNT
         :param start_time:
+        :param timezone:
         :param window_size:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1432,6 +1459,7 @@ class Events(BaseSDK):
             multiplier=multiplier,
             property_name=property_name,
             start_time=start_time,
+            timezone=timezone,
             window_size=window_size,
         )
 
@@ -1470,6 +1498,8 @@ class Events(BaseSDK):
                 operation_id="getUsageStatistics",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1513,6 +1543,7 @@ class Events(BaseSDK):
         external_customer_id: Optional[str] = None,
         filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
+        timezone: Optional[str] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1546,6 +1577,7 @@ class Events(BaseSDK):
         :param external_customer_id:
         :param filters:
         :param start_time:
+        :param timezone:
         :param window_size:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1571,6 +1603,7 @@ class Events(BaseSDK):
             filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
             meter_id=meter_id,
             start_time=start_time,
+            timezone=timezone,
             window_size=window_size,
         )
 
@@ -1609,6 +1642,8 @@ class Events(BaseSDK):
                 operation_id="getUsageByMeter",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1652,6 +1687,7 @@ class Events(BaseSDK):
         external_customer_id: Optional[str] = None,
         filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
+        timezone: Optional[str] = None,
         window_size: Optional[models.WindowSize] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1685,6 +1721,7 @@ class Events(BaseSDK):
         :param external_customer_id:
         :param filters:
         :param start_time:
+        :param timezone:
         :param window_size:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1710,6 +1747,7 @@ class Events(BaseSDK):
             filters=utils.unmarshal(filters, Optional[Dict[str, List[str]]]),
             meter_id=meter_id,
             start_time=start_time,
+            timezone=timezone,
             window_size=window_size,
         )
 
@@ -1748,6 +1786,8 @@ class Events(BaseSDK):
                 operation_id="getUsageByMeter",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1845,6 +1885,8 @@ class Events(BaseSDK):
                 operation_id="getEvent",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -1942,6 +1984,8 @@ class Events(BaseSDK):
                 operation_id="getEvent",
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions=None,
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

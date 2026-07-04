@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .aggregatedfeature import AggregatedFeature, AggregatedFeatureTypedDict
+from .subscriptionresponse import SubscriptionResponse, SubscriptionResponseTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -11,6 +12,7 @@ from typing_extensions import NotRequired, TypedDict
 class CustomerEntitlementsResponseTypedDict(TypedDict):
     customer_id: NotRequired[str]
     features: NotRequired[List[AggregatedFeatureTypedDict]]
+    subscriptions: NotRequired[List[SubscriptionResponseTypedDict]]
 
 
 class CustomerEntitlementsResponse(BaseModel):
@@ -18,9 +20,11 @@ class CustomerEntitlementsResponse(BaseModel):
 
     features: Optional[List[AggregatedFeature]] = None
 
+    subscriptions: Optional[List[SubscriptionResponse]] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["customer_id", "features"])
+        optional_fields = set(["customer_id", "features", "subscriptions"])
         serialized = handler(self)
         m = {}
 

@@ -23,8 +23,11 @@ class UsageAnalyticPointTypedDict(TypedDict):
     computed_overage_amount: NotRequired[str]
     computed_true_up_amount: NotRequired[str]
     cost: NotRequired[str]
+    r"""Cost is the final cost after discount (Subtotal - Discount)"""
+    discount: NotRequired[str]
     event_count: NotRequired[int]
     r"""Number of events in this time window"""
+    subtotal: NotRequired[str]
     timestamp: NotRequired[str]
     usage: NotRequired[str]
 
@@ -48,9 +51,14 @@ class UsageAnalyticPoint(BaseModel):
     computed_true_up_amount: Optional[str] = None
 
     cost: Optional[str] = None
+    r"""Cost is the final cost after discount (Subtotal - Discount)"""
+
+    discount: Optional[str] = None
 
     event_count: Optional[int] = None
     r"""Number of events in this time window"""
+
+    subtotal: Optional[str] = None
 
     timestamp: Optional[str] = None
 
@@ -65,7 +73,9 @@ class UsageAnalyticPoint(BaseModel):
                 "computed_overage_amount",
                 "computed_true_up_amount",
                 "cost",
+                "discount",
                 "event_count",
+                "subtotal",
                 "timestamp",
                 "usage",
             ]

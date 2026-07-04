@@ -39,6 +39,7 @@ class SubscriptionLineItemFilterTypedDict(TypedDict):
     start_time: NotRequired[datetime]
     status: NotRequired[Status]
     subscription_ids: NotRequired[List[str]]
+    subscription_line_item_ids: NotRequired[List[str]]
     r"""Specific filters"""
 
 
@@ -82,6 +83,8 @@ class SubscriptionLineItemFilter(BaseModel):
     status: Optional[Status] = None
 
     subscription_ids: Optional[List[str]] = None
+
+    subscription_line_item_ids: Optional[List[str]] = None
     r"""Specific filters"""
 
     @model_serializer(mode="wrap")
@@ -108,6 +111,7 @@ class SubscriptionLineItemFilter(BaseModel):
                 "start_time",
                 "status",
                 "subscription_ids",
+                "subscription_line_item_ids",
             ]
         )
         serialized = handler(self)

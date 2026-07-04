@@ -4,11 +4,12 @@ from __future__ import annotations
 from .entitlementusageresetperiod import EntitlementUsageResetPeriod
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import Any, Dict, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class UpdateEntitlementRequestTypedDict(TypedDict):
+    config_value: NotRequired[Dict[str, Any]]
     is_enabled: NotRequired[bool]
     is_soft_limit: NotRequired[bool]
     static_value: NotRequired[str]
@@ -17,6 +18,8 @@ class UpdateEntitlementRequestTypedDict(TypedDict):
 
 
 class UpdateEntitlementRequest(BaseModel):
+    config_value: Optional[Dict[str, Any]] = None
+
     is_enabled: Optional[bool] = None
 
     is_soft_limit: Optional[bool] = None
@@ -31,6 +34,7 @@ class UpdateEntitlementRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "config_value",
                 "is_enabled",
                 "is_soft_limit",
                 "static_value",

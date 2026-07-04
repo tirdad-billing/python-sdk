@@ -60,7 +60,10 @@ class UsageAnalyticItemTypedDict(TypedDict):
     subscription_id: NotRequired[str]
     r"""Subscription ID"""
     subscription_line_item: NotRequired[SubscriptionSubscriptionLineItemTypedDict]
+    subtotal: NotRequired[str]
     total_cost: NotRequired[str]
+    r"""TotalCost is the final cost after discount (Subtotal - TotalDiscount)"""
+    total_discount: NotRequired[str]
     total_usage: NotRequired[str]
     total_usage_display: NotRequired[str]
     r"""Empty string when feature has no reporting unit; otherwise the value in reporting units"""
@@ -132,7 +135,12 @@ class UsageAnalyticItem(BaseModel):
 
     subscription_line_item: Optional[SubscriptionSubscriptionLineItem] = None
 
+    subtotal: Optional[str] = None
+
     total_cost: Optional[str] = None
+    r"""TotalCost is the final cost after discount (Subtotal - TotalDiscount)"""
+
+    total_discount: Optional[str] = None
 
     total_usage: Optional[str] = None
 
@@ -175,7 +183,9 @@ class UsageAnalyticItem(BaseModel):
                 "sub_line_item_id",
                 "subscription_id",
                 "subscription_line_item",
+                "subtotal",
                 "total_cost",
+                "total_discount",
                 "total_usage",
                 "total_usage_display",
                 "unit",
