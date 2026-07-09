@@ -10,13 +10,13 @@ from typing_extensions import NotRequired, TypedDict
 
 class AlertThresholdTypedDict(TypedDict):
     condition: NotRequired[AlertCondition]
-    threshold: NotRequired[float]
+    threshold: NotRequired[str]
 
 
 class AlertThreshold(BaseModel):
     condition: Optional[AlertCondition] = None
 
-    threshold: Optional[float] = None
+    threshold: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

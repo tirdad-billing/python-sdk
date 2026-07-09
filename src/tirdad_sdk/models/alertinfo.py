@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .alertsettings import AlertSettings, AlertSettingsTypedDict
+from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
@@ -11,7 +12,7 @@ from typing_extensions import NotRequired, TypedDict
 class AlertInfoTypedDict(TypedDict):
     alert_settings: NotRequired[AlertSettingsTypedDict]
     timestamp: NotRequired[str]
-    value_at_time: NotRequired[float]
+    value_at_time: NotRequired[datetime]
 
 
 class AlertInfo(BaseModel):
@@ -19,7 +20,7 @@ class AlertInfo(BaseModel):
 
     timestamp: Optional[str] = None
 
-    value_at_time: Optional[float] = None
+    value_at_time: Optional[datetime] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
