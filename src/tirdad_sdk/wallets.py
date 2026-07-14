@@ -2214,6 +2214,7 @@ class Wallets(BaseSDK):
         id: str,
         transaction_reason: models.TransactionReason,
         amount: Optional[str] = None,
+        bonus_credits_to_add: Optional[str] = None,
         credits_to_add: Optional[str] = None,
         description: Optional[str] = None,
         expiry_date_utc: Optional[str] = None,
@@ -2237,6 +2238,10 @@ class Wallets(BaseSDK):
             if both amount and credits_to_add are provided, amount will be ignored
             ex if the wallet has a conversion_rate of 2 then adding an amount of
             10 USD in the wallet wil add 5 credits in the wallet
+        :param bonus_credits_to_add: bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
+            purchase. When nil/omitted, the bonus is resolved from the tenant's
+            bonus_credits_topup_config slabs (if enabled). When set, it must be greater than 0 and is
+            used as-is, skipping slab resolution. To grant no bonus, omit this field entirely.
         :param credits_to_add: credits_to_add is the number of credits to add to the wallet
         :param description: description to add any specific details about the transaction
         :param expiry_date_utc: expiry_date_utc is the expiry date in UTC timezone
@@ -2265,6 +2270,7 @@ class Wallets(BaseSDK):
             id=id,
             body=models.TopUpWalletRequest(
                 amount=amount,
+                bonus_credits_to_add=bonus_credits_to_add,
                 credits_to_add=credits_to_add,
                 description=description,
                 expiry_date_utc=expiry_date_utc,
@@ -2350,6 +2356,7 @@ class Wallets(BaseSDK):
         id: str,
         transaction_reason: models.TransactionReason,
         amount: Optional[str] = None,
+        bonus_credits_to_add: Optional[str] = None,
         credits_to_add: Optional[str] = None,
         description: Optional[str] = None,
         expiry_date_utc: Optional[str] = None,
@@ -2373,6 +2380,10 @@ class Wallets(BaseSDK):
             if both amount and credits_to_add are provided, amount will be ignored
             ex if the wallet has a conversion_rate of 2 then adding an amount of
             10 USD in the wallet wil add 5 credits in the wallet
+        :param bonus_credits_to_add: bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
+            purchase. When nil/omitted, the bonus is resolved from the tenant's
+            bonus_credits_topup_config slabs (if enabled). When set, it must be greater than 0 and is
+            used as-is, skipping slab resolution. To grant no bonus, omit this field entirely.
         :param credits_to_add: credits_to_add is the number of credits to add to the wallet
         :param description: description to add any specific details about the transaction
         :param expiry_date_utc: expiry_date_utc is the expiry date in UTC timezone
@@ -2401,6 +2412,7 @@ class Wallets(BaseSDK):
             id=id,
             body=models.TopUpWalletRequest(
                 amount=amount,
+                bonus_credits_to_add=bonus_credits_to_add,
                 credits_to_add=credits_to_add,
                 description=description,
                 expiry_date_utc=expiry_date_utc,

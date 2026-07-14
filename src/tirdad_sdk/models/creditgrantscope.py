@@ -9,6 +9,7 @@ CreditGrantScope = Union[
     Literal[
         "PLAN",
         "SUBSCRIPTION",
+        "ADDON",
     ],
     UnrecognizedStr,
 ]

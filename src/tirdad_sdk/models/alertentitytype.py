@@ -9,6 +9,9 @@ AlertEntityType = Union[
     Literal[
         "wallet",
         "feature",
+        "subscription",
+        "subscription_line_item",
+        "group",
     ],
     UnrecognizedStr,
 ]

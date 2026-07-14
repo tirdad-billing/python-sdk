@@ -15,6 +15,7 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CreditGrantResponseTypedDict(TypedDict):
+    addon_id: NotRequired[str]
     cadence: NotRequired[CreditGrantCadence]
     conversion_rate: NotRequired[str]
     r"""amount in the currency =  number of credits * conversion_rate
@@ -54,6 +55,8 @@ class CreditGrantResponseTypedDict(TypedDict):
 
 
 class CreditGrantResponse(BaseModel):
+    addon_id: Optional[str] = None
+
     cadence: Optional[CreditGrantCadence] = None
 
     conversion_rate: Optional[str] = None
@@ -120,6 +123,7 @@ class CreditGrantResponse(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "addon_id",
                 "cadence",
                 "conversion_rate",
                 "created_at",

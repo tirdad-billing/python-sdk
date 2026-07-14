@@ -17,6 +17,8 @@ class CreateCustomerRequestTypedDict(TypedDict):
 
     external_id: str
     r"""external_id is the unique identifier from your system to reference this customer (required)"""
+    name: str
+    r"""name is the full name or company name of the customer"""
     address_city: NotRequired[str]
     r"""address_city is the city name with maximum 100 characters"""
     address_country: NotRequired[str]
@@ -37,8 +39,6 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""integration_entity_mapping contains provider integration mappings for this customer"""
     metadata: NotRequired[Dict[str, str]]
     r"""metadata contains additional key-value pairs for storing extra information"""
-    name: NotRequired[str]
-    r"""name is the full name or company name of the customer"""
     skip_onboarding_workflow: NotRequired[bool]
     r"""skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
     This is used internally when a customer is created via a workflow to prevent infinite loops
@@ -57,6 +57,9 @@ class CreateCustomerRequest(BaseModel):
 
     external_id: str
     r"""external_id is the unique identifier from your system to reference this customer (required)"""
+
+    name: str
+    r"""name is the full name or company name of the customer"""
 
     address_city: Optional[str] = None
     r"""address_city is the city name with maximum 100 characters"""
@@ -87,9 +90,6 @@ class CreateCustomerRequest(BaseModel):
     metadata: Optional[Dict[str, str]] = None
     r"""metadata contains additional key-value pairs for storing extra information"""
 
-    name: Optional[str] = None
-    r"""name is the full name or company name of the customer"""
-
     skip_onboarding_workflow: Optional[bool] = None
     r"""skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
     This is used internally when a customer is created via a workflow to prevent infinite loops
@@ -117,7 +117,6 @@ class CreateCustomerRequest(BaseModel):
                 "email",
                 "integration_entity_mapping",
                 "metadata",
-                "name",
                 "skip_onboarding_workflow",
                 "tax_rate_overrides",
                 "timezone",

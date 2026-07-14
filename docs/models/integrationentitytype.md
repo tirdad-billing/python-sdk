@@ -24,3 +24,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"item"`
 - `"item_price"`
 - `"price"`
+- `"invoice_line_item"`

@@ -25,3 +25,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"MANUAL_BALANCE_DEBIT"`
 - `"CREDIT_ADJUSTMENT"`
 - `"INVOICE_VOID_REFUND"`
+- `"PURCHASED_CREDIT_BONUS"`

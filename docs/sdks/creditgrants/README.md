@@ -4,11 +4,53 @@
 
 ### Available Operations
 
+* [get_addon_credit_grants](#get_addon_credit_grants) - Get addon credit grants
 * [create_credit_grant](#create_credit_grant) - Create credit grant
 * [get_credit_grant](#get_credit_grant) - Get credit grant
 * [update_credit_grant](#update_credit_grant) - Update credit grant
 * [delete_credit_grant](#delete_credit_grant) - Delete credit grant
 * [get_plan_credit_grants](#get_plan_credit_grants) - Get plan credit grants
+
+## get_addon_credit_grants
+
+Use when listing credits attached to an addon (e.g. included prepaid or promo credits).
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getAddonCreditGrants" method="get" path="/addons/{id}/creditgrants" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.credit_grants.get_addon_credit_grants(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Addon ID                                                            |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ListCreditGrantsResponse](../../models/listcreditgrantsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
 ## create_credit_grant
 
@@ -40,6 +82,7 @@ with Tirdad(
 | `credits`                                                                                                                                                                                                                                                | *str*                                                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |
 | `name`                                                                                                                                                                                                                                                   | *str*                                                                                                                                                                                                                                                    | :heavy_check_mark:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |
 | `scope`                                                                                                                                                                                                                                                  | [models.CreditGrantScope](../../models/creditgrantscope.md)                                                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |
+| `addon_id`                                                                                                                                                                                                                                               | *Optional[str]*                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |
 | `conversion_rate`                                                                                                                                                                                                                                        | *Optional[str]*                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                       | amount in the currency =  number of credits * conversion_rate<br/>ex if conversion_rate is 1, then 1 USD = 1 credit<br/>ex if conversion_rate is 2, then 1 USD = 0.5 credits<br/>ex if conversion_rate is 0.5, then 1 USD = 2 credits                    |
 | `end_date`                                                                                                                                                                                                                                               | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |
 | `expiration_duration`                                                                                                                                                                                                                                    | *Optional[int]*                                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                                       | N/A                                                                                                                                                                                                                                                      |

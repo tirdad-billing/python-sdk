@@ -17,6 +17,7 @@ import weakref
 if TYPE_CHECKING:
     from tirdad_sdk.addons import Addons
     from tirdad_sdk.alerts import Alerts
+    from tirdad_sdk.alertsettings import AlertSettings
     from tirdad_sdk.checkout import Checkout
     from tirdad_sdk.costs import Costs
     from tirdad_sdk.coupon_associations import CouponAssociations
@@ -53,13 +54,14 @@ class Tirdad(BaseSDK):
     r"""Flexprice API: Flexprice API Service"""
 
     addons: "Addons"
+    credit_grants: "CreditGrants"
     entitlements: "Entitlements"
     alerts: "Alerts"
+    alert_settings: "AlertSettings"
     checkout: "Checkout"
     costs: "Costs"
     coupons: "Coupons"
     coupon_associations: "CouponAssociations"
-    credit_grants: "CreditGrants"
     credit_notes: "CreditNotes"
     customers: "Customers"
     wallets: "Wallets"
@@ -86,13 +88,14 @@ class Tirdad(BaseSDK):
     workflows: "Workflows"
     _sub_sdk_map = {
         "addons": ("tirdad_sdk.addons", "Addons"),
+        "credit_grants": ("tirdad_sdk.credit_grants", "CreditGrants"),
         "entitlements": ("tirdad_sdk.entitlements", "Entitlements"),
         "alerts": ("tirdad_sdk.alerts", "Alerts"),
+        "alert_settings": ("tirdad_sdk.alertsettings", "AlertSettings"),
         "checkout": ("tirdad_sdk.checkout", "Checkout"),
         "costs": ("tirdad_sdk.costs", "Costs"),
         "coupons": ("tirdad_sdk.coupons", "Coupons"),
         "coupon_associations": ("tirdad_sdk.coupon_associations", "CouponAssociations"),
-        "credit_grants": ("tirdad_sdk.credit_grants", "CreditGrants"),
         "credit_notes": ("tirdad_sdk.credit_notes", "CreditNotes"),
         "customers": ("tirdad_sdk.customers", "Customers"),
         "wallets": ("tirdad_sdk.wallets", "Wallets"),

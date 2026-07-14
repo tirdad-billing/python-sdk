@@ -15,6 +15,7 @@ value: FilterOperatorType = "eq"
 - `"not_contains"`
 - `"gt"`
 - `"lt"`
+- `"gte"`
 - `"in"`
 - `"not_in"`
 - `"before"`

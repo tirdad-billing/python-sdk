@@ -316,6 +316,7 @@ class Customers(BaseSDK):
         self,
         *,
         external_id: str,
+        name: str,
         address_city: Optional[str] = None,
         address_country: Optional[str] = None,
         address_line1: Optional[str] = None,
@@ -330,7 +331,6 @@ class Customers(BaseSDK):
             ]
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
-        name: Optional[str] = None,
         skip_onboarding_workflow: Optional[bool] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -349,6 +349,7 @@ class Customers(BaseSDK):
         Use when onboarding a new billing customer (e.g. sign-up or CRM sync). Ideal for linking via external_customer_id to your app's user id.
 
         :param external_id: external_id is the unique identifier from your system to reference this customer (required)
+        :param name: name is the full name or company name of the customer
         :param address_city: address_city is the city name with maximum 100 characters
         :param address_country: address_country is the two-letter ISO 3166-1 alpha-2 country code
         :param address_line1: address_line1 is the primary address line with maximum 255 characters
@@ -358,7 +359,6 @@ class Customers(BaseSDK):
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains additional key-value pairs for storing extra information
-        :param name: name is the full name or company name of the customer
         :param skip_onboarding_workflow: skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
@@ -478,6 +478,7 @@ class Customers(BaseSDK):
         self,
         *,
         external_id: str,
+        name: str,
         address_city: Optional[str] = None,
         address_country: Optional[str] = None,
         address_line1: Optional[str] = None,
@@ -492,7 +493,6 @@ class Customers(BaseSDK):
             ]
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
-        name: Optional[str] = None,
         skip_onboarding_workflow: Optional[bool] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -511,6 +511,7 @@ class Customers(BaseSDK):
         Use when onboarding a new billing customer (e.g. sign-up or CRM sync). Ideal for linking via external_customer_id to your app's user id.
 
         :param external_id: external_id is the unique identifier from your system to reference this customer (required)
+        :param name: name is the full name or company name of the customer
         :param address_city: address_city is the city name with maximum 100 characters
         :param address_country: address_country is the two-letter ISO 3166-1 alpha-2 country code
         :param address_line1: address_line1 is the primary address line with maximum 255 characters
@@ -520,7 +521,6 @@ class Customers(BaseSDK):
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains additional key-value pairs for storing extra information
-        :param name: name is the full name or company name of the customer
         :param skip_onboarding_workflow: skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false

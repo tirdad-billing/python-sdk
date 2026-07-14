@@ -52,6 +52,15 @@ if TYPE_CHECKING:
     )
     from .alertlogresponse import AlertLogResponse, AlertLogResponseTypedDict
     from .alertsettings import AlertSettings, AlertSettingsTypedDict
+    from .alertsettingsfilter import (
+        AlertSettingsFilter,
+        AlertSettingsFilterOrder,
+        AlertSettingsFilterTypedDict,
+    )
+    from .alertsettingsresponse import (
+        AlertSettingsResponse,
+        AlertSettingsResponseTypedDict,
+    )
     from .alertstate import AlertState
     from .alertthreshold import AlertThreshold, AlertThresholdTypedDict
     from .alerttype import AlertType
@@ -175,6 +184,10 @@ if TYPE_CHECKING:
     from .coupontype import CouponType
     from .createaddonrequest import CreateAddonRequest, CreateAddonRequestTypedDict
     from .createaddonresponse import CreateAddonResponse, CreateAddonResponseTypedDict
+    from .createalertsettingsrequest import (
+        CreateAlertSettingsRequest,
+        CreateAlertSettingsRequestTypedDict,
+    )
     from .createapikeyrequest import CreateAPIKeyRequest, CreateAPIKeyRequestTypedDict
     from .createapikeyresponse import (
         CreateAPIKeyResponse,
@@ -350,6 +363,10 @@ if TYPE_CHECKING:
     from .debugtracker import DebugTracker, DebugTrackerTypedDict
     from .debugtrackerstatus import DebugTrackerStatus
     from .deleteaddonop import DeleteAddonRequest, DeleteAddonRequestTypedDict
+    from .deletealertsettingsop import (
+        DeleteAlertSettingsRequest,
+        DeleteAlertSettingsRequestTypedDict,
+    )
     from .deleteapikeyop import DeleteAPIKeyRequest, DeleteAPIKeyRequestTypedDict
     from .deletecheckoutsessionop import (
         DeleteCheckoutSessionRequest,
@@ -473,11 +490,19 @@ if TYPE_CHECKING:
         GetAddonByLookupKeyRequest,
         GetAddonByLookupKeyRequestTypedDict,
     )
+    from .getaddoncreditgrantsop import (
+        GetAddonCreditGrantsRequest,
+        GetAddonCreditGrantsRequestTypedDict,
+    )
     from .getaddonentitlementsop import (
         GetAddonEntitlementsRequest,
         GetAddonEntitlementsRequestTypedDict,
     )
     from .getaddonop import GetAddonRequest, GetAddonRequestTypedDict
+    from .getalertsettingsop import (
+        GetAlertSettingsRequest,
+        GetAlertSettingsRequestTypedDict,
+    )
     from .getcheckoutsessionop import (
         GetCheckoutSessionRequest,
         GetCheckoutSessionRequestTypedDict,
@@ -723,6 +748,10 @@ if TYPE_CHECKING:
         ListAlertLogsResponse,
         ListAlertLogsResponseTypedDict,
     )
+    from .listalertsettingsresponse import (
+        ListAlertSettingsResponse,
+        ListAlertSettingsResponseTypedDict,
+    )
     from .listallsubscriptionschedulesop import (
         ListAllSubscriptionSchedulesRequest,
         ListAllSubscriptionSchedulesRequestTypedDict,
@@ -937,6 +966,7 @@ if TYPE_CHECKING:
         RecalculateInvoiceV2Request,
         RecalculateInvoiceV2RequestTypedDict,
     )
+    from .rejectedeventreason import RejectedEventReason
     from .removeaddonrequest import RemoveAddonRequest, RemoveAddonRequestTypedDict
     from .reportingunit import ReportingUnit, ReportingUnitTypedDict
     from .resetusage import ResetUsage
@@ -1148,6 +1178,14 @@ if TYPE_CHECKING:
         UpdateAddonRequestRequestTypedDict,
     )
     from .updateaddonrequest import UpdateAddonRequest, UpdateAddonRequestTypedDict
+    from .updatealertsettingsop import (
+        UpdateAlertSettingsRequestRequest,
+        UpdateAlertSettingsRequestRequestTypedDict,
+    )
+    from .updatealertsettingsrequest import (
+        UpdateAlertSettingsRequest,
+        UpdateAlertSettingsRequestTypedDict,
+    )
     from .updatecostsheetop import (
         UpdateCostsheetRequestRequest,
         UpdateCostsheetRequestRequestTypedDict,
@@ -1365,6 +1403,14 @@ if TYPE_CHECKING:
         WebhookDtoPaymentWebhookPayload,
         WebhookDtoPaymentWebhookPayloadTypedDict,
     )
+    from .webhookdto_rejectedeventdata import (
+        WebhookDtoRejectedEventData,
+        WebhookDtoRejectedEventDataTypedDict,
+    )
+    from .webhookdto_rejectedeventwebhookpayload import (
+        WebhookDtoRejectedEventWebhookPayload,
+        WebhookDtoRejectedEventWebhookPayloadTypedDict,
+    )
     from .webhookdto_subscriptionphasewebhookpayload import (
         WebhookDtoSubscriptionPhaseWebhookPayload,
         WebhookDtoSubscriptionPhaseWebhookPayloadTypedDict,
@@ -1443,6 +1489,11 @@ __all__ = [
     "AlertLogResponse",
     "AlertLogResponseTypedDict",
     "AlertSettings",
+    "AlertSettingsFilter",
+    "AlertSettingsFilterOrder",
+    "AlertSettingsFilterTypedDict",
+    "AlertSettingsResponse",
+    "AlertSettingsResponseTypedDict",
     "AlertSettingsTypedDict",
     "AlertState",
     "AlertThreshold",
@@ -1558,6 +1609,8 @@ __all__ = [
     "CreateAddonRequestTypedDict",
     "CreateAddonResponse",
     "CreateAddonResponseTypedDict",
+    "CreateAlertSettingsRequest",
+    "CreateAlertSettingsRequestTypedDict",
     "CreateBulkEntitlementRequest",
     "CreateBulkEntitlementRequestTypedDict",
     "CreateBulkEntitlementResponse",
@@ -1678,6 +1731,8 @@ __all__ = [
     "DeleteAPIKeyRequestTypedDict",
     "DeleteAddonRequest",
     "DeleteAddonRequestTypedDict",
+    "DeleteAlertSettingsRequest",
+    "DeleteAlertSettingsRequestTypedDict",
     "DeleteCheckoutSessionRequest",
     "DeleteCheckoutSessionRequestTypedDict",
     "DeleteCostsheetRequest",
@@ -1782,10 +1837,14 @@ __all__ = [
     "FinalizeInvoiceRequestTypedDict",
     "GetAddonByLookupKeyRequest",
     "GetAddonByLookupKeyRequestTypedDict",
+    "GetAddonCreditGrantsRequest",
+    "GetAddonCreditGrantsRequestTypedDict",
     "GetAddonEntitlementsRequest",
     "GetAddonEntitlementsRequestTypedDict",
     "GetAddonRequest",
     "GetAddonRequestTypedDict",
+    "GetAlertSettingsRequest",
+    "GetAlertSettingsRequestTypedDict",
     "GetCheckoutSessionRequest",
     "GetCheckoutSessionRequestTypedDict",
     "GetCostAnalyticsRequest",
@@ -1970,6 +2029,8 @@ __all__ = [
     "ListAddonsResponseTypedDict",
     "ListAlertLogsResponse",
     "ListAlertLogsResponseTypedDict",
+    "ListAlertSettingsResponse",
+    "ListAlertSettingsResponseTypedDict",
     "ListAllSubscriptionSchedulesRequest",
     "ListAllSubscriptionSchedulesRequestTypedDict",
     "ListCostsheetResponse",
@@ -2141,6 +2202,7 @@ __all__ = [
     "RecalculateInvoiceRequestTypedDict",
     "RecalculateInvoiceV2Request",
     "RecalculateInvoiceV2RequestTypedDict",
+    "RejectedEventReason",
     "RemoveAddonRequest",
     "RemoveAddonRequestTypedDict",
     "ReportingUnit",
@@ -2302,6 +2364,10 @@ __all__ = [
     "UpdateAddonRequestRequest",
     "UpdateAddonRequestRequestTypedDict",
     "UpdateAddonRequestTypedDict",
+    "UpdateAlertSettingsRequest",
+    "UpdateAlertSettingsRequestRequest",
+    "UpdateAlertSettingsRequestRequestTypedDict",
+    "UpdateAlertSettingsRequestTypedDict",
     "UpdateCostsheetRequest",
     "UpdateCostsheetRequestRequest",
     "UpdateCostsheetRequestRequestTypedDict",
@@ -2444,6 +2510,10 @@ __all__ = [
     "WebhookDtoInvoiceWebhookPayloadTypedDict",
     "WebhookDtoPaymentWebhookPayload",
     "WebhookDtoPaymentWebhookPayloadTypedDict",
+    "WebhookDtoRejectedEventData",
+    "WebhookDtoRejectedEventDataTypedDict",
+    "WebhookDtoRejectedEventWebhookPayload",
+    "WebhookDtoRejectedEventWebhookPayloadTypedDict",
     "WebhookDtoSubscriptionPhaseWebhookPayload",
     "WebhookDtoSubscriptionPhaseWebhookPayloadTypedDict",
     "WebhookDtoSubscriptionWebhookPayload",
@@ -2502,6 +2572,11 @@ _dynamic_imports: dict[str, str] = {
     "AlertLogResponseTypedDict": ".alertlogresponse",
     "AlertSettings": ".alertsettings",
     "AlertSettingsTypedDict": ".alertsettings",
+    "AlertSettingsFilter": ".alertsettingsfilter",
+    "AlertSettingsFilterOrder": ".alertsettingsfilter",
+    "AlertSettingsFilterTypedDict": ".alertsettingsfilter",
+    "AlertSettingsResponse": ".alertsettingsresponse",
+    "AlertSettingsResponseTypedDict": ".alertsettingsresponse",
     "AlertState": ".alertstate",
     "AlertThreshold": ".alertthreshold",
     "AlertThresholdTypedDict": ".alertthreshold",
@@ -2608,6 +2683,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateAddonRequestTypedDict": ".createaddonrequest",
     "CreateAddonResponse": ".createaddonresponse",
     "CreateAddonResponseTypedDict": ".createaddonresponse",
+    "CreateAlertSettingsRequest": ".createalertsettingsrequest",
+    "CreateAlertSettingsRequestTypedDict": ".createalertsettingsrequest",
     "CreateAPIKeyRequest": ".createapikeyrequest",
     "CreateAPIKeyRequestTypedDict": ".createapikeyrequest",
     "CreateAPIKeyResponse": ".createapikeyresponse",
@@ -2730,6 +2807,8 @@ _dynamic_imports: dict[str, str] = {
     "DebugTrackerStatus": ".debugtrackerstatus",
     "DeleteAddonRequest": ".deleteaddonop",
     "DeleteAddonRequestTypedDict": ".deleteaddonop",
+    "DeleteAlertSettingsRequest": ".deletealertsettingsop",
+    "DeleteAlertSettingsRequestTypedDict": ".deletealertsettingsop",
     "DeleteAPIKeyRequest": ".deleteapikeyop",
     "DeleteAPIKeyRequestTypedDict": ".deleteapikeyop",
     "DeleteCheckoutSessionRequest": ".deletecheckoutsessionop",
@@ -2832,10 +2911,14 @@ _dynamic_imports: dict[str, str] = {
     "FinalizeInvoiceRequestTypedDict": ".finalizeinvoiceop",
     "GetAddonByLookupKeyRequest": ".getaddonbylookupkeyop",
     "GetAddonByLookupKeyRequestTypedDict": ".getaddonbylookupkeyop",
+    "GetAddonCreditGrantsRequest": ".getaddoncreditgrantsop",
+    "GetAddonCreditGrantsRequestTypedDict": ".getaddoncreditgrantsop",
     "GetAddonEntitlementsRequest": ".getaddonentitlementsop",
     "GetAddonEntitlementsRequestTypedDict": ".getaddonentitlementsop",
     "GetAddonRequest": ".getaddonop",
     "GetAddonRequestTypedDict": ".getaddonop",
+    "GetAlertSettingsRequest": ".getalertsettingsop",
+    "GetAlertSettingsRequestTypedDict": ".getalertsettingsop",
     "GetCheckoutSessionRequest": ".getcheckoutsessionop",
     "GetCheckoutSessionRequestTypedDict": ".getcheckoutsessionop",
     "GetCostAnalyticsRequest": ".getcostanalyticsrequest",
@@ -3018,6 +3101,8 @@ _dynamic_imports: dict[str, str] = {
     "ListAddonsResponseTypedDict": ".listaddonsresponse",
     "ListAlertLogsResponse": ".listalertlogsresponse",
     "ListAlertLogsResponseTypedDict": ".listalertlogsresponse",
+    "ListAlertSettingsResponse": ".listalertsettingsresponse",
+    "ListAlertSettingsResponseTypedDict": ".listalertsettingsresponse",
     "ListAllSubscriptionSchedulesRequest": ".listallsubscriptionschedulesop",
     "ListAllSubscriptionSchedulesRequestTypedDict": ".listallsubscriptionschedulesop",
     "ListAPIKeysRequest": ".listapikeysop",
@@ -3187,6 +3272,7 @@ _dynamic_imports: dict[str, str] = {
     "RecalculateInvoiceRequestTypedDict": ".recalculateinvoiceop",
     "RecalculateInvoiceV2Request": ".recalculateinvoicev2op",
     "RecalculateInvoiceV2RequestTypedDict": ".recalculateinvoicev2op",
+    "RejectedEventReason": ".rejectedeventreason",
     "RemoveAddonRequest": ".removeaddonrequest",
     "RemoveAddonRequestTypedDict": ".removeaddonrequest",
     "ReportingUnit": ".reportingunit",
@@ -3348,6 +3434,10 @@ _dynamic_imports: dict[str, str] = {
     "UpdateAddonRequestRequestTypedDict": ".updateaddonop",
     "UpdateAddonRequest": ".updateaddonrequest",
     "UpdateAddonRequestTypedDict": ".updateaddonrequest",
+    "UpdateAlertSettingsRequestRequest": ".updatealertsettingsop",
+    "UpdateAlertSettingsRequestRequestTypedDict": ".updatealertsettingsop",
+    "UpdateAlertSettingsRequest": ".updatealertsettingsrequest",
+    "UpdateAlertSettingsRequestTypedDict": ".updatealertsettingsrequest",
     "UpdateCostsheetRequestRequest": ".updatecostsheetop",
     "UpdateCostsheetRequestRequestTypedDict": ".updatecostsheetop",
     "UpdateCostsheetRequest": ".updatecostsheetrequest",
@@ -3490,6 +3580,10 @@ _dynamic_imports: dict[str, str] = {
     "WebhookDtoInvoiceWebhookPayloadTypedDict": ".webhookdto_invoicewebhookpayload",
     "WebhookDtoPaymentWebhookPayload": ".webhookdto_paymentwebhookpayload",
     "WebhookDtoPaymentWebhookPayloadTypedDict": ".webhookdto_paymentwebhookpayload",
+    "WebhookDtoRejectedEventData": ".webhookdto_rejectedeventdata",
+    "WebhookDtoRejectedEventDataTypedDict": ".webhookdto_rejectedeventdata",
+    "WebhookDtoRejectedEventWebhookPayload": ".webhookdto_rejectedeventwebhookpayload",
+    "WebhookDtoRejectedEventWebhookPayloadTypedDict": ".webhookdto_rejectedeventwebhookpayload",
     "WebhookDtoSubscriptionPhaseWebhookPayload": ".webhookdto_subscriptionphasewebhookpayload",
     "WebhookDtoSubscriptionPhaseWebhookPayloadTypedDict": ".webhookdto_subscriptionphasewebhookpayload",
     "WebhookDtoSubscriptionWebhookPayload": ".webhookdto_subscriptionwebhookpayload",

@@ -12,6 +12,7 @@
 * [post_webhook_events_entitlement_created](#post_webhook_events_entitlement_created) - entitlement.created
 * [post_webhook_events_entitlement_deleted](#post_webhook_events_entitlement_deleted) - entitlement.deleted
 * [post_webhook_events_entitlement_updated](#post_webhook_events_entitlement_updated) - entitlement.updated
+* [post_webhook_events_event_rejected](#post_webhook_events_event_rejected) - event.rejected
 * [post_webhook_events_feature_created](#post_webhook_events_feature_created) - feature.created
 * [post_webhook_events_feature_deleted](#post_webhook_events_feature_deleted) - feature.deleted
 * [post_webhook_events_feature_updated](#post_webhook_events_feature_updated) - feature.updated
@@ -344,6 +345,44 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoEntitlementWebhookPayload](../../models/webhookdtoentitlementwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_event_rejected
+
+Fired when an ingested usage event produces no meter usage — either no meter is registered for its event name, or meters exist for the name but the event matched none of their filters. Throttled to at most once per configured window per event name. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/event.rejected" method="post" path="/webhook-events/event.rejected" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_event_rejected()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoRejectedEventWebhookPayload](../../models/webhookdtorejectedeventwebhookpayload.md)**
 
 ### Errors
 

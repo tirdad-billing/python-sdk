@@ -34,6 +34,7 @@ GetWalletTransactionsTransactionReason = Literal[
     "MANUAL_BALANCE_DEBIT",
     "CREDIT_ADJUSTMENT",
     "INVOICE_VOID_REFUND",
+    "PURCHASED_CREDIT_BONUS",
 ]
 
 

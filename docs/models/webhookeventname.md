@@ -52,6 +52,12 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"wallet.credit_balance.recovered"`
 - `"wallet.ongoing_balance.dropped"`
 - `"wallet.ongoing_balance.recovered"`
+- `"subscription.spend.threshold_reached"`
+- `"subscription.spend.threshold_recovered"`
+- `"subscription.line_item_spend.threshold_reached"`
+- `"subscription.line_item_spend.threshold_recovered"`
+- `"subscription.group_spend.threshold_reached"`
+- `"subscription.group_spend.threshold_recovered"`
 - `"subscription.renewal.due"`
 - `"invoice.communication.triggered"`
 - `"credit_note.created"`
@@ -60,3 +66,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"checkout.session.completed"`
 - `"checkout.session.failed"`
 - `"checkout.session.expired"`
+- `"event.rejected"`

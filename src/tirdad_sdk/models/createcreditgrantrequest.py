@@ -18,6 +18,7 @@ class CreateCreditGrantRequestTypedDict(TypedDict):
     credits: str
     name: str
     scope: CreditGrantScope
+    addon_id: NotRequired[str]
     conversion_rate: NotRequired[str]
     r"""amount in the currency =  number of credits * conversion_rate
     ex if conversion_rate is 1, then 1 USD = 1 credit
@@ -51,6 +52,8 @@ class CreateCreditGrantRequest(BaseModel):
     name: str
 
     scope: CreditGrantScope
+
+    addon_id: Optional[str] = None
 
     conversion_rate: Optional[str] = None
     r"""amount in the currency =  number of credits * conversion_rate
@@ -92,6 +95,7 @@ class CreateCreditGrantRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "addon_id",
                 "conversion_rate",
                 "end_date",
                 "expiration_duration",

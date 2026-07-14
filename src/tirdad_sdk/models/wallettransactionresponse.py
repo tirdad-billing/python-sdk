@@ -37,6 +37,10 @@ class WalletTransactionResponseTypedDict(TypedDict):
     id: NotRequired[str]
     idempotency_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
+    parent_transaction_id: NotRequired[str]
+    r"""ParentTransactionID is the ID of the parent wallet_transaction this row was earned from
+    (the purchase tx, for a bonus grant). Empty for ordinary transactions.
+    """
     priority: NotRequired[int]
     reference_id: NotRequired[str]
     reference_type: NotRequired[WalletTxReferenceType]
@@ -92,6 +96,11 @@ class WalletTransactionResponse(BaseModel):
 
     metadata: Optional[Dict[str, str]] = None
 
+    parent_transaction_id: Optional[str] = None
+    r"""ParentTransactionID is the ID of the parent wallet_transaction this row was earned from
+    (the purchase tx, for a bonus grant). Empty for ordinary transactions.
+    """
+
     priority: Optional[int] = None
 
     reference_id: Optional[str] = None
@@ -141,6 +150,7 @@ class WalletTransactionResponse(BaseModel):
                 "id",
                 "idempotency_key",
                 "metadata",
+                "parent_transaction_id",
                 "priority",
                 "reference_id",
                 "reference_type",
