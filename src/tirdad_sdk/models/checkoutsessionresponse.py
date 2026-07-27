@@ -5,6 +5,10 @@ from .checkout_jsonbcheckoutconfiguration import (
     CheckoutJSONBCheckoutConfiguration,
     CheckoutJSONBCheckoutConfigurationTypedDict,
 )
+from .checkout_jsonbcheckoutpaymentproviderconfig import (
+    CheckoutJSONBCheckoutPaymentProviderConfig,
+    CheckoutJSONBCheckoutPaymentProviderConfigTypedDict,
+)
 from .checkout_jsonbcheckoutproviderresult import (
     CheckoutJSONBCheckoutProviderResult,
     CheckoutJSONBCheckoutProviderResultTypedDict,
@@ -58,6 +62,9 @@ class CheckoutSessionResponseTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
     payment_action: NotRequired[PaymentActionTypedDict]
     payment_provider: NotRequired[CheckoutPaymentProvider]
+    payment_provider_config: NotRequired[
+        CheckoutJSONBCheckoutPaymentProviderConfigTypedDict
+    ]
     provider_result: NotRequired[CheckoutJSONBCheckoutProviderResultTypedDict]
     result: NotRequired[CheckoutJSONBCheckoutResultTypedDict]
     status: NotRequired[Status]
@@ -123,6 +130,8 @@ class CheckoutSessionResponse(BaseModel):
 
     payment_provider: Optional[CheckoutPaymentProvider] = None
 
+    payment_provider_config: Optional[CheckoutJSONBCheckoutPaymentProviderConfig] = None
+
     provider_result: Optional[CheckoutJSONBCheckoutProviderResult] = None
 
     result: Optional[CheckoutJSONBCheckoutResult] = None
@@ -164,6 +173,7 @@ class CheckoutSessionResponse(BaseModel):
                 "metadata",
                 "payment_action",
                 "payment_provider",
+                "payment_provider_config",
                 "provider_result",
                 "result",
                 "status",

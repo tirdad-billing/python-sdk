@@ -31,6 +31,8 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""address_postal_code is the ZIP code or postal code with maximum 20 characters"""
     address_state: NotRequired[str]
     r"""address_state is the state, province, or region name with maximum 100 characters"""
+    contact: NotRequired[str]
+    r"""contact is an optional contact number for the customer (e.g. phone)"""
     email: NotRequired[str]
     r"""email is the customer's email address and must be a valid email format if provided"""
     integration_entity_mapping: NotRequired[
@@ -39,6 +41,8 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""integration_entity_mapping contains provider integration mappings for this customer"""
     metadata: NotRequired[Dict[str, str]]
     r"""metadata contains additional key-value pairs for storing extra information"""
+    onboarding_workflow_name: NotRequired[str]
+    r"""onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer"""
     skip_onboarding_workflow: NotRequired[bool]
     r"""skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
     This is used internally when a customer is created via a workflow to prevent infinite loops
@@ -79,6 +83,9 @@ class CreateCustomerRequest(BaseModel):
     address_state: Optional[str] = None
     r"""address_state is the state, province, or region name with maximum 100 characters"""
 
+    contact: Optional[str] = None
+    r"""contact is an optional contact number for the customer (e.g. phone)"""
+
     email: Optional[str] = None
     r"""email is the customer's email address and must be a valid email format if provided"""
 
@@ -89,6 +96,9 @@ class CreateCustomerRequest(BaseModel):
 
     metadata: Optional[Dict[str, str]] = None
     r"""metadata contains additional key-value pairs for storing extra information"""
+
+    onboarding_workflow_name: Optional[str] = None
+    r"""onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer"""
 
     skip_onboarding_workflow: Optional[bool] = None
     r"""skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
@@ -114,9 +124,11 @@ class CreateCustomerRequest(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "contact",
                 "email",
                 "integration_entity_mapping",
                 "metadata",
+                "onboarding_workflow_name",
                 "skip_onboarding_workflow",
                 "tax_rate_overrides",
                 "timezone",

@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.groups import Groups
     from tirdad_sdk.integrations import Integrations
     from tirdad_sdk.invoices import Invoices
+    from tirdad_sdk.marketplace import Marketplace
     from tirdad_sdk.payments import Payments
     from tirdad_sdk.plans import Plans
     from tirdad_sdk.price_units import PriceUnits
@@ -71,6 +72,7 @@ class Tirdad(BaseSDK):
     features: "Features"
     groups: "Groups"
     integrations: "Integrations"
+    marketplace: "Marketplace"
     payments: "Payments"
     plans: "Plans"
     prices: "Prices"
@@ -105,6 +107,7 @@ class Tirdad(BaseSDK):
         "features": ("tirdad_sdk.features", "Features"),
         "groups": ("tirdad_sdk.groups", "Groups"),
         "integrations": ("tirdad_sdk.integrations", "Integrations"),
+        "marketplace": ("tirdad_sdk.marketplace", "Marketplace"),
         "payments": ("tirdad_sdk.payments", "Payments"),
         "plans": ("tirdad_sdk.plans", "Plans"),
         "prices": ("tirdad_sdk.prices", "Prices"),

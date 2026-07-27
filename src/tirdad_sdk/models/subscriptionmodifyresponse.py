@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .changedresources import ChangedResources, ChangedResourcesTypedDict
+from .checkoutsessionresponse import (
+    CheckoutSessionResponse,
+    CheckoutSessionResponseTypedDict,
+)
 from .subscriptionresponse import SubscriptionResponse, SubscriptionResponseTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -11,17 +15,20 @@ from typing_extensions import NotRequired, TypedDict
 
 class SubscriptionModifyResponseTypedDict(TypedDict):
     changed_resources: NotRequired[ChangedResourcesTypedDict]
+    checkout_session: NotRequired[CheckoutSessionResponseTypedDict]
     subscription: NotRequired[SubscriptionResponseTypedDict]
 
 
 class SubscriptionModifyResponse(BaseModel):
     changed_resources: Optional[ChangedResources] = None
 
+    checkout_session: Optional[CheckoutSessionResponse] = None
+
     subscription: Optional[SubscriptionResponse] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["changed_resources", "subscription"])
+        optional_fields = set(["changed_resources", "checkout_session", "subscription"])
         serialized = handler(self)
         m = {}
 

@@ -20,3 +20,5 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"subscription_spend"`
 - `"subscription_line_item_spend"`
 - `"subscription_group_spend"`
+- `"entitlement_grant_threshold"`
+- `"entitlement_grant_exhausted"`

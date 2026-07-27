@@ -12,6 +12,7 @@ PaymentMethodType = Union[
         "OFFLINE",
         "CREDITS",
         "PAYMENT_LINK",
+        "UPI",
     ],
     UnrecognizedStr,
 ]

@@ -26,6 +26,8 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""address_postal_code is the updated postal code with maximum 20 characters"""
     address_state: NotRequired[str]
     r"""address_state is the updated state, province, or region name with maximum 100 characters"""
+    contact: NotRequired[str]
+    r"""contact is the updated contact number for the customer (e.g. phone)"""
     email: NotRequired[str]
     r"""email is the updated email address and must be a valid email format if provided"""
     external_id: NotRequired[str]
@@ -63,6 +65,9 @@ class UpdateCustomerRequest(BaseModel):
     address_state: Optional[str] = None
     r"""address_state is the updated state, province, or region name with maximum 100 characters"""
 
+    contact: Optional[str] = None
+    r"""contact is the updated contact number for the customer (e.g. phone)"""
+
     email: Optional[str] = None
     r"""email is the updated email address and must be a valid email format if provided"""
 
@@ -93,6 +98,7 @@ class UpdateCustomerRequest(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "contact",
                 "email",
                 "external_id",
                 "integration_entity_mapping",

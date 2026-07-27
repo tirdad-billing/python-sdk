@@ -4,6 +4,10 @@ from __future__ import annotations
 from .checkoutaction import CheckoutAction
 from .checkoutconfiguration import CheckoutConfiguration, CheckoutConfigurationTypedDict
 from .checkoutpaymentprovider import CheckoutPaymentProvider
+from .checkoutpaymentproviderconfig import (
+    CheckoutPaymentProviderConfig,
+    CheckoutPaymentProviderConfigTypedDict,
+)
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, Optional
@@ -19,6 +23,7 @@ class CreateCheckoutSessionRequestTypedDict(TypedDict):
     failure_url: NotRequired[str]
     idempotency_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
+    payment_provider_config: NotRequired[CheckoutPaymentProviderConfigTypedDict]
     success_url: NotRequired[str]
 
 
@@ -39,6 +44,8 @@ class CreateCheckoutSessionRequest(BaseModel):
 
     metadata: Optional[Dict[str, str]] = None
 
+    payment_provider_config: Optional[CheckoutPaymentProviderConfig] = None
+
     success_url: Optional[str] = None
 
     @model_serializer(mode="wrap")
@@ -50,6 +57,7 @@ class CreateCheckoutSessionRequest(BaseModel):
                 "failure_url",
                 "idempotency_key",
                 "metadata",
+                "payment_provider_config",
                 "success_url",
             ]
         )

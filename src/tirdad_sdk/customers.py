@@ -21,6 +21,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        contact: Optional[str] = None,
         email: Optional[str] = None,
         external_id: Optional[str] = None,
         integration_entity_mapping: Optional[
@@ -49,6 +50,7 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the updated secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the updated postal code with maximum 20 characters
         :param address_state: address_state is the updated state, province, or region name with maximum 100 characters
+        :param contact: contact is the updated contact number for the customer (e.g. phone)
         :param email: email is the updated email address and must be a valid email format if provided
         :param external_id: external_id is the updated external identifier for the customer
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
@@ -80,6 +82,7 @@ class Customers(BaseSDK):
                 address_line2=address_line2,
                 address_postal_code=address_postal_code,
                 address_state=address_state,
+                contact=contact,
                 email=email,
                 external_id=external_id,
                 integration_entity_mapping=utils.get_pydantic_model(
@@ -172,6 +175,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        contact: Optional[str] = None,
         email: Optional[str] = None,
         external_id: Optional[str] = None,
         integration_entity_mapping: Optional[
@@ -200,6 +204,7 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the updated secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the updated postal code with maximum 20 characters
         :param address_state: address_state is the updated state, province, or region name with maximum 100 characters
+        :param contact: contact is the updated contact number for the customer (e.g. phone)
         :param email: email is the updated email address and must be a valid email format if provided
         :param external_id: external_id is the updated external identifier for the customer
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
@@ -231,6 +236,7 @@ class Customers(BaseSDK):
                 address_line2=address_line2,
                 address_postal_code=address_postal_code,
                 address_state=address_state,
+                contact=contact,
                 email=email,
                 external_id=external_id,
                 integration_entity_mapping=utils.get_pydantic_model(
@@ -323,6 +329,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        contact: Optional[str] = None,
         email: Optional[str] = None,
         integration_entity_mapping: Optional[
             Union[
@@ -331,6 +338,7 @@ class Customers(BaseSDK):
             ]
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        onboarding_workflow_name: Optional[str] = None,
         skip_onboarding_workflow: Optional[bool] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -356,9 +364,11 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the ZIP code or postal code with maximum 20 characters
         :param address_state: address_state is the state, province, or region name with maximum 100 characters
+        :param contact: contact is an optional contact number for the customer (e.g. phone)
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains additional key-value pairs for storing extra information
+        :param onboarding_workflow_name: onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer
         :param skip_onboarding_workflow: skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
@@ -387,6 +397,7 @@ class Customers(BaseSDK):
             address_line2=address_line2,
             address_postal_code=address_postal_code,
             address_state=address_state,
+            contact=contact,
             email=email,
             external_id=external_id,
             integration_entity_mapping=utils.get_pydantic_model(
@@ -395,6 +406,7 @@ class Customers(BaseSDK):
             ),
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
+            onboarding_workflow_name=onboarding_workflow_name,
             skip_onboarding_workflow=skip_onboarding_workflow,
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
@@ -485,6 +497,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        contact: Optional[str] = None,
         email: Optional[str] = None,
         integration_entity_mapping: Optional[
             Union[
@@ -493,6 +506,7 @@ class Customers(BaseSDK):
             ]
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        onboarding_workflow_name: Optional[str] = None,
         skip_onboarding_workflow: Optional[bool] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -518,9 +532,11 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the ZIP code or postal code with maximum 20 characters
         :param address_state: address_state is the state, province, or region name with maximum 100 characters
+        :param contact: contact is an optional contact number for the customer (e.g. phone)
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains additional key-value pairs for storing extra information
+        :param onboarding_workflow_name: onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer
         :param skip_onboarding_workflow: skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
@@ -549,6 +565,7 @@ class Customers(BaseSDK):
             address_line2=address_line2,
             address_postal_code=address_postal_code,
             address_state=address_state,
+            contact=contact,
             email=email,
             external_id=external_id,
             integration_entity_mapping=utils.get_pydantic_model(
@@ -557,6 +574,7 @@ class Customers(BaseSDK):
             ),
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
+            onboarding_workflow_name=onboarding_workflow_name,
             skip_onboarding_workflow=skip_onboarding_workflow,
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]

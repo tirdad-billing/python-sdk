@@ -22,6 +22,8 @@ class CustomerTypedDict(TypedDict):
     r"""AddressPostalCode is the postal code of the customer's address"""
     address_state: NotRequired[str]
     r"""AddressState is the state of the customer's address"""
+    contact: NotRequired[str]
+    r"""Contact is an optional contact number for the customer (e.g. phone)"""
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     email: NotRequired[str]
@@ -64,6 +66,9 @@ class Customer(BaseModel):
 
     address_state: Optional[str] = None
     r"""AddressState is the state of the customer's address"""
+
+    contact: Optional[str] = None
+    r"""Contact is an optional contact number for the customer (e.g. phone)"""
 
     created_at: Optional[datetime] = None
 
@@ -110,6 +115,7 @@ class Customer(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "contact",
                 "created_at",
                 "created_by",
                 "email",

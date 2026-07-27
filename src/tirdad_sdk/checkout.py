@@ -22,6 +22,12 @@ class Checkout(BaseSDK):
         failure_url: Optional[str] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        payment_provider_config: Optional[
+            Union[
+                models.CheckoutPaymentProviderConfig,
+                models.CheckoutPaymentProviderConfigTypedDict,
+            ]
+        ] = None,
         success_url: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -38,6 +44,7 @@ class Checkout(BaseSDK):
         :param failure_url:
         :param idempotency_key:
         :param metadata:
+        :param payment_provider_config:
         :param success_url:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -65,6 +72,9 @@ class Checkout(BaseSDK):
             idempotency_key=idempotency_key,
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             payment_provider=payment_provider,
+            payment_provider_config=utils.get_pydantic_model(
+                payment_provider_config, Optional[models.CheckoutPaymentProviderConfig]
+            ),
             success_url=success_url,
         )
 
@@ -150,6 +160,12 @@ class Checkout(BaseSDK):
         failure_url: Optional[str] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        payment_provider_config: Optional[
+            Union[
+                models.CheckoutPaymentProviderConfig,
+                models.CheckoutPaymentProviderConfigTypedDict,
+            ]
+        ] = None,
         success_url: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -166,6 +182,7 @@ class Checkout(BaseSDK):
         :param failure_url:
         :param idempotency_key:
         :param metadata:
+        :param payment_provider_config:
         :param success_url:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -193,6 +210,9 @@ class Checkout(BaseSDK):
             idempotency_key=idempotency_key,
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             payment_provider=payment_provider,
+            payment_provider_config=utils.get_pydantic_model(
+                payment_provider_config, Optional[models.CheckoutPaymentProviderConfig]
+            ),
             success_url=success_url,
         )
 

@@ -19,3 +19,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"subscription"`
 - `"subscription_line_item"`
 - `"group"`
+- `"entitlement_grant"`

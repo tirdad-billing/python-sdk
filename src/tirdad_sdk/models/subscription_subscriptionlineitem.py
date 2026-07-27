@@ -4,6 +4,7 @@ from __future__ import annotations
 from .billingperiod import BillingPeriod
 from .commitmenttype import CommitmentType
 from .invoicecadence import InvoiceCadence
+from .meter_meter import MeterMeter, MeterMeterTypedDict
 from .price_price import PricePrice, PricePriceTypedDict
 from .pricetype import PriceType
 from .status import Status
@@ -42,6 +43,7 @@ class SubscriptionSubscriptionLineItemTypedDict(TypedDict):
     id: NotRequired[str]
     invoice_cadence: NotRequired[InvoiceCadence]
     metadata: NotRequired[Dict[str, str]]
+    meter: NotRequired[MeterMeterTypedDict]
     meter_display_name: NotRequired[str]
     meter_id: NotRequired[str]
     plan_display_name: NotRequired[str]
@@ -109,6 +111,8 @@ class SubscriptionSubscriptionLineItem(BaseModel):
 
     metadata: Optional[Dict[str, str]] = None
 
+    meter: Optional[MeterMeter] = None
+
     meter_display_name: Optional[str] = None
 
     meter_id: Optional[str] = None
@@ -168,6 +172,7 @@ class SubscriptionSubscriptionLineItem(BaseModel):
                 "id",
                 "invoice_cadence",
                 "metadata",
+                "meter",
                 "meter_display_name",
                 "meter_id",
                 "plan_display_name",

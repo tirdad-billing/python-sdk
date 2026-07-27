@@ -19,6 +19,7 @@ ErrorCode = Union[
         "database_error",
         "service_unavailable",
         "too_many_requests",
+        "not_implemented",
     ],
     UnrecognizedStr,
 ]

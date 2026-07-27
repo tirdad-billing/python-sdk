@@ -10,26 +10,26 @@ from typing_extensions import NotRequired, TypedDict
 
 class LineItemQuantityChangeTypedDict(TypedDict):
     id: str
-    quantity: str
     effective_date: NotRequired[datetime]
     r"""EffectiveDate is when the quantity change takes effect.
     If omitted, the change is effective immediately (now).
     """
+    quantity: NotRequired[str]
 
 
 class LineItemQuantityChange(BaseModel):
     id: str
-
-    quantity: str
 
     effective_date: Optional[datetime] = None
     r"""EffectiveDate is when the quantity change takes effect.
     If omitted, the change is effective immediately (now).
     """
 
+    quantity: Optional[str] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["effective_date"])
+        optional_fields = set(["effective_date", "quantity"])
         serialized = handler(self)
         m = {}
 

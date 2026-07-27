@@ -40,6 +40,10 @@ if TYPE_CHECKING:
         ConfigValue,
         ConfigValueTypedDict,
     )
+    from .aggregatedentitlementbucket import (
+        AggregatedEntitlementBucket,
+        AggregatedEntitlementBucketTypedDict,
+    )
     from .aggregatedfeature import AggregatedFeature, AggregatedFeatureTypedDict
     from .aggregationtype import AggregationType
     from .alertcondition import AlertCondition
@@ -73,7 +77,24 @@ if TYPE_CHECKING:
         AttributedToCustomerResult,
         AttributedToCustomerResultTypedDict,
     )
-    from .autotopup import AutoTopup, AutoTopupTypedDict
+    from .autotopup import (
+        AutoTopup,
+        AutoTopupDuration,
+        AutoTopupDurationTypedDict,
+        AutoTopupTypedDict,
+    )
+    from .awsmarketplaceagreement import (
+        AWSMarketplaceAgreement,
+        AWSMarketplaceAgreementTypedDict,
+    )
+    from .awsmarketplacesyncconfig import (
+        AWSMarketplaceSyncConfig,
+        AWSMarketplaceSyncConfigTypedDict,
+    )
+    from .azuremarketplaceagreement import (
+        AzureMarketplaceAgreement,
+        AzureMarketplaceAgreementTypedDict,
+    )
     from .billingcadence import BillingCadence
     from .billingcycle import BillingCycle
     from .billingcycleinfo import BillingCycleInfo, BillingCycleInfoTypedDict
@@ -125,6 +146,10 @@ if TYPE_CHECKING:
         CheckoutJSONBCheckoutConfiguration,
         CheckoutJSONBCheckoutConfigurationTypedDict,
     )
+    from .checkout_jsonbcheckoutpaymentproviderconfig import (
+        CheckoutJSONBCheckoutPaymentProviderConfig,
+        CheckoutJSONBCheckoutPaymentProviderConfigTypedDict,
+    )
     from .checkout_jsonbcheckoutproviderresult import (
         CheckoutJSONBCheckoutProviderResult,
         CheckoutJSONBCheckoutProviderResultTypedDict,
@@ -138,7 +163,12 @@ if TYPE_CHECKING:
         CheckoutConfiguration,
         CheckoutConfigurationTypedDict,
     )
+    from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
     from .checkoutpaymentprovider import CheckoutPaymentProvider
+    from .checkoutpaymentproviderconfig import (
+        CheckoutPaymentProviderConfig,
+        CheckoutPaymentProviderConfigTypedDict,
+    )
     from .checkoutsessionresponse import (
         CheckoutSessionResponse,
         CheckoutSessionResponseTypedDict,
@@ -436,12 +466,16 @@ if TYPE_CHECKING:
         DownloadTaskExportRequest,
         DownloadTaskExportRequestTypedDict,
     )
+    from .durationunit import DurationUnit
+    from .entitlementaggregationmode import EntitlementAggregationMode
     from .entitlemententitytype import EntitlementEntityType
     from .entitlementfilter import (
         EntitlementFilter,
         EntitlementFilterOrder,
         EntitlementFilterTypedDict,
     )
+    from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
+    from .entitlementgrantmeasure import EntitlementGrantMeasure
     from .entitlementsource import EntitlementSource, EntitlementSourceTypedDict
     from .entitlementsourceentitytype import EntitlementSourceEntityType
     from .entitlementusageresetperiod import EntitlementUsageResetPeriod
@@ -485,6 +519,10 @@ if TYPE_CHECKING:
     from .finalizeinvoiceop import (
         FinalizeInvoiceRequest,
         FinalizeInvoiceRequestTypedDict,
+    )
+    from .gcpmarketplaceagreement import (
+        GCPMarketplaceAgreement,
+        GCPMarketplaceAgreementTypedDict,
     )
     from .getaddonbylookupkeyop import (
         GetAddonByLookupKeyRequest,
@@ -573,6 +611,10 @@ if TYPE_CHECKING:
     from .geteventsrequest import GetEventsRequest, GetEventsRequestTypedDict
     from .geteventsresponse import GetEventsResponse, GetEventsResponseTypedDict
     from .getgroupop import GetGroupRequest, GetGroupRequestTypedDict
+    from .gethuggingfacebillingdatarequest import (
+        GetHuggingFaceBillingDataRequest,
+        GetHuggingFaceBillingDataRequestTypedDict,
+    )
     from .gethuggingfacebillingdataresponse import (
         GetHuggingFaceBillingDataResponse,
         GetHuggingFaceBillingDataResponseTypedDict,
@@ -693,6 +735,10 @@ if TYPE_CHECKING:
     )
     from .group_group import GroupGroup, GroupGroupTypedDict
     from .groupedinvoicingaction import GroupedInvoicingAction
+    from .groupedinvoicingchildrequest import (
+        GroupedInvoicingChildRequest,
+        GroupedInvoicingChildRequestTypedDict,
+    )
     from .groupentitytype import GroupEntityType
     from .groupfilter import GroupFilter, GroupFilterOrder, GroupFilterTypedDict
     from .groupresponse import GroupResponse, GroupResponseTypedDict
@@ -891,6 +937,14 @@ if TYPE_CHECKING:
         ModelsTemporalWorkflowResult,
         ModelsTemporalWorkflowResultTypedDict,
     )
+    from .modifysubscriptionlineitem import (
+        ModifySubscriptionLineItem,
+        ModifySubscriptionLineItemTypedDict,
+    )
+    from .modifysubscriptionparams import (
+        ModifySubscriptionParams,
+        ModifySubscriptionParamsTypedDict,
+    )
     from .overrideentitlementrequest import (
         OverrideEntitlementRequest,
         OverrideEntitlementRequestTypedDict,
@@ -965,6 +1019,14 @@ if TYPE_CHECKING:
     from .recalculateinvoicev2op import (
         RecalculateInvoiceV2Request,
         RecalculateInvoiceV2RequestTypedDict,
+    )
+    from .registermarketplaceagreementrequest import (
+        RegisterMarketplaceAgreementRequest,
+        RegisterMarketplaceAgreementRequestTypedDict,
+    )
+    from .registermarketplaceagreementresponse import (
+        RegisterMarketplaceAgreementResponse,
+        RegisterMarketplaceAgreementResponseTypedDict,
     )
     from .rejectedeventreason import RejectedEventReason
     from .removeaddonrequest import RemoveAddonRequest, RemoveAddonRequestTypedDict
@@ -1375,6 +1437,10 @@ if TYPE_CHECKING:
         WebhookDtoAlertWebhookPayload,
         WebhookDtoAlertWebhookPayloadTypedDict,
     )
+    from .webhookdto_checkoutsessionwebhookpayload import (
+        WebhookDtoCheckoutSessionWebhookPayload,
+        WebhookDtoCheckoutSessionWebhookPayloadTypedDict,
+    )
     from .webhookdto_communicationwebhookpayload import (
         WebhookDtoCommunicationWebhookPayload,
         WebhookDtoCommunicationWebhookPayloadTypedDict,
@@ -1411,6 +1477,10 @@ if TYPE_CHECKING:
         WebhookDtoRejectedEventWebhookPayload,
         WebhookDtoRejectedEventWebhookPayloadTypedDict,
     )
+    from .webhookdto_spendalertevent import (
+        WebhookDtoSpendAlertEvent,
+        WebhookDtoSpendAlertEventTypedDict,
+    )
     from .webhookdto_subscriptionphasewebhookpayload import (
         WebhookDtoSubscriptionPhaseWebhookPayload,
         WebhookDtoSubscriptionPhaseWebhookPayloadTypedDict,
@@ -1418,6 +1488,10 @@ if TYPE_CHECKING:
     from .webhookdto_subscriptionwebhookpayload import (
         WebhookDtoSubscriptionWebhookPayload,
         WebhookDtoSubscriptionWebhookPayloadTypedDict,
+    )
+    from .webhookdto_transactionupdatedwebhookpayload import (
+        WebhookDtoTransactionUpdatedWebhookPayload,
+        WebhookDtoTransactionUpdatedWebhookPayloadTypedDict,
     )
     from .webhookdto_transactionwebhookpayload import (
         WebhookDtoTransactionWebhookPayload,
@@ -1452,6 +1526,10 @@ InvoiceResponse.model_rebuild()
 
 
 __all__ = [
+    "AWSMarketplaceAgreement",
+    "AWSMarketplaceAgreementTypedDict",
+    "AWSMarketplaceSyncConfig",
+    "AWSMarketplaceSyncConfigTypedDict",
     "ActivateDraftSubscriptionRequest",
     "ActivateDraftSubscriptionRequestTypedDict",
     "ActivateSubscriptionRequest",
@@ -1475,6 +1553,8 @@ __all__ = [
     "Address",
     "AddressTypedDict",
     "AggregatedEntitlement",
+    "AggregatedEntitlementBucket",
+    "AggregatedEntitlementBucketTypedDict",
     "AggregatedEntitlementTypedDict",
     "AggregatedFeature",
     "AggregatedFeatureTypedDict",
@@ -1505,7 +1585,11 @@ __all__ = [
     "AttributedToCustomerResult",
     "AttributedToCustomerResultTypedDict",
     "AutoTopup",
+    "AutoTopupDuration",
+    "AutoTopupDurationTypedDict",
     "AutoTopupTypedDict",
+    "AzureMarketplaceAgreement",
+    "AzureMarketplaceAgreementTypedDict",
     "BillingCadence",
     "BillingCycle",
     "BillingCycleInfo",
@@ -1552,11 +1636,17 @@ __all__ = [
     "CheckoutConfigurationTypedDict",
     "CheckoutJSONBCheckoutConfiguration",
     "CheckoutJSONBCheckoutConfigurationTypedDict",
+    "CheckoutJSONBCheckoutPaymentProviderConfig",
+    "CheckoutJSONBCheckoutPaymentProviderConfigTypedDict",
     "CheckoutJSONBCheckoutProviderResult",
     "CheckoutJSONBCheckoutProviderResultTypedDict",
     "CheckoutJSONBCheckoutResult",
     "CheckoutJSONBCheckoutResultTypedDict",
+    "CheckoutParams",
+    "CheckoutParamsTypedDict",
     "CheckoutPaymentProvider",
+    "CheckoutPaymentProviderConfig",
+    "CheckoutPaymentProviderConfigTypedDict",
     "CheckoutSessionResponse",
     "CheckoutSessionResponseTypedDict",
     "CheckoutStatus",
@@ -1779,10 +1869,14 @@ __all__ = [
     "DelinkIntegrationMappingRequestTypedDict",
     "DownloadTaskExportRequest",
     "DownloadTaskExportRequestTypedDict",
+    "DurationUnit",
+    "EntitlementAggregationMode",
     "EntitlementEntityType",
     "EntitlementFilter",
     "EntitlementFilterOrder",
     "EntitlementFilterTypedDict",
+    "EntitlementGrantDurationUnit",
+    "EntitlementGrantMeasure",
     "EntitlementResponse",
     "EntitlementResponseTypedDict",
     "EntitlementSource",
@@ -1835,6 +1929,8 @@ __all__ = [
     "FilterOperatorType",
     "FinalizeInvoiceRequest",
     "FinalizeInvoiceRequestTypedDict",
+    "GCPMarketplaceAgreement",
+    "GCPMarketplaceAgreementTypedDict",
     "GetAddonByLookupKeyRequest",
     "GetAddonByLookupKeyRequestTypedDict",
     "GetAddonCreditGrantsRequest",
@@ -1895,6 +1991,8 @@ __all__ = [
     "GetEventsResponseTypedDict",
     "GetGroupRequest",
     "GetGroupRequestTypedDict",
+    "GetHuggingFaceBillingDataRequest",
+    "GetHuggingFaceBillingDataRequestTypedDict",
     "GetHuggingFaceBillingDataResponse",
     "GetHuggingFaceBillingDataResponseTypedDict",
     "GetInvoicePdfRequest",
@@ -1986,6 +2084,8 @@ __all__ = [
     "GroupResponse",
     "GroupResponseTypedDict",
     "GroupedInvoicingAction",
+    "GroupedInvoicingChildRequest",
+    "GroupedInvoicingChildRequestTypedDict",
     "IngestEventRequest",
     "IngestEventRequestTypedDict",
     "InheritanceAction",
@@ -2125,6 +2225,10 @@ __all__ = [
     "MeterUsageAttributionTypedDict",
     "ModelsTemporalWorkflowResult",
     "ModelsTemporalWorkflowResultTypedDict",
+    "ModifySubscriptionLineItem",
+    "ModifySubscriptionLineItemTypedDict",
+    "ModifySubscriptionParams",
+    "ModifySubscriptionParamsTypedDict",
     "OverrideEntitlementRequest",
     "OverrideEntitlementRequestTypedDict",
     "OverrideLineItemRequest",
@@ -2202,6 +2306,10 @@ __all__ = [
     "RecalculateInvoiceRequestTypedDict",
     "RecalculateInvoiceV2Request",
     "RecalculateInvoiceV2RequestTypedDict",
+    "RegisterMarketplaceAgreementRequest",
+    "RegisterMarketplaceAgreementRequestTypedDict",
+    "RegisterMarketplaceAgreementResponse",
+    "RegisterMarketplaceAgreementResponseTypedDict",
     "RejectedEventReason",
     "RemoveAddonRequest",
     "RemoveAddonRequestTypedDict",
@@ -2496,6 +2604,8 @@ __all__ = [
     "WalletType",
     "WebhookDtoAlertWebhookPayload",
     "WebhookDtoAlertWebhookPayloadTypedDict",
+    "WebhookDtoCheckoutSessionWebhookPayload",
+    "WebhookDtoCheckoutSessionWebhookPayloadTypedDict",
     "WebhookDtoCommunicationWebhookPayload",
     "WebhookDtoCommunicationWebhookPayloadTypedDict",
     "WebhookDtoCreditNoteWebhookPayload",
@@ -2514,10 +2624,14 @@ __all__ = [
     "WebhookDtoRejectedEventDataTypedDict",
     "WebhookDtoRejectedEventWebhookPayload",
     "WebhookDtoRejectedEventWebhookPayloadTypedDict",
+    "WebhookDtoSpendAlertEvent",
+    "WebhookDtoSpendAlertEventTypedDict",
     "WebhookDtoSubscriptionPhaseWebhookPayload",
     "WebhookDtoSubscriptionPhaseWebhookPayloadTypedDict",
     "WebhookDtoSubscriptionWebhookPayload",
     "WebhookDtoSubscriptionWebhookPayloadTypedDict",
+    "WebhookDtoTransactionUpdatedWebhookPayload",
+    "WebhookDtoTransactionUpdatedWebhookPayloadTypedDict",
     "WebhookDtoTransactionWebhookPayload",
     "WebhookDtoTransactionWebhookPayloadTypedDict",
     "WebhookDtoWalletAlertInfo",
@@ -2558,6 +2672,8 @@ _dynamic_imports: dict[str, str] = {
     "AggregatedEntitlementTypedDict": ".aggregatedentitlement",
     "ConfigValue": ".aggregatedentitlement",
     "ConfigValueTypedDict": ".aggregatedentitlement",
+    "AggregatedEntitlementBucket": ".aggregatedentitlementbucket",
+    "AggregatedEntitlementBucketTypedDict": ".aggregatedentitlementbucket",
     "AggregatedFeature": ".aggregatedfeature",
     "AggregatedFeatureTypedDict": ".aggregatedfeature",
     "AggregationType": ".aggregationtype",
@@ -2587,7 +2703,15 @@ _dynamic_imports: dict[str, str] = {
     "AttributedToCustomerResult": ".attributedtocustomerresult",
     "AttributedToCustomerResultTypedDict": ".attributedtocustomerresult",
     "AutoTopup": ".autotopup",
+    "AutoTopupDuration": ".autotopup",
+    "AutoTopupDurationTypedDict": ".autotopup",
     "AutoTopupTypedDict": ".autotopup",
+    "AWSMarketplaceAgreement": ".awsmarketplaceagreement",
+    "AWSMarketplaceAgreementTypedDict": ".awsmarketplaceagreement",
+    "AWSMarketplaceSyncConfig": ".awsmarketplacesyncconfig",
+    "AWSMarketplaceSyncConfigTypedDict": ".awsmarketplacesyncconfig",
+    "AzureMarketplaceAgreement": ".azuremarketplaceagreement",
+    "AzureMarketplaceAgreementTypedDict": ".azuremarketplaceagreement",
     "BillingCadence": ".billingcadence",
     "BillingCycle": ".billingcycle",
     "BillingCycleInfo": ".billingcycleinfo",
@@ -2631,6 +2755,8 @@ _dynamic_imports: dict[str, str] = {
     "ChangedSubscriptionAction": ".changedsubscriptionaction",
     "CheckoutJSONBCheckoutConfiguration": ".checkout_jsonbcheckoutconfiguration",
     "CheckoutJSONBCheckoutConfigurationTypedDict": ".checkout_jsonbcheckoutconfiguration",
+    "CheckoutJSONBCheckoutPaymentProviderConfig": ".checkout_jsonbcheckoutpaymentproviderconfig",
+    "CheckoutJSONBCheckoutPaymentProviderConfigTypedDict": ".checkout_jsonbcheckoutpaymentproviderconfig",
     "CheckoutJSONBCheckoutProviderResult": ".checkout_jsonbcheckoutproviderresult",
     "CheckoutJSONBCheckoutProviderResultTypedDict": ".checkout_jsonbcheckoutproviderresult",
     "CheckoutJSONBCheckoutResult": ".checkout_jsonbcheckoutresult",
@@ -2638,7 +2764,11 @@ _dynamic_imports: dict[str, str] = {
     "CheckoutAction": ".checkoutaction",
     "CheckoutConfiguration": ".checkoutconfiguration",
     "CheckoutConfigurationTypedDict": ".checkoutconfiguration",
+    "CheckoutParams": ".checkoutparams",
+    "CheckoutParamsTypedDict": ".checkoutparams",
     "CheckoutPaymentProvider": ".checkoutpaymentprovider",
+    "CheckoutPaymentProviderConfig": ".checkoutpaymentproviderconfig",
+    "CheckoutPaymentProviderConfigTypedDict": ".checkoutpaymentproviderconfig",
     "CheckoutSessionResponse": ".checkoutsessionresponse",
     "CheckoutSessionResponseTypedDict": ".checkoutsessionresponse",
     "CheckoutStatus": ".checkoutstatus",
@@ -2857,10 +2987,14 @@ _dynamic_imports: dict[str, str] = {
     "DelinkIntegrationMappingRequestTypedDict": ".delinkintegrationmappingrequest",
     "DownloadTaskExportRequest": ".downloadtaskexportop",
     "DownloadTaskExportRequestTypedDict": ".downloadtaskexportop",
+    "DurationUnit": ".durationunit",
+    "EntitlementAggregationMode": ".entitlementaggregationmode",
     "EntitlementEntityType": ".entitlemententitytype",
     "EntitlementFilter": ".entitlementfilter",
     "EntitlementFilterOrder": ".entitlementfilter",
     "EntitlementFilterTypedDict": ".entitlementfilter",
+    "EntitlementGrantDurationUnit": ".entitlementgrantdurationunit",
+    "EntitlementGrantMeasure": ".entitlementgrantmeasure",
     "EntitlementSource": ".entitlementsource",
     "EntitlementSourceTypedDict": ".entitlementsource",
     "EntitlementSourceEntityType": ".entitlementsourceentitytype",
@@ -2909,6 +3043,8 @@ _dynamic_imports: dict[str, str] = {
     "FilterOperatorType": ".filteroperatortype",
     "FinalizeInvoiceRequest": ".finalizeinvoiceop",
     "FinalizeInvoiceRequestTypedDict": ".finalizeinvoiceop",
+    "GCPMarketplaceAgreement": ".gcpmarketplaceagreement",
+    "GCPMarketplaceAgreementTypedDict": ".gcpmarketplaceagreement",
     "GetAddonByLookupKeyRequest": ".getaddonbylookupkeyop",
     "GetAddonByLookupKeyRequestTypedDict": ".getaddonbylookupkeyop",
     "GetAddonCreditGrantsRequest": ".getaddoncreditgrantsop",
@@ -2969,6 +3105,8 @@ _dynamic_imports: dict[str, str] = {
     "GetEventsResponseTypedDict": ".geteventsresponse",
     "GetGroupRequest": ".getgroupop",
     "GetGroupRequestTypedDict": ".getgroupop",
+    "GetHuggingFaceBillingDataRequest": ".gethuggingfacebillingdatarequest",
+    "GetHuggingFaceBillingDataRequestTypedDict": ".gethuggingfacebillingdatarequest",
     "GetHuggingFaceBillingDataResponse": ".gethuggingfacebillingdataresponse",
     "GetHuggingFaceBillingDataResponseTypedDict": ".gethuggingfacebillingdataresponse",
     "GetInvoiceRequest": ".getinvoiceop",
@@ -3056,6 +3194,8 @@ _dynamic_imports: dict[str, str] = {
     "GroupGroup": ".group_group",
     "GroupGroupTypedDict": ".group_group",
     "GroupedInvoicingAction": ".groupedinvoicingaction",
+    "GroupedInvoicingChildRequest": ".groupedinvoicingchildrequest",
+    "GroupedInvoicingChildRequestTypedDict": ".groupedinvoicingchildrequest",
     "GroupEntityType": ".groupentitytype",
     "GroupFilter": ".groupfilter",
     "GroupFilterOrder": ".groupfilter",
@@ -3199,6 +3339,10 @@ _dynamic_imports: dict[str, str] = {
     "MeterUsageAttributionTypedDict": ".meterusageattribution",
     "ModelsTemporalWorkflowResult": ".models_temporalworkflowresult",
     "ModelsTemporalWorkflowResultTypedDict": ".models_temporalworkflowresult",
+    "ModifySubscriptionLineItem": ".modifysubscriptionlineitem",
+    "ModifySubscriptionLineItemTypedDict": ".modifysubscriptionlineitem",
+    "ModifySubscriptionParams": ".modifysubscriptionparams",
+    "ModifySubscriptionParamsTypedDict": ".modifysubscriptionparams",
     "OverrideEntitlementRequest": ".overrideentitlementrequest",
     "OverrideEntitlementRequestTypedDict": ".overrideentitlementrequest",
     "OverrideLineItemRequest": ".overridelineitemrequest",
@@ -3272,6 +3416,10 @@ _dynamic_imports: dict[str, str] = {
     "RecalculateInvoiceRequestTypedDict": ".recalculateinvoiceop",
     "RecalculateInvoiceV2Request": ".recalculateinvoicev2op",
     "RecalculateInvoiceV2RequestTypedDict": ".recalculateinvoicev2op",
+    "RegisterMarketplaceAgreementRequest": ".registermarketplaceagreementrequest",
+    "RegisterMarketplaceAgreementRequestTypedDict": ".registermarketplaceagreementrequest",
+    "RegisterMarketplaceAgreementResponse": ".registermarketplaceagreementresponse",
+    "RegisterMarketplaceAgreementResponseTypedDict": ".registermarketplaceagreementresponse",
     "RejectedEventReason": ".rejectedeventreason",
     "RemoveAddonRequest": ".removeaddonrequest",
     "RemoveAddonRequestTypedDict": ".removeaddonrequest",
@@ -3566,6 +3714,8 @@ _dynamic_imports: dict[str, str] = {
     "WalletType": ".wallettype",
     "WebhookDtoAlertWebhookPayload": ".webhookdto_alertwebhookpayload",
     "WebhookDtoAlertWebhookPayloadTypedDict": ".webhookdto_alertwebhookpayload",
+    "WebhookDtoCheckoutSessionWebhookPayload": ".webhookdto_checkoutsessionwebhookpayload",
+    "WebhookDtoCheckoutSessionWebhookPayloadTypedDict": ".webhookdto_checkoutsessionwebhookpayload",
     "WebhookDtoCommunicationWebhookPayload": ".webhookdto_communicationwebhookpayload",
     "WebhookDtoCommunicationWebhookPayloadTypedDict": ".webhookdto_communicationwebhookpayload",
     "WebhookDtoCreditNoteWebhookPayload": ".webhookdto_creditnotewebhookpayload",
@@ -3584,10 +3734,14 @@ _dynamic_imports: dict[str, str] = {
     "WebhookDtoRejectedEventDataTypedDict": ".webhookdto_rejectedeventdata",
     "WebhookDtoRejectedEventWebhookPayload": ".webhookdto_rejectedeventwebhookpayload",
     "WebhookDtoRejectedEventWebhookPayloadTypedDict": ".webhookdto_rejectedeventwebhookpayload",
+    "WebhookDtoSpendAlertEvent": ".webhookdto_spendalertevent",
+    "WebhookDtoSpendAlertEventTypedDict": ".webhookdto_spendalertevent",
     "WebhookDtoSubscriptionPhaseWebhookPayload": ".webhookdto_subscriptionphasewebhookpayload",
     "WebhookDtoSubscriptionPhaseWebhookPayloadTypedDict": ".webhookdto_subscriptionphasewebhookpayload",
     "WebhookDtoSubscriptionWebhookPayload": ".webhookdto_subscriptionwebhookpayload",
     "WebhookDtoSubscriptionWebhookPayloadTypedDict": ".webhookdto_subscriptionwebhookpayload",
+    "WebhookDtoTransactionUpdatedWebhookPayload": ".webhookdto_transactionupdatedwebhookpayload",
+    "WebhookDtoTransactionUpdatedWebhookPayloadTypedDict": ".webhookdto_transactionupdatedwebhookpayload",
     "WebhookDtoTransactionWebhookPayload": ".webhookdto_transactionwebhookpayload",
     "WebhookDtoTransactionWebhookPayloadTypedDict": ".webhookdto_transactionwebhookpayload",
     "WebhookDtoWalletAlertInfo": ".webhookdto_walletalertinfo",

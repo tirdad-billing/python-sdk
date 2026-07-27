@@ -42,6 +42,12 @@ class CreateInvoiceRequestTypedDict(TypedDict):
     r"""description is an optional text description of the invoice"""
     due_date: NotRequired[datetime]
     r"""due_date is the date by which payment is expected"""
+    force_sync_invoice: NotRequired[bool]
+    r"""force_sync_invoice, when true, attempts to synchronously sync this invoice to
+    Moyasar (if enabled) before returning, instead of relying solely on the async
+    Kafka + Temporal vendor-sync pipeline. Only honored by CreateOneOffInvoice.
+    Best-effort: sync failures do not fail invoice creation.
+    """
     idempotency_key: NotRequired[str]
     r"""idempotency_key is an optional key used to prevent duplicate invoice creation"""
     invoice_coupons: NotRequired[List[InvoiceCouponTypedDict]]
@@ -111,6 +117,13 @@ class CreateInvoiceRequest(BaseModel):
     due_date: Optional[datetime] = None
     r"""due_date is the date by which payment is expected"""
 
+    force_sync_invoice: Optional[bool] = None
+    r"""force_sync_invoice, when true, attempts to synchronously sync this invoice to
+    Moyasar (if enabled) before returning, instead of relying solely on the async
+    Kafka + Temporal vendor-sync pipeline. Only honored by CreateOneOffInvoice.
+    Best-effort: sync failures do not fail invoice creation.
+    """
+
     idempotency_key: Optional[str] = None
     r"""idempotency_key is an optional key used to prevent duplicate invoice creation"""
 
@@ -173,6 +186,7 @@ class CreateInvoiceRequest(BaseModel):
                 "coupons",
                 "description",
                 "due_date",
+                "force_sync_invoice",
                 "idempotency_key",
                 "invoice_coupons",
                 "invoice_number",

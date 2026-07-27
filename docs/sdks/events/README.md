@@ -8,10 +8,10 @@
 * [get_usage_analytics](#get_usage_analytics) - Get usage analytics
 * [ingest_events_bulk](#ingest_events_bulk) - Bulk ingest events
 * [get_huggingface_inference_data](#get_huggingface_inference_data) - Get Hugging Face inference data
+* [get_event](#get_event) - Get event
 * [list_raw_events](#list_raw_events) - List raw events
 * [get_usage_statistics](#get_usage_statistics) - Get usage statistics
 * [get_usage_by_meter](#get_usage_by_meter) - Get usage by meter
-* [get_event](#get_event) - Get event
 
 ## ingest_event
 
@@ -157,7 +157,7 @@ with Tirdad(
 
 ## get_huggingface_inference_data
 
-Use when fetching Hugging Face inference usage or billing data (e.g. for HF-specific reporting or reconciliation).
+Use when fetching Hugging Face inference usage or billing data (e.g. for HF-specific reporting or reconciliation). Reads the meter-usage pipeline.
 
 ### Example Usage
 
@@ -170,7 +170,10 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.events.get_huggingface_inference_data()
+    res = tirdad.events.get_huggingface_inference_data(request_ids=[
+        "<value 1>",
+        "<value 2>",
+    ])
 
     # Handle response
     print(res)
@@ -181,6 +184,7 @@ with Tirdad(
 
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request_ids`                                                       | List[*str*]                                                         | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -191,6 +195,47 @@ with Tirdad(
 
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## get_event
+
+Use when debugging a specific event (e.g. why it failed or how it was aggregated). Reads the meter-usage pipeline; includes processing status and step-by-step debug tracker when unprocessed. Uses ?id= query param because event IDs can contain "/".
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getEvent" method="get" path="/events/lookup" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.events.get_event(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Event ID                                                            |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.GetEventByIDResponse](../../models/geteventbyidresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 404                              | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
@@ -352,46 +397,5 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400, 404                         | application/json                 |
-| models.errors.ErrorResponse      | 500                              | application/json                 |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## get_event
-
-Use when debugging a specific event (e.g. why it failed or how it was aggregated). Includes processing status and debug info.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="getEvent" method="get" path="/events/{id}" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.events.get_event(id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Event ID                                                            |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.GetEventByIDResponse](../../models/geteventbyidresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 404                              | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |

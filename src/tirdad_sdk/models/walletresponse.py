@@ -39,6 +39,8 @@ class WalletResponseTypedDict(TypedDict):
     id: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     name: NotRequired[str]
+    real_time_balance: NotRequired[str]
+    real_time_credit_balance: NotRequired[str]
     status: NotRequired[Status]
     tenant_id: NotRequired[str]
     topup_conversion_rate: NotRequired[str]
@@ -93,6 +95,10 @@ class WalletResponse(BaseModel):
 
     name: Optional[str] = None
 
+    real_time_balance: Optional[str] = None
+
+    real_time_credit_balance: Optional[str] = None
+
     status: Optional[Status] = None
 
     tenant_id: Optional[str] = None
@@ -133,6 +139,8 @@ class WalletResponse(BaseModel):
                 "id",
                 "metadata",
                 "name",
+                "real_time_balance",
+                "real_time_credit_balance",
                 "status",
                 "tenant_id",
                 "topup_conversion_rate",

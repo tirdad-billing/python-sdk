@@ -12,6 +12,7 @@ AlertEntityType = Union[
         "subscription",
         "subscription_line_item",
         "group",
+        "entitlement_grant",
     ],
     UnrecognizedStr,
 ]

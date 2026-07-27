@@ -2093,7 +2093,12 @@ class Subscriptions(BaseSDK):
         :param subscription_type: SubscriptionType filters by subscription type
         :param trial_end_due_lte: TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
             Use with subscription_status trialing for trial-end cron processing.
-        :param with_line_items: WithLineItems includes line items in the response
+        :param with_line_items: WithLineItems includes line items in the response.
+
+            Deprecated: use expand=\"subscription_line_items\" instead. Retained for
+            backwards compatibility and for internal callers that need to force-disable
+            line item loading (set to false). The service layer ORs this with the
+            expand check before invoking the repository.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -2290,7 +2295,12 @@ class Subscriptions(BaseSDK):
         :param subscription_type: SubscriptionType filters by subscription type
         :param trial_end_due_lte: TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
             Use with subscription_status trialing for trial-end cron processing.
-        :param with_line_items: WithLineItems includes line items in the response
+        :param with_line_items: WithLineItems includes line items in the response.
+
+            Deprecated: use expand=\"subscription_line_items\" instead. Retained for
+            backwards compatibility and for internal callers that need to force-disable
+            line item loading (set to false). The service layer ORs this with the
+            expand check before invoking the repository.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -5031,6 +5041,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         coupon_params: Optional[
             Union[models.SubModifyCouponParams, models.SubModifyCouponParamsTypedDict]
         ] = None,
@@ -5072,6 +5085,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param type:
+        :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
@@ -5096,6 +5110,9 @@ class Subscriptions(BaseSDK):
         request = models.ExecuteSubscriptionModifyRequestRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                checkout=utils.get_pydantic_model(
+                    checkout, Optional[models.CheckoutParams]
+                ),
                 coupon_params=utils.get_pydantic_model(
                     coupon_params, Optional[models.SubModifyCouponParams]
                 ),
@@ -5201,6 +5218,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         coupon_params: Optional[
             Union[models.SubModifyCouponParams, models.SubModifyCouponParamsTypedDict]
         ] = None,
@@ -5242,6 +5262,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param type:
+        :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
@@ -5266,6 +5287,9 @@ class Subscriptions(BaseSDK):
         request = models.ExecuteSubscriptionModifyRequestRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                checkout=utils.get_pydantic_model(
+                    checkout, Optional[models.CheckoutParams]
+                ),
                 coupon_params=utils.get_pydantic_model(
                     coupon_params, Optional[models.SubModifyCouponParams]
                 ),
@@ -5371,6 +5395,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         coupon_params: Optional[
             Union[models.SubModifyCouponParams, models.SubModifyCouponParamsTypedDict]
         ] = None,
@@ -5412,6 +5439,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param type:
+        :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
@@ -5436,6 +5464,9 @@ class Subscriptions(BaseSDK):
         request = models.PreviewSubscriptionModifyRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                checkout=utils.get_pydantic_model(
+                    checkout, Optional[models.CheckoutParams]
+                ),
                 coupon_params=utils.get_pydantic_model(
                     coupon_params, Optional[models.SubModifyCouponParams]
                 ),
@@ -5541,6 +5572,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         coupon_params: Optional[
             Union[models.SubModifyCouponParams, models.SubModifyCouponParamsTypedDict]
         ] = None,
@@ -5582,6 +5616,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param type:
+        :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
@@ -5606,6 +5641,9 @@ class Subscriptions(BaseSDK):
         request = models.PreviewSubscriptionModifyRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                checkout=utils.get_pydantic_model(
+                    checkout, Optional[models.CheckoutParams]
+                ),
                 coupon_params=utils.get_pydantic_model(
                     coupon_params, Optional[models.SubModifyCouponParams]
                 ),

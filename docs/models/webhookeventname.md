@@ -35,6 +35,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"wallet.updated"`
 - `"wallet.terminated"`
 - `"wallet.transaction.created"`
+- `"wallet.transaction.updated"`
 - `"payment.created"`
 - `"payment.updated"`
 - `"payment.failed"`
@@ -52,12 +53,14 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"wallet.credit_balance.recovered"`
 - `"wallet.ongoing_balance.dropped"`
 - `"wallet.ongoing_balance.recovered"`
+- `"wallet.ongoing_balance.updated"`
 - `"subscription.spend.threshold_reached"`
 - `"subscription.spend.threshold_recovered"`
 - `"subscription.line_item_spend.threshold_reached"`
 - `"subscription.line_item_spend.threshold_recovered"`
 - `"subscription.group_spend.threshold_reached"`
 - `"subscription.group_spend.threshold_recovered"`
+- `"entitlement.grant.exhausted"`
 - `"subscription.renewal.due"`
 - `"invoice.communication.triggered"`
 - `"credit_note.created"`

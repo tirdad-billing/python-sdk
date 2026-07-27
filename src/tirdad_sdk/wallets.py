@@ -2214,10 +2214,12 @@ class Wallets(BaseSDK):
         id: str,
         transaction_reason: models.TransactionReason,
         amount: Optional[str] = None,
+        bonus_credits_expiry_date_utc: Optional[str] = None,
         bonus_credits_to_add: Optional[str] = None,
         credits_to_add: Optional[str] = None,
         description: Optional[str] = None,
         expiry_date_utc: Optional[str] = None,
+        force_sync_invoice: Optional[bool] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
@@ -2238,6 +2240,9 @@ class Wallets(BaseSDK):
             if both amount and credits_to_add are provided, amount will be ignored
             ex if the wallet has a conversion_rate of 2 then adding an amount of
             10 USD in the wallet wil add 5 credits in the wallet
+        :param bonus_credits_expiry_date_utc: bonus_credits_expiry_date_utc is the expiry (UTC, full precision) applied to the bonus
+            credits transaction. Independent of expiry_date_utc, which governs the purchase credits.
+            Only honored when bonus credits are actually granted (explicit BonusCreditsToAdd or slab).
         :param bonus_credits_to_add: bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
             purchase. When nil/omitted, the bonus is resolved from the tenant's
             bonus_credits_topup_config slabs (if enabled). When set, it must be greater than 0 and is
@@ -2246,6 +2251,7 @@ class Wallets(BaseSDK):
         :param description: description to add any specific details about the transaction
         :param expiry_date_utc: expiry_date_utc is the expiry date in UTC timezone
             ex 2025-01-01 00:00:00 UTC
+        :param force_sync_invoice:
         :param idempotency_key: idempotency_key is a unique key for the transaction
         :param metadata:
         :param priority: priority is the priority of the transaction
@@ -2270,10 +2276,12 @@ class Wallets(BaseSDK):
             id=id,
             body=models.TopUpWalletRequest(
                 amount=amount,
+                bonus_credits_expiry_date_utc=bonus_credits_expiry_date_utc,
                 bonus_credits_to_add=bonus_credits_to_add,
                 credits_to_add=credits_to_add,
                 description=description,
                 expiry_date_utc=expiry_date_utc,
+                force_sync_invoice=force_sync_invoice,
                 idempotency_key=idempotency_key,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 priority=priority,
@@ -2356,10 +2364,12 @@ class Wallets(BaseSDK):
         id: str,
         transaction_reason: models.TransactionReason,
         amount: Optional[str] = None,
+        bonus_credits_expiry_date_utc: Optional[str] = None,
         bonus_credits_to_add: Optional[str] = None,
         credits_to_add: Optional[str] = None,
         description: Optional[str] = None,
         expiry_date_utc: Optional[str] = None,
+        force_sync_invoice: Optional[bool] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
@@ -2380,6 +2390,9 @@ class Wallets(BaseSDK):
             if both amount and credits_to_add are provided, amount will be ignored
             ex if the wallet has a conversion_rate of 2 then adding an amount of
             10 USD in the wallet wil add 5 credits in the wallet
+        :param bonus_credits_expiry_date_utc: bonus_credits_expiry_date_utc is the expiry (UTC, full precision) applied to the bonus
+            credits transaction. Independent of expiry_date_utc, which governs the purchase credits.
+            Only honored when bonus credits are actually granted (explicit BonusCreditsToAdd or slab).
         :param bonus_credits_to_add: bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
             purchase. When nil/omitted, the bonus is resolved from the tenant's
             bonus_credits_topup_config slabs (if enabled). When set, it must be greater than 0 and is
@@ -2388,6 +2401,7 @@ class Wallets(BaseSDK):
         :param description: description to add any specific details about the transaction
         :param expiry_date_utc: expiry_date_utc is the expiry date in UTC timezone
             ex 2025-01-01 00:00:00 UTC
+        :param force_sync_invoice:
         :param idempotency_key: idempotency_key is a unique key for the transaction
         :param metadata:
         :param priority: priority is the priority of the transaction
@@ -2412,10 +2426,12 @@ class Wallets(BaseSDK):
             id=id,
             body=models.TopUpWalletRequest(
                 amount=amount,
+                bonus_credits_expiry_date_utc=bonus_credits_expiry_date_utc,
                 bonus_credits_to_add=bonus_credits_to_add,
                 credits_to_add=credits_to_add,
                 description=description,
                 expiry_date_utc=expiry_date_utc,
+                force_sync_invoice=force_sync_invoice,
                 idempotency_key=idempotency_key,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 priority=priority,

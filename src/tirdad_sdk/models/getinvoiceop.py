@@ -15,6 +15,8 @@ class GetInvoiceRequestTypedDict(TypedDict):
     r"""Include source-level price breakdown for usage line items (legacy)"""
     group_by: NotRequired[List[str]]
     r"""Group usage breakdown by specified fields (e.g., source, feature_id, properties.org_id)"""
+    expand: NotRequired[str]
+    r"""Comma-separated related fields to include. Supports 'tax_applied.tax_rate' to attach rate details to each applied tax."""
 
 
 class GetInvoiceRequest(BaseModel):
@@ -35,9 +37,15 @@ class GetInvoiceRequest(BaseModel):
     ] = None
     r"""Group usage breakdown by specified fields (e.g., source, feature_id, properties.org_id)"""
 
+    expand: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Comma-separated related fields to include. Supports 'tax_applied.tax_rate' to attach rate details to each applied tax."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["expand_by_source", "group_by"])
+        optional_fields = set(["expand_by_source", "group_by", "expand"])
         serialized = handler(self)
         m = {}
 

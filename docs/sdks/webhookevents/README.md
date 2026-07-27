@@ -4,6 +4,10 @@
 
 ### Available Operations
 
+* [post_webhook_events_checkout_session_completed](#post_webhook_events_checkout_session_completed) - checkout.session.completed
+* [post_webhook_events_checkout_session_expired](#post_webhook_events_checkout_session_expired) - checkout.session.expired
+* [post_webhook_events_checkout_session_failed](#post_webhook_events_checkout_session_failed) - checkout.session.failed
+* [post_webhook_events_checkout_session_initiated](#post_webhook_events_checkout_session_initiated) - checkout.session.initiated
 * [post_webhook_events_credit_note_created](#post_webhook_events_credit_note_created) - credit_note.created
 * [post_webhook_events_credit_note_updated](#post_webhook_events_credit_note_updated) - credit_note.updated
 * [post_webhook_events_customer_created](#post_webhook_events_customer_created) - customer.created
@@ -18,6 +22,7 @@
 * [post_webhook_events_feature_updated](#post_webhook_events_feature_updated) - feature.updated
 * [post_webhook_events_feature_wallet_balance_alert](#post_webhook_events_feature_wallet_balance_alert) - feature.wallet_balance.alert
 * [post_webhook_events_invoice_communication_triggered](#post_webhook_events_invoice_communication_triggered) - invoice.communication.triggered
+* [post_webhook_events_invoice_create_drafted](#post_webhook_events_invoice_create_drafted) - invoice.create.drafted
 * [post_webhook_events_invoice_payment_overdue](#post_webhook_events_invoice_payment_overdue) - invoice.payment.overdue
 * [post_webhook_events_invoice_update](#post_webhook_events_invoice_update) - invoice.update
 * [post_webhook_events_invoice_update_finalized](#post_webhook_events_invoice_update_finalized) - invoice.update.finalized
@@ -32,21 +37,181 @@
 * [post_webhook_events_subscription_cancelled](#post_webhook_events_subscription_cancelled) - subscription.cancelled
 * [post_webhook_events_subscription_created](#post_webhook_events_subscription_created) - subscription.created
 * [post_webhook_events_subscription_draft_created](#post_webhook_events_subscription_draft_created) - subscription.draft.created
+* [post_webhook_events_subscription_group_spend_threshold_reached](#post_webhook_events_subscription_group_spend_threshold_reached) - subscription.group_spend.threshold_reached
+* [post_webhook_events_subscription_group_spend_threshold_recovered](#post_webhook_events_subscription_group_spend_threshold_recovered) - subscription.group_spend.threshold_recovered
+* [post_webhook_events_subscription_line_item_spend_threshold_reached](#post_webhook_events_subscription_line_item_spend_threshold_reached) - subscription.line_item_spend.threshold_reached
+* [post_webhook_events_subscription_line_item_spend_threshold_recovered](#post_webhook_events_subscription_line_item_spend_threshold_recovered) - subscription.line_item_spend.threshold_recovered
 * [post_webhook_events_subscription_paused](#post_webhook_events_subscription_paused) - subscription.paused
 * [post_webhook_events_subscription_phase_created](#post_webhook_events_subscription_phase_created) - subscription.phase.created
 * [post_webhook_events_subscription_phase_deleted](#post_webhook_events_subscription_phase_deleted) - subscription.phase.deleted
 * [post_webhook_events_subscription_phase_updated](#post_webhook_events_subscription_phase_updated) - subscription.phase.updated
 * [post_webhook_events_subscription_renewal_due](#post_webhook_events_subscription_renewal_due) - subscription.renewal.due
 * [post_webhook_events_subscription_resumed](#post_webhook_events_subscription_resumed) - subscription.resumed
+* [post_webhook_events_subscription_spend_threshold_reached](#post_webhook_events_subscription_spend_threshold_reached) - subscription.spend.threshold_reached
+* [post_webhook_events_subscription_spend_threshold_recovered](#post_webhook_events_subscription_spend_threshold_recovered) - subscription.spend.threshold_recovered
 * [post_webhook_events_subscription_updated](#post_webhook_events_subscription_updated) - subscription.updated
 * [post_webhook_events_wallet_created](#post_webhook_events_wallet_created) - wallet.created
 * [post_webhook_events_wallet_credit_balance_dropped](#post_webhook_events_wallet_credit_balance_dropped) - wallet.credit_balance.dropped
 * [post_webhook_events_wallet_credit_balance_recovered](#post_webhook_events_wallet_credit_balance_recovered) - wallet.credit_balance.recovered
 * [post_webhook_events_wallet_ongoing_balance_dropped](#post_webhook_events_wallet_ongoing_balance_dropped) - wallet.ongoing_balance.dropped
 * [post_webhook_events_wallet_ongoing_balance_recovered](#post_webhook_events_wallet_ongoing_balance_recovered) - wallet.ongoing_balance.recovered
+* [post_webhook_events_wallet_ongoing_balance_updated](#post_webhook_events_wallet_ongoing_balance_updated) - wallet.ongoing_balance.updated
 * [post_webhook_events_wallet_terminated](#post_webhook_events_wallet_terminated) - wallet.terminated
 * [post_webhook_events_wallet_transaction_created](#post_webhook_events_wallet_transaction_created) - wallet.transaction.created
+* [post_webhook_events_wallet_transaction_updated](#post_webhook_events_wallet_transaction_updated) - wallet.transaction.updated
 * [post_webhook_events_wallet_updated](#post_webhook_events_wallet_updated) - wallet.updated
+
+## post_webhook_events_checkout_session_completed
+
+Fired when payment is confirmed; the subscription is now active and the invoice is finalized. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/checkout.session.completed" method="post" path="/webhook-events/checkout.session.completed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_checkout_session_completed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCheckoutSessionWebhookPayload](../../models/webhookdtocheckoutsessionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_checkout_session_expired
+
+Fired when a Checkout Session times out without payment; draft records are cleaned up. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/checkout.session.expired" method="post" path="/webhook-events/checkout.session.expired" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_checkout_session_expired()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCheckoutSessionWebhookPayload](../../models/webhookdtocheckoutsessionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_checkout_session_failed
+
+Fired when payment fails or the provider cancels the payment link. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/checkout.session.failed" method="post" path="/webhook-events/checkout.session.failed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_checkout_session_failed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCheckoutSessionWebhookPayload](../../models/webhookdtocheckoutsessionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_checkout_session_initiated
+
+Fired when a Checkout Session is created and a payment URL is returned to the customer. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/checkout.session.initiated" method="post" path="/webhook-events/checkout.session.initiated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_checkout_session_initiated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCheckoutSessionWebhookPayload](../../models/webhookdtocheckoutsessionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
 ## post_webhook_events_credit_note_created
 
@@ -573,6 +738,44 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoCommunicationWebhookPayload](../../models/webhookdtocommunicationwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_invoice_create_drafted
+
+Fired when a new invoice is created in draft state. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/invoice.create.drafted" method="post" path="/webhook-events/invoice.create.drafted" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_invoice_create_drafted()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoInvoiceWebhookPayload](../../models/webhookdtoinvoicewebhookpayload.md)**
 
 ### Errors
 
@@ -1112,6 +1315,158 @@ with Tirdad(
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## post_webhook_events_subscription_group_spend_threshold_reached
+
+Fired when a feature group's total metered spend on a subscription crosses an alert threshold (critical, warning, or info) for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.group_spend.threshold_reached" method="post" path="/webhook-events/subscription.group_spend.threshold_reached" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_group_spend_threshold_reached()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSpendAlertEvent](../../models/webhookdtospendalertevent.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_subscription_group_spend_threshold_recovered
+
+Fired when a feature group's total metered spend on a subscription falls back below all configured alert thresholds for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.group_spend.threshold_recovered" method="post" path="/webhook-events/subscription.group_spend.threshold_recovered" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_group_spend_threshold_recovered()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSpendAlertEvent](../../models/webhookdtospendalertevent.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_subscription_line_item_spend_threshold_reached
+
+Fired when a subscription line item's metered spend crosses an alert threshold (critical, warning, or info) for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.line_item_spend.threshold_reached" method="post" path="/webhook-events/subscription.line_item_spend.threshold_reached" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_line_item_spend_threshold_reached()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSpendAlertEvent](../../models/webhookdtospendalertevent.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_subscription_line_item_spend_threshold_recovered
+
+Fired when a subscription line item's metered spend falls back below all configured alert thresholds for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.line_item_spend.threshold_recovered" method="post" path="/webhook-events/subscription.line_item_spend.threshold_recovered" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_line_item_spend_threshold_recovered()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSpendAlertEvent](../../models/webhookdtospendalertevent.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## post_webhook_events_subscription_paused
 
 Fired when a subscription is paused. Doc-only for parsing.
@@ -1333,6 +1688,82 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoSubscriptionWebhookPayload](../../models/webhookdtosubscriptionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_subscription_spend_threshold_reached
+
+Fired when a subscription's total metered spend crosses an alert threshold (critical, warning, or info) for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.spend.threshold_reached" method="post" path="/webhook-events/subscription.spend.threshold_reached" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_spend_threshold_reached()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSpendAlertEvent](../../models/webhookdtospendalertevent.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_subscription_spend_threshold_recovered
+
+Fired when a subscription's total metered spend falls back below all configured alert thresholds for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.spend.threshold_recovered" method="post" path="/webhook-events/subscription.spend.threshold_recovered" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_spend_threshold_recovered()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSpendAlertEvent](../../models/webhookdtospendalertevent.md)**
 
 ### Errors
 
@@ -1568,6 +1999,44 @@ with Tirdad(
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## post_webhook_events_wallet_ongoing_balance_updated
+
+Fired when a wallet's ongoing (real-time) balance changes. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/wallet.ongoing_balance.updated" method="post" path="/webhook-events/wallet.ongoing_balance.updated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_wallet_ongoing_balance_updated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoWalletWebhookPayload](../../models/webhookdtowalletwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## post_webhook_events_wallet_terminated
 
 Fired when a wallet is terminated. Doc-only for parsing.
@@ -1637,6 +2106,44 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoTransactionWebhookPayload](../../models/webhookdtotransactionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_wallet_transaction_updated
+
+Fired when an existing wallet transaction is updated (e.g. pending to completed). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/wallet.transaction.updated" method="post" path="/webhook-events/wallet.transaction.updated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_wallet_transaction_updated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoTransactionUpdatedWebhookPayload](../../models/webhookdtotransactionupdatedwebhookpayload.md)**
 
 ### Errors
 

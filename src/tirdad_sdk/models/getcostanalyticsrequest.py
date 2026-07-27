@@ -16,6 +16,12 @@ class GetCostAnalyticsRequestTypedDict(TypedDict):
     r"""Optional - for specific customer"""
     feature_ids: NotRequired[List[str]]
     r"""Additional filters"""
+    include_children: NotRequired[bool]
+    r"""IncludeChildren, when true and ExternalCustomerID belongs to a parent
+    customer, aggregates every inherited-child customer's usage into the
+    revenue and cost totals. Default (false) restricts the query to the
+    customer's own usage — mirrors the meter-usage analytics contract.
+    """
     limit: NotRequired[int]
     r"""Pagination"""
     offset: NotRequired[int]
@@ -35,6 +41,13 @@ class GetCostAnalyticsRequest(BaseModel):
     feature_ids: Optional[List[str]] = None
     r"""Additional filters"""
 
+    include_children: Optional[bool] = None
+    r"""IncludeChildren, when true and ExternalCustomerID belongs to a parent
+    customer, aggregates every inherited-child customer's usage into the
+    revenue and cost totals. Default (false) restricts the query to the
+    customer's own usage — mirrors the meter-usage analytics contract.
+    """
+
     limit: Optional[int] = None
     r"""Pagination"""
 
@@ -51,6 +64,7 @@ class GetCostAnalyticsRequest(BaseModel):
                 "expand",
                 "external_customer_id",
                 "feature_ids",
+                "include_children",
                 "limit",
                 "offset",
                 "start_time",

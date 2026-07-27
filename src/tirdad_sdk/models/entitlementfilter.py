@@ -28,6 +28,8 @@ class EntitlementFilterTypedDict(TypedDict):
     feature_type: NotRequired[FeatureType]
     filters: NotRequired[List[FilterConditionTypedDict]]
     r"""Specific filters for entitlements"""
+    has_grant_config: NotRequired[bool]
+    r"""HasGrantConfig filters on grant-config presence (grant_quota set or not)."""
     is_enabled: NotRequired[bool]
     limit: NotRequired[int]
     offset: NotRequired[int]
@@ -53,6 +55,9 @@ class EntitlementFilter(BaseModel):
 
     filters: Optional[List[FilterCondition]] = None
     r"""Specific filters for entitlements"""
+
+    has_grant_config: Optional[bool] = None
+    r"""HasGrantConfig filters on grant-config presence (grant_quota set or not)."""
 
     is_enabled: Optional[bool] = None
 
@@ -81,6 +86,7 @@ class EntitlementFilter(BaseModel):
                 "feature_ids",
                 "feature_type",
                 "filters",
+                "has_grant_config",
                 "is_enabled",
                 "limit",
                 "offset",

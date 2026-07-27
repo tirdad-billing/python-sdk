@@ -64,7 +64,13 @@ class SubscriptionFilterTypedDict(TypedDict):
     Use with subscription_status trialing for trial-end cron processing.
     """
     with_line_items: NotRequired[bool]
-    r"""WithLineItems includes line items in the response"""
+    r"""WithLineItems includes line items in the response.
+
+    Deprecated: use expand=\"subscription_line_items\" instead. Retained for
+    backwards compatibility and for internal callers that need to force-disable
+    line item loading (set to false). The service layer ORs this with the
+    expand check before invoking the repository.
+    """
 
 
 class SubscriptionFilter(BaseModel):
@@ -133,7 +139,13 @@ class SubscriptionFilter(BaseModel):
     """
 
     with_line_items: Optional[bool] = None
-    r"""WithLineItems includes line items in the response"""
+    r"""WithLineItems includes line items in the response.
+
+    Deprecated: use expand=\"subscription_line_items\" instead. Retained for
+    backwards compatibility and for internal callers that need to force-disable
+    line item loading (set to false). The service layer ORs this with the
+    expand check before invoking the repository.
+    """
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

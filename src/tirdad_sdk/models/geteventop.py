@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from tirdad_sdk.types import BaseModel
-from tirdad_sdk.utils import FieldMetadata, PathParamMetadata
+from tirdad_sdk.utils import FieldMetadata, QueryParamMetadata
 from typing_extensions import Annotated, TypedDict
 
 
@@ -13,6 +13,6 @@ class GetEventRequestTypedDict(TypedDict):
 
 class GetEventRequest(BaseModel):
     id: Annotated[
-        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
     ]
     r"""Event ID"""

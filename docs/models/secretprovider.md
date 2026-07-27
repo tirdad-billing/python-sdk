@@ -27,3 +27,6 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"paddle"`
 - `"whop"`
 - `"tabs"`
+- `"aws_marketplace"`
+- `"gcp_marketplace"`
+- `"azure_marketplace"`

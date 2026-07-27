@@ -18,6 +18,11 @@ class TopUpWalletRequestTypedDict(TypedDict):
     ex if the wallet has a conversion_rate of 2 then adding an amount of
     10 USD in the wallet wil add 5 credits in the wallet
     """
+    bonus_credits_expiry_date_utc: NotRequired[str]
+    r"""bonus_credits_expiry_date_utc is the expiry (UTC, full precision) applied to the bonus
+    credits transaction. Independent of expiry_date_utc, which governs the purchase credits.
+    Only honored when bonus credits are actually granted (explicit BonusCreditsToAdd or slab).
+    """
     bonus_credits_to_add: NotRequired[str]
     r"""bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
     purchase. When nil/omitted, the bonus is resolved from the tenant's
@@ -32,6 +37,7 @@ class TopUpWalletRequestTypedDict(TypedDict):
     r"""expiry_date_utc is the expiry date in UTC timezone
     ex 2025-01-01 00:00:00 UTC
     """
+    force_sync_invoice: NotRequired[bool]
     idempotency_key: NotRequired[str]
     r"""idempotency_key is a unique key for the transaction"""
     metadata: NotRequired[Dict[str, str]]
@@ -54,6 +60,12 @@ class TopUpWalletRequest(BaseModel):
     10 USD in the wallet wil add 5 credits in the wallet
     """
 
+    bonus_credits_expiry_date_utc: Optional[str] = None
+    r"""bonus_credits_expiry_date_utc is the expiry (UTC, full precision) applied to the bonus
+    credits transaction. Independent of expiry_date_utc, which governs the purchase credits.
+    Only honored when bonus credits are actually granted (explicit BonusCreditsToAdd or slab).
+    """
+
     bonus_credits_to_add: Optional[str] = None
     r"""bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
     purchase. When nil/omitted, the bonus is resolved from the tenant's
@@ -72,6 +84,8 @@ class TopUpWalletRequest(BaseModel):
     ex 2025-01-01 00:00:00 UTC
     """
 
+    force_sync_invoice: Optional[bool] = None
+
     idempotency_key: Optional[str] = None
     r"""idempotency_key is a unique key for the transaction"""
 
@@ -88,10 +102,12 @@ class TopUpWalletRequest(BaseModel):
         optional_fields = set(
             [
                 "amount",
+                "bonus_credits_expiry_date_utc",
                 "bonus_credits_to_add",
                 "credits_to_add",
                 "description",
                 "expiry_date_utc",
+                "force_sync_invoice",
                 "idempotency_key",
                 "metadata",
                 "priority",

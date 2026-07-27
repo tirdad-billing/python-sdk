@@ -83,7 +83,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.payments.create_payment(amount="883.46", currency="CFP Franc", destination_id="<id>", destination_type="CUSTOMER", payment_method_type="ACH", process_payment=True, save_card_and_make_default=False)
+    res = tirdad.payments.create_payment(amount="883.46", currency="CFP Franc", destination_id="<id>", destination_type="CUSTOMER", payment_method_type="OFFLINE", process_payment=True, save_card_and_make_default=False)
 
     # Handle response
     print(res)

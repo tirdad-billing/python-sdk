@@ -23,6 +23,7 @@ class PaymentResponseTypedDict(TypedDict):
     currency: NotRequired[str]
     destination_id: NotRequired[str]
     destination_type: NotRequired[PaymentDestinationType]
+    environment_id: NotRequired[str]
     error_message: NotRequired[str]
     failed_at: NotRequired[datetime]
     gateway_metadata: NotRequired[Dict[str, str]]
@@ -61,6 +62,8 @@ class PaymentResponse(BaseModel):
     destination_id: Optional[str] = None
 
     destination_type: Optional[PaymentDestinationType] = None
+
+    environment_id: Optional[str] = None
 
     error_message: Optional[str] = None
 
@@ -117,6 +120,7 @@ class PaymentResponse(BaseModel):
                 "currency",
                 "destination_id",
                 "destination_type",
+                "environment_id",
                 "error_message",
                 "failed_at",
                 "gateway_metadata",

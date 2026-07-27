@@ -26,3 +26,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"database_error"`
 - `"service_unavailable"`
 - `"too_many_requests"`
+- `"not_implemented"`
