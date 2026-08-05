@@ -15,51 +15,39 @@ from typing_extensions import NotRequired, TypedDict
 
 class LineItemCommitmentConfigTypedDict(TypedDict):
     commitment_amount: NotRequired[float]
-    r"""CommitmentAmount is the minimum amount committed for this line item"""
     commitment_duration: NotRequired[BillingPeriod]
     commitment_quantity: NotRequired[float]
-    r"""CommitmentQuantity is the minimum quantity committed for this line item"""
     commitment_time_buckets: NotRequired[List[CommitmentBucketRequestTypedDict]]
-    r"""CommitmentTimeBuckets defines per-bucket commitment + inline price for
-    windows whose start UTC hour falls within each configured bucket. Each
-    bucket carries its own price (materialized by the service). Requires
-    IsWindowCommitment=true.
-    """
+    r"""CommitmentTimeBuckets scopes commitment to specific UTC-hour windows; requires IsWindowCommitment=true."""
     commitment_type: NotRequired[CommitmentType]
     enable_true_up: NotRequired[bool]
-    r"""EnableTrueUp determines if true-up fee should be applied when usage is below commitment"""
+    r"""EnableTrueUp charges the shortfall when usage is below commitment."""
     is_window_commitment: NotRequired[bool]
-    r"""IsWindowCommitment determines if commitment is applied per window (e.g., per day) rather than per billing period"""
+    r"""IsWindowCommitment applies commitment per window (e.g. per day) rather than per billing period."""
     overage_factor: NotRequired[float]
-    r"""OverageFactor is a multiplier applied to usage beyond the commitment"""
+    r"""OverageFactor is a multiplier on usage beyond commitment; 1.0 = base rate."""
 
 
 class LineItemCommitmentConfig(BaseModel):
     commitment_amount: Optional[float] = None
-    r"""CommitmentAmount is the minimum amount committed for this line item"""
 
     commitment_duration: Optional[BillingPeriod] = None
 
     commitment_quantity: Optional[float] = None
-    r"""CommitmentQuantity is the minimum quantity committed for this line item"""
 
     commitment_time_buckets: Optional[List[CommitmentBucketRequest]] = None
-    r"""CommitmentTimeBuckets defines per-bucket commitment + inline price for
-    windows whose start UTC hour falls within each configured bucket. Each
-    bucket carries its own price (materialized by the service). Requires
-    IsWindowCommitment=true.
-    """
+    r"""CommitmentTimeBuckets scopes commitment to specific UTC-hour windows; requires IsWindowCommitment=true."""
 
     commitment_type: Optional[CommitmentType] = None
 
     enable_true_up: Optional[bool] = None
-    r"""EnableTrueUp determines if true-up fee should be applied when usage is below commitment"""
+    r"""EnableTrueUp charges the shortfall when usage is below commitment."""
 
     is_window_commitment: Optional[bool] = None
-    r"""IsWindowCommitment determines if commitment is applied per window (e.g., per day) rather than per billing period"""
+    r"""IsWindowCommitment applies commitment per window (e.g. per day) rather than per billing period."""
 
     overage_factor: Optional[float] = None
-    r"""OverageFactor is a multiplier applied to usage beyond the commitment"""
+    r"""OverageFactor is a multiplier on usage beyond commitment; 1.0 = base rate."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

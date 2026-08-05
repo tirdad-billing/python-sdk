@@ -13,52 +13,34 @@ from typing_extensions import NotRequired, TypedDict
 
 class SubscriptionInheritanceConfigTypedDict(TypedDict):
     external_customer_ids_to_inherit_subscription: NotRequired[List[str]]
-    r"""ExternalCustomerIDsToInheritSubscription: child customer external IDs for which
-    inherited skeleton subscriptions will be created. Only valid for parent behavior.
-    """
+    r"""ExternalCustomerIDsToInheritSubscription creates inherited skeleton subscriptions for child customers. Parent only."""
     grouped_invoicing_children_to_create: NotRequired[
         List[GroupedInvoicingChildRequestTypedDict]
     ]
-    r"""grouped_invoicing_children_to_create creates new grouped_invoicing children under this parent"""
     invoicing_customer_external_id: NotRequired[str]
-    r"""InvoicingCustomerExternalID sets a different billing recipient (external ID).
-    Required for delegated; rejected for inherited; optional for others.
-    """
+    r"""InvoicingCustomerExternalID routes invoices to a different customer. Required for delegated; rejected for inherited."""
     parent_subscription_id: NotRequired[str]
-    r"""ParentSubscriptionID links this subscription to an existing parent.
-    Required for inherited and grouped_invoicing; rejected for standalone, delegated, parent.
-    """
+    r"""ParentSubscriptionID links to an existing parent. Required for inherited/grouped_invoicing; rejected for standalone/delegated/parent."""
     subscriptions_ids_for_grouped_invoicing: NotRequired[List[str]]
-    r"""SubscriptionsIDsForGroupedInvoicing: existing standalone subscription IDs to convert to
-    grouped_invoicing under this parent at creation time. Only valid for parent behavior.
-    """
+    r"""SubscriptionsIDsForGroupedInvoicing converts existing standalone subscriptions to grouped_invoicing under this parent. Parent only."""
 
 
 class SubscriptionInheritanceConfig(BaseModel):
     external_customer_ids_to_inherit_subscription: Optional[List[str]] = None
-    r"""ExternalCustomerIDsToInheritSubscription: child customer external IDs for which
-    inherited skeleton subscriptions will be created. Only valid for parent behavior.
-    """
+    r"""ExternalCustomerIDsToInheritSubscription creates inherited skeleton subscriptions for child customers. Parent only."""
 
     grouped_invoicing_children_to_create: Optional[
         List[GroupedInvoicingChildRequest]
     ] = None
-    r"""grouped_invoicing_children_to_create creates new grouped_invoicing children under this parent"""
 
     invoicing_customer_external_id: Optional[str] = None
-    r"""InvoicingCustomerExternalID sets a different billing recipient (external ID).
-    Required for delegated; rejected for inherited; optional for others.
-    """
+    r"""InvoicingCustomerExternalID routes invoices to a different customer. Required for delegated; rejected for inherited."""
 
     parent_subscription_id: Optional[str] = None
-    r"""ParentSubscriptionID links this subscription to an existing parent.
-    Required for inherited and grouped_invoicing; rejected for standalone, delegated, parent.
-    """
+    r"""ParentSubscriptionID links to an existing parent. Required for inherited/grouped_invoicing; rejected for standalone/delegated/parent."""
 
     subscriptions_ids_for_grouped_invoicing: Optional[List[str]] = None
-    r"""SubscriptionsIDsForGroupedInvoicing: existing standalone subscription IDs to convert to
-    grouped_invoicing under this parent at creation time. Only valid for parent behavior.
-    """
+    r"""SubscriptionsIDsForGroupedInvoicing converts existing standalone subscriptions to grouped_invoicing under this parent. Parent only."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

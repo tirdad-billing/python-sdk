@@ -28,14 +28,10 @@ class SubscriptionPhaseCreateRequestTypedDict(TypedDict):
     line_item_coupons: NotRequired[Dict[str, List[str]]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     line_items: NotRequired[List[CreateSubscriptionLineItemRequestTypedDict]]
-    r"""LineItems are extra line items to add during this phase, primarily one-time charges.
-    Each item's start_date defaults to the phase's start_date when not provided.
-    """
+    r"""LineItems are extra (non-plan) line items for this phase; start_date defaults to phase start."""
     metadata: NotRequired[Dict[str, str]]
     override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
-    r"""OverrideLineItems allows customizing specific prices for this phase
-    If not provided, phase will use the same line items as the subscription (plan prices)
-    """
+    r"""OverrideLineItems overrides specific plan prices for this phase."""
     subscription_coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
     r"""SubscriptionCoupons is the preferred way to attach coupons to this phase."""
 
@@ -52,16 +48,12 @@ class SubscriptionPhaseCreateRequest(BaseModel):
     r"""Deprecated: use SubscriptionCoupons instead."""
 
     line_items: Optional[List[CreateSubscriptionLineItemRequest]] = None
-    r"""LineItems are extra line items to add during this phase, primarily one-time charges.
-    Each item's start_date defaults to the phase's start_date when not provided.
-    """
+    r"""LineItems are extra (non-plan) line items for this phase; start_date defaults to phase start."""
 
     metadata: Optional[Dict[str, str]] = None
 
     override_line_items: Optional[List[OverrideLineItemRequest]] = None
-    r"""OverrideLineItems allows customizing specific prices for this phase
-    If not provided, phase will use the same line items as the subscription (plan prices)
-    """
+    r"""OverrideLineItems overrides specific plan prices for this phase."""
 
     subscription_coupons: Optional[List[SubscriptionCouponInput]] = None
     r"""SubscriptionCoupons is the preferred way to attach coupons to this phase."""

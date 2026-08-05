@@ -426,6 +426,7 @@ class Costs(BaseSDK):
         include_children: Optional[bool] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -446,6 +447,7 @@ class Costs(BaseSDK):
             customer's own usage — mirrors the meter-usage analytics contract.
         :param limit: Pagination
         :param offset:
+        :param property_filters: Property filters to filter the events by the keys in `properties` field of the event
         :param start_time: Time range fields (optional - defaults to last 7 days if not provided)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -470,6 +472,9 @@ class Costs(BaseSDK):
             include_children=include_children,
             limit=limit,
             offset=offset,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
             start_time=start_time,
         )
 
@@ -554,6 +559,7 @@ class Costs(BaseSDK):
         include_children: Optional[bool] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -574,6 +580,7 @@ class Costs(BaseSDK):
             customer's own usage — mirrors the meter-usage analytics contract.
         :param limit: Pagination
         :param offset:
+        :param property_filters: Property filters to filter the events by the keys in `properties` field of the event
         :param start_time: Time range fields (optional - defaults to last 7 days if not provided)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -598,6 +605,9 @@ class Costs(BaseSDK):
             include_children=include_children,
             limit=limit,
             offset=offset,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
             start_time=start_time,
         )
 
@@ -682,6 +692,7 @@ class Costs(BaseSDK):
         include_children: Optional[bool] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -702,6 +713,7 @@ class Costs(BaseSDK):
             customer's own usage — mirrors the meter-usage analytics contract.
         :param limit: Pagination
         :param offset:
+        :param property_filters: Property filters to filter the events by the keys in `properties` field of the event
         :param start_time: Time range fields (optional - defaults to last 7 days if not provided)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -726,6 +738,9 @@ class Costs(BaseSDK):
             include_children=include_children,
             limit=limit,
             offset=offset,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
             start_time=start_time,
         )
 
@@ -810,6 +825,7 @@ class Costs(BaseSDK):
         include_children: Optional[bool] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
+        property_filters: Optional[Mapping[str, Iterable[str]]] = None,
         start_time: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -830,6 +846,7 @@ class Costs(BaseSDK):
             customer's own usage — mirrors the meter-usage analytics contract.
         :param limit: Pagination
         :param offset:
+        :param property_filters: Property filters to filter the events by the keys in `properties` field of the event
         :param start_time: Time range fields (optional - defaults to last 7 days if not provided)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -854,6 +871,9 @@ class Costs(BaseSDK):
             include_children=include_children,
             limit=limit,
             offset=offset,
+            property_filters=utils.unmarshal(
+                property_filters, Optional[Dict[str, List[str]]]
+            ),
             start_time=start_time,
         )
 

@@ -112,52 +112,43 @@ class Subscriptions(BaseSDK):
         :param billing_period:
         :param currency:
         :param plan_id:
-        :param addons: Addons represents addons to be added to the subscription during creation
-        :param auto_invoice_threshold: AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
-            an intermediate invoice mid-period. Set once at creation; cannot be changed later.
-            Allowed only when the subscription resolves to type standalone (no parent hierarchy rows).
-            Plan line items must be usage-based only (no fixed or other non-usage plan prices).
-            Nil means auto invoice threshold billing is disabled for this subscription.
-        :param billing_anchor: BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
-            For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
-            is before that day in the month, the first billing period ends on the next occurrence of that
-            day in the same month (a shorter first period); subsequent periods follow the usual interval.
+        :param addons:
+        :param auto_invoice_threshold: AutoInvoiceThreshold triggers a mid-period invoice when usage (in subscription currency) exceeds this amount.
+            Standalone subscriptions only; all plan prices must be usage-based. Immutable after creation.
+        :param billing_anchor: BillingAnchor overrides the derived anchor for anniversary billing. For monthly billing,
+            the day-of-month defines cycle boundaries (shorter first period if start is before that day).
         :param billing_cycle:
         :param billing_period_count:
         :param collection_method:
-        :param commitment_amount: CommitmentAmount is the minimum amount a customer commits to paying for a billing period
+        :param commitment_amount:
         :param commitment_duration:
         :param coupons: Deprecated: use SubscriptionCoupons instead.
-        :param credit_grants: Credit grants to be applied when subscription is created
-        :param customer_id: customer_id is the flexprice customer id
-            and it is prioritized over external_customer_id in case both are provided.
-        :param enable_true_up: Enable Commitment True Up Fee
+        :param credit_grants:
+        :param customer_id: CustomerID takes priority over ExternalCustomerID when both are provided.
+        :param enable_true_up:
         :param end_date:
-        :param external_customer_id: external_customer_id is the customer id in your DB
-            and must be same as what you provided as external_id while creating the customer in flexprice.
+        :param external_customer_id:
         :param gateway_payment_method_id:
         :param inheritance:
-        :param line_item_commitments: LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)
+        :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
-        :param line_items: LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices
+        :param line_items: LineItems are extra (non-plan) line items added at creation.
         :param lookup_key:
         :param metadata:
-        :param overage_factor: OverageFactor is a multiplier applied to usage beyond the commitment amount
-        :param override_entitlements: OverrideEntitlements allows customizing specific entitlements for this subscription
-        :param override_line_items: OverrideLineItems allows customizing specific prices for this subscription
+        :param overage_factor:
+        :param override_entitlements:
+        :param override_line_items: OverrideLineItems overrides specific plan prices for this subscription.
         :param payment_behavior:
         :param payment_terms:
-        :param phases: Phases represents subscription phases to be created with the subscription
+        :param phases:
         :param proration_behavior:
         :param start_date:
         :param subscription_coupons: SubscriptionCoupons is the preferred way to attach coupons at creation.
             Accepts coupon_code; optionally targets a line item via price_id.
         :param subscription_status:
-        :param tax_rate_overrides: tax_rate_overrides is the tax rate overrides	to be applied to the subscription
-        :param timezone: Timezone of the customer.
-            If not set, the default value is UTC.
-        :param trial_period_days: TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
-            0 = explicitly no trial (overrides catalog). >0 = override duration in days.
+        :param tax_rate_overrides:
+        :param timezone:
+        :param trial_period_days: TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -407,52 +398,43 @@ class Subscriptions(BaseSDK):
         :param billing_period:
         :param currency:
         :param plan_id:
-        :param addons: Addons represents addons to be added to the subscription during creation
-        :param auto_invoice_threshold: AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
-            an intermediate invoice mid-period. Set once at creation; cannot be changed later.
-            Allowed only when the subscription resolves to type standalone (no parent hierarchy rows).
-            Plan line items must be usage-based only (no fixed or other non-usage plan prices).
-            Nil means auto invoice threshold billing is disabled for this subscription.
-        :param billing_anchor: BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
-            For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
-            is before that day in the month, the first billing period ends on the next occurrence of that
-            day in the same month (a shorter first period); subsequent periods follow the usual interval.
+        :param addons:
+        :param auto_invoice_threshold: AutoInvoiceThreshold triggers a mid-period invoice when usage (in subscription currency) exceeds this amount.
+            Standalone subscriptions only; all plan prices must be usage-based. Immutable after creation.
+        :param billing_anchor: BillingAnchor overrides the derived anchor for anniversary billing. For monthly billing,
+            the day-of-month defines cycle boundaries (shorter first period if start is before that day).
         :param billing_cycle:
         :param billing_period_count:
         :param collection_method:
-        :param commitment_amount: CommitmentAmount is the minimum amount a customer commits to paying for a billing period
+        :param commitment_amount:
         :param commitment_duration:
         :param coupons: Deprecated: use SubscriptionCoupons instead.
-        :param credit_grants: Credit grants to be applied when subscription is created
-        :param customer_id: customer_id is the flexprice customer id
-            and it is prioritized over external_customer_id in case both are provided.
-        :param enable_true_up: Enable Commitment True Up Fee
+        :param credit_grants:
+        :param customer_id: CustomerID takes priority over ExternalCustomerID when both are provided.
+        :param enable_true_up:
         :param end_date:
-        :param external_customer_id: external_customer_id is the customer id in your DB
-            and must be same as what you provided as external_id while creating the customer in flexprice.
+        :param external_customer_id:
         :param gateway_payment_method_id:
         :param inheritance:
-        :param line_item_commitments: LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)
+        :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
-        :param line_items: LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices
+        :param line_items: LineItems are extra (non-plan) line items added at creation.
         :param lookup_key:
         :param metadata:
-        :param overage_factor: OverageFactor is a multiplier applied to usage beyond the commitment amount
-        :param override_entitlements: OverrideEntitlements allows customizing specific entitlements for this subscription
-        :param override_line_items: OverrideLineItems allows customizing specific prices for this subscription
+        :param overage_factor:
+        :param override_entitlements:
+        :param override_line_items: OverrideLineItems overrides specific plan prices for this subscription.
         :param payment_behavior:
         :param payment_terms:
-        :param phases: Phases represents subscription phases to be created with the subscription
+        :param phases:
         :param proration_behavior:
         :param start_date:
         :param subscription_coupons: SubscriptionCoupons is the preferred way to attach coupons at creation.
             Accepts coupon_code; optionally targets a line item via price_id.
         :param subscription_status:
-        :param tax_rate_overrides: tax_rate_overrides is the tax rate overrides	to be applied to the subscription
-        :param timezone: Timezone of the customer.
-            If not set, the default value is UTC.
-        :param trial_period_days: TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
-            0 = explicitly no trial (overrides catalog). >0 = override duration in days.
+        :param tax_rate_overrides:
+        :param timezone:
+        :param trial_period_days: TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -613,6 +595,12 @@ class Subscriptions(BaseSDK):
             ]
         ] = None,
         metadata: Optional[Mapping[str, Any]] = None,
+        override_line_items: Optional[
+            Union[
+                Iterable[models.OverrideLineItemRequest],
+                Iterable[models.OverrideLineItemRequestTypedDict],
+            ]
+        ] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
         start_date: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -629,6 +617,7 @@ class Subscriptions(BaseSDK):
         :param cadence:
         :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
         :param metadata:
+        :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
         :param proration_behavior:
         :param start_date:
         :param retries: Override the default retry configuration for this method
@@ -654,6 +643,9 @@ class Subscriptions(BaseSDK):
                 Optional[Dict[str, models.LineItemCommitmentConfig]],
             ),
             metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
+            override_line_items=utils.get_pydantic_model(
+                override_line_items, Optional[List[models.OverrideLineItemRequest]]
+            ),
             proration_behavior=proration_behavior,
             start_date=start_date,
             subscription_id=subscription_id,
@@ -741,6 +733,12 @@ class Subscriptions(BaseSDK):
             ]
         ] = None,
         metadata: Optional[Mapping[str, Any]] = None,
+        override_line_items: Optional[
+            Union[
+                Iterable[models.OverrideLineItemRequest],
+                Iterable[models.OverrideLineItemRequestTypedDict],
+            ]
+        ] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
         start_date: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -757,6 +755,7 @@ class Subscriptions(BaseSDK):
         :param cadence:
         :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
         :param metadata:
+        :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
         :param proration_behavior:
         :param start_date:
         :param retries: Override the default retry configuration for this method
@@ -782,6 +781,9 @@ class Subscriptions(BaseSDK):
                 Optional[Dict[str, models.LineItemCommitmentConfig]],
             ),
             metadata=utils.unmarshal(metadata, Optional[Dict[str, Any]]),
+            override_line_items=utils.get_pydantic_model(
+                override_line_items, Optional[List[models.OverrideLineItemRequest]]
+            ),
             proration_behavior=proration_behavior,
             start_date=start_date,
             subscription_id=subscription_id,
@@ -873,10 +875,7 @@ class Subscriptions(BaseSDK):
         Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
 
         :param addon_association_id:
-        :param effective_date: EffectiveDate is the date the cancellation takes effect.
-            When nil the addon is cancelled at the end of the current period.
-            When provided it must fall within [CurrentPeriodStart, CurrentPeriodEnd]; mid-period
-            values combined with create_prorations will issue a wallet credit for unused time.
+        :param effective_date: EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit.
         :param proration_behavior:
         :param reason:
         :param retries: Override the default retry configuration for this method
@@ -987,10 +986,7 @@ class Subscriptions(BaseSDK):
         Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
 
         :param addon_association_id:
-        :param effective_date: EffectiveDate is the date the cancellation takes effect.
-            When nil the addon is cancelled at the end of the current period.
-            When provided it must fall within [CurrentPeriodStart, CurrentPeriodEnd]; mid-period
-            values combined with create_prorations will issue a wallet credit for unused time.
+        :param effective_date: EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit.
         :param proration_behavior:
         :param reason:
         :param retries: Override the default retry configuration for this method
@@ -2057,6 +2053,7 @@ class Subscriptions(BaseSDK):
         subscription_status: Optional[Iterable[models.SubscriptionStatus]] = None,
         subscription_type: Optional[Iterable[models.SubscriptionType]] = None,
         trial_end_due_lte: Optional[datetime] = None,
+        with_coupon_associations: Optional[bool] = None,
         with_line_items: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -2093,6 +2090,12 @@ class Subscriptions(BaseSDK):
         :param subscription_type: SubscriptionType filters by subscription type
         :param trial_end_due_lte: TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
             Use with subscription_status trialing for trial-end cron processing.
+        :param with_coupon_associations: WithCouponAssociations eager-loads coupon associations and their coupons.
+
+            Kept separate from WithLineItems because the coupon_associations table has no
+            index leading with subscription_id, so Ent's edge load degrades to a full table
+            scan. Only set it when the response actually surfaces the associations; the
+            service layer back-fills it from expand=\"coupon_associations\".
         :param with_line_items: WithLineItems includes line items in the response.
 
             Deprecated: use expand=\"subscription_line_items\" instead. Retained for
@@ -2152,6 +2155,7 @@ class Subscriptions(BaseSDK):
                 subscription_type, Optional[List[models.SubscriptionType]]
             ),
             trial_end_due_lte=trial_end_due_lte,
+            with_coupon_associations=with_coupon_associations,
             with_line_items=with_line_items,
         )
 
@@ -2259,6 +2263,7 @@ class Subscriptions(BaseSDK):
         subscription_status: Optional[Iterable[models.SubscriptionStatus]] = None,
         subscription_type: Optional[Iterable[models.SubscriptionType]] = None,
         trial_end_due_lte: Optional[datetime] = None,
+        with_coupon_associations: Optional[bool] = None,
         with_line_items: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -2295,6 +2300,12 @@ class Subscriptions(BaseSDK):
         :param subscription_type: SubscriptionType filters by subscription type
         :param trial_end_due_lte: TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
             Use with subscription_status trialing for trial-end cron processing.
+        :param with_coupon_associations: WithCouponAssociations eager-loads coupon associations and their coupons.
+
+            Kept separate from WithLineItems because the coupon_associations table has no
+            index leading with subscription_id, so Ent's edge load degrades to a full table
+            scan. Only set it when the response actually surfaces the associations; the
+            service layer back-fills it from expand=\"coupon_associations\".
         :param with_line_items: WithLineItems includes line items in the response.
 
             Deprecated: use expand=\"subscription_line_items\" instead. Retained for
@@ -2354,6 +2365,7 @@ class Subscriptions(BaseSDK):
                 subscription_type, Optional[List[models.SubscriptionType]]
             ),
             trial_end_due_lte=trial_end_due_lte,
+            with_coupon_associations=with_coupon_associations,
             with_line_items=with_line_items,
         )
 

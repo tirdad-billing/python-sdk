@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -25,6 +25,8 @@ class GetCostAnalyticsRequestTypedDict(TypedDict):
     limit: NotRequired[int]
     r"""Pagination"""
     offset: NotRequired[int]
+    property_filters: NotRequired[Dict[str, List[str]]]
+    r"""Property filters to filter the events by the keys in `properties` field of the event"""
     start_time: NotRequired[datetime]
     r"""Time range fields (optional - defaults to last 7 days if not provided)"""
 
@@ -53,6 +55,9 @@ class GetCostAnalyticsRequest(BaseModel):
 
     offset: Optional[int] = None
 
+    property_filters: Optional[Dict[str, List[str]]] = None
+    r"""Property filters to filter the events by the keys in `properties` field of the event"""
+
     start_time: Optional[datetime] = None
     r"""Time range fields (optional - defaults to last 7 days if not provided)"""
 
@@ -67,6 +72,7 @@ class GetCostAnalyticsRequest(BaseModel):
                 "include_children",
                 "limit",
                 "offset",
+                "property_filters",
                 "start_time",
             ]
         )

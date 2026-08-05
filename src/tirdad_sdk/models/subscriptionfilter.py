@@ -63,6 +63,14 @@ class SubscriptionFilterTypedDict(TypedDict):
     r"""TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
     Use with subscription_status trialing for trial-end cron processing.
     """
+    with_coupon_associations: NotRequired[bool]
+    r"""WithCouponAssociations eager-loads coupon associations and their coupons.
+
+    Kept separate from WithLineItems because the coupon_associations table has no
+    index leading with subscription_id, so Ent's edge load degrades to a full table
+    scan. Only set it when the response actually surfaces the associations; the
+    service layer back-fills it from expand=\"coupon_associations\".
+    """
     with_line_items: NotRequired[bool]
     r"""WithLineItems includes line items in the response.
 
@@ -138,6 +146,15 @@ class SubscriptionFilter(BaseModel):
     Use with subscription_status trialing for trial-end cron processing.
     """
 
+    with_coupon_associations: Optional[bool] = None
+    r"""WithCouponAssociations eager-loads coupon associations and their coupons.
+
+    Kept separate from WithLineItems because the coupon_associations table has no
+    index leading with subscription_id, so Ent's edge load degrades to a full table
+    scan. Only set it when the response actually surfaces the associations; the
+    service layer back-fills it from expand=\"coupon_associations\".
+    """
+
     with_line_items: Optional[bool] = None
     r"""WithLineItems includes line items in the response.
 
@@ -174,6 +191,7 @@ class SubscriptionFilter(BaseModel):
                 "subscription_status",
                 "subscription_type",
                 "trial_end_due_lte",
+                "with_coupon_associations",
                 "with_line_items",
             ]
         )

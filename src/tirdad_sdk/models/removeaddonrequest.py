@@ -12,11 +12,7 @@ from typing_extensions import NotRequired, TypedDict
 class RemoveAddonRequestTypedDict(TypedDict):
     addon_association_id: str
     effective_date: NotRequired[datetime]
-    r"""EffectiveDate is the date the cancellation takes effect.
-    When nil the addon is cancelled at the end of the current period.
-    When provided it must fall within [CurrentPeriodStart, CurrentPeriodEnd]; mid-period
-    values combined with create_prorations will issue a wallet credit for unused time.
-    """
+    r"""EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit."""
     proration_behavior: NotRequired[ProrationBehavior]
     reason: NotRequired[str]
 
@@ -25,11 +21,7 @@ class RemoveAddonRequest(BaseModel):
     addon_association_id: str
 
     effective_date: Optional[datetime] = None
-    r"""EffectiveDate is the date the cancellation takes effect.
-    When nil the addon is cancelled at the end of the current period.
-    When provided it must fall within [CurrentPeriodStart, CurrentPeriodEnd]; mid-period
-    values combined with create_prorations will issue a wallet credit for unused time.
-    """
+    r"""EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit."""
 
     proration_behavior: Optional[ProrationBehavior] = None
 

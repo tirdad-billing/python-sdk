@@ -23,7 +23,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.checkout.create_checkout_session(action="modify_subscription", customer_external_id="<id>", payment_provider="razorpay")
+    res = tirdad.checkout.create_checkout_session(action="wallet_topup", customer_external_id="<id>", payment_provider="razorpay")
 
     # Handle response
     print(res)

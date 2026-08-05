@@ -8,6 +8,7 @@
 * [create_customer](#create_customer) - Create customer
 * [get_customer_by_external_id](#get_customer_by_external_id) - Get customer by external ID
 * [get_customer_entitlements_by_external_id](#get_customer_entitlements_by_external_id) - Get customer entitlements by external ID
+* [get_subscriptions_for_customer](#get_subscriptions_for_customer) - Get subscriptions for customer by external ID
 * [query_customer](#query_customer) - Query customers
 * [get_customer_usage_summary](#get_customer_usage_summary) - Get customer usage summary
 * [get_customer](#get_customer) - Get customer
@@ -199,6 +200,48 @@ with Tirdad(
 ### Response
 
 **[models.CustomerEntitlementsResponse](../../models/customerentitlementsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## get_subscriptions_for_customer
+
+Returns all subscriptions for a customer looked up by external_id, with line-item meters and entitlements attached (no pagination).
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getSubscriptionsForCustomer" method="get" path="/customers/external/{external_id}/subscriptions" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.customers.get_subscriptions_for_customer(external_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `external_id`                                                                                                           | *str*                                                                                                                   | :heavy_check_mark:                                                                                                      | Customer External ID                                                                                                    |
+| `expand`                                                                                                                | *Optional[str]*                                                                                                         | :heavy_minus_sign:                                                                                                      | Comma-separated fields to expand: subscription_line_items, subscription_line_items.meters, entitlements, plan, customer |
+| `retries`                                                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                        | :heavy_minus_sign:                                                                                                      | Configuration to override the default retry behavior of the client.                                                     |
+
+### Response
+
+**[models.ListSubscriptionsResponse](../../models/listsubscriptionsresponse.md)**
 
 ### Errors
 

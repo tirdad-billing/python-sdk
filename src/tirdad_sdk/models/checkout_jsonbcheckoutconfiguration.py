@@ -9,6 +9,7 @@ from .modifysubscriptionparams import (
     ModifySubscriptionParams,
     ModifySubscriptionParamsTypedDict,
 )
+from .wallettopupparams import WalletTopupParams, WalletTopupParamsTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
@@ -18,6 +19,7 @@ from typing_extensions import NotRequired, TypedDict
 class CheckoutJSONBCheckoutConfigurationTypedDict(TypedDict):
     create_subscription_params: NotRequired[CreateSubscriptionParamsTypedDict]
     modify_subscription_params: NotRequired[ModifySubscriptionParamsTypedDict]
+    wallet_topup_params: NotRequired[WalletTopupParamsTypedDict]
 
 
 class CheckoutJSONBCheckoutConfiguration(BaseModel):
@@ -25,10 +27,16 @@ class CheckoutJSONBCheckoutConfiguration(BaseModel):
 
     modify_subscription_params: Optional[ModifySubscriptionParams] = None
 
+    wallet_topup_params: Optional[WalletTopupParams] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["create_subscription_params", "modify_subscription_params"]
+            [
+                "create_subscription_params",
+                "modify_subscription_params",
+                "wallet_topup_params",
+            ]
         )
         serialized = handler(self)
         m = {}

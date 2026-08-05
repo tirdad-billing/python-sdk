@@ -57,61 +57,44 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     currency: str
     plan_id: str
     addons: NotRequired[List[AddAddonToSubscriptionRequestTypedDict]]
-    r"""Addons represents addons to be added to the subscription during creation"""
     auto_invoice_threshold: NotRequired[str]
-    r"""AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
-    an intermediate invoice mid-period. Set once at creation; cannot be changed later.
-    Allowed only when the subscription resolves to type standalone (no parent hierarchy rows).
-    Plan line items must be usage-based only (no fixed or other non-usage plan prices).
-    Nil means auto invoice threshold billing is disabled for this subscription.
+    r"""AutoInvoiceThreshold triggers a mid-period invoice when usage (in subscription currency) exceeds this amount.
+    Standalone subscriptions only; all plan prices must be usage-based. Immutable after creation.
     """
     billing_anchor: NotRequired[datetime]
-    r"""BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
-    For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
-    is before that day in the month, the first billing period ends on the next occurrence of that
-    day in the same month (a shorter first period); subsequent periods follow the usual interval.
+    r"""BillingAnchor overrides the derived anchor for anniversary billing. For monthly billing,
+    the day-of-month defines cycle boundaries (shorter first period if start is before that day).
     """
     billing_cycle: NotRequired[BillingCycle]
     billing_period_count: NotRequired[int]
     collection_method: NotRequired[CollectionMethod]
     commitment_amount: NotRequired[str]
-    r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
     commitment_duration: NotRequired[BillingPeriod]
     coupons: NotRequired[List[str]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     credit_grants: NotRequired[List[CreateCreditGrantRequestTypedDict]]
-    r"""Credit grants to be applied when subscription is created"""
     customer_id: NotRequired[str]
-    r"""customer_id is the flexprice customer id
-    and it is prioritized over external_customer_id in case both are provided.
-    """
+    r"""CustomerID takes priority over ExternalCustomerID when both are provided."""
     enable_true_up: NotRequired[bool]
-    r"""Enable Commitment True Up Fee"""
     end_date: NotRequired[datetime]
     external_customer_id: NotRequired[str]
-    r"""external_customer_id is the customer id in your DB
-    and must be same as what you provided as external_id while creating the customer in flexprice.
-    """
     gateway_payment_method_id: NotRequired[str]
     inheritance: NotRequired[SubscriptionInheritanceConfigTypedDict]
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
-    r"""LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)"""
+    r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
     line_item_coupons: NotRequired[Dict[str, List[str]]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     line_items: NotRequired[List[CreateSubscriptionLineItemRequestTypedDict]]
-    r"""LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices"""
+    r"""LineItems are extra (non-plan) line items added at creation."""
     lookup_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     overage_factor: NotRequired[str]
-    r"""OverageFactor is a multiplier applied to usage beyond the commitment amount"""
     override_entitlements: NotRequired[List[OverrideEntitlementRequestTypedDict]]
-    r"""OverrideEntitlements allows customizing specific entitlements for this subscription"""
     override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
-    r"""OverrideLineItems allows customizing specific prices for this subscription"""
+    r"""OverrideLineItems overrides specific plan prices for this subscription."""
     payment_behavior: NotRequired[PaymentBehavior]
     payment_terms: NotRequired[PaymentTerms]
     phases: NotRequired[List[SubscriptionPhaseCreateRequestTypedDict]]
-    r"""Phases represents subscription phases to be created with the subscription"""
     proration_behavior: NotRequired[ProrationBehavior]
     start_date: NotRequired[datetime]
     subscription_coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
@@ -120,15 +103,9 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     """
     subscription_status: NotRequired[SubscriptionStatus]
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
-    r"""tax_rate_overrides is the tax rate overrides	to be applied to the subscription"""
     timezone: NotRequired[str]
-    r"""Timezone of the customer.
-    If not set, the default value is UTC.
-    """
     trial_period_days: NotRequired[int]
-    r"""TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
-    0 = explicitly no trial (overrides catalog). >0 = override duration in days.
-    """
+    r"""TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days."""
 
 
 class CreateSubscriptionRequest(BaseModel):
@@ -139,21 +116,15 @@ class CreateSubscriptionRequest(BaseModel):
     plan_id: str
 
     addons: Optional[List[AddAddonToSubscriptionRequest]] = None
-    r"""Addons represents addons to be added to the subscription during creation"""
 
     auto_invoice_threshold: Optional[str] = None
-    r"""AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
-    an intermediate invoice mid-period. Set once at creation; cannot be changed later.
-    Allowed only when the subscription resolves to type standalone (no parent hierarchy rows).
-    Plan line items must be usage-based only (no fixed or other non-usage plan prices).
-    Nil means auto invoice threshold billing is disabled for this subscription.
+    r"""AutoInvoiceThreshold triggers a mid-period invoice when usage (in subscription currency) exceeds this amount.
+    Standalone subscriptions only; all plan prices must be usage-based. Immutable after creation.
     """
 
     billing_anchor: Optional[datetime] = None
-    r"""BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
-    For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
-    is before that day in the month, the first billing period ends on the next occurrence of that
-    day in the same month (a shorter first period); subsequent periods follow the usual interval.
+    r"""BillingAnchor overrides the derived anchor for anniversary billing. For monthly billing,
+    the day-of-month defines cycle boundaries (shorter first period if start is before that day).
     """
 
     billing_cycle: Optional[BillingCycle] = None
@@ -163,7 +134,6 @@ class CreateSubscriptionRequest(BaseModel):
     collection_method: Optional[CollectionMethod] = None
 
     commitment_amount: Optional[str] = None
-    r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
 
     commitment_duration: Optional[BillingPeriod] = None
 
@@ -171,55 +141,45 @@ class CreateSubscriptionRequest(BaseModel):
     r"""Deprecated: use SubscriptionCoupons instead."""
 
     credit_grants: Optional[List[CreateCreditGrantRequest]] = None
-    r"""Credit grants to be applied when subscription is created"""
 
     customer_id: Optional[str] = None
-    r"""customer_id is the flexprice customer id
-    and it is prioritized over external_customer_id in case both are provided.
-    """
+    r"""CustomerID takes priority over ExternalCustomerID when both are provided."""
 
     enable_true_up: Optional[bool] = None
-    r"""Enable Commitment True Up Fee"""
 
     end_date: Optional[datetime] = None
 
     external_customer_id: Optional[str] = None
-    r"""external_customer_id is the customer id in your DB
-    and must be same as what you provided as external_id while creating the customer in flexprice.
-    """
 
     gateway_payment_method_id: Optional[str] = None
 
     inheritance: Optional[SubscriptionInheritanceConfig] = None
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
-    r"""LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)"""
+    r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
 
     line_item_coupons: Optional[Dict[str, List[str]]] = None
     r"""Deprecated: use SubscriptionCoupons instead."""
 
     line_items: Optional[List[CreateSubscriptionLineItemRequest]] = None
-    r"""LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices"""
+    r"""LineItems are extra (non-plan) line items added at creation."""
 
     lookup_key: Optional[str] = None
 
     metadata: Optional[Dict[str, str]] = None
 
     overage_factor: Optional[str] = None
-    r"""OverageFactor is a multiplier applied to usage beyond the commitment amount"""
 
     override_entitlements: Optional[List[OverrideEntitlementRequest]] = None
-    r"""OverrideEntitlements allows customizing specific entitlements for this subscription"""
 
     override_line_items: Optional[List[OverrideLineItemRequest]] = None
-    r"""OverrideLineItems allows customizing specific prices for this subscription"""
+    r"""OverrideLineItems overrides specific plan prices for this subscription."""
 
     payment_behavior: Optional[PaymentBehavior] = None
 
     payment_terms: Optional[PaymentTerms] = None
 
     phases: Optional[List[SubscriptionPhaseCreateRequest]] = None
-    r"""Phases represents subscription phases to be created with the subscription"""
 
     proration_behavior: Optional[ProrationBehavior] = None
 
@@ -233,17 +193,11 @@ class CreateSubscriptionRequest(BaseModel):
     subscription_status: Optional[SubscriptionStatus] = None
 
     tax_rate_overrides: Optional[List[TaxRateOverride]] = None
-    r"""tax_rate_overrides is the tax rate overrides	to be applied to the subscription"""
 
     timezone: Optional[str] = None
-    r"""Timezone of the customer.
-    If not set, the default value is UTC.
-    """
 
     trial_period_days: Optional[int] = None
-    r"""TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
-    0 = explicitly no trial (overrides catalog). >0 = override duration in days.
-    """
+    r"""TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days."""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

@@ -3,10 +3,10 @@
 import importlib.metadata
 
 __title__: str = "tirdad-sdk"
-__version__: str = "2.1.22"
+__version__: str = "2.1.23"
 __openapi_doc_version__: str = "1.0"
-__gen_version__: str = "2.924.0"
-__user_agent__: str = "speakeasy-sdk/python 2.1.22 2.924.0 1.0 tirdad-sdk"
+__gen_version__: str = "2.926.8"
+__user_agent__: str = "speakeasy-sdk/python 2.1.23 2.926.8 1.0 tirdad-sdk"
 
 try:
     if __package__ is not None:

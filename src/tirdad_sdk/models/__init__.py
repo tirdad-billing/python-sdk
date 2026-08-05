@@ -670,6 +670,10 @@ if TYPE_CHECKING:
         GetSubscriptionScheduleRequest,
         GetSubscriptionScheduleRequestTypedDict,
     )
+    from .getsubscriptionsforcustomerop import (
+        GetSubscriptionsForCustomerRequest,
+        GetSubscriptionsForCustomerRequestTypedDict,
+    )
     from .getsubscriptionupcominggrantsop import (
         GetSubscriptionUpcomingGrantsRequest,
         GetSubscriptionUpcomingGrantsRequestTypedDict,
@@ -1422,6 +1426,7 @@ if TYPE_CHECKING:
     from .walletfilter import WalletFilter, WalletFilterOrder, WalletFilterTypedDict
     from .walletresponse import WalletResponse, WalletResponseTypedDict
     from .walletstatus import WalletStatus
+    from .wallettopupparams import WalletTopupParams, WalletTopupParamsTypedDict
     from .wallettransactionfilter import (
         WalletTransactionFilter,
         WalletTransactionFilterOrder,
@@ -2035,6 +2040,8 @@ __all__ = [
     "GetSubscriptionUpcomingGrantsRequestTypedDict",
     "GetSubscriptionV2Request",
     "GetSubscriptionV2RequestTypedDict",
+    "GetSubscriptionsForCustomerRequest",
+    "GetSubscriptionsForCustomerRequestTypedDict",
     "GetTaskRequest",
     "GetTaskRequestTypedDict",
     "GetTaskResultRequest",
@@ -2595,6 +2602,8 @@ __all__ = [
     "WalletResponse",
     "WalletResponseTypedDict",
     "WalletStatus",
+    "WalletTopupParams",
+    "WalletTopupParamsTypedDict",
     "WalletTransactionFilter",
     "WalletTransactionFilterOrder",
     "WalletTransactionFilterTypedDict",
@@ -3145,6 +3154,8 @@ _dynamic_imports: dict[str, str] = {
     "GetSubscriptionRequestTypedDict": ".getsubscriptionop",
     "GetSubscriptionScheduleRequest": ".getsubscriptionscheduleop",
     "GetSubscriptionScheduleRequestTypedDict": ".getsubscriptionscheduleop",
+    "GetSubscriptionsForCustomerRequest": ".getsubscriptionsforcustomerop",
+    "GetSubscriptionsForCustomerRequestTypedDict": ".getsubscriptionsforcustomerop",
     "GetSubscriptionUpcomingGrantsRequest": ".getsubscriptionupcominggrantsop",
     "GetSubscriptionUpcomingGrantsRequestTypedDict": ".getsubscriptionupcominggrantsop",
     "GetSubscriptionV2Request": ".getsubscriptionv2op",
@@ -3705,6 +3716,8 @@ _dynamic_imports: dict[str, str] = {
     "WalletResponse": ".walletresponse",
     "WalletResponseTypedDict": ".walletresponse",
     "WalletStatus": ".walletstatus",
+    "WalletTopupParams": ".wallettopupparams",
+    "WalletTopupParamsTypedDict": ".wallettopupparams",
     "WalletTransactionFilter": ".wallettransactionfilter",
     "WalletTransactionFilterOrder": ".wallettransactionfilter",
     "WalletTransactionFilterTypedDict": ".wallettransactionfilter",

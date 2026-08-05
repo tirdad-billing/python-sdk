@@ -6,11 +6,15 @@ from .lineitemcommitmentconfig import (
     LineItemCommitmentConfig,
     LineItemCommitmentConfigTypedDict,
 )
+from .overridelineitemrequest import (
+    OverrideLineItemRequest,
+    OverrideLineItemRequestTypedDict,
+)
 from .prorationbehavior import ProrationBehavior
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -21,6 +25,8 @@ class AddAddonRequestTypedDict(TypedDict):
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
     r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
     metadata: NotRequired[Dict[str, Any]]
+    override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
+    r"""OverrideLineItems allows overriding price/quantity/billing model for specific addon prices"""
     proration_behavior: NotRequired[ProrationBehavior]
     start_date: NotRequired[datetime]
 
@@ -37,6 +43,9 @@ class AddAddonRequest(BaseModel):
 
     metadata: Optional[Dict[str, Any]] = None
 
+    override_line_items: Optional[List[OverrideLineItemRequest]] = None
+    r"""OverrideLineItems allows overriding price/quantity/billing model for specific addon prices"""
+
     proration_behavior: Optional[ProrationBehavior] = None
 
     start_date: Optional[datetime] = None
@@ -48,6 +57,7 @@ class AddAddonRequest(BaseModel):
                 "cadence",
                 "line_item_commitments",
                 "metadata",
+                "override_line_items",
                 "proration_behavior",
                 "start_date",
             ]

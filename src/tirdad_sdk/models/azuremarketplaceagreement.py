@@ -9,11 +9,11 @@ class AzureMarketplaceAgreementTypedDict(TypedDict):
     beneficiary_account_id: str
     r"""writes the customer mapping; not read in the report payload"""
     dimension: str
-    r"""-> batchUsageEvent's dimension (always \"usage_fee\" in the cents model)"""
+    r"""-> usageEvent's dimension (always \"usage_fee\" in the cents model)"""
     plan_id: str
-    r"""-> batchUsageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID"""
+    r"""-> usageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID"""
     resource_id: str
-    r"""-> batchUsageEvent's resourceId; the Azure SaaS subscription id"""
+    r"""-> usageEvent's resourceId; the Azure SaaS subscription id"""
 
 
 class AzureMarketplaceAgreement(BaseModel):
@@ -21,10 +21,10 @@ class AzureMarketplaceAgreement(BaseModel):
     r"""writes the customer mapping; not read in the report payload"""
 
     dimension: str
-    r"""-> batchUsageEvent's dimension (always \"usage_fee\" in the cents model)"""
+    r"""-> usageEvent's dimension (always \"usage_fee\" in the cents model)"""
 
     plan_id: str
-    r"""-> batchUsageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID"""
+    r"""-> usageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID"""
 
     resource_id: str
-    r"""-> batchUsageEvent's resourceId; the Azure SaaS subscription id"""
+    r"""-> usageEvent's resourceId; the Azure SaaS subscription id"""
