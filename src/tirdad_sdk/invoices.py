@@ -1515,6 +1515,7 @@ class Invoices(BaseSDK):
         self,
         *,
         id: str,
+        apply_discount: Optional[bool] = None,
         due_date: Optional[datetime] = None,
         invoice_pdf_url: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -1525,9 +1526,10 @@ class Invoices(BaseSDK):
     ) -> models.InvoiceResponse:
         r"""Update invoice
 
-        Use when updating invoice metadata or due date (e.g. PDF URL, net terms). For paid invoices only safe fields can be updated.
+        Use when updating invoice metadata or due date (e.g. PDF URL, net terms), or when recalculating this draft invoice's discount from its current standing coupon associations via apply_discount:true (idempotent, does not attach a new coupon). Allowed for invoices in draft or finalized status.
 
         :param id: Invoice ID
+        :param apply_discount: When true, recalculates discount from existing coupon associations (draft invoices only).
         :param due_date:
         :param invoice_pdf_url: invoice_pdf_url is the URL where customers can download the PDF version of this invoice
         :param metadata:
@@ -1549,6 +1551,7 @@ class Invoices(BaseSDK):
         request = models.UpdateInvoiceRequestRequest(
             id=id,
             body=models.UpdateInvoiceRequest(
+                apply_discount=apply_discount,
                 due_date=due_date,
                 invoice_pdf_url=invoice_pdf_url,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
@@ -1628,6 +1631,7 @@ class Invoices(BaseSDK):
         self,
         *,
         id: str,
+        apply_discount: Optional[bool] = None,
         due_date: Optional[datetime] = None,
         invoice_pdf_url: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -1638,9 +1642,10 @@ class Invoices(BaseSDK):
     ) -> models.InvoiceResponse:
         r"""Update invoice
 
-        Use when updating invoice metadata or due date (e.g. PDF URL, net terms). For paid invoices only safe fields can be updated.
+        Use when updating invoice metadata or due date (e.g. PDF URL, net terms), or when recalculating this draft invoice's discount from its current standing coupon associations via apply_discount:true (idempotent, does not attach a new coupon). Allowed for invoices in draft or finalized status.
 
         :param id: Invoice ID
+        :param apply_discount: When true, recalculates discount from existing coupon associations (draft invoices only).
         :param due_date:
         :param invoice_pdf_url: invoice_pdf_url is the URL where customers can download the PDF version of this invoice
         :param metadata:
@@ -1662,6 +1667,7 @@ class Invoices(BaseSDK):
         request = models.UpdateInvoiceRequestRequest(
             id=id,
             body=models.UpdateInvoiceRequest(
+                apply_discount=apply_discount,
                 due_date=due_date,
                 invoice_pdf_url=invoice_pdf_url,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),

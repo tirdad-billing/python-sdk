@@ -12,6 +12,7 @@ class InvoiceLineItemCouponTypedDict(TypedDict):
     line_item_id: str
     r"""price_id used to match the line item"""
     coupon_association_id: NotRequired[str]
+    subscription_line_item_id: NotRequired[str]
 
 
 class InvoiceLineItemCoupon(BaseModel):
@@ -22,9 +23,11 @@ class InvoiceLineItemCoupon(BaseModel):
 
     coupon_association_id: Optional[str] = None
 
+    subscription_line_item_id: Optional[str] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["coupon_association_id"])
+        optional_fields = set(["coupon_association_id", "subscription_line_item_id"])
         serialized = handler(self)
         m = {}
 

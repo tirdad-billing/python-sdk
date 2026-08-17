@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .paymentdestinationtype import PaymentDestinationType
+from .paymentgatewayoptions import PaymentGatewayOptions, PaymentGatewayOptionsTypedDict
 from .paymentgatewaytype import PaymentGatewayType
 from .paymentmethodtype import PaymentMethodType
 from pydantic import model_serializer
@@ -17,6 +18,7 @@ class CreatePaymentRequestTypedDict(TypedDict):
     destination_type: PaymentDestinationType
     payment_method_type: PaymentMethodType
     cancel_url: NotRequired[str]
+    gateway_options: NotRequired[PaymentGatewayOptionsTypedDict]
     idempotency_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     payment_gateway: NotRequired[PaymentGatewayType]
@@ -39,6 +41,8 @@ class CreatePaymentRequest(BaseModel):
 
     cancel_url: Optional[str] = None
 
+    gateway_options: Optional[PaymentGatewayOptions] = None
+
     idempotency_key: Optional[str] = None
 
     metadata: Optional[Dict[str, str]] = None
@@ -58,6 +62,7 @@ class CreatePaymentRequest(BaseModel):
         optional_fields = set(
             [
                 "cancel_url",
+                "gateway_options",
                 "idempotency_key",
                 "metadata",
                 "payment_gateway",

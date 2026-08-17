@@ -45,6 +45,7 @@
 * [post_webhook_events_subscription_phase_created](#post_webhook_events_subscription_phase_created) - subscription.phase.created
 * [post_webhook_events_subscription_phase_deleted](#post_webhook_events_subscription_phase_deleted) - subscription.phase.deleted
 * [post_webhook_events_subscription_phase_updated](#post_webhook_events_subscription_phase_updated) - subscription.phase.updated
+* [post_webhook_events_subscription_plan_changed](#post_webhook_events_subscription_plan_changed) - subscription.plan_changed
 * [post_webhook_events_subscription_renewal_due](#post_webhook_events_subscription_renewal_due) - subscription.renewal.due
 * [post_webhook_events_subscription_resumed](#post_webhook_events_subscription_resumed) - subscription.resumed
 * [post_webhook_events_subscription_spend_threshold_reached](#post_webhook_events_subscription_spend_threshold_reached) - subscription.spend.threshold_reached
@@ -1612,6 +1613,44 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoSubscriptionPhaseWebhookPayload](../../models/webhookdtosubscriptionphasewebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_subscription_plan_changed
+
+Fired when a subscription plan changes in place (id/anchor preserved; not cancelled+created). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/subscription.plan_changed" method="post" path="/webhook-events/subscription.plan_changed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_subscription_plan_changed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoSubscriptionWebhookPayload](../../models/webhookdtosubscriptionwebhookpayload.md)**
 
 ### Errors
 

@@ -16,7 +16,7 @@ class S3JobConfigTypedDict(TypedDict):
     compression: NotRequired[S3CompressionType]
     encryption: NotRequired[S3EncryptionType]
     endpoint_url: NotRequired[str]
-    r"""Custom S3 endpoint URL (e.g., \"http://minio:9000\" for MinIO)"""
+    r"""Custom S3-compatible endpoint URL; must be https on a publicly routable host"""
     export_metadata_fields: NotRequired[List[ExportMetadataFieldTypedDict]]
     r"""Optional user-selected metadata columns"""
     key_prefix: NotRequired[str]
@@ -36,7 +36,7 @@ class S3JobConfig(BaseModel):
     encryption: Optional[S3EncryptionType] = None
 
     endpoint_url: Optional[str] = None
-    r"""Custom S3 endpoint URL (e.g., \"http://minio:9000\" for MinIO)"""
+    r"""Custom S3-compatible endpoint URL; must be https on a publicly routable host"""
 
     export_metadata_fields: Optional[List[ExportMetadataField]] = None
     r"""Optional user-selected metadata columns"""

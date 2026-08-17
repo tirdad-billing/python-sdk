@@ -1,0 +1,10 @@
+# SubModifyAddonParams
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `action`                                                                                     | [models.SubscriptionModificationAction](../models/subscriptionmodificationaction.md)         | :heavy_check_mark:                                                                           | N/A                                                                                          |
+| `add`                                                                                        | [Optional[models.AddAddonToSubscriptionRequest]](../models/addaddontosubscriptionrequest.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |
+| `remove`                                                                                     | [Optional[models.RemoveAddonRequest]](../models/removeaddonrequest.md)                       | :heavy_minus_sign:                                                                           | N/A                                                                                          |

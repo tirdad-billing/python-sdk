@@ -21,6 +21,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"subscription.paused"`
 - `"subscription.cancelled"`
 - `"subscription.resumed"`
+- `"subscription.plan_changed"`
 - `"subscription.phase.created"`
 - `"subscription.phase.updated"`
 - `"subscription.phase.deleted"`

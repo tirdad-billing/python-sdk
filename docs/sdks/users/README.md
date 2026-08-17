@@ -10,6 +10,7 @@
 * [query_user](#query_user) - Query users
 * [update_service_account](#update_service_account) - Update service account
 * [delete_service_account](#delete_service_account) - Delete service account
+* [update_user_roles](#update_user_roles) - Update user roles
 
 ## create_user
 
@@ -264,5 +265,47 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## update_user_roles
+
+Update the roles of a user account (not service accounts — their roles are fixed at creation). Restricted to super_admin; a caller cannot update their own roles. Blocked with a 400 if the user has any active (published, unexpired) API key in any environment, since a key's permissions are snapshotted at creation time and would otherwise silently keep running on the old roles; the error lists the active keys grouped by environment ID so the caller can prompt to expire them first, then retry.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="updateUserRoles" method="put" path="/users/{id}/roles" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.users.update_user_roles(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | User ID                                                             |
+| `roles`                                                             | List[*str*]                                                         | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.UpdateUserRolesResponse](../../models/updateuserrolesresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 403, 404                    | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |

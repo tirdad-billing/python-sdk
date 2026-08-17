@@ -286,7 +286,7 @@ with Tirdad(
 
 ## update_invoice
 
-Use when updating invoice metadata or due date (e.g. PDF URL, net terms). For paid invoices only safe fields can be updated.
+Use when updating invoice metadata or due date (e.g. PDF URL, net terms), or when recalculating this draft invoice's discount from its current standing coupon associations via apply_discount:true (idempotent, does not attach a new coupon). Allowed for invoices in draft or finalized status.
 
 ### Example Usage
 
@@ -308,13 +308,14 @@ with Tirdad(
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `id`                                                                                    | *str*                                                                                   | :heavy_check_mark:                                                                      | Invoice ID                                                                              |
-| `due_date`                                                                              | [date](https://docs.python.org/3/library/datetime.html#date-objects)                    | :heavy_minus_sign:                                                                      | N/A                                                                                     |
-| `invoice_pdf_url`                                                                       | *Optional[str]*                                                                         | :heavy_minus_sign:                                                                      | invoice_pdf_url is the URL where customers can download the PDF version of this invoice |
-| `metadata`                                                                              | Dict[str, *str*]                                                                        | :heavy_minus_sign:                                                                      | N/A                                                                                     |
-| `retries`                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                        | :heavy_minus_sign:                                                                      | Configuration to override the default retry behavior of the client.                     |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `id`                                                                                      | *str*                                                                                     | :heavy_check_mark:                                                                        | Invoice ID                                                                                |
+| `apply_discount`                                                                          | *Optional[bool]*                                                                          | :heavy_minus_sign:                                                                        | When true, recalculates discount from existing coupon associations (draft invoices only). |
+| `due_date`                                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)                      | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `invoice_pdf_url`                                                                         | *Optional[str]*                                                                           | :heavy_minus_sign:                                                                        | invoice_pdf_url is the URL where customers can download the PDF version of this invoice   |
+| `metadata`                                                                                | Dict[str, *str*]                                                                          | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `retries`                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                          | :heavy_minus_sign:                                                                        | Configuration to override the default retry behavior of the client.                       |
 
 ### Response
 

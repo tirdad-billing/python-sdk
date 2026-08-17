@@ -17,3 +17,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"create_subscription"`
 - `"modify_subscription"`
 - `"wallet_topup"`
+- `"add_addon"`

@@ -7,6 +7,7 @@ from tirdad_sdk._hooks import HookContext
 from tirdad_sdk.types import OptionalNullable, UNSET
 from tirdad_sdk.utils.unmarshal_json_response import unmarshal_json_response
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Union
+from typing_extensions import deprecated
 
 
 class Subscriptions(BaseSDK):
@@ -26,6 +27,9 @@ class Subscriptions(BaseSDK):
         billing_anchor: Optional[datetime] = None,
         billing_cycle: Optional[models.BillingCycle] = None,
         billing_period_count: Optional[int] = None,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         collection_method: Optional[models.CollectionMethod] = None,
         commitment_amount: Optional[str] = None,
         commitment_duration: Optional[models.BillingPeriod] = None,
@@ -119,6 +123,7 @@ class Subscriptions(BaseSDK):
             the day-of-month defines cycle boundaries (shorter first period if start is before that day).
         :param billing_cycle:
         :param billing_period_count:
+        :param checkout:
         :param collection_method:
         :param commitment_amount:
         :param commitment_duration:
@@ -173,6 +178,9 @@ class Subscriptions(BaseSDK):
             billing_cycle=billing_cycle,
             billing_period=billing_period,
             billing_period_count=billing_period_count,
+            checkout=utils.get_pydantic_model(
+                checkout, Optional[models.CheckoutParams]
+            ),
             collection_method=collection_method,
             commitment_amount=commitment_amount,
             commitment_duration=commitment_duration,
@@ -312,6 +320,9 @@ class Subscriptions(BaseSDK):
         billing_anchor: Optional[datetime] = None,
         billing_cycle: Optional[models.BillingCycle] = None,
         billing_period_count: Optional[int] = None,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         collection_method: Optional[models.CollectionMethod] = None,
         commitment_amount: Optional[str] = None,
         commitment_duration: Optional[models.BillingPeriod] = None,
@@ -405,6 +416,7 @@ class Subscriptions(BaseSDK):
             the day-of-month defines cycle boundaries (shorter first period if start is before that day).
         :param billing_cycle:
         :param billing_period_count:
+        :param checkout:
         :param collection_method:
         :param commitment_amount:
         :param commitment_duration:
@@ -459,6 +471,9 @@ class Subscriptions(BaseSDK):
             billing_cycle=billing_cycle,
             billing_period=billing_period,
             billing_period_count=billing_period_count,
+            checkout=utils.get_pydantic_model(
+                checkout, Optional[models.CheckoutParams]
+            ),
             collection_method=collection_method,
             commitment_amount=commitment_amount,
             commitment_duration=commitment_duration,
@@ -582,12 +597,18 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     def add_subscription_addon(
         self,
         *,
         addon_id: str,
         subscription_id: str,
         cadence: Optional[models.AddonCadence] = None,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         line_item_commitments: Optional[
             Union[
                 Mapping[str, models.LineItemCommitmentConfig],
@@ -607,14 +628,16 @@ class Subscriptions(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.AddonAssociationResponse:
+    ) -> models.AddAddonToSubscriptionResponse:
         r"""Add addon to subscription
 
+        Deprecated: use POST /subscriptions/{id}/modify/execute with type \"addon\" and action \"add\", which also supports previewing the proration charge first.
         Use when adding an optional product or add-on to an existing subscription (e.g. extra storage or support tier).
 
         :param addon_id:
         :param subscription_id:
         :param cadence:
+        :param checkout:
         :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
         :param metadata:
         :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
@@ -638,6 +661,9 @@ class Subscriptions(BaseSDK):
         request = models.AddAddonRequest(
             addon_id=addon_id,
             cadence=cadence,
+            checkout=utils.get_pydantic_model(
+                checkout, Optional[models.CheckoutParams]
+            ),
             line_item_commitments=utils.get_pydantic_model(
                 line_item_commitments,
                 Optional[Dict[str, models.LineItemCommitmentConfig]],
@@ -696,7 +722,9 @@ class Subscriptions(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.AddonAssociationResponse, http_res)
+            return unmarshal_json_response(
+                models.AddAddonToSubscriptionResponse, http_res
+            )
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
@@ -720,12 +748,18 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     async def add_subscription_addon_async(
         self,
         *,
         addon_id: str,
         subscription_id: str,
         cadence: Optional[models.AddonCadence] = None,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         line_item_commitments: Optional[
             Union[
                 Mapping[str, models.LineItemCommitmentConfig],
@@ -745,14 +779,16 @@ class Subscriptions(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.AddonAssociationResponse:
+    ) -> models.AddAddonToSubscriptionResponse:
         r"""Add addon to subscription
 
+        Deprecated: use POST /subscriptions/{id}/modify/execute with type \"addon\" and action \"add\", which also supports previewing the proration charge first.
         Use when adding an optional product or add-on to an existing subscription (e.g. extra storage or support tier).
 
         :param addon_id:
         :param subscription_id:
         :param cadence:
+        :param checkout:
         :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
         :param metadata:
         :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
@@ -776,6 +812,9 @@ class Subscriptions(BaseSDK):
         request = models.AddAddonRequest(
             addon_id=addon_id,
             cadence=cadence,
+            checkout=utils.get_pydantic_model(
+                checkout, Optional[models.CheckoutParams]
+            ),
             line_item_commitments=utils.get_pydantic_model(
                 line_item_commitments,
                 Optional[Dict[str, models.LineItemCommitmentConfig]],
@@ -834,7 +873,9 @@ class Subscriptions(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.AddonAssociationResponse, http_res)
+            return unmarshal_json_response(
+                models.AddAddonToSubscriptionResponse, http_res
+            )
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
@@ -858,6 +899,9 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     def remove_subscription_addon(
         self,
         *,
@@ -872,6 +916,7 @@ class Subscriptions(BaseSDK):
     ) -> models.SuccessResponse:
         r"""Remove addon from subscription
 
+        Deprecated: use POST /subscriptions/{id}/modify/execute with type \"addon\" and action \"remove\", which also supports previewing the proration credit first.
         Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
 
         :param addon_association_id:
@@ -969,6 +1014,9 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    @deprecated(
+        "warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+    )
     async def remove_subscription_addon_async(
         self,
         *,
@@ -983,6 +1031,7 @@ class Subscriptions(BaseSDK):
     ) -> models.SuccessResponse:
         r"""Remove addon from subscription
 
+        Deprecated: use POST /subscriptions/{id}/modify/execute with type \"addon\" and action \"remove\", which also supports previewing the proration credit first.
         Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
 
         :param addon_association_id:
@@ -4286,6 +4335,530 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def execute_subscription_plan_change_v2(
+        self,
+        *,
+        id: str,
+        proration_behavior: models.ProrationBehavior,
+        target_plan_id: str,
+        entity_policies: Optional[
+            Union[
+                models.SubscriptionChangeEntityPolicies,
+                models.SubscriptionChangeEntityPoliciesTypedDict,
+            ]
+        ] = None,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Mapping[str, str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SubscriptionChangeV2Response:
+        r"""Execute a plan change (v2, swap in place)
+
+        Change a subscription's plan in place. Subscription id, billing anchor and period bounds are preserved; line items are sliced and settled in one transaction.
+
+        :param id: Subscription ID
+        :param proration_behavior:
+        :param target_plan_id:
+        :param entity_policies:
+        :param idempotency_key:
+        :param metadata:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ExecuteSubscriptionPlanChangeV2Request(
+            id=id,
+            body=models.SubscriptionChangeV2Request(
+                entity_policies=utils.get_pydantic_model(
+                    entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
+                ),
+                idempotency_key=idempotency_key,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                proration_behavior=proration_behavior,
+                target_plan_id=target_plan_id,
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/subscriptions/{id}/change/v2/execute",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.SubscriptionChangeV2Request
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="executeSubscriptionPlanChangeV2",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "write",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.SubscriptionChangeV2Response, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def execute_subscription_plan_change_v2_async(
+        self,
+        *,
+        id: str,
+        proration_behavior: models.ProrationBehavior,
+        target_plan_id: str,
+        entity_policies: Optional[
+            Union[
+                models.SubscriptionChangeEntityPolicies,
+                models.SubscriptionChangeEntityPoliciesTypedDict,
+            ]
+        ] = None,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Mapping[str, str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SubscriptionChangeV2Response:
+        r"""Execute a plan change (v2, swap in place)
+
+        Change a subscription's plan in place. Subscription id, billing anchor and period bounds are preserved; line items are sliced and settled in one transaction.
+
+        :param id: Subscription ID
+        :param proration_behavior:
+        :param target_plan_id:
+        :param entity_policies:
+        :param idempotency_key:
+        :param metadata:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ExecuteSubscriptionPlanChangeV2Request(
+            id=id,
+            body=models.SubscriptionChangeV2Request(
+                entity_policies=utils.get_pydantic_model(
+                    entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
+                ),
+                idempotency_key=idempotency_key,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                proration_behavior=proration_behavior,
+                target_plan_id=target_plan_id,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/subscriptions/{id}/change/v2/execute",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.SubscriptionChangeV2Request
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="executeSubscriptionPlanChangeV2",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "write",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.SubscriptionChangeV2Response, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def preview_subscription_plan_change_v2(
+        self,
+        *,
+        id: str,
+        proration_behavior: models.ProrationBehavior,
+        target_plan_id: str,
+        entity_policies: Optional[
+            Union[
+                models.SubscriptionChangeEntityPolicies,
+                models.SubscriptionChangeEntityPoliciesTypedDict,
+            ]
+        ] = None,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Mapping[str, str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SubscriptionChangeV2Response:
+        r"""Preview a plan change (v2, swap in place)
+
+        Preview a subscription plan change without writing. Swap-in-place: subscription id, billing anchor and period bounds are preserved.
+
+        :param id: Subscription ID
+        :param proration_behavior:
+        :param target_plan_id:
+        :param entity_policies:
+        :param idempotency_key:
+        :param metadata:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.PreviewSubscriptionPlanChangeV2Request(
+            id=id,
+            body=models.SubscriptionChangeV2Request(
+                entity_policies=utils.get_pydantic_model(
+                    entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
+                ),
+                idempotency_key=idempotency_key,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                proration_behavior=proration_behavior,
+                target_plan_id=target_plan_id,
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/subscriptions/{id}/change/v2/preview",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.SubscriptionChangeV2Request
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="previewSubscriptionPlanChangeV2",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "read",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.SubscriptionChangeV2Response, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def preview_subscription_plan_change_v2_async(
+        self,
+        *,
+        id: str,
+        proration_behavior: models.ProrationBehavior,
+        target_plan_id: str,
+        entity_policies: Optional[
+            Union[
+                models.SubscriptionChangeEntityPolicies,
+                models.SubscriptionChangeEntityPoliciesTypedDict,
+            ]
+        ] = None,
+        idempotency_key: Optional[str] = None,
+        metadata: Optional[Mapping[str, str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SubscriptionChangeV2Response:
+        r"""Preview a plan change (v2, swap in place)
+
+        Preview a subscription plan change without writing. Swap-in-place: subscription id, billing anchor and period bounds are preserved.
+
+        :param id: Subscription ID
+        :param proration_behavior:
+        :param target_plan_id:
+        :param entity_policies:
+        :param idempotency_key:
+        :param metadata:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.PreviewSubscriptionPlanChangeV2Request(
+            id=id,
+            body=models.SubscriptionChangeV2Request(
+                entity_policies=utils.get_pydantic_model(
+                    entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
+                ),
+                idempotency_key=idempotency_key,
+                metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                proration_behavior=proration_behavior,
+                target_plan_id=target_plan_id,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/subscriptions/{id}/change/v2/preview",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.SubscriptionChangeV2Request
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="previewSubscriptionPlanChangeV2",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "read",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.SubscriptionChangeV2Response, http_res
+            )
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def get_subscription_entitlements(
         self,
         *,
@@ -5053,6 +5626,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        addon_params: Optional[
+            Union[models.SubModifyAddonParams, models.SubModifyAddonParamsTypedDict]
+        ] = None,
         checkout: Optional[
             Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
         ] = None,
@@ -5093,10 +5669,11 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Execute subscription modification
 
-        Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax).
+        Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove).
 
         :param id: Subscription ID
         :param type:
+        :param addon_params:
         :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
@@ -5122,6 +5699,9 @@ class Subscriptions(BaseSDK):
         request = models.ExecuteSubscriptionModifyRequestRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                addon_params=utils.get_pydantic_model(
+                    addon_params, Optional[models.SubModifyAddonParams]
+                ),
                 checkout=utils.get_pydantic_model(
                     checkout, Optional[models.CheckoutParams]
                 ),
@@ -5230,6 +5810,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        addon_params: Optional[
+            Union[models.SubModifyAddonParams, models.SubModifyAddonParamsTypedDict]
+        ] = None,
         checkout: Optional[
             Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
         ] = None,
@@ -5270,10 +5853,11 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Execute subscription modification
 
-        Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax).
+        Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove).
 
         :param id: Subscription ID
         :param type:
+        :param addon_params:
         :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
@@ -5299,6 +5883,9 @@ class Subscriptions(BaseSDK):
         request = models.ExecuteSubscriptionModifyRequestRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                addon_params=utils.get_pydantic_model(
+                    addon_params, Optional[models.SubModifyAddonParams]
+                ),
                 checkout=utils.get_pydantic_model(
                     checkout, Optional[models.CheckoutParams]
                 ),
@@ -5407,6 +5994,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        addon_params: Optional[
+            Union[models.SubModifyAddonParams, models.SubModifyAddonParamsTypedDict]
+        ] = None,
         checkout: Optional[
             Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
         ] = None,
@@ -5447,10 +6037,11 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Preview subscription modification
 
-        Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax) without committing changes.
+        Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove) without committing changes.
 
         :param id: Subscription ID
         :param type:
+        :param addon_params:
         :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
@@ -5476,6 +6067,9 @@ class Subscriptions(BaseSDK):
         request = models.PreviewSubscriptionModifyRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                addon_params=utils.get_pydantic_model(
+                    addon_params, Optional[models.SubModifyAddonParams]
+                ),
                 checkout=utils.get_pydantic_model(
                     checkout, Optional[models.CheckoutParams]
                 ),
@@ -5584,6 +6178,9 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         type_: models.SubscriptionModifyType,
+        addon_params: Optional[
+            Union[models.SubModifyAddonParams, models.SubModifyAddonParamsTypedDict]
+        ] = None,
         checkout: Optional[
             Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
         ] = None,
@@ -5624,10 +6221,11 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Preview subscription modification
 
-        Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax) without committing changes.
+        Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove) without committing changes.
 
         :param id: Subscription ID
         :param type:
+        :param addon_params:
         :param checkout:
         :param coupon_params:
         :param grouped_invoicing_params:
@@ -5653,6 +6251,9 @@ class Subscriptions(BaseSDK):
         request = models.PreviewSubscriptionModifyRequest(
             id=id,
             body=models.ExecuteSubscriptionModifyRequest(
+                addon_params=utils.get_pydantic_model(
+                    addon_params, Optional[models.SubModifyAddonParams]
+                ),
                 checkout=utils.get_pydantic_model(
                     checkout, Optional[models.CheckoutParams]
                 ),

@@ -12,6 +12,7 @@ class Rbac(BaseSDK):
     def list_rbac_roles(
         self,
         *,
+        user_type: Optional[models.ListRbacRolesUserType] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -21,6 +22,7 @@ class Rbac(BaseSDK):
 
         Use when building role pickers or permission UIs. Returns all roles with permissions and descriptions.
 
+        :param user_type: Filter by user type
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -35,12 +37,17 @@ class Rbac(BaseSDK):
             base_url = server_url
         else:
             base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListRbacRolesRequest(
+            user_type=user_type,
+        )
+
         req = self._build_request(
             method="GET",
             path="/rbac/roles",
             base_url=base_url,
             url_variables=url_variables,
-            request=None,
+            request=request,
             request_body_required=False,
             request_has_path_params=False,
             request_has_query_params=True,
@@ -75,14 +82,25 @@ class Rbac(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(Dict[str, Any], http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise models.errors.TirdadDefaultError(
                 "API error occurred", http_res, http_res_text
             )
-        if utils.match_response(http_res, ["500", "5XX"], "*"):
+        if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise models.errors.TirdadDefaultError(
                 "API error occurred", http_res, http_res_text
@@ -93,6 +111,7 @@ class Rbac(BaseSDK):
     async def list_rbac_roles_async(
         self,
         *,
+        user_type: Optional[models.ListRbacRolesUserType] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -102,6 +121,7 @@ class Rbac(BaseSDK):
 
         Use when building role pickers or permission UIs. Returns all roles with permissions and descriptions.
 
+        :param user_type: Filter by user type
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -116,12 +136,17 @@ class Rbac(BaseSDK):
             base_url = server_url
         else:
             base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListRbacRolesRequest(
+            user_type=user_type,
+        )
+
         req = self._build_request_async(
             method="GET",
             path="/rbac/roles",
             base_url=base_url,
             url_variables=url_variables,
-            request=None,
+            request=request,
             request_body_required=False,
             request_has_path_params=False,
             request_has_query_params=True,
@@ -156,14 +181,25 @@ class Rbac(BaseSDK):
             retry_config=retry_config,
         )
 
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(Dict[str, Any], http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise models.errors.TirdadDefaultError(
                 "API error occurred", http_res, http_res_text
             )
-        if utils.match_response(http_res, ["500", "5XX"], "*"):
+        if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise models.errors.TirdadDefaultError(
                 "API error occurred", http_res, http_res_text

@@ -50,7 +50,7 @@ with Tirdad(
 
 ### Response
 
-**[List[models.TaxRateResponse]](../../models/.md)**
+**[models.ListTaxRatesResponse](../../models/listtaxratesresponse.md)**
 
 ### Errors
 

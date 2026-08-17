@@ -36,6 +36,10 @@ class InvoiceLineItemResponseTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
     meter_display_name: NotRequired[str]
     meter_id: NotRequired[str]
+    parent_line_item_id: NotRequired[str]
+    r"""parent_line_item_id links this line item to the line item it replaced, if it was created by editing
+    an existing line item. Forms a linked-list chain across edits; nil for line items that were never edited.
+    """
     period_end: NotRequired[datetime]
     period_start: NotRequired[datetime]
     plan_display_name: NotRequired[str]
@@ -102,6 +106,11 @@ class InvoiceLineItemResponse(BaseModel):
 
     meter_id: Optional[str] = None
 
+    parent_line_item_id: Optional[str] = None
+    r"""parent_line_item_id links this line item to the line item it replaced, if it was created by editing
+    an existing line item. Forms a linked-list chain across edits; nil for line items that were never edited.
+    """
+
     period_end: Optional[datetime] = None
 
     period_start: Optional[datetime] = None
@@ -164,6 +173,7 @@ class InvoiceLineItemResponse(BaseModel):
                 "metadata",
                 "meter_display_name",
                 "meter_id",
+                "parent_line_item_id",
                 "period_end",
                 "period_start",
                 "plan_display_name",

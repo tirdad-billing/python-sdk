@@ -9,6 +9,8 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class UpdateInvoiceRequestTypedDict(TypedDict):
+    apply_discount: NotRequired[bool]
+    r"""When true, recalculates discount from existing coupon associations (draft invoices only)."""
     due_date: NotRequired[datetime]
     invoice_pdf_url: NotRequired[str]
     r"""invoice_pdf_url is the URL where customers can download the PDF version of this invoice"""
@@ -16,6 +18,9 @@ class UpdateInvoiceRequestTypedDict(TypedDict):
 
 
 class UpdateInvoiceRequest(BaseModel):
+    apply_discount: Optional[bool] = None
+    r"""When true, recalculates discount from existing coupon associations (draft invoices only)."""
+
     due_date: Optional[datetime] = None
 
     invoice_pdf_url: Optional[str] = None
@@ -25,7 +30,9 @@ class UpdateInvoiceRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["due_date", "invoice_pdf_url", "metadata"])
+        optional_fields = set(
+            ["apply_discount", "due_date", "invoice_pdf_url", "metadata"]
+        )
         serialized = handler(self)
         m = {}
 

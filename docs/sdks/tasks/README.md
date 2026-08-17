@@ -5,7 +5,6 @@
 ### Available Operations
 
 * [list_tasks](#list_tasks) - List tasks
-* [create_task](#create_task) - Create a new task
 * [get_task_result](#get_task_result) - Get task processing result
 * [get_task](#get_task) - Get a task
 * [download_task_export](#download_task_export) - Download task export file
@@ -55,52 +54,6 @@ with Tirdad(
 ### Response
 
 **[models.ListTasksResponse](../../models/listtasksresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 400                              | application/json                 |
-| models.errors.ErrorResponse      | 500                              | application/json                 |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## create_task
-
-Use when submitting a file or job for async processing (e.g. export or import). Returns task ID to poll for status and result.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="createTask" method="post" path="/tasks" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.tasks.create_task(entity_type="FEATURES", file_type="JSON", file_url="https://rural-typeface.org", task_type="IMPORT")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `entity_type`                                                       | [models.EntityType](../../models/entitytype.md)                     | :heavy_check_mark:                                                  | N/A                                                                 |
-| `file_type`                                                         | [models.FileType](../../models/filetype.md)                         | :heavy_check_mark:                                                  | N/A                                                                 |
-| `file_url`                                                          | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `task_type`                                                         | [models.TaskType](../../models/tasktype.md)                         | :heavy_check_mark:                                                  | N/A                                                                 |
-| `file_name`                                                         | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `metadata`                                                          | Dict[str, *Any*]                                                    | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.TaskResponse](../../models/taskresponse.md)**
 
 ### Errors
 

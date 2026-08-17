@@ -31,9 +31,10 @@ with Tirdad(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `user_type`                                                                     | [Optional[models.ListRbacRolesUserType]](../../models/listrbacrolesusertype.md) | :heavy_minus_sign:                                                              | Filter by user type                                                             |
+| `retries`                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                | :heavy_minus_sign:                                                              | Configuration to override the default retry behavior of the client.             |
 
 ### Response
 
@@ -43,6 +44,8 @@ with Tirdad(
 
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
 ## get_rbac_role

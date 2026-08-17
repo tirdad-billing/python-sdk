@@ -11,4 +11,5 @@ SubscriptionModifyType = Literal[
     "trial_end",
     "coupon",
     "tax",
+    "addon",
 ]

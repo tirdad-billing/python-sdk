@@ -16,3 +16,4 @@ value: SubscriptionModifyType = "inheritance"
 - `"trial_end"`
 - `"coupon"`
 - `"tax"`
+- `"addon"`

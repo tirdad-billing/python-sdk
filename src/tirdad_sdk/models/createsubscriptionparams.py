@@ -17,6 +17,7 @@ class CreateSubscriptionParamsTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
     plan_id: NotRequired[str]
     start_date: NotRequired[datetime]
+    subscription_id: NotRequired[str]
 
 
 class CreateSubscriptionParams(BaseModel):
@@ -34,6 +35,8 @@ class CreateSubscriptionParams(BaseModel):
 
     start_date: Optional[datetime] = None
 
+    subscription_id: Optional[str] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -45,6 +48,7 @@ class CreateSubscriptionParams(BaseModel):
                 "metadata",
                 "plan_id",
                 "start_date",
+                "subscription_id",
             ]
         )
         serialized = handler(self)

@@ -26,7 +26,7 @@ class TaxRates(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> List[models.TaxRateResponse]:
+    ) -> models.ListTaxRatesResponse:
         r"""Get tax rates
 
         Use when listing tax rates (e.g. tax config UI). Returns tax rates with optional filters.
@@ -111,7 +111,7 @@ class TaxRates(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(List[models.TaxRateResponse], http_res)
+            return unmarshal_json_response(models.ListTaxRatesResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
@@ -152,7 +152,7 @@ class TaxRates(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> List[models.TaxRateResponse]:
+    ) -> models.ListTaxRatesResponse:
         r"""Get tax rates
 
         Use when listing tax rates (e.g. tax config UI). Returns tax rates with optional filters.
@@ -237,7 +237,7 @@ class TaxRates(BaseSDK):
 
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(List[models.TaxRateResponse], http_res)
+            return unmarshal_json_response(models.ListTaxRatesResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res

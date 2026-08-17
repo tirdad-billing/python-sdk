@@ -73,6 +73,10 @@ class InvoiceResponseTypedDict(TypedDict):
     r"""invoice_pdf_url is the URL where customers can download the PDF version of this invoice"""
     invoice_status: NotRequired[InvoiceStatus]
     invoice_type: NotRequired[InvoiceType]
+    is_manually_edited: NotRequired[bool]
+    r"""is_manually_edited is true once a user has manually added, edited, or removed a line item on this draft invoice.
+    Once set, automated recomputation of this invoice's line items must no-op rather than overwrite the manual edit.
+    """
     issue_date: NotRequired[datetime]
     r"""issue_date is the user-facing date of the invoice. Defaults to created_at if not set."""
     last_computed_at: NotRequired[datetime]
@@ -194,6 +198,11 @@ class InvoiceResponse(BaseModel):
 
     invoice_type: Optional[InvoiceType] = None
 
+    is_manually_edited: Optional[bool] = None
+    r"""is_manually_edited is true once a user has manually added, edited, or removed a line item on this draft invoice.
+    Once set, automated recomputation of this invoice's line items must no-op rather than overwrite the manual edit.
+    """
+
     issue_date: Optional[datetime] = None
     r"""issue_date is the user-facing date of the invoice. Defaults to created_at if not set."""
 
@@ -298,6 +307,7 @@ class InvoiceResponse(BaseModel):
                 "invoice_pdf_url",
                 "invoice_status",
                 "invoice_type",
+                "is_manually_edited",
                 "issue_date",
                 "last_computed_at",
                 "line_items",

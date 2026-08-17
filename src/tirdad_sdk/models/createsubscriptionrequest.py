@@ -7,6 +7,7 @@ from .addaddontosubscriptionrequest import (
 )
 from .billingcycle import BillingCycle
 from .billingperiod import BillingPeriod
+from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
 from .collectionmethod import CollectionMethod
 from .createcreditgrantrequest import (
     CreateCreditGrantRequest,
@@ -67,6 +68,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     """
     billing_cycle: NotRequired[BillingCycle]
     billing_period_count: NotRequired[int]
+    checkout: NotRequired[CheckoutParamsTypedDict]
     collection_method: NotRequired[CollectionMethod]
     commitment_amount: NotRequired[str]
     commitment_duration: NotRequired[BillingPeriod]
@@ -130,6 +132,8 @@ class CreateSubscriptionRequest(BaseModel):
     billing_cycle: Optional[BillingCycle] = None
 
     billing_period_count: Optional[int] = None
+
+    checkout: Optional[CheckoutParams] = None
 
     collection_method: Optional[CollectionMethod] = None
 
@@ -208,6 +212,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "billing_anchor",
                 "billing_cycle",
                 "billing_period_count",
+                "checkout",
                 "collection_method",
                 "commitment_amount",
                 "commitment_duration",

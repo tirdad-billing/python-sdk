@@ -14,6 +14,7 @@ WebhookEventName = Union[
         "subscription.paused",
         "subscription.cancelled",
         "subscription.resumed",
+        "subscription.plan_changed",
         "subscription.phase.created",
         "subscription.phase.updated",
         "subscription.phase.deleted",

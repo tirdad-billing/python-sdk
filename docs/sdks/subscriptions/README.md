@@ -5,8 +5,8 @@
 ### Available Operations
 
 * [create_subscription](#create_subscription) - Create subscription
-* [add_subscription_addon](#add_subscription_addon) - Add addon to subscription
-* [remove_subscription_addon](#remove_subscription_addon) - Remove addon from subscription
+* [~~add_subscription_addon~~](#add_subscription_addon) - Add addon to subscription :warning: **Deprecated**
+* [~~remove_subscription_addon~~](#remove_subscription_addon) - Remove addon from subscription :warning: **Deprecated**
 * [query_subscription_line_items](#query_subscription_line_items) - Search subscription line items
 * [update_subscription_line_item](#update_subscription_line_item) - Update subscription line item
 * [delete_subscription_line_item](#delete_subscription_line_item) - Delete subscription line item
@@ -19,6 +19,8 @@
 * [cancel_subscription](#cancel_subscription) - Cancel subscription
 * [execute_subscription_change](#execute_subscription_change) - Execute subscription plan change
 * [preview_subscription_change](#preview_subscription_change) - Preview subscription plan change
+* [execute_subscription_plan_change_v2](#execute_subscription_plan_change_v2) - Execute a plan change (v2, swap in place)
+* [preview_subscription_plan_change_v2](#preview_subscription_plan_change_v2) - Preview a plan change (v2, swap in place)
 * [get_subscription_entitlements](#get_subscription_entitlements) - Get subscription entitlements
 * [get_subscription_upcoming_grants](#get_subscription_upcoming_grants) - Get upcoming credit grant applications
 * [create_subscription_line_item](#create_subscription_line_item) - Create subscription line item
@@ -64,6 +66,7 @@ with Tirdad(
 | `billing_anchor`                                                                                                                                                                                            | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                        | :heavy_minus_sign:                                                                                                                                                                                          | BillingAnchor overrides the derived anchor for anniversary billing. For monthly billing,<br/>the day-of-month defines cycle boundaries (shorter first period if start is before that day).                  |
 | `billing_cycle`                                                                                                                                                                                             | [Optional[models.BillingCycle]](../../models/billingcycle.md)                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                          | N/A                                                                                                                                                                                                         |
 | `billing_period_count`                                                                                                                                                                                      | *Optional[int]*                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                          | N/A                                                                                                                                                                                                         |
+| `checkout`                                                                                                                                                                                                  | [Optional[models.CheckoutParams]](../../models/checkoutparams.md)                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                          | N/A                                                                                                                                                                                                         |
 | `collection_method`                                                                                                                                                                                         | [Optional[models.CollectionMethod]](../../models/collectionmethod.md)                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                          | N/A                                                                                                                                                                                                         |
 | `commitment_amount`                                                                                                                                                                                         | *Optional[str]*                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                          | N/A                                                                                                                                                                                                         |
 | `commitment_duration`                                                                                                                                                                                       | [Optional[models.BillingPeriod]](../../models/billingperiod.md)                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                          | N/A                                                                                                                                                                                                         |
@@ -107,9 +110,12 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
-## add_subscription_addon
+## ~~add_subscription_addon~~
 
+Deprecated: use POST /subscriptions/{id}/modify/execute with type "addon" and action "add", which also supports previewing the proration charge first.
 Use when adding an optional product or add-on to an existing subscription (e.g. extra storage or support tier).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -136,6 +142,7 @@ with Tirdad(
 | `addon_id`                                                                                          | *str*                                                                                               | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
 | `subscription_id`                                                                                   | *str*                                                                                               | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
 | `cadence`                                                                                           | [Optional[models.AddonCadence]](../../models/addoncadence.md)                                       | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `checkout`                                                                                          | [Optional[models.CheckoutParams]](../../models/checkoutparams.md)                                   | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `line_item_commitments`                                                                             | Dict[str, [models.LineItemCommitmentConfig](../../models/lineitemcommitmentconfig.md)]              | :heavy_minus_sign:                                                                                  | LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id) |
 | `metadata`                                                                                          | Dict[str, *Any*]                                                                                    | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `override_line_items`                                                                               | List[[models.OverrideLineItemRequest](../../models/overridelineitemrequest.md)]                     | :heavy_minus_sign:                                                                                  | OverrideLineItems allows overriding price/quantity/billing model for specific addon prices          |
@@ -145,7 +152,7 @@ with Tirdad(
 
 ### Response
 
-**[models.AddonAssociationResponse](../../models/addonassociationresponse.md)**
+**[models.AddAddonToSubscriptionResponse](../../models/addaddontosubscriptionresponse.md)**
 
 ### Errors
 
@@ -155,9 +162,12 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
-## remove_subscription_addon
+## ~~remove_subscription_addon~~
 
+Deprecated: use POST /subscriptions/{id}/modify/execute with type "addon" and action "remove", which also supports previewing the proration credit first.
 Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -783,6 +793,98 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## execute_subscription_plan_change_v2
+
+Change a subscription's plan in place. Subscription id, billing anchor and period bounds are preserved; line items are sliced and settled in one transaction.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="executeSubscriptionPlanChangeV2" method="post" path="/subscriptions/{id}/change/v2/execute" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.execute_subscription_plan_change_v2(id="<id>", proration_behavior="create_prorations", target_plan_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                  | *str*                                                                                                 | :heavy_check_mark:                                                                                    | Subscription ID                                                                                       |
+| `proration_behavior`                                                                                  | [models.ProrationBehavior](../../models/prorationbehavior.md)                                         | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `target_plan_id`                                                                                      | *str*                                                                                                 | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `entity_policies`                                                                                     | [Optional[models.SubscriptionChangeEntityPolicies]](../../models/subscriptionchangeentitypolicies.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `idempotency_key`                                                                                     | *Optional[str]*                                                                                       | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `metadata`                                                                                            | Dict[str, *str*]                                                                                      | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `retries`                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                      | :heavy_minus_sign:                                                                                    | Configuration to override the default retry behavior of the client.                                   |
+
+### Response
+
+**[models.SubscriptionChangeV2Response](../../models/subscriptionchangev2response.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## preview_subscription_plan_change_v2
+
+Preview a subscription plan change without writing. Swap-in-place: subscription id, billing anchor and period bounds are preserved.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="previewSubscriptionPlanChangeV2" method="post" path="/subscriptions/{id}/change/v2/preview" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.preview_subscription_plan_change_v2(id="<id>", proration_behavior="none", target_plan_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                  | *str*                                                                                                 | :heavy_check_mark:                                                                                    | Subscription ID                                                                                       |
+| `proration_behavior`                                                                                  | [models.ProrationBehavior](../../models/prorationbehavior.md)                                         | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `target_plan_id`                                                                                      | *str*                                                                                                 | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `entity_policies`                                                                                     | [Optional[models.SubscriptionChangeEntityPolicies]](../../models/subscriptionchangeentitypolicies.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `idempotency_key`                                                                                     | *Optional[str]*                                                                                       | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `metadata`                                                                                            | Dict[str, *str*]                                                                                      | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |
+| `retries`                                                                                             | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                      | :heavy_minus_sign:                                                                                    | Configuration to override the default retry behavior of the client.                                   |
+
+### Response
+
+**[models.SubscriptionChangeV2Response](../../models/subscriptionchangev2response.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## get_subscription_entitlements
 
 Use when checking what features or limits a subscription has (e.g. entitlement checks or feature gating). Optional feature_ids to filter.
@@ -926,7 +1028,7 @@ with Tirdad(
 
 ## execute_subscription_modify
 
-Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax).
+Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove).
 
 ### Example Usage
 
@@ -952,6 +1054,7 @@ with Tirdad(
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                | *str*                                                                                               | :heavy_check_mark:                                                                                  | Subscription ID                                                                                     |
 | `type`                                                                                              | [models.SubscriptionModifyType](../../models/subscriptionmodifytype.md)                             | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `addon_params`                                                                                      | [Optional[models.SubModifyAddonParams]](../../models/submodifyaddonparams.md)                       | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `checkout`                                                                                          | [Optional[models.CheckoutParams]](../../models/checkoutparams.md)                                   | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `coupon_params`                                                                                     | [Optional[models.SubModifyCouponParams]](../../models/submodifycouponparams.md)                     | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `grouped_invoicing_params`                                                                          | [Optional[models.SubModifyGroupedInvoicingParams]](../../models/submodifygroupedinvoicingparams.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
@@ -975,7 +1078,7 @@ with Tirdad(
 
 ## preview_subscription_modify
 
-Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax) without committing changes.
+Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove) without committing changes.
 
 ### Example Usage
 
@@ -988,7 +1091,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.subscriptions.preview_subscription_modify(id="<id>", type_="coupon")
+    res = tirdad.subscriptions.preview_subscription_modify(id="<id>", type_="tax")
 
     # Handle response
     print(res)
@@ -1001,6 +1104,7 @@ with Tirdad(
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                | *str*                                                                                               | :heavy_check_mark:                                                                                  | Subscription ID                                                                                     |
 | `type`                                                                                              | [models.SubscriptionModifyType](../../models/subscriptionmodifytype.md)                             | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `addon_params`                                                                                      | [Optional[models.SubModifyAddonParams]](../../models/submodifyaddonparams.md)                       | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `checkout`                                                                                          | [Optional[models.CheckoutParams]](../../models/checkoutparams.md)                                   | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `coupon_params`                                                                                     | [Optional[models.SubModifyCouponParams]](../../models/submodifycouponparams.md)                     | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
 | `grouped_invoicing_params`                                                                          | [Optional[models.SubModifyGroupedInvoicingParams]](../../models/submodifygroupedinvoicingparams.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |

@@ -22,6 +22,7 @@ class SyncConfigTypedDict(TypedDict):
     invoice_sync_settings: NotRequired[InvoiceSyncSettingsTypedDict]
     payment: NotRequired[EntitySyncConfigTypedDict]
     plan: NotRequired[EntitySyncConfigTypedDict]
+    price: NotRequired[EntitySyncConfigTypedDict]
     quote: NotRequired[EntitySyncConfigTypedDict]
     s3: NotRequired[S3ExportConfigTypedDict]
     subscription: NotRequired[EntitySyncConfigTypedDict]
@@ -42,6 +43,8 @@ class SyncConfig(BaseModel):
 
     plan: Optional[EntitySyncConfig] = None
 
+    price: Optional[EntitySyncConfig] = None
+
     quote: Optional[EntitySyncConfig] = None
 
     s3: Optional[S3ExportConfig] = None
@@ -59,6 +62,7 @@ class SyncConfig(BaseModel):
                 "invoice_sync_settings",
                 "payment",
                 "plan",
+                "price",
                 "quote",
                 "s3",
                 "subscription",

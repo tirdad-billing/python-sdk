@@ -5,6 +5,10 @@ from .aggregatedfeature import AggregatedFeature, AggregatedFeatureTypedDict
 from .billingcadence import BillingCadence
 from .billingcycle import BillingCycle
 from .billingperiod import BillingPeriod
+from .checkoutsessionresponse import (
+    CheckoutSessionResponse,
+    CheckoutSessionResponseTypedDict,
+)
 from .couponassociationresponse import (
     CouponAssociationResponse,
     CouponAssociationResponseTypedDict,
@@ -66,6 +70,7 @@ class SubscriptionResponseTypedDict(TypedDict):
     r"""CancelAtPeriodEnd is whether the subscription was canceled at the end of the current period"""
     cancelled_at: NotRequired[datetime]
     r"""CanceledAt is the date the subscription was canceled"""
+    checkout_session: NotRequired[CheckoutSessionResponseTypedDict]
     collection_method: NotRequired[str]
     r"""CollectionMethod determines how invoices are collected"""
     commitment_amount: NotRequired[str]
@@ -186,6 +191,8 @@ class SubscriptionResponse(BaseModel):
 
     cancelled_at: Optional[datetime] = None
     r"""CanceledAt is the date the subscription was canceled"""
+
+    checkout_session: Optional[CheckoutSessionResponse] = None
 
     collection_method: Optional[str] = None
     r"""CollectionMethod determines how invoices are collected"""
@@ -329,6 +336,7 @@ class SubscriptionResponse(BaseModel):
                 "cancel_at",
                 "cancel_at_period_end",
                 "cancelled_at",
+                "checkout_session",
                 "collection_method",
                 "commitment_amount",
                 "commitment_duration",

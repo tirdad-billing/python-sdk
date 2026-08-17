@@ -3,9 +3,6 @@
 from __future__ import annotations
 from .alertstate import AlertState
 from .alerttype import AlertType
-from .customerresponse import CustomerResponse, CustomerResponseTypedDict
-from .featureresponse import FeatureResponse, FeatureResponseTypedDict
-from .walletresponse import WalletResponse, WalletResponseTypedDict
 from .webhookeventname import WebhookEventName
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -16,11 +13,12 @@ from typing_extensions import NotRequired, TypedDict
 class WebhookDtoAlertWebhookPayloadTypedDict(TypedDict):
     alert_status: NotRequired[AlertState]
     alert_type: NotRequired[AlertType]
-    customer: NotRequired[CustomerResponseTypedDict]
-    r"""Customer response object containing all customer information"""
+    credit_balance: NotRequired[str]
+    current_balance: NotRequired[str]
+    customer_id: NotRequired[str]
     event_type: NotRequired[WebhookEventName]
-    feature: NotRequired[FeatureResponseTypedDict]
-    wallet: NotRequired[WalletResponseTypedDict]
+    feature_id: NotRequired[str]
+    wallet_id: NotRequired[str]
 
 
 class WebhookDtoAlertWebhookPayload(BaseModel):
@@ -28,14 +26,17 @@ class WebhookDtoAlertWebhookPayload(BaseModel):
 
     alert_type: Optional[AlertType] = None
 
-    customer: Optional[CustomerResponse] = None
-    r"""Customer response object containing all customer information"""
+    credit_balance: Optional[str] = None
+
+    current_balance: Optional[str] = None
+
+    customer_id: Optional[str] = None
 
     event_type: Optional[WebhookEventName] = None
 
-    feature: Optional[FeatureResponse] = None
+    feature_id: Optional[str] = None
 
-    wallet: Optional[WalletResponse] = None
+    wallet_id: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
@@ -43,10 +44,12 @@ class WebhookDtoAlertWebhookPayload(BaseModel):
             [
                 "alert_status",
                 "alert_type",
-                "customer",
+                "credit_balance",
+                "current_balance",
+                "customer_id",
                 "event_type",
-                "feature",
-                "wallet",
+                "feature_id",
+                "wallet_id",
             ]
         )
         serialized = handler(self)

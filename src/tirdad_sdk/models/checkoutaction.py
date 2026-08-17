@@ -10,6 +10,7 @@ CheckoutAction = Union[
         "create_subscription",
         "modify_subscription",
         "wallet_topup",
+        "add_addon",
     ],
     UnrecognizedStr,
 ]

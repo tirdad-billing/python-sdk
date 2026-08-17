@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .addoncadence import AddonCadence
+from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
 from .lineitemcommitmentconfig import (
     LineItemCommitmentConfig,
     LineItemCommitmentConfigTypedDict,
@@ -22,6 +23,7 @@ class AddAddonRequestTypedDict(TypedDict):
     addon_id: str
     subscription_id: str
     cadence: NotRequired[AddonCadence]
+    checkout: NotRequired[CheckoutParamsTypedDict]
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
     r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
     metadata: NotRequired[Dict[str, Any]]
@@ -37,6 +39,8 @@ class AddAddonRequest(BaseModel):
     subscription_id: str
 
     cadence: Optional[AddonCadence] = None
+
+    checkout: Optional[CheckoutParams] = None
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
     r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
@@ -55,6 +59,7 @@ class AddAddonRequest(BaseModel):
         optional_fields = set(
             [
                 "cadence",
+                "checkout",
                 "line_item_commitments",
                 "metadata",
                 "override_line_items",
