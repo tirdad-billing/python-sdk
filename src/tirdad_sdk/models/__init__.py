@@ -479,6 +479,7 @@ if TYPE_CHECKING:
         EntitlementFilterOrder,
         EntitlementFilterTypedDict,
     )
+    from .entitlementgrantallocationbehavior import EntitlementGrantAllocationBehavior
     from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
     from .entitlementgrantmeasure import EntitlementGrantMeasure
     from .entitlementsource import EntitlementSource, EntitlementSourceTypedDict
@@ -1093,6 +1094,10 @@ if TYPE_CHECKING:
     from .secretresponse import SecretResponse, SecretResponseTypedDict
     from .secrettype import SecretType
     from .security import Security, SecurityTypedDict
+    from .serviceperiodcustomfields import (
+        ServicePeriodCustomFields,
+        ServicePeriodCustomFieldsTypedDict,
+    )
     from .sortcondition import SortCondition, SortConditionTypedDict
     from .sortdirection import SortDirection
     from .sourceusageitem import SourceUsageItem, SourceUsageItemTypedDict
@@ -1979,6 +1984,7 @@ __all__ = [
     "EntitlementFilter",
     "EntitlementFilterOrder",
     "EntitlementFilterTypedDict",
+    "EntitlementGrantAllocationBehavior",
     "EntitlementGrantDurationUnit",
     "EntitlementGrantMeasure",
     "EntitlementResponse",
@@ -2465,6 +2471,8 @@ __all__ = [
     "SecretType",
     "Security",
     "SecurityTypedDict",
+    "ServicePeriodCustomFields",
+    "ServicePeriodCustomFieldsTypedDict",
     "SortCondition",
     "SortConditionTypedDict",
     "SortDirection",
@@ -3162,6 +3170,7 @@ _dynamic_imports: dict[str, str] = {
     "EntitlementFilter": ".entitlementfilter",
     "EntitlementFilterOrder": ".entitlementfilter",
     "EntitlementFilterTypedDict": ".entitlementfilter",
+    "EntitlementGrantAllocationBehavior": ".entitlementgrantallocationbehavior",
     "EntitlementGrantDurationUnit": ".entitlementgrantdurationunit",
     "EntitlementGrantMeasure": ".entitlementgrantmeasure",
     "EntitlementSource": ".entitlementsource",
@@ -3639,6 +3648,8 @@ _dynamic_imports: dict[str, str] = {
     "SecretType": ".secrettype",
     "Security": ".security",
     "SecurityTypedDict": ".security",
+    "ServicePeriodCustomFields": ".serviceperiodcustomfields",
+    "ServicePeriodCustomFieldsTypedDict": ".serviceperiodcustomfields",
     "SortCondition": ".sortcondition",
     "SortConditionTypedDict": ".sortcondition",
     "SortDirection": ".sortdirection",

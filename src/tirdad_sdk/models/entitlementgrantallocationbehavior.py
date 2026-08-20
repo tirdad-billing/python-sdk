@@ -5,12 +5,10 @@ from tirdad_sdk.types import UnrecognizedStr
 from typing import Literal, Union
 
 
-EntitlementGrantDurationUnit = Union[
+EntitlementGrantAllocationBehavior = Union[
     Literal[
-        "hour",
-        "day",
-        "week",
-        "subscription_period",
+        "first_usage",
+        "unit_start",
     ],
     UnrecognizedStr,
 ]

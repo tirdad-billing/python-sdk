@@ -3,6 +3,7 @@
 from __future__ import annotations
 from .entitlementaggregationmode import EntitlementAggregationMode
 from .entitlemententitytype import EntitlementEntityType
+from .entitlementgrantallocationbehavior import EntitlementGrantAllocationBehavior
 from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
 from .entitlementgrantmeasure import EntitlementGrantMeasure
 from .entitlementusageresetperiod import EntitlementUsageResetPeriod
@@ -22,6 +23,7 @@ class CreateEntitlementRequestTypedDict(TypedDict):
     end_date: NotRequired[datetime]
     entity_id: NotRequired[str]
     entity_type: NotRequired[EntitlementEntityType]
+    grant_allocation_behavior: NotRequired[EntitlementGrantAllocationBehavior]
     grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
@@ -50,6 +52,8 @@ class CreateEntitlementRequest(BaseModel):
     entity_id: Optional[str] = None
 
     entity_type: Optional[EntitlementEntityType] = None
+
+    grant_allocation_behavior: Optional[EntitlementGrantAllocationBehavior] = None
 
     grant_duration_unit: Optional[EntitlementGrantDurationUnit] = None
 
@@ -84,6 +88,7 @@ class CreateEntitlementRequest(BaseModel):
                 "end_date",
                 "entity_id",
                 "entity_type",
+                "grant_allocation_behavior",
                 "grant_duration_unit",
                 "grant_duration_value",
                 "grant_measure",

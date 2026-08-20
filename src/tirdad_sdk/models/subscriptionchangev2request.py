@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .prorationbehavior import ProrationBehavior
+from .scheduletype import ScheduleType
 from .subscriptionchangeentitypolicies import (
     SubscriptionChangeEntityPolicies,
     SubscriptionChangeEntityPoliciesTypedDict,
@@ -15,6 +16,7 @@ from typing_extensions import NotRequired, TypedDict
 class SubscriptionChangeV2RequestTypedDict(TypedDict):
     proration_behavior: ProrationBehavior
     target_plan_id: str
+    change_at: NotRequired[ScheduleType]
     entity_policies: NotRequired[SubscriptionChangeEntityPoliciesTypedDict]
     idempotency_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
@@ -25,6 +27,8 @@ class SubscriptionChangeV2Request(BaseModel):
 
     target_plan_id: str
 
+    change_at: Optional[ScheduleType] = None
+
     entity_policies: Optional[SubscriptionChangeEntityPolicies] = None
 
     idempotency_key: Optional[str] = None
@@ -33,7 +37,9 @@ class SubscriptionChangeV2Request(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["entity_policies", "idempotency_key", "metadata"])
+        optional_fields = set(
+            ["change_at", "entity_policies", "idempotency_key", "metadata"]
+        )
         serialized = handler(self)
         m = {}
 

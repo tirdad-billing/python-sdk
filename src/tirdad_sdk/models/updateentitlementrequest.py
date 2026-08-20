@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .entitlementaggregationmode import EntitlementAggregationMode
+from .entitlementgrantallocationbehavior import EntitlementGrantAllocationBehavior
 from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
 from .entitlementgrantmeasure import EntitlementGrantMeasure
 from .entitlementusageresetperiod import EntitlementUsageResetPeriod
@@ -18,6 +19,7 @@ class UpdateEntitlementRequestTypedDict(TypedDict):
     ClearGrantConfig=true wipes the whole grant config (back to a legacy entitlement).
     """
     config_value: NotRequired[Dict[str, Any]]
+    grant_allocation_behavior: NotRequired[EntitlementGrantAllocationBehavior]
     grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
@@ -38,6 +40,8 @@ class UpdateEntitlementRequest(BaseModel):
     """
 
     config_value: Optional[Dict[str, Any]] = None
+
+    grant_allocation_behavior: Optional[EntitlementGrantAllocationBehavior] = None
 
     grant_duration_unit: Optional[EntitlementGrantDurationUnit] = None
 
@@ -64,6 +68,7 @@ class UpdateEntitlementRequest(BaseModel):
                 "aggregation_mode",
                 "clear_grant_config",
                 "config_value",
+                "grant_allocation_behavior",
                 "grant_duration_unit",
                 "grant_duration_value",
                 "grant_measure",

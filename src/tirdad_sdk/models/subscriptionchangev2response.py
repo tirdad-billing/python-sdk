@@ -19,7 +19,13 @@ class SubscriptionChangeV2ResponseTypedDict(TypedDict):
     effective_at: NotRequired[datetime]
     entity_changes: NotRequired[List[EntityChangeResultTypedDict]]
     from_plan: NotRequired[PlanSummaryTypedDict]
+    is_scheduled: NotRequired[bool]
+    r"""IsScheduled is true when the change was deferred to the period end instead
+    of being applied immediately.
+    """
     metadata: NotRequired[Dict[str, str]]
+    schedule_id: NotRequired[str]
+    scheduled_at: NotRequired[datetime]
     subscription: NotRequired[SubscriptionResponseTypedDict]
     to_plan: NotRequired[PlanSummaryTypedDict]
     warnings: NotRequired[List[str]]
@@ -36,7 +42,16 @@ class SubscriptionChangeV2Response(BaseModel):
 
     from_plan: Optional[PlanSummary] = None
 
+    is_scheduled: Optional[bool] = None
+    r"""IsScheduled is true when the change was deferred to the period end instead
+    of being applied immediately.
+    """
+
     metadata: Optional[Dict[str, str]] = None
+
+    schedule_id: Optional[str] = None
+
+    scheduled_at: Optional[datetime] = None
 
     subscription: Optional[SubscriptionResponse] = None
 
@@ -53,7 +68,10 @@ class SubscriptionChangeV2Response(BaseModel):
                 "effective_at",
                 "entity_changes",
                 "from_plan",
+                "is_scheduled",
                 "metadata",
+                "schedule_id",
+                "scheduled_at",
                 "subscription",
                 "to_plan",
                 "warnings",

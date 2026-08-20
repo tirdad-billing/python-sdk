@@ -218,6 +218,9 @@ class Entitlements(BaseSDK):
         end_date: Optional[datetime] = None,
         entity_id: Optional[str] = None,
         entity_type: Optional[models.EntitlementEntityType] = None,
+        grant_allocation_behavior: Optional[
+            models.EntitlementGrantAllocationBehavior
+        ] = None,
         grant_duration_unit: Optional[models.EntitlementGrantDurationUnit] = None,
         grant_duration_value: Optional[int] = None,
         grant_measure: Optional[models.EntitlementGrantMeasure] = None,
@@ -246,6 +249,7 @@ class Entitlements(BaseSDK):
         :param end_date:
         :param entity_id:
         :param entity_type:
+        :param grant_allocation_behavior:
         :param grant_duration_unit:
         :param grant_duration_value:
         :param grant_measure:
@@ -281,6 +285,7 @@ class Entitlements(BaseSDK):
             entity_type=entity_type,
             feature_id=feature_id,
             feature_type=feature_type,
+            grant_allocation_behavior=grant_allocation_behavior,
             grant_duration_unit=grant_duration_unit,
             grant_duration_value=grant_duration_value,
             grant_measure=grant_measure,
@@ -374,6 +379,9 @@ class Entitlements(BaseSDK):
         end_date: Optional[datetime] = None,
         entity_id: Optional[str] = None,
         entity_type: Optional[models.EntitlementEntityType] = None,
+        grant_allocation_behavior: Optional[
+            models.EntitlementGrantAllocationBehavior
+        ] = None,
         grant_duration_unit: Optional[models.EntitlementGrantDurationUnit] = None,
         grant_duration_value: Optional[int] = None,
         grant_measure: Optional[models.EntitlementGrantMeasure] = None,
@@ -402,6 +410,7 @@ class Entitlements(BaseSDK):
         :param end_date:
         :param entity_id:
         :param entity_type:
+        :param grant_allocation_behavior:
         :param grant_duration_unit:
         :param grant_duration_value:
         :param grant_measure:
@@ -437,6 +446,7 @@ class Entitlements(BaseSDK):
             entity_type=entity_type,
             feature_id=feature_id,
             feature_type=feature_type,
+            grant_allocation_behavior=grant_allocation_behavior,
             grant_duration_unit=grant_duration_unit,
             grant_duration_value=grant_duration_value,
             grant_measure=grant_measure,
@@ -1259,6 +1269,9 @@ class Entitlements(BaseSDK):
         aggregation_mode: Optional[models.EntitlementAggregationMode] = None,
         clear_grant_config: Optional[bool] = None,
         config_value: Optional[Mapping[str, Any]] = None,
+        grant_allocation_behavior: Optional[
+            models.EntitlementGrantAllocationBehavior
+        ] = None,
         grant_duration_unit: Optional[models.EntitlementGrantDurationUnit] = None,
         grant_duration_value: Optional[int] = None,
         grant_measure: Optional[models.EntitlementGrantMeasure] = None,
@@ -1282,6 +1295,7 @@ class Entitlements(BaseSDK):
         :param clear_grant_config: Grant config — nil fields leave the current value alone.
             ClearGrantConfig=true wipes the whole grant config (back to a legacy entitlement).
         :param config_value:
+        :param grant_allocation_behavior:
         :param grant_duration_unit:
         :param grant_duration_value:
         :param grant_measure:
@@ -1312,6 +1326,7 @@ class Entitlements(BaseSDK):
                 aggregation_mode=aggregation_mode,
                 clear_grant_config=clear_grant_config,
                 config_value=utils.unmarshal(config_value, Optional[Dict[str, Any]]),
+                grant_allocation_behavior=grant_allocation_behavior,
                 grant_duration_unit=grant_duration_unit,
                 grant_duration_value=grant_duration_value,
                 grant_measure=grant_measure,
@@ -1400,6 +1415,9 @@ class Entitlements(BaseSDK):
         aggregation_mode: Optional[models.EntitlementAggregationMode] = None,
         clear_grant_config: Optional[bool] = None,
         config_value: Optional[Mapping[str, Any]] = None,
+        grant_allocation_behavior: Optional[
+            models.EntitlementGrantAllocationBehavior
+        ] = None,
         grant_duration_unit: Optional[models.EntitlementGrantDurationUnit] = None,
         grant_duration_value: Optional[int] = None,
         grant_measure: Optional[models.EntitlementGrantMeasure] = None,
@@ -1423,6 +1441,7 @@ class Entitlements(BaseSDK):
         :param clear_grant_config: Grant config — nil fields leave the current value alone.
             ClearGrantConfig=true wipes the whole grant config (back to a legacy entitlement).
         :param config_value:
+        :param grant_allocation_behavior:
         :param grant_duration_unit:
         :param grant_duration_value:
         :param grant_measure:
@@ -1453,6 +1472,7 @@ class Entitlements(BaseSDK):
                 aggregation_mode=aggregation_mode,
                 clear_grant_config=clear_grant_config,
                 config_value=utils.unmarshal(config_value, Optional[Dict[str, Any]]),
+                grant_allocation_behavior=grant_allocation_behavior,
                 grant_duration_unit=grant_duration_unit,
                 grant_duration_value=grant_duration_value,
                 grant_measure=grant_measure,

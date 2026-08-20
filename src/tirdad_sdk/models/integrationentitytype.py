@@ -18,6 +18,7 @@ IntegrationEntityType = Union[
         "item_price",
         "price",
         "invoice_line_item",
+        "subscription_line_item",
     ],
     UnrecognizedStr,
 ]

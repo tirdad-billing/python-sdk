@@ -3,6 +3,7 @@
 from __future__ import annotations
 from .entitlementaggregationmode import EntitlementAggregationMode
 from .entitlemententitytype import EntitlementEntityType
+from .entitlementgrantallocationbehavior import EntitlementGrantAllocationBehavior
 from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
 from .entitlementgrantmeasure import EntitlementGrantMeasure
 from .entitlementusageresetperiod import EntitlementUsageResetPeriod
@@ -34,6 +35,7 @@ class EntitlementResponseTypedDict(TypedDict):
     feature: NotRequired[FeatureResponseTypedDict]
     feature_id: NotRequired[str]
     feature_type: NotRequired[FeatureType]
+    grant_allocation_behavior: NotRequired[EntitlementGrantAllocationBehavior]
     grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
@@ -81,6 +83,8 @@ class EntitlementResponse(BaseModel):
     feature_id: Optional[str] = None
 
     feature_type: Optional[FeatureType] = None
+
+    grant_allocation_behavior: Optional[EntitlementGrantAllocationBehavior] = None
 
     grant_duration_unit: Optional[EntitlementGrantDurationUnit] = None
 
@@ -136,6 +140,7 @@ class EntitlementResponse(BaseModel):
                 "feature",
                 "feature_id",
                 "feature_type",
+                "grant_allocation_behavior",
                 "grant_duration_unit",
                 "grant_duration_value",
                 "grant_measure",
