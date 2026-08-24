@@ -155,7 +155,7 @@ with Tirdad(
 
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 

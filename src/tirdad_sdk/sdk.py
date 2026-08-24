@@ -45,6 +45,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.tax_associations import TaxAssociations
     from tirdad_sdk.tax_rates import TaxRates
     from tirdad_sdk.tenants import Tenants
+    from tirdad_sdk.usage_records import UsageRecords
     from tirdad_sdk.users import Users
     from tirdad_sdk.wallets import Wallets
     from tirdad_sdk.webhook_events import WebhookEvents
@@ -85,6 +86,7 @@ class Tirdad(BaseSDK):
     tax_associations: "TaxAssociations"
     tax_rates: "TaxRates"
     tenants: "Tenants"
+    usage_records: "UsageRecords"
     users: "Users"
     webhook_events: "WebhookEvents"
     workflows: "Workflows"
@@ -120,6 +122,7 @@ class Tirdad(BaseSDK):
         "tax_associations": ("tirdad_sdk.tax_associations", "TaxAssociations"),
         "tax_rates": ("tirdad_sdk.tax_rates", "TaxRates"),
         "tenants": ("tirdad_sdk.tenants", "Tenants"),
+        "usage_records": ("tirdad_sdk.usage_records", "UsageRecords"),
         "users": ("tirdad_sdk.users", "Users"),
         "webhook_events": ("tirdad_sdk.webhook_events", "WebhookEvents"),
         "workflows": ("tirdad_sdk.workflows", "Workflows"),

@@ -106,6 +106,8 @@ if TYPE_CHECKING:
     from .billingcycleinfo import BillingCycleInfo, BillingCycleInfoTypedDict
     from .billingmodel import BillingModel
     from .billingperiod import BillingPeriod
+    from .billingperiodbehaviour import BillingPeriodBehaviour
+    from .billingperiodconfig import BillingPeriodConfig, BillingPeriodConfigTypedDict
     from .billingperiodinfo import BillingPeriodInfo, BillingPeriodInfoTypedDict
     from .billingtier import BillingTier
     from .bucket import Bucket, BucketTypedDict
@@ -935,6 +937,10 @@ if TYPE_CHECKING:
         ListTaxRatesResponse,
         ListTaxRatesResponseTypedDict,
     )
+    from .listusagerecordsresponse import (
+        ListUsageRecordsResponse,
+        ListUsageRecordsResponseTypedDict,
+    )
     from .listusersresponse import ListUsersResponse, ListUsersResponseTypedDict
     from .listwallettransactionsresponse import (
         ListWalletTransactionsResponse,
@@ -950,6 +956,8 @@ if TYPE_CHECKING:
         MatchedSubscriptionLineItem,
         MatchedSubscriptionLineItemTypedDict,
     )
+    from .metadatacustomfield import MetadataCustomField, MetadataCustomFieldTypedDict
+    from .metadatacustomfieldsource import MetadataCustomFieldSource
     from .meter_aggregation import MeterAggregation, MeterAggregationTypedDict
     from .meter_filter import MeterFilter, MeterFilterTypedDict
     from .meter_meter import MeterMeter, MeterMeterTypedDict
@@ -971,6 +979,7 @@ if TYPE_CHECKING:
         ModifySubscriptionParams,
         ModifySubscriptionParamsTypedDict,
     )
+    from .onpendingschedulepolicy import OnPendingSchedulePolicy
     from .overrideentitlementrequest import (
         OverrideEntitlementRequest,
         OverrideEntitlementRequestTypedDict,
@@ -1001,6 +1010,10 @@ if TYPE_CHECKING:
     from .paymentterms import PaymentTerms
     from .plan import Plan, PlanTypedDict
     from .planfilter import PlanFilter, PlanFilterOrder, PlanFilterTypedDict
+    from .planpricesyncstatusresponse import (
+        PlanPriceSyncStatusResponse,
+        PlanPriceSyncStatusResponseTypedDict,
+    )
     from .plansummary import PlanSummary, PlanSummaryTypedDict
     from .pointbucket import PointBucket, PointBucketTypedDict
     from .previewsubscriptionchangeop import (
@@ -1026,6 +1039,10 @@ if TYPE_CHECKING:
         PriceTransformQuantityTypedDict,
     )
     from .priceentitytype import PriceEntityType
+    from .pricefeatureresponse import (
+        PriceFeatureResponse,
+        PriceFeatureResponseTypedDict,
+    )
     from .pricefilter import PriceFilter, PriceFilterOrder, PriceFilterTypedDict
     from .pricelookupresult import PriceLookupResult, PriceLookupResultTypedDict
     from .pricetype import PriceType
@@ -1141,10 +1158,19 @@ if TYPE_CHECKING:
         SubscriptionSubscriptionPause,
         SubscriptionSubscriptionPauseTypedDict,
     )
+    from .subscriptionchangebillingperiodresult import (
+        SubscriptionChangeBillingPeriodResult,
+        SubscriptionChangeBillingPeriodResultTypedDict,
+    )
+    from .subscriptionchangeconflictpolicies import (
+        SubscriptionChangeConflictPolicies,
+        SubscriptionChangeConflictPoliciesTypedDict,
+    )
     from .subscriptionchangeentitypolicies import (
         SubscriptionChangeEntityPolicies,
         SubscriptionChangeEntityPoliciesTypedDict,
     )
+    from .subscriptionchangeentitytype import SubscriptionChangeEntityType
     from .subscriptionchangeexecuteresponse import (
         SubscriptionChangeExecuteResponse,
         SubscriptionChangeExecuteResponseTypedDict,
@@ -1477,6 +1503,16 @@ if TYPE_CHECKING:
     from .usageanalyticitem import UsageAnalyticItem, UsageAnalyticItemTypedDict
     from .usageanalyticpoint import UsageAnalyticPoint, UsageAnalyticPointTypedDict
     from .usagebreakdownitem import UsageBreakdownItem, UsageBreakdownItemTypedDict
+    from .usagerecordfilter import (
+        UsageRecordFilter,
+        UsageRecordFilterOrder,
+        UsageRecordFilterTypedDict,
+    )
+    from .usagerecordresponse import UsageRecordResponse, UsageRecordResponseTypedDict
+    from .usagerecordsyncentry import (
+        UsageRecordSyncEntry,
+        UsageRecordSyncEntryTypedDict,
+    )
     from .usageresult import UsageResult, UsageResultTypedDict
     from .userfilter import UserFilter, UserFilterOrder, UserFilterTypedDict
     from .userresponse import UserResponse, UserResponseTypedDict
@@ -1707,6 +1743,9 @@ __all__ = [
     "BillingCycleInfoTypedDict",
     "BillingModel",
     "BillingPeriod",
+    "BillingPeriodBehaviour",
+    "BillingPeriodConfig",
+    "BillingPeriodConfigTypedDict",
     "BillingPeriodInfo",
     "BillingPeriodInfoTypedDict",
     "BillingTier",
@@ -2323,6 +2362,8 @@ __all__ = [
     "ListTaxAssociationsResponseTypedDict",
     "ListTaxRatesResponse",
     "ListTaxRatesResponseTypedDict",
+    "ListUsageRecordsResponse",
+    "ListUsageRecordsResponseTypedDict",
     "ListUsersResponse",
     "ListUsersResponseTypedDict",
     "ListWalletTransactionsResponse",
@@ -2335,6 +2376,9 @@ __all__ = [
     "MatchedPriceTypedDict",
     "MatchedSubscriptionLineItem",
     "MatchedSubscriptionLineItemTypedDict",
+    "MetadataCustomField",
+    "MetadataCustomFieldSource",
+    "MetadataCustomFieldTypedDict",
     "MeterAggregation",
     "MeterAggregationTypedDict",
     "MeterFilter",
@@ -2353,6 +2397,7 @@ __all__ = [
     "ModifySubscriptionLineItemTypedDict",
     "ModifySubscriptionParams",
     "ModifySubscriptionParamsTypedDict",
+    "OnPendingSchedulePolicy",
     "OverrideEntitlementRequest",
     "OverrideEntitlementRequestTypedDict",
     "OverrideLineItemRequest",
@@ -2380,6 +2425,8 @@ __all__ = [
     "PlanFilter",
     "PlanFilterOrder",
     "PlanFilterTypedDict",
+    "PlanPriceSyncStatusResponse",
+    "PlanPriceSyncStatusResponseTypedDict",
     "PlanResponse",
     "PlanResponseTypedDict",
     "PlanSummary",
@@ -2394,6 +2441,8 @@ __all__ = [
     "PreviewSubscriptionPlanChangeV2Request",
     "PreviewSubscriptionPlanChangeV2RequestTypedDict",
     "PriceEntityType",
+    "PriceFeatureResponse",
+    "PriceFeatureResponseTypedDict",
     "PriceFilter",
     "PriceFilterOrder",
     "PriceFilterTypedDict",
@@ -2497,8 +2546,13 @@ __all__ = [
     "SubModifyTaxParamsTypedDict",
     "SubModifyTrialEndRequest",
     "SubModifyTrialEndRequestTypedDict",
+    "SubscriptionChangeBillingPeriodResult",
+    "SubscriptionChangeBillingPeriodResultTypedDict",
+    "SubscriptionChangeConflictPolicies",
+    "SubscriptionChangeConflictPoliciesTypedDict",
     "SubscriptionChangeEntityPolicies",
     "SubscriptionChangeEntityPoliciesTypedDict",
+    "SubscriptionChangeEntityType",
     "SubscriptionChangeExecuteResponse",
     "SubscriptionChangeExecuteResponseTypedDict",
     "SubscriptionChangePreviewResponse",
@@ -2717,6 +2771,13 @@ __all__ = [
     "UsageAnalyticPointTypedDict",
     "UsageBreakdownItem",
     "UsageBreakdownItemTypedDict",
+    "UsageRecordFilter",
+    "UsageRecordFilterOrder",
+    "UsageRecordFilterTypedDict",
+    "UsageRecordResponse",
+    "UsageRecordResponseTypedDict",
+    "UsageRecordSyncEntry",
+    "UsageRecordSyncEntryTypedDict",
     "UsageResult",
     "UsageResultTypedDict",
     "UserFilter",
@@ -2897,6 +2958,9 @@ _dynamic_imports: dict[str, str] = {
     "BillingCycleInfoTypedDict": ".billingcycleinfo",
     "BillingModel": ".billingmodel",
     "BillingPeriod": ".billingperiod",
+    "BillingPeriodBehaviour": ".billingperiodbehaviour",
+    "BillingPeriodConfig": ".billingperiodconfig",
+    "BillingPeriodConfigTypedDict": ".billingperiodconfig",
     "BillingPeriodInfo": ".billingperiodinfo",
     "BillingPeriodInfoTypedDict": ".billingperiodinfo",
     "BillingTier": ".billingtier",
@@ -3505,6 +3569,8 @@ _dynamic_imports: dict[str, str] = {
     "ListTaxAssociationsResponseTypedDict": ".listtaxassociationsresponse",
     "ListTaxRatesResponse": ".listtaxratesresponse",
     "ListTaxRatesResponseTypedDict": ".listtaxratesresponse",
+    "ListUsageRecordsResponse": ".listusagerecordsresponse",
+    "ListUsageRecordsResponseTypedDict": ".listusagerecordsresponse",
     "ListUsersResponse": ".listusersresponse",
     "ListUsersResponseTypedDict": ".listusersresponse",
     "ListWalletTransactionsResponse": ".listwallettransactionsresponse",
@@ -3517,6 +3583,9 @@ _dynamic_imports: dict[str, str] = {
     "MatchedPriceTypedDict": ".matchedprice",
     "MatchedSubscriptionLineItem": ".matchedsubscriptionlineitem",
     "MatchedSubscriptionLineItemTypedDict": ".matchedsubscriptionlineitem",
+    "MetadataCustomField": ".metadatacustomfield",
+    "MetadataCustomFieldTypedDict": ".metadatacustomfield",
+    "MetadataCustomFieldSource": ".metadatacustomfieldsource",
     "MeterAggregation": ".meter_aggregation",
     "MeterAggregationTypedDict": ".meter_aggregation",
     "MeterFilter": ".meter_filter",
@@ -3535,6 +3604,7 @@ _dynamic_imports: dict[str, str] = {
     "ModifySubscriptionLineItemTypedDict": ".modifysubscriptionlineitem",
     "ModifySubscriptionParams": ".modifysubscriptionparams",
     "ModifySubscriptionParamsTypedDict": ".modifysubscriptionparams",
+    "OnPendingSchedulePolicy": ".onpendingschedulepolicy",
     "OverrideEntitlementRequest": ".overrideentitlementrequest",
     "OverrideEntitlementRequestTypedDict": ".overrideentitlementrequest",
     "OverrideLineItemRequest": ".overridelineitemrequest",
@@ -3563,6 +3633,8 @@ _dynamic_imports: dict[str, str] = {
     "PlanFilter": ".planfilter",
     "PlanFilterOrder": ".planfilter",
     "PlanFilterTypedDict": ".planfilter",
+    "PlanPriceSyncStatusResponse": ".planpricesyncstatusresponse",
+    "PlanPriceSyncStatusResponseTypedDict": ".planpricesyncstatusresponse",
     "PlanSummary": ".plansummary",
     "PlanSummaryTypedDict": ".plansummary",
     "PointBucket": ".pointbucket",
@@ -3582,6 +3654,8 @@ _dynamic_imports: dict[str, str] = {
     "PriceTransformQuantity": ".price_transformquantity",
     "PriceTransformQuantityTypedDict": ".price_transformquantity",
     "PriceEntityType": ".priceentitytype",
+    "PriceFeatureResponse": ".pricefeatureresponse",
+    "PriceFeatureResponseTypedDict": ".pricefeatureresponse",
     "PriceFilter": ".pricefilter",
     "PriceFilterOrder": ".pricefilter",
     "PriceFilterTypedDict": ".pricefilter",
@@ -3678,8 +3752,13 @@ _dynamic_imports: dict[str, str] = {
     "SubscriptionSubscriptionLineItemTypedDict": ".subscription_subscriptionlineitem",
     "SubscriptionSubscriptionPause": ".subscription_subscriptionpause",
     "SubscriptionSubscriptionPauseTypedDict": ".subscription_subscriptionpause",
+    "SubscriptionChangeBillingPeriodResult": ".subscriptionchangebillingperiodresult",
+    "SubscriptionChangeBillingPeriodResultTypedDict": ".subscriptionchangebillingperiodresult",
+    "SubscriptionChangeConflictPolicies": ".subscriptionchangeconflictpolicies",
+    "SubscriptionChangeConflictPoliciesTypedDict": ".subscriptionchangeconflictpolicies",
     "SubscriptionChangeEntityPolicies": ".subscriptionchangeentitypolicies",
     "SubscriptionChangeEntityPoliciesTypedDict": ".subscriptionchangeentitypolicies",
+    "SubscriptionChangeEntityType": ".subscriptionchangeentitytype",
     "SubscriptionChangeExecuteResponse": ".subscriptionchangeexecuteresponse",
     "SubscriptionChangeExecuteResponseTypedDict": ".subscriptionchangeexecuteresponse",
     "SubscriptionChangePreviewResponse": ".subscriptionchangepreviewresponse",
@@ -3895,6 +3974,13 @@ _dynamic_imports: dict[str, str] = {
     "UsageAnalyticPointTypedDict": ".usageanalyticpoint",
     "UsageBreakdownItem": ".usagebreakdownitem",
     "UsageBreakdownItemTypedDict": ".usagebreakdownitem",
+    "UsageRecordFilter": ".usagerecordfilter",
+    "UsageRecordFilterOrder": ".usagerecordfilter",
+    "UsageRecordFilterTypedDict": ".usagerecordfilter",
+    "UsageRecordResponse": ".usagerecordresponse",
+    "UsageRecordResponseTypedDict": ".usagerecordresponse",
+    "UsageRecordSyncEntry": ".usagerecordsyncentry",
+    "UsageRecordSyncEntryTypedDict": ".usagerecordsyncentry",
     "UsageResult": ".usageresult",
     "UsageResultTypedDict": ".usageresult",
     "UserFilter": ".userfilter",

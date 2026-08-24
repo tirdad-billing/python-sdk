@@ -1,12 +1,12 @@
-# EntityChangeBehaviour
+# MetadataCustomFieldSource
 
 ## Example Usage
 
 ```python
-from tirdad_sdk.models import EntityChangeBehaviour
+from tirdad_sdk.models import MetadataCustomFieldSource
 
 # Open enum: unrecognized values are captured as UnrecognizedStr
-value: EntityChangeBehaviour = "carry"
+value: MetadataCustomFieldSource = "customer"
 ```
 
 
@@ -14,6 +14,5 @@ value: EntityChangeBehaviour = "carry"
 
 This is an open enum. Unrecognized values will not fail type checks.
 
-- `"carry"`
-- `"drop"`
-- `"add"`
+- `"customer"`
+- `"invoice"`

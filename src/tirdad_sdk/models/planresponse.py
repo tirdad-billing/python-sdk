@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .creditgrantresponse import CreditGrantResponse, CreditGrantResponseTypedDict
+from .planpricesyncstatusresponse import (
+    PlanPriceSyncStatusResponse,
+    PlanPriceSyncStatusResponseTypedDict,
+)
 from .status import Status
 from datetime import datetime
 from pydantic import model_serializer
@@ -26,6 +30,7 @@ class PlanResponseTypedDict(TypedDict):
     lookup_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     name: NotRequired[str]
+    price_sync_status: NotRequired[PlanPriceSyncStatusResponseTypedDict]
     prices: NotRequired[List["PriceResponseTypedDict"]]
     r"""TODO: Add inline addons"""
     status: NotRequired[Status]
@@ -57,6 +62,8 @@ class PlanResponse(BaseModel):
 
     name: Optional[str] = None
 
+    price_sync_status: Optional[PlanPriceSyncStatusResponse] = None
+
     prices: Optional[List["PriceResponse"]] = None
     r"""TODO: Add inline addons"""
 
@@ -83,6 +90,7 @@ class PlanResponse(BaseModel):
                 "lookup_key",
                 "metadata",
                 "name",
+                "price_sync_status",
                 "prices",
                 "status",
                 "tenant_id",

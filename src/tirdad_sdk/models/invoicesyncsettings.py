@@ -2,29 +2,59 @@
 
 from __future__ import annotations
 from .billingperiod import BillingPeriod
+from .metadatacustomfield import MetadataCustomField, MetadataCustomFieldTypedDict
 from .serviceperiodcustomfields import (
     ServicePeriodCustomFields,
     ServicePeriodCustomFieldsTypedDict,
 )
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class InvoiceSyncSettingsTypedDict(TypedDict):
+    metadata_custom_fields: NotRequired[List[MetadataCustomFieldTypedDict]]
+    r"""MetadataCustomFields copies metadata values onto Zoho invoice custom fields
+    verbatim.
+    """
     normalize_fixed_to: NotRequired[BillingPeriod]
     service_period_custom_fields: NotRequired[ServicePeriodCustomFieldsTypedDict]
+    submit_for_approval: NotRequired[bool]
+    r"""SubmitForApproval submits the synced invoice into the merchant's Zoho Books approval
+    flow before recording payment. Zoho rejects payments on draft invoices, and merchants
+    configure a Zoho auto-approval rule for FlexPrice-sent invoices, so we submit, wait for
+    that rule to fire, then pay.
+    """
 
 
 class InvoiceSyncSettings(BaseModel):
+    metadata_custom_fields: Optional[List[MetadataCustomField]] = None
+    r"""MetadataCustomFields copies metadata values onto Zoho invoice custom fields
+    verbatim.
+    """
+
     normalize_fixed_to: Optional[BillingPeriod] = None
 
     service_period_custom_fields: Optional[ServicePeriodCustomFields] = None
 
+    submit_for_approval: Optional[bool] = None
+    r"""SubmitForApproval submits the synced invoice into the merchant's Zoho Books approval
+    flow before recording payment. Zoho rejects payments on draft invoices, and merchants
+    configure a Zoho auto-approval rule for FlexPrice-sent invoices, so we submit, wait for
+    that rule to fire, then pay.
+    """
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["normalize_fixed_to", "service_period_custom_fields"])
+        optional_fields = set(
+            [
+                "metadata_custom_fields",
+                "normalize_fixed_to",
+                "service_period_custom_fields",
+                "submit_for_approval",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

@@ -4,6 +4,10 @@ from __future__ import annotations
 from .changedresources import ChangedResources, ChangedResourcesTypedDict
 from .entitychangeresult import EntityChangeResult, EntityChangeResultTypedDict
 from .plansummary import PlanSummary, PlanSummaryTypedDict
+from .subscriptionchangebillingperiodresult import (
+    SubscriptionChangeBillingPeriodResult,
+    SubscriptionChangeBillingPeriodResultTypedDict,
+)
 from .subscriptionchangetype import SubscriptionChangeType
 from .subscriptionresponse import SubscriptionResponse, SubscriptionResponseTypedDict
 from datetime import datetime
@@ -14,6 +18,7 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class SubscriptionChangeV2ResponseTypedDict(TypedDict):
+    billing_period: NotRequired[SubscriptionChangeBillingPeriodResultTypedDict]
     change_type: NotRequired[SubscriptionChangeType]
     changed_resources: NotRequired[ChangedResourcesTypedDict]
     effective_at: NotRequired[datetime]
@@ -27,11 +32,17 @@ class SubscriptionChangeV2ResponseTypedDict(TypedDict):
     schedule_id: NotRequired[str]
     scheduled_at: NotRequired[datetime]
     subscription: NotRequired[SubscriptionResponseTypedDict]
+    superseded_schedules: NotRequired[List[str]]
+    r"""SupersededSchedules lists the plan-change schedules this request cancelled under
+    on_conflict_policies.on_pending_schedule. Preview reports what execute would cancel.
+    """
     to_plan: NotRequired[PlanSummaryTypedDict]
     warnings: NotRequired[List[str]]
 
 
 class SubscriptionChangeV2Response(BaseModel):
+    billing_period: Optional[SubscriptionChangeBillingPeriodResult] = None
+
     change_type: Optional[SubscriptionChangeType] = None
 
     changed_resources: Optional[ChangedResources] = None
@@ -55,6 +66,11 @@ class SubscriptionChangeV2Response(BaseModel):
 
     subscription: Optional[SubscriptionResponse] = None
 
+    superseded_schedules: Optional[List[str]] = None
+    r"""SupersededSchedules lists the plan-change schedules this request cancelled under
+    on_conflict_policies.on_pending_schedule. Preview reports what execute would cancel.
+    """
+
     to_plan: Optional[PlanSummary] = None
 
     warnings: Optional[List[str]] = None
@@ -63,6 +79,7 @@ class SubscriptionChangeV2Response(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "billing_period",
                 "change_type",
                 "changed_resources",
                 "effective_at",
@@ -73,6 +90,7 @@ class SubscriptionChangeV2Response(BaseModel):
                 "schedule_id",
                 "scheduled_at",
                 "subscription",
+                "superseded_schedules",
                 "to_plan",
                 "warnings",
             ]

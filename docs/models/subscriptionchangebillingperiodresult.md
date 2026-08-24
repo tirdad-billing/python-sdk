@@ -1,0 +1,11 @@
+# SubscriptionChangeBillingPeriodResult
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `behaviour`                                                                    | [Optional[models.BillingPeriodBehaviour]](../models/billingperiodbehaviour.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `billing_anchor`                                                               | [date](https://docs.python.org/3/library/datetime.html#date-objects)           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `current_period_end`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects)           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `current_period_start`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects)           | :heavy_minus_sign:                                                             | N/A                                                                            |

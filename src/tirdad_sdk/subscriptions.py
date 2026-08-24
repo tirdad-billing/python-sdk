@@ -4341,6 +4341,10 @@ class Subscriptions(BaseSDK):
         id: str,
         proration_behavior: models.ProrationBehavior,
         target_plan_id: str,
+        billing_period_behaviour: Optional[models.BillingPeriodBehaviour] = None,
+        billing_period_config: Optional[
+            Union[models.BillingPeriodConfig, models.BillingPeriodConfigTypedDict]
+        ] = None,
         change_at: Optional[models.ScheduleType] = None,
         entity_policies: Optional[
             Union[
@@ -4350,6 +4354,12 @@ class Subscriptions(BaseSDK):
         ] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        on_conflict_policies: Optional[
+            Union[
+                models.SubscriptionChangeConflictPolicies,
+                models.SubscriptionChangeConflictPoliciesTypedDict,
+            ]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -4363,15 +4373,20 @@ class Subscriptions(BaseSDK):
 
         scheduled_at is resolved from the subscription's current period end at request time. If that period end is already in the past (a backdated start date, a resumed pause, or worker downtime can all leave a subscription behind), the change is due immediately and fires on the next billing scan rather than a period away — inspect scheduled_at to see this.
 
-        Only one plan change may be pending per subscription; request a second one and this returns 400. Cancel the existing schedule via POST /subscriptions/schedules/{schedule_id}/cancel first. Pending schedules are listable via GET /subscriptions/{id}/schedules.
+        Only one plan change may be pending per subscription. By default (on_conflict_policies.on_pending_schedule = 'reject') a second request returns 400; cancel the existing schedule via POST /subscriptions/schedules/{schedule_id}/cancel first. Pending schedules are listable via GET /subscriptions/{id}/schedules.
+
+        Set on_conflict_policies.on_pending_schedule to 'supersede' to replace the queued change instead: the pending schedule is cancelled and this request applied in the same transaction, so both land or neither does. The cancelled schedule ids are returned in superseded_schedules, and preview reports the same list without writing.
 
         :param id: Subscription ID
         :param proration_behavior:
         :param target_plan_id:
+        :param billing_period_behaviour:
+        :param billing_period_config:
         :param change_at:
         :param entity_policies:
         :param idempotency_key:
         :param metadata:
+        :param on_conflict_policies:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -4390,12 +4405,20 @@ class Subscriptions(BaseSDK):
         request = models.ExecuteSubscriptionPlanChangeV2Request(
             id=id,
             body=models.SubscriptionChangeV2Request(
+                billing_period_behaviour=billing_period_behaviour,
+                billing_period_config=utils.get_pydantic_model(
+                    billing_period_config, Optional[models.BillingPeriodConfig]
+                ),
                 change_at=change_at,
                 entity_policies=utils.get_pydantic_model(
                     entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
                 ),
                 idempotency_key=idempotency_key,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                on_conflict_policies=utils.get_pydantic_model(
+                    on_conflict_policies,
+                    Optional[models.SubscriptionChangeConflictPolicies],
+                ),
                 proration_behavior=proration_behavior,
                 target_plan_id=target_plan_id,
             ),
@@ -4481,6 +4504,10 @@ class Subscriptions(BaseSDK):
         id: str,
         proration_behavior: models.ProrationBehavior,
         target_plan_id: str,
+        billing_period_behaviour: Optional[models.BillingPeriodBehaviour] = None,
+        billing_period_config: Optional[
+            Union[models.BillingPeriodConfig, models.BillingPeriodConfigTypedDict]
+        ] = None,
         change_at: Optional[models.ScheduleType] = None,
         entity_policies: Optional[
             Union[
@@ -4490,6 +4517,12 @@ class Subscriptions(BaseSDK):
         ] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        on_conflict_policies: Optional[
+            Union[
+                models.SubscriptionChangeConflictPolicies,
+                models.SubscriptionChangeConflictPoliciesTypedDict,
+            ]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -4503,15 +4536,20 @@ class Subscriptions(BaseSDK):
 
         scheduled_at is resolved from the subscription's current period end at request time. If that period end is already in the past (a backdated start date, a resumed pause, or worker downtime can all leave a subscription behind), the change is due immediately and fires on the next billing scan rather than a period away — inspect scheduled_at to see this.
 
-        Only one plan change may be pending per subscription; request a second one and this returns 400. Cancel the existing schedule via POST /subscriptions/schedules/{schedule_id}/cancel first. Pending schedules are listable via GET /subscriptions/{id}/schedules.
+        Only one plan change may be pending per subscription. By default (on_conflict_policies.on_pending_schedule = 'reject') a second request returns 400; cancel the existing schedule via POST /subscriptions/schedules/{schedule_id}/cancel first. Pending schedules are listable via GET /subscriptions/{id}/schedules.
+
+        Set on_conflict_policies.on_pending_schedule to 'supersede' to replace the queued change instead: the pending schedule is cancelled and this request applied in the same transaction, so both land or neither does. The cancelled schedule ids are returned in superseded_schedules, and preview reports the same list without writing.
 
         :param id: Subscription ID
         :param proration_behavior:
         :param target_plan_id:
+        :param billing_period_behaviour:
+        :param billing_period_config:
         :param change_at:
         :param entity_policies:
         :param idempotency_key:
         :param metadata:
+        :param on_conflict_policies:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -4530,12 +4568,20 @@ class Subscriptions(BaseSDK):
         request = models.ExecuteSubscriptionPlanChangeV2Request(
             id=id,
             body=models.SubscriptionChangeV2Request(
+                billing_period_behaviour=billing_period_behaviour,
+                billing_period_config=utils.get_pydantic_model(
+                    billing_period_config, Optional[models.BillingPeriodConfig]
+                ),
                 change_at=change_at,
                 entity_policies=utils.get_pydantic_model(
                     entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
                 ),
                 idempotency_key=idempotency_key,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                on_conflict_policies=utils.get_pydantic_model(
+                    on_conflict_policies,
+                    Optional[models.SubscriptionChangeConflictPolicies],
+                ),
                 proration_behavior=proration_behavior,
                 target_plan_id=target_plan_id,
             ),
@@ -4621,6 +4667,10 @@ class Subscriptions(BaseSDK):
         id: str,
         proration_behavior: models.ProrationBehavior,
         target_plan_id: str,
+        billing_period_behaviour: Optional[models.BillingPeriodBehaviour] = None,
+        billing_period_config: Optional[
+            Union[models.BillingPeriodConfig, models.BillingPeriodConfigTypedDict]
+        ] = None,
         change_at: Optional[models.ScheduleType] = None,
         entity_policies: Optional[
             Union[
@@ -4630,6 +4680,12 @@ class Subscriptions(BaseSDK):
         ] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        on_conflict_policies: Optional[
+            Union[
+                models.SubscriptionChangeConflictPolicies,
+                models.SubscriptionChangeConflictPoliciesTypedDict,
+            ]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -4642,10 +4698,13 @@ class Subscriptions(BaseSDK):
         :param id: Subscription ID
         :param proration_behavior:
         :param target_plan_id:
+        :param billing_period_behaviour:
+        :param billing_period_config:
         :param change_at:
         :param entity_policies:
         :param idempotency_key:
         :param metadata:
+        :param on_conflict_policies:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -4664,12 +4723,20 @@ class Subscriptions(BaseSDK):
         request = models.PreviewSubscriptionPlanChangeV2Request(
             id=id,
             body=models.SubscriptionChangeV2Request(
+                billing_period_behaviour=billing_period_behaviour,
+                billing_period_config=utils.get_pydantic_model(
+                    billing_period_config, Optional[models.BillingPeriodConfig]
+                ),
                 change_at=change_at,
                 entity_policies=utils.get_pydantic_model(
                     entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
                 ),
                 idempotency_key=idempotency_key,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                on_conflict_policies=utils.get_pydantic_model(
+                    on_conflict_policies,
+                    Optional[models.SubscriptionChangeConflictPolicies],
+                ),
                 proration_behavior=proration_behavior,
                 target_plan_id=target_plan_id,
             ),
@@ -4755,6 +4822,10 @@ class Subscriptions(BaseSDK):
         id: str,
         proration_behavior: models.ProrationBehavior,
         target_plan_id: str,
+        billing_period_behaviour: Optional[models.BillingPeriodBehaviour] = None,
+        billing_period_config: Optional[
+            Union[models.BillingPeriodConfig, models.BillingPeriodConfigTypedDict]
+        ] = None,
         change_at: Optional[models.ScheduleType] = None,
         entity_policies: Optional[
             Union[
@@ -4764,6 +4835,12 @@ class Subscriptions(BaseSDK):
         ] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        on_conflict_policies: Optional[
+            Union[
+                models.SubscriptionChangeConflictPolicies,
+                models.SubscriptionChangeConflictPoliciesTypedDict,
+            ]
+        ] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -4776,10 +4853,13 @@ class Subscriptions(BaseSDK):
         :param id: Subscription ID
         :param proration_behavior:
         :param target_plan_id:
+        :param billing_period_behaviour:
+        :param billing_period_config:
         :param change_at:
         :param entity_policies:
         :param idempotency_key:
         :param metadata:
+        :param on_conflict_policies:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -4798,12 +4878,20 @@ class Subscriptions(BaseSDK):
         request = models.PreviewSubscriptionPlanChangeV2Request(
             id=id,
             body=models.SubscriptionChangeV2Request(
+                billing_period_behaviour=billing_period_behaviour,
+                billing_period_config=utils.get_pydantic_model(
+                    billing_period_config, Optional[models.BillingPeriodConfig]
+                ),
                 change_at=change_at,
                 entity_policies=utils.get_pydantic_model(
                     entity_policies, Optional[models.SubscriptionChangeEntityPolicies]
                 ),
                 idempotency_key=idempotency_key,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                on_conflict_policies=utils.get_pydantic_model(
+                    on_conflict_policies,
+                    Optional[models.SubscriptionChangeConflictPolicies],
+                ),
                 proration_behavior=proration_behavior,
                 target_plan_id=target_plan_id,
             ),

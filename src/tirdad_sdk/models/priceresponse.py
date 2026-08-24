@@ -14,6 +14,7 @@ from .price_jsonbtransformquantity import (
 )
 from .price_pricetier import PricePriceTier, PricePriceTierTypedDict
 from .priceentitytype import PriceEntityType
+from .pricefeatureresponse import PriceFeatureResponse, PriceFeatureResponseTypedDict
 from .pricetype import PriceType
 from .priceunitresponse import PriceUnitResponse, PriceUnitResponseTypedDict
 from .priceunittype import PriceUnitType
@@ -69,6 +70,7 @@ class PriceResponseTypedDict(TypedDict):
     entity_type: NotRequired[PriceEntityType]
     environment_id: NotRequired[str]
     r"""EnvironmentID is the environment identifier for the price"""
+    feature: NotRequired[PriceFeatureResponseTypedDict]
     group: NotRequired[GroupResponseTypedDict]
     group_id: NotRequired[str]
     r"""GroupID references the group this price belongs to"""
@@ -170,6 +172,8 @@ class PriceResponse(BaseModel):
     environment_id: Optional[str] = None
     r"""EnvironmentID is the environment identifier for the price"""
 
+    feature: Optional[PriceFeatureResponse] = None
+
     group: Optional[GroupResponse] = None
 
     group_id: Optional[str] = None
@@ -267,6 +271,7 @@ class PriceResponse(BaseModel):
                 "entity_id",
                 "entity_type",
                 "environment_id",
+                "feature",
                 "group",
                 "group_id",
                 "id",

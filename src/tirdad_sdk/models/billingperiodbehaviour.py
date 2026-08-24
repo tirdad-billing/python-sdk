@@ -5,11 +5,11 @@ from tirdad_sdk.types import UnrecognizedStr
 from typing import Literal, Union
 
 
-EntityChangeBehaviour = Union[
+BillingPeriodBehaviour = Union[
     Literal[
-        "carry",
-        "drop",
-        "add",
+        "unchanged",
+        "anchor_at_effect",
+        "anchor_at_config",
     ],
     UnrecognizedStr,
 ]

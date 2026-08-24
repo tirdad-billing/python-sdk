@@ -39,7 +39,7 @@ class EntitlementResponseTypedDict(TypedDict):
     grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
-    grant_quota: NotRequired[float]
+    grant_quota: NotRequired[str]
     id: NotRequired[str]
     is_enabled: NotRequired[bool]
     is_soft_limit: NotRequired[bool]
@@ -92,7 +92,7 @@ class EntitlementResponse(BaseModel):
 
     grant_measure: Optional[EntitlementGrantMeasure] = None
 
-    grant_quota: Optional[float] = None
+    grant_quota: Optional[str] = None
 
     id: Optional[str] = None
 

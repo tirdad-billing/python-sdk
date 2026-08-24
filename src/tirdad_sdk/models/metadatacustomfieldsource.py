@@ -5,11 +5,10 @@ from tirdad_sdk.types import UnrecognizedStr
 from typing import Literal, Union
 
 
-EntityChangeBehaviour = Union[
+MetadataCustomFieldSource = Union[
     Literal[
-        "carry",
-        "drop",
-        "add",
+        "customer",
+        "invoice",
     ],
     UnrecognizedStr,
 ]

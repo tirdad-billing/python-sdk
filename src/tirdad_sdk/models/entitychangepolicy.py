@@ -11,14 +11,18 @@ from typing_extensions import NotRequired, TypedDict
 class EntityChangePolicyTypedDict(TypedDict):
     default_behaviour: NotRequired[EntityChangeBehaviour]
     overrides: NotRequired[Dict[str, EntityChangeBehaviour]]
-    r"""Overrides is keyed by addon_associations.id (instance), not catalogue addon_id."""
+    r"""Overrides is keyed by addon_associations.id (instance), not catalogue addon_id.
+    That is the id an EntityChangeResult reports as EntityID.
+    """
 
 
 class EntityChangePolicy(BaseModel):
     default_behaviour: Optional[EntityChangeBehaviour] = None
 
     overrides: Optional[Dict[str, EntityChangeBehaviour]] = None
-    r"""Overrides is keyed by addon_associations.id (instance), not catalogue addon_id."""
+    r"""Overrides is keyed by addon_associations.id (instance), not catalogue addon_id.
+    That is the id an EntityChangeResult reports as EntityID.
+    """
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
