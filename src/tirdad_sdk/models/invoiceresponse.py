@@ -15,6 +15,8 @@ from .invoicetype import InvoiceType
 from .paymentstatus import PaymentStatus
 from .status import Status
 from .taxappliedresponse import TaxAppliedResponse, TaxAppliedResponseTypedDict
+from .taxexemptionreasoncode import TaxExemptionReasonCode
+from .taxsummary import TaxSummary, TaxSummaryTypedDict
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -111,6 +113,8 @@ class InvoiceResponseTypedDict(TypedDict):
     r"""subscription_id is the ID of the subscription this invoice is associated with (only present for subscription-based invoices)"""
     subtotal: NotRequired[str]
     r"""subtotal is the sum of all line items before any taxes, discounts, or additional fees"""
+    tax_exemption_reason_code: NotRequired[TaxExemptionReasonCode]
+    tax_summary: NotRequired[TaxSummaryTypedDict]
     taxes: NotRequired[List[TaxAppliedResponseTypedDict]]
     r"""tax_applied_records contains the tax applied records associated with this invoice"""
     tenant_id: NotRequired[str]
@@ -253,6 +257,10 @@ class InvoiceResponse(BaseModel):
     subtotal: Optional[str] = None
     r"""subtotal is the sum of all line items before any taxes, discounts, or additional fees"""
 
+    tax_exemption_reason_code: Optional[TaxExemptionReasonCode] = None
+
+    tax_summary: Optional[TaxSummary] = None
+
     taxes: Optional[List[TaxAppliedResponse]] = None
     r"""tax_applied_records contains the tax applied records associated with this invoice"""
 
@@ -324,6 +332,8 @@ class InvoiceResponse(BaseModel):
                 "subscription_customer_id",
                 "subscription_id",
                 "subtotal",
+                "tax_exemption_reason_code",
+                "tax_summary",
                 "taxes",
                 "tenant_id",
                 "total",

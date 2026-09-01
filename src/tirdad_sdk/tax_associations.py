@@ -239,6 +239,7 @@ class TaxAssociations(BaseSDK):
         metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
         start_date: Optional[datetime] = None,
+        tax_behavior: Optional[models.TaxBehavior] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -258,6 +259,7 @@ class TaxAssociations(BaseSDK):
         :param metadata:
         :param priority:
         :param start_date: StartDate sets when this association becomes active. Defaults to now if omitted.
+        :param tax_behavior:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -283,6 +285,7 @@ class TaxAssociations(BaseSDK):
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             priority=priority,
             start_date=start_date,
+            tax_behavior=tax_behavior,
             tax_rate_code=tax_rate_code,
         )
 
@@ -368,6 +371,7 @@ class TaxAssociations(BaseSDK):
         metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
         start_date: Optional[datetime] = None,
+        tax_behavior: Optional[models.TaxBehavior] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -387,6 +391,7 @@ class TaxAssociations(BaseSDK):
         :param metadata:
         :param priority:
         :param start_date: StartDate sets when this association becomes active. Defaults to now if omitted.
+        :param tax_behavior:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -412,6 +417,7 @@ class TaxAssociations(BaseSDK):
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             priority=priority,
             start_date=start_date,
+            tax_behavior=tax_behavior,
             tax_rate_code=tax_rate_code,
         )
 
@@ -689,6 +695,7 @@ class TaxAssociations(BaseSDK):
         auto_apply: Optional[bool] = None,
         metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
+        tax_behavior: Optional[models.TaxBehavior] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -702,6 +709,7 @@ class TaxAssociations(BaseSDK):
         :param auto_apply:
         :param metadata:
         :param priority:
+        :param tax_behavior:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -723,6 +731,7 @@ class TaxAssociations(BaseSDK):
                 auto_apply=auto_apply,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 priority=priority,
+                tax_behavior=tax_behavior,
             ),
         )
 
@@ -802,6 +811,7 @@ class TaxAssociations(BaseSDK):
         auto_apply: Optional[bool] = None,
         metadata: Optional[Mapping[str, str]] = None,
         priority: Optional[int] = None,
+        tax_behavior: Optional[models.TaxBehavior] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -815,6 +825,7 @@ class TaxAssociations(BaseSDK):
         :param auto_apply:
         :param metadata:
         :param priority:
+        :param tax_behavior:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -836,6 +847,7 @@ class TaxAssociations(BaseSDK):
                 auto_apply=auto_apply,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 priority=priority,
+                tax_behavior=tax_behavior,
             ),
         )
 

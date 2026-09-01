@@ -10,6 +10,7 @@
 * [query_user](#query_user) - Query users
 * [update_service_account](#update_service_account) - Update service account
 * [delete_service_account](#delete_service_account) - Delete service account
+* [remove_user](#remove_user) - Remove user from tenant
 * [update_user_roles](#update_user_roles) - Update user roles
 
 ## create_user
@@ -258,6 +259,42 @@ with Tirdad(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Service Account ID                                                  |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## remove_user
+
+Remove a human user (type=user) from the current tenant. Not supported for service accounts; use DELETE /users/{id} for those.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="removeUser" method="post" path="/users/{id}/remove" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    tirdad.users.remove_user(id="<id>")
+
+    # Use the SDK ...
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | User ID                                                             |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Errors

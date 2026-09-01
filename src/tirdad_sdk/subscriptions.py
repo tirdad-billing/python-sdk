@@ -45,6 +45,7 @@ class Subscriptions(BaseSDK):
         end_date: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
         gateway_payment_method_id: Optional[str] = None,
+        include_price_ids: Optional[Iterable[str]] = None,
         inheritance: Optional[
             Union[
                 models.SubscriptionInheritanceConfig,
@@ -134,6 +135,15 @@ class Subscriptions(BaseSDK):
         :param end_date:
         :param external_customer_id:
         :param gateway_payment_method_id:
+        :param include_price_ids: IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
+            prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
+            attaches only those IDs. Each listed ID must belong to the plan, match the subscription
+            currency, and have a cadence that equals or strictly divides the subscription cadence.
+            Pointer-slice distinguishes nil from [].
+            NOTE: no `dive,required` on this tag — swaggo misinterprets `required`
+            inside `dive` as marking the whole field required, which then shows up
+            in the OpenAPI schema and breaks callers that omit the field. Per-element
+            non-emptiness is enforced explicitly in Validate() below.
         :param inheritance:
         :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
@@ -194,6 +204,7 @@ class Subscriptions(BaseSDK):
             end_date=end_date,
             external_customer_id=external_customer_id,
             gateway_payment_method_id=gateway_payment_method_id,
+            include_price_ids=utils.unmarshal(include_price_ids, Optional[List[str]]),
             inheritance=utils.get_pydantic_model(
                 inheritance, Optional[models.SubscriptionInheritanceConfig]
             ),
@@ -338,6 +349,7 @@ class Subscriptions(BaseSDK):
         end_date: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
         gateway_payment_method_id: Optional[str] = None,
+        include_price_ids: Optional[Iterable[str]] = None,
         inheritance: Optional[
             Union[
                 models.SubscriptionInheritanceConfig,
@@ -427,6 +439,15 @@ class Subscriptions(BaseSDK):
         :param end_date:
         :param external_customer_id:
         :param gateway_payment_method_id:
+        :param include_price_ids: IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
+            prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
+            attaches only those IDs. Each listed ID must belong to the plan, match the subscription
+            currency, and have a cadence that equals or strictly divides the subscription cadence.
+            Pointer-slice distinguishes nil from [].
+            NOTE: no `dive,required` on this tag — swaggo misinterprets `required`
+            inside `dive` as marking the whole field required, which then shows up
+            in the OpenAPI schema and breaks callers that omit the field. Per-element
+            non-emptiness is enforced explicitly in Validate() below.
         :param inheritance:
         :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
@@ -487,6 +508,7 @@ class Subscriptions(BaseSDK):
             end_date=end_date,
             external_customer_id=external_customer_id,
             gateway_payment_method_id=gateway_payment_method_id,
+            include_price_ids=utils.unmarshal(include_price_ids, Optional[List[str]]),
             inheritance=utils.get_pydantic_model(
                 inheritance, Optional[models.SubscriptionInheritanceConfig]
             ),
@@ -1493,6 +1515,7 @@ class Subscriptions(BaseSDK):
         id: str,
         amount: Optional[str] = None,
         billing_model: Optional[models.BillingModel] = None,
+        bucket_size: Optional[models.WindowSize] = None,
         commitment_amount: Optional[float] = None,
         commitment_duration: Optional[models.BillingPeriod] = None,
         commitment_overage_factor: Optional[float] = None,
@@ -1530,6 +1553,7 @@ class Subscriptions(BaseSDK):
         :param id: Line Item ID
         :param amount: Amount is the new price amount that overrides the original price
         :param billing_model:
+        :param bucket_size:
         :param commitment_amount: Commitment fields
         :param commitment_duration:
         :param commitment_overage_factor:
@@ -1563,6 +1587,7 @@ class Subscriptions(BaseSDK):
             body=models.UpdateSubscriptionLineItemRequest(
                 amount=amount,
                 billing_model=billing_model,
+                bucket_size=bucket_size,
                 commitment_amount=commitment_amount,
                 commitment_duration=commitment_duration,
                 commitment_overage_factor=commitment_overage_factor,
@@ -1667,6 +1692,7 @@ class Subscriptions(BaseSDK):
         id: str,
         amount: Optional[str] = None,
         billing_model: Optional[models.BillingModel] = None,
+        bucket_size: Optional[models.WindowSize] = None,
         commitment_amount: Optional[float] = None,
         commitment_duration: Optional[models.BillingPeriod] = None,
         commitment_overage_factor: Optional[float] = None,
@@ -1704,6 +1730,7 @@ class Subscriptions(BaseSDK):
         :param id: Line Item ID
         :param amount: Amount is the new price amount that overrides the original price
         :param billing_model:
+        :param bucket_size:
         :param commitment_amount: Commitment fields
         :param commitment_duration:
         :param commitment_overage_factor:
@@ -1737,6 +1764,7 @@ class Subscriptions(BaseSDK):
             body=models.UpdateSubscriptionLineItemRequest(
                 amount=amount,
                 billing_model=billing_model,
+                bucket_size=bucket_size,
                 commitment_amount=commitment_amount,
                 commitment_duration=commitment_duration,
                 commitment_overage_factor=commitment_overage_factor,

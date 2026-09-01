@@ -13,6 +13,7 @@ from .price_transformquantity import (
 from .pricetype import PriceType
 from .priceunitconfig import PriceUnitConfig, PriceUnitConfigTypedDict
 from .priceunittype import PriceUnitType
+from .windowsize import WindowSize
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -28,6 +29,7 @@ class SubscriptionPriceCreateRequestTypedDict(TypedDict):
     type: PriceType
     amount: NotRequired[str]
     billing_period_count: NotRequired[int]
+    bucket_size: NotRequired[WindowSize]
     description: NotRequired[str]
     display_name: NotRequired[str]
     end_date: NotRequired[datetime]
@@ -58,6 +60,8 @@ class SubscriptionPriceCreateRequest(BaseModel):
     amount: Optional[str] = None
 
     billing_period_count: Optional[int] = None
+
+    bucket_size: Optional[WindowSize] = None
 
     description: Optional[str] = None
 
@@ -93,6 +97,7 @@ class SubscriptionPriceCreateRequest(BaseModel):
             [
                 "amount",
                 "billing_period_count",
+                "bucket_size",
                 "description",
                 "display_name",
                 "end_date",

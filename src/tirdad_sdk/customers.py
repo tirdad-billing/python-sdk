@@ -32,6 +32,7 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
+        tax_treatment: Optional[models.TaxTreatment] = None,
         timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -56,6 +57,7 @@ class Customers(BaseSDK):
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains updated key-value pairs that will replace existing metadata
         :param name: name is the updated name or company name for the customer
+        :param tax_treatment:
         :param timezone: timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -91,6 +93,7 @@ class Customers(BaseSDK):
                 ),
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
+                tax_treatment=tax_treatment,
                 timezone=timezone,
             ),
         )
@@ -186,6 +189,7 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
+        tax_treatment: Optional[models.TaxTreatment] = None,
         timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -210,6 +214,7 @@ class Customers(BaseSDK):
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains updated key-value pairs that will replace existing metadata
         :param name: name is the updated name or company name for the customer
+        :param tax_treatment:
         :param timezone: timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -245,6 +250,7 @@ class Customers(BaseSDK):
                 ),
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
+                tax_treatment=tax_treatment,
                 timezone=timezone,
             ),
         )
@@ -346,6 +352,7 @@ class Customers(BaseSDK):
                 Iterable[models.TaxRateOverrideTypedDict],
             ]
         ] = None,
+        tax_treatment: Optional[models.TaxTreatment] = None,
         timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -373,6 +380,7 @@ class Customers(BaseSDK):
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
         :param tax_rate_overrides: tax_rate_overrides contains tax rate configurations to be linked to this customer
+        :param tax_treatment:
         :param timezone: timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\", \"America/New_York\")
             Defaults to \"UTC\" if not provided
         :param retries: Override the default retry configuration for this method
@@ -411,6 +419,7 @@ class Customers(BaseSDK):
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
             ),
+            tax_treatment=tax_treatment,
             timezone=timezone,
         )
 
@@ -514,6 +523,7 @@ class Customers(BaseSDK):
                 Iterable[models.TaxRateOverrideTypedDict],
             ]
         ] = None,
+        tax_treatment: Optional[models.TaxTreatment] = None,
         timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -541,6 +551,7 @@ class Customers(BaseSDK):
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
         :param tax_rate_overrides: tax_rate_overrides contains tax rate configurations to be linked to this customer
+        :param tax_treatment:
         :param timezone: timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\", \"America/New_York\")
             Defaults to \"UTC\" if not provided
         :param retries: Override the default retry configuration for this method
@@ -579,6 +590,7 @@ class Customers(BaseSDK):
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
             ),
+            tax_treatment=tax_treatment,
             timezone=timezone,
         )
 

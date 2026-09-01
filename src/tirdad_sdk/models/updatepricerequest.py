@@ -8,6 +8,7 @@ from .price_transformquantity import (
     PriceTransformQuantity,
     PriceTransformQuantityTypedDict,
 )
+from .windowsize import WindowSize
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, List, Optional
@@ -18,6 +19,7 @@ class UpdatePriceRequestTypedDict(TypedDict):
     amount: NotRequired[str]
     r"""Amount is the new price amount that overrides the original price (optional)"""
     billing_model: NotRequired[BillingModel]
+    bucket_size: NotRequired[WindowSize]
     description: NotRequired[str]
     display_name: NotRequired[str]
     effective_from: NotRequired[str]
@@ -47,6 +49,8 @@ class UpdatePriceRequest(BaseModel):
     r"""Amount is the new price amount that overrides the original price (optional)"""
 
     billing_model: Optional[BillingModel] = None
+
+    bucket_size: Optional[WindowSize] = None
 
     description: Optional[str] = None
 
@@ -87,6 +91,7 @@ class UpdatePriceRequest(BaseModel):
             [
                 "amount",
                 "billing_model",
+                "bucket_size",
                 "description",
                 "display_name",
                 "effective_from",

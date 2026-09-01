@@ -337,6 +337,7 @@ if TYPE_CHECKING:
         CreateSubscriptionResult,
         CreateSubscriptionResultTypedDict,
     )
+    from .createtaskrequest import CreateTaskRequest, CreateTaskRequestTypedDict
     from .createtaxassociationrequest import (
         CreateTaxAssociationRequest,
         CreateTaxAssociationRequestTypedDict,
@@ -1081,6 +1082,7 @@ if TYPE_CHECKING:
     )
     from .rejectedeventreason import RejectedEventReason
     from .removeaddonrequest import RemoveAddonRequest, RemoveAddonRequestTypedDict
+    from .removeuserop import RemoveUserRequest, RemoveUserRequestTypedDict
     from .reportingunit import ReportingUnit, ReportingUnitTypedDict
     from .resetusage import ResetUsage
     from .resumemode import ResumeMode
@@ -1276,12 +1278,17 @@ if TYPE_CHECKING:
         TaxAssociationUpdateRequest,
         TaxAssociationUpdateRequestTypedDict,
     )
+    from .taxbehavior import TaxBehavior
+    from .taxexemptionreasoncode import TaxExemptionReasonCode
+    from .taxexemptionsummary import TaxExemptionSummary, TaxExemptionSummaryTypedDict
     from .taxrateentitytype import TaxRateEntityType
     from .taxrateoverride import TaxRateOverride, TaxRateOverrideTypedDict
     from .taxrateresponse import TaxRateResponse, TaxRateResponseTypedDict
     from .taxratescope import TaxRateScope
     from .taxratestatus import TaxRateStatus
     from .taxratetype import TaxRateType
+    from .taxsummary import TaxSummary, TaxSummaryTypedDict
+    from .taxtreatment import TaxTreatment
     from .tenantbillingdetails import (
         TenantBillingDetails,
         TenantBillingDetailsTypedDict,
@@ -1913,6 +1920,8 @@ __all__ = [
     "CreateSubscriptionRequestTypedDict",
     "CreateSubscriptionResult",
     "CreateSubscriptionResultTypedDict",
+    "CreateTaskRequest",
+    "CreateTaskRequestTypedDict",
     "CreateTaxAssociationRequest",
     "CreateTaxAssociationRequestTypedDict",
     "CreateTaxRateRequest",
@@ -2490,6 +2499,8 @@ __all__ = [
     "RejectedEventReason",
     "RemoveAddonRequest",
     "RemoveAddonRequestTypedDict",
+    "RemoveUserRequest",
+    "RemoveUserRequestTypedDict",
     "ReportingUnit",
     "ReportingUnitTypedDict",
     "ResetUsage",
@@ -2624,6 +2635,10 @@ __all__ = [
     "TaxAssociationResponseTypedDict",
     "TaxAssociationUpdateRequest",
     "TaxAssociationUpdateRequestTypedDict",
+    "TaxBehavior",
+    "TaxExemptionReasonCode",
+    "TaxExemptionSummary",
+    "TaxExemptionSummaryTypedDict",
     "TaxRateEntityType",
     "TaxRateOverride",
     "TaxRateOverrideTypedDict",
@@ -2632,6 +2647,9 @@ __all__ = [
     "TaxRateScope",
     "TaxRateStatus",
     "TaxRateType",
+    "TaxSummary",
+    "TaxSummaryTypedDict",
+    "TaxTreatment",
     "TenantBillingDetails",
     "TenantBillingDetailsTypedDict",
     "TenantBillingUsage",
@@ -3124,6 +3142,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateSubscriptionRequestTypedDict": ".createsubscriptionrequest",
     "CreateSubscriptionResult": ".createsubscriptionresult",
     "CreateSubscriptionResultTypedDict": ".createsubscriptionresult",
+    "CreateTaskRequest": ".createtaskrequest",
+    "CreateTaskRequestTypedDict": ".createtaskrequest",
     "CreateTaxAssociationRequest": ".createtaxassociationrequest",
     "CreateTaxAssociationRequestTypedDict": ".createtaxassociationrequest",
     "CreateTaxRateRequest": ".createtaxraterequest",
@@ -3693,6 +3713,8 @@ _dynamic_imports: dict[str, str] = {
     "RejectedEventReason": ".rejectedeventreason",
     "RemoveAddonRequest": ".removeaddonrequest",
     "RemoveAddonRequestTypedDict": ".removeaddonrequest",
+    "RemoveUserRequest": ".removeuserop",
+    "RemoveUserRequestTypedDict": ".removeuserop",
     "ReportingUnit": ".reportingunit",
     "ReportingUnitTypedDict": ".reportingunit",
     "ResetUsage": ".resetusage",
@@ -3828,6 +3850,10 @@ _dynamic_imports: dict[str, str] = {
     "TaxAssociationResponseTypedDict": ".taxassociationresponse",
     "TaxAssociationUpdateRequest": ".taxassociationupdaterequest",
     "TaxAssociationUpdateRequestTypedDict": ".taxassociationupdaterequest",
+    "TaxBehavior": ".taxbehavior",
+    "TaxExemptionReasonCode": ".taxexemptionreasoncode",
+    "TaxExemptionSummary": ".taxexemptionsummary",
+    "TaxExemptionSummaryTypedDict": ".taxexemptionsummary",
     "TaxRateEntityType": ".taxrateentitytype",
     "TaxRateOverride": ".taxrateoverride",
     "TaxRateOverrideTypedDict": ".taxrateoverride",
@@ -3836,6 +3862,9 @@ _dynamic_imports: dict[str, str] = {
     "TaxRateScope": ".taxratescope",
     "TaxRateStatus": ".taxratestatus",
     "TaxRateType": ".taxratetype",
+    "TaxSummary": ".taxsummary",
+    "TaxSummaryTypedDict": ".taxsummary",
+    "TaxTreatment": ".taxtreatment",
     "TenantBillingDetails": ".tenantbillingdetails",
     "TenantBillingDetailsTypedDict": ".tenantbillingdetails",
     "TenantBillingUsage": ".tenantbillingusage",

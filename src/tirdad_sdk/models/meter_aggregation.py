@@ -22,7 +22,8 @@ class MeterAggregationTypedDict(TypedDict):
     """
     group_by: NotRequired[str]
     r"""GroupBy is the property name in event.properties to group by before aggregating.
-    Currently only supported for MAX aggregation with bucket_size.
+    Requires MAX aggregation. Windowing comes from the price, so this no longer
+    implies a meter-level bucket_size.
     When set, aggregation is applied per unique value of this property within each bucket,
     then the per-group results are summed to produce the bucket total.
     """
@@ -50,7 +51,8 @@ class MeterAggregation(BaseModel):
 
     group_by: Optional[str] = None
     r"""GroupBy is the property name in event.properties to group by before aggregating.
-    Currently only supported for MAX aggregation with bucket_size.
+    Requires MAX aggregation. Windowing comes from the price, so this no longer
+    implies a meter-level bucket_size.
     When set, aggregation is applied per unique value of this property within each bucket,
     then the per-group results are summed to produce the bucket total.
     """

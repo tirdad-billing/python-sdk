@@ -16,12 +16,10 @@ class CreateTaxRateRequestTypedDict(TypedDict):
     r"""name is the human-readable name for the tax rate (required)"""
     description: NotRequired[str]
     r"""description is an optional text description providing details about the tax rate"""
-    fixed_value: NotRequired[str]
-    r"""fixed_value is the fixed monetary amount when tax_rate_type is \"fixed\" """
     metadata: NotRequired[Dict[str, str]]
     r"""metadata contains additional key-value pairs for storing extra information"""
     percentage_value: NotRequired[str]
-    r"""percentage_value is the percentage value (0-100) when tax_rate_type is \"percentage\" """
+    r"""percentage_value is the percentage value (0-100)"""
     scope: NotRequired[TaxRateScope]
     tax_rate_type: NotRequired[TaxRateType]
 
@@ -36,14 +34,11 @@ class CreateTaxRateRequest(BaseModel):
     description: Optional[str] = None
     r"""description is an optional text description providing details about the tax rate"""
 
-    fixed_value: Optional[str] = None
-    r"""fixed_value is the fixed monetary amount when tax_rate_type is \"fixed\" """
-
     metadata: Optional[Dict[str, str]] = None
     r"""metadata contains additional key-value pairs for storing extra information"""
 
     percentage_value: Optional[str] = None
-    r"""percentage_value is the percentage value (0-100) when tax_rate_type is \"percentage\" """
+    r"""percentage_value is the percentage value (0-100)"""
 
     scope: Optional[TaxRateScope] = None
 
@@ -52,14 +47,7 @@ class CreateTaxRateRequest(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            [
-                "description",
-                "fixed_value",
-                "metadata",
-                "percentage_value",
-                "scope",
-                "tax_rate_type",
-            ]
+            ["description", "metadata", "percentage_value", "scope", "tax_rate_type"]
         )
         serialized = handler(self)
         m = {}

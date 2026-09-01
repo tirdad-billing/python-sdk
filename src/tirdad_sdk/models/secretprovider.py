@@ -10,6 +10,7 @@ SecretProvider = Union[
         "flexprice",
         "stripe",
         "s3",
+        "gcs",
         "hubspot",
         "razorpay",
         "chargebee",

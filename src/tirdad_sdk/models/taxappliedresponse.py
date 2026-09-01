@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .status import Status
+from .taxbehavior import TaxBehavior
 from .taxrateentitytype import TaxRateEntityType
 from .taxrateresponse import TaxRateResponse, TaxRateResponseTypedDict
 from datetime import datetime
@@ -25,6 +26,7 @@ class TaxAppliedResponseTypedDict(TypedDict):
     status: NotRequired[Status]
     tax_amount: NotRequired[str]
     tax_association_id: NotRequired[str]
+    tax_behavior: NotRequired[TaxBehavior]
     tax_rate: NotRequired[TaxRateResponseTypedDict]
     tax_rate_id: NotRequired[str]
     taxable_amount: NotRequired[str]
@@ -60,6 +62,8 @@ class TaxAppliedResponse(BaseModel):
 
     tax_association_id: Optional[str] = None
 
+    tax_behavior: Optional[TaxBehavior] = None
+
     tax_rate: Optional[TaxRateResponse] = None
 
     tax_rate_id: Optional[str] = None
@@ -89,6 +93,7 @@ class TaxAppliedResponse(BaseModel):
                 "status",
                 "tax_amount",
                 "tax_association_id",
+                "tax_behavior",
                 "tax_rate",
                 "tax_rate_id",
                 "taxable_amount",

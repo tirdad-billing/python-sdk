@@ -17,6 +17,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"tirdad"`
 - `"stripe"`
 - `"s3"`
+- `"gcs"`
 - `"hubspot"`
 - `"razorpay"`
 - `"chargebee"`

@@ -4,6 +4,7 @@ from __future__ import annotations
 from .exportmetadatafield import ExportMetadataField, ExportMetadataFieldTypedDict
 from .s3compressiontype import S3CompressionType
 from .s3encryptiontype import S3EncryptionType
+from .secretprovider import SecretProvider
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -21,6 +22,7 @@ class S3JobConfigTypedDict(TypedDict):
     r"""Optional user-selected metadata columns"""
     key_prefix: NotRequired[str]
     r"""Optional prefix for S3 keys (e.g., \"flexprice-exports/\")"""
+    provider: NotRequired[SecretProvider]
     region: NotRequired[str]
     r"""AWS region (e.g., \"us-west-2\")"""
     use_path_style: NotRequired[bool]
@@ -44,6 +46,8 @@ class S3JobConfig(BaseModel):
     key_prefix: Optional[str] = None
     r"""Optional prefix for S3 keys (e.g., \"flexprice-exports/\")"""
 
+    provider: Optional[SecretProvider] = None
+
     region: Optional[str] = None
     r"""AWS region (e.g., \"us-west-2\")"""
 
@@ -60,6 +64,7 @@ class S3JobConfig(BaseModel):
                 "endpoint_url",
                 "export_metadata_fields",
                 "key_prefix",
+                "provider",
                 "region",
                 "use_path_style",
             ]

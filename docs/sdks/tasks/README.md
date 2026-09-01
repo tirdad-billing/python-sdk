@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [list_tasks](#list_tasks) - List tasks
+* [create_task](#create_task) - Import a CSV of usage events
 * [get_task_result](#get_task_result) - Get task processing result
 * [get_task](#get_task) - Get a task
 * [download_task_export](#download_task_export) - Download task export file
@@ -54,6 +55,53 @@ with Tirdad(
 ### Response
 
 **[models.ListTasksResponse](../../models/listtasksresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## create_task
+
+Use to submit a CSV of usage events for async ingestion. The CSV must already have been uploaded to the Tirdad-managed imports bucket (currently via CSV Box) — pass the upload_id and the backend fetches the file from S3 and streams rows into ClickHouse. Returns the task ID and Temporal workflow IDs for polling.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="createTask" method="post" path="/tasks" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.tasks.create_task(entity_type="FEATURES", file_provider="<value>", file_type="JSON", task_type="EXPORT", upload_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `entity_type`                                                       | [models.EntityType](../../models/entitytype.md)                     | :heavy_check_mark:                                                  | N/A                                                                 |
+| `file_provider`                                                     | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `file_type`                                                         | [models.FileType](../../models/filetype.md)                         | :heavy_check_mark:                                                  | N/A                                                                 |
+| `task_type`                                                         | [models.TaskType](../../models/tasktype.md)                         | :heavy_check_mark:                                                  | N/A                                                                 |
+| `upload_id`                                                         | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `file_name`                                                         | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `metadata`                                                          | Dict[str, *Any*]                                                    | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ModelsTemporalWorkflowResult](../../models/modelstemporalworkflowresult.md)**
 
 ### Errors
 

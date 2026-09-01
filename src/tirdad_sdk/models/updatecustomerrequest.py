@@ -5,6 +5,7 @@ from .createentityintegrationmappingrequest import (
     CreateEntityIntegrationMappingRequest,
     CreateEntityIntegrationMappingRequestTypedDict,
 )
+from .taxtreatment import TaxTreatment
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, List, Optional
@@ -40,6 +41,7 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""metadata contains updated key-value pairs that will replace existing metadata"""
     name: NotRequired[str]
     r"""name is the updated name or company name for the customer"""
+    tax_treatment: NotRequired[TaxTreatment]
     timezone: NotRequired[str]
     r"""timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")"""
 
@@ -85,6 +87,8 @@ class UpdateCustomerRequest(BaseModel):
     name: Optional[str] = None
     r"""name is the updated name or company name for the customer"""
 
+    tax_treatment: Optional[TaxTreatment] = None
+
     timezone: Optional[str] = None
     r"""timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")"""
 
@@ -104,6 +108,7 @@ class UpdateCustomerRequest(BaseModel):
                 "integration_entity_mapping",
                 "metadata",
                 "name",
+                "tax_treatment",
                 "timezone",
             ]
         )

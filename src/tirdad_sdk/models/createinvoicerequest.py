@@ -12,7 +12,6 @@ from .invoicestatus import InvoiceStatus
 from .invoicetype import InvoiceType
 from .paymentstatus import PaymentStatus
 from .taxrateoverride import TaxRateOverride, TaxRateOverrideTypedDict
-from .taxrateresponse import TaxRateResponse, TaxRateResponseTypedDict
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -72,8 +71,6 @@ class CreateInvoiceRequestTypedDict(TypedDict):
     r"""period_end is the end date of the billing period"""
     period_start: NotRequired[datetime]
     r"""period_start is the start date of the billing period"""
-    prepared_tax_rates: NotRequired[List[TaxRateResponseTypedDict]]
-    r"""prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service)"""
     subscription_id: NotRequired[str]
     r"""subscription_id is the optional unique identifier of the subscription associated with this invoice"""
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
@@ -161,9 +158,6 @@ class CreateInvoiceRequest(BaseModel):
     period_start: Optional[datetime] = None
     r"""period_start is the start date of the billing period"""
 
-    prepared_tax_rates: Optional[List[TaxRateResponse]] = None
-    r"""prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service)"""
-
     subscription_id: Optional[str] = None
     r"""subscription_id is the optional unique identifier of the subscription associated with this invoice"""
 
@@ -200,7 +194,6 @@ class CreateInvoiceRequest(BaseModel):
                 "payment_status",
                 "period_end",
                 "period_start",
-                "prepared_tax_rates",
                 "subscription_id",
                 "tax_rate_overrides",
                 "tax_rates",

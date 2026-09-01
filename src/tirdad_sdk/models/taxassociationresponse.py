@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .status import Status
+from .taxbehavior import TaxBehavior
 from .taxrateentitytype import TaxRateEntityType
 from .taxrateresponse import TaxRateResponse, TaxRateResponseTypedDict
 from datetime import datetime
@@ -34,6 +35,7 @@ class TaxAssociationResponseTypedDict(TypedDict):
     start_date: NotRequired[datetime]
     r"""StartDate is the date from which this association is active"""
     status: NotRequired[Status]
+    tax_behavior: NotRequired[TaxBehavior]
     tax_rate: NotRequired[TaxRateResponseTypedDict]
     tax_rate_id: NotRequired[str]
     r"""Reference to the TaxRate entity"""
@@ -78,6 +80,8 @@ class TaxAssociationResponse(BaseModel):
 
     status: Optional[Status] = None
 
+    tax_behavior: Optional[TaxBehavior] = None
+
     tax_rate: Optional[TaxRateResponse] = None
 
     tax_rate_id: Optional[str] = None
@@ -106,6 +110,7 @@ class TaxAssociationResponse(BaseModel):
                 "priority",
                 "start_date",
                 "status",
+                "tax_behavior",
                 "tax_rate",
                 "tax_rate_id",
                 "tenant_id",

@@ -19,6 +19,7 @@ from .pricetype import PriceType
 from .priceunitresponse import PriceUnitResponse, PriceUnitResponseTypedDict
 from .priceunittype import PriceUnitType
 from .status import Status
+from .windowsize import WindowSize
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import (
@@ -47,6 +48,7 @@ class PriceResponseTypedDict(TypedDict):
     billing_period: NotRequired[BillingPeriod]
     billing_period_count: NotRequired[int]
     r"""BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12"""
+    bucket_size: NotRequired[WindowSize]
     conversion_rate: NotRequired[str]
     r"""ConversionRate is the conversion rate of the price unit to the fiat currency"""
     created_at: NotRequired[datetime]
@@ -136,6 +138,8 @@ class PriceResponse(BaseModel):
 
     billing_period_count: Optional[int] = None
     r"""BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12"""
+
+    bucket_size: Optional[WindowSize] = None
 
     conversion_rate: Optional[str] = None
     r"""ConversionRate is the conversion rate of the price unit to the fiat currency"""
@@ -259,6 +263,7 @@ class PriceResponse(BaseModel):
                 "billing_model",
                 "billing_period",
                 "billing_period_count",
+                "bucket_size",
                 "conversion_rate",
                 "created_at",
                 "created_by",

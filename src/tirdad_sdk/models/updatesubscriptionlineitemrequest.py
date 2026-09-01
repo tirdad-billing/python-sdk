@@ -14,6 +14,7 @@ from .price_transformquantity import (
     PriceTransformQuantity,
     PriceTransformQuantityTypedDict,
 )
+from .windowsize import WindowSize
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, List, Optional
@@ -24,6 +25,7 @@ class UpdateSubscriptionLineItemRequestTypedDict(TypedDict):
     amount: NotRequired[str]
     r"""Amount is the new price amount that overrides the original price"""
     billing_model: NotRequired[BillingModel]
+    bucket_size: NotRequired[WindowSize]
     commitment_amount: NotRequired[float]
     r"""Commitment fields"""
     commitment_duration: NotRequired[BillingPeriod]
@@ -49,6 +51,8 @@ class UpdateSubscriptionLineItemRequest(BaseModel):
     r"""Amount is the new price amount that overrides the original price"""
 
     billing_model: Optional[BillingModel] = None
+
+    bucket_size: Optional[WindowSize] = None
 
     commitment_amount: Optional[float] = None
     r"""Commitment fields"""
@@ -87,6 +91,7 @@ class UpdateSubscriptionLineItemRequest(BaseModel):
             [
                 "amount",
                 "billing_model",
+                "bucket_size",
                 "commitment_amount",
                 "commitment_duration",
                 "commitment_overage_factor",

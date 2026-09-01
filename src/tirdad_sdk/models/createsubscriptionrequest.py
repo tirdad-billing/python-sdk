@@ -81,6 +81,17 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     end_date: NotRequired[datetime]
     external_customer_id: NotRequired[str]
     gateway_payment_method_id: NotRequired[str]
+    include_price_ids: NotRequired[List[str]]
+    r"""IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
+    prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
+    attaches only those IDs. Each listed ID must belong to the plan, match the subscription
+    currency, and have a cadence that equals or strictly divides the subscription cadence.
+    Pointer-slice distinguishes nil from [].
+    NOTE: no `dive,required` on this tag — swaggo misinterprets `required`
+    inside `dive` as marking the whole field required, which then shows up
+    in the OpenAPI schema and breaks callers that omit the field. Per-element
+    non-emptiness is enforced explicitly in Validate() below.
+    """
     inheritance: NotRequired[SubscriptionInheritanceConfigTypedDict]
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
     r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
@@ -157,6 +168,18 @@ class CreateSubscriptionRequest(BaseModel):
 
     gateway_payment_method_id: Optional[str] = None
 
+    include_price_ids: Optional[List[str]] = None
+    r"""IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
+    prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
+    attaches only those IDs. Each listed ID must belong to the plan, match the subscription
+    currency, and have a cadence that equals or strictly divides the subscription cadence.
+    Pointer-slice distinguishes nil from [].
+    NOTE: no `dive,required` on this tag — swaggo misinterprets `required`
+    inside `dive` as marking the whole field required, which then shows up
+    in the OpenAPI schema and breaks callers that omit the field. Per-element
+    non-emptiness is enforced explicitly in Validate() below.
+    """
+
     inheritance: Optional[SubscriptionInheritanceConfig] = None
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
@@ -223,6 +246,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "end_date",
                 "external_customer_id",
                 "gateway_payment_method_id",
+                "include_price_ids",
                 "inheritance",
                 "line_item_commitments",
                 "line_item_coupons",

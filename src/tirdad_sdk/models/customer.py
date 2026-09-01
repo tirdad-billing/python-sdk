@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .status import Status
+from .taxtreatment import TaxTreatment
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -39,6 +40,7 @@ class CustomerTypedDict(TypedDict):
     name: NotRequired[str]
     r"""Name is the name of the customer"""
     status: NotRequired[Status]
+    tax_treatment: NotRequired[TaxTreatment]
     tenant_id: NotRequired[str]
     timezone: NotRequired[str]
     r"""Timezone is the customer's IANA timezone name (e.g. \"Asia/Kolkata\").
@@ -94,6 +96,8 @@ class Customer(BaseModel):
 
     status: Optional[Status] = None
 
+    tax_treatment: Optional[TaxTreatment] = None
+
     tenant_id: Optional[str] = None
 
     timezone: Optional[str] = None
@@ -125,6 +129,7 @@ class Customer(BaseModel):
                 "metadata",
                 "name",
                 "status",
+                "tax_treatment",
                 "tenant_id",
                 "timezone",
                 "updated_at",

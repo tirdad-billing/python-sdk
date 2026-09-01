@@ -255,12 +255,6 @@ class Invoices(BaseSDK):
         payment_status: Optional[models.PaymentStatus] = None,
         period_end: Optional[datetime] = None,
         period_start: Optional[datetime] = None,
-        prepared_tax_rates: Optional[
-            Union[
-                Iterable[models.TaxRateResponse],
-                Iterable[models.TaxRateResponseTypedDict],
-            ]
-        ] = None,
         subscription_id: Optional[str] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -308,7 +302,6 @@ class Invoices(BaseSDK):
         :param payment_status:
         :param period_end: period_end is the end date of the billing period
         :param period_start: period_start is the start date of the billing period
-        :param prepared_tax_rates: prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service)
         :param subscription_id: subscription_id is the optional unique identifier of the subscription associated with this invoice
         :param tax_rate_overrides: tax_rate_overrides is the tax rate overrides to be applied to the invoice
         :param tax_rates: tax_rates
@@ -358,9 +351,6 @@ class Invoices(BaseSDK):
             payment_status=payment_status,
             period_end=period_end,
             period_start=period_start,
-            prepared_tax_rates=utils.get_pydantic_model(
-                prepared_tax_rates, Optional[List[models.TaxRateResponse]]
-            ),
             subscription_id=subscription_id,
             subtotal=subtotal,
             tax_rate_overrides=utils.get_pydantic_model(
@@ -482,12 +472,6 @@ class Invoices(BaseSDK):
         payment_status: Optional[models.PaymentStatus] = None,
         period_end: Optional[datetime] = None,
         period_start: Optional[datetime] = None,
-        prepared_tax_rates: Optional[
-            Union[
-                Iterable[models.TaxRateResponse],
-                Iterable[models.TaxRateResponseTypedDict],
-            ]
-        ] = None,
         subscription_id: Optional[str] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -535,7 +519,6 @@ class Invoices(BaseSDK):
         :param payment_status:
         :param period_end: period_end is the end date of the billing period
         :param period_start: period_start is the start date of the billing period
-        :param prepared_tax_rates: prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service)
         :param subscription_id: subscription_id is the optional unique identifier of the subscription associated with this invoice
         :param tax_rate_overrides: tax_rate_overrides is the tax rate overrides to be applied to the invoice
         :param tax_rates: tax_rates
@@ -585,9 +568,6 @@ class Invoices(BaseSDK):
             payment_status=payment_status,
             period_end=period_end,
             period_start=period_start,
-            prepared_tax_rates=utils.get_pydantic_model(
-                prepared_tax_rates, Optional[List[models.TaxRateResponse]]
-            ),
             subscription_id=subscription_id,
             subtotal=subtotal,
             tax_rate_overrides=utils.get_pydantic_model(

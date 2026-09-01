@@ -18,7 +18,6 @@ class TaxRateResponseTypedDict(TypedDict):
     created_by: NotRequired[str]
     description: NotRequired[str]
     environment_id: NotRequired[str]
-    fixed_value: NotRequired[str]
     id: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     name: NotRequired[str]
@@ -42,8 +41,6 @@ class TaxRateResponse(BaseModel):
     description: Optional[str] = None
 
     environment_id: Optional[str] = None
-
-    fixed_value: Optional[str] = None
 
     id: Optional[str] = None
 
@@ -76,7 +73,6 @@ class TaxRateResponse(BaseModel):
                 "created_by",
                 "description",
                 "environment_id",
-                "fixed_value",
                 "id",
                 "metadata",
                 "name",
