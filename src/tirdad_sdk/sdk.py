@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.price_units import PriceUnits
     from tirdad_sdk.prices import Prices
     from tirdad_sdk.rbac import Rbac
+    from tirdad_sdk.refunds import Refunds
     from tirdad_sdk.scheduled_tasks import ScheduledTasks
     from tirdad_sdk.secrets import Secrets
     from tirdad_sdk.subscriptions import Subscriptions
@@ -79,6 +80,7 @@ class Tirdad(BaseSDK):
     prices: "Prices"
     price_units: "PriceUnits"
     rbac: "Rbac"
+    refunds: "Refunds"
     secrets: "Secrets"
     subscriptions: "Subscriptions"
     tasks: "Tasks"
@@ -115,6 +117,7 @@ class Tirdad(BaseSDK):
         "prices": ("tirdad_sdk.prices", "Prices"),
         "price_units": ("tirdad_sdk.price_units", "PriceUnits"),
         "rbac": ("tirdad_sdk.rbac", "Rbac"),
+        "refunds": ("tirdad_sdk.refunds", "Refunds"),
         "secrets": ("tirdad_sdk.secrets", "Secrets"),
         "subscriptions": ("tirdad_sdk.subscriptions", "Subscriptions"),
         "tasks": ("tirdad_sdk.tasks", "Tasks"),

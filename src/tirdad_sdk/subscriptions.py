@@ -2095,6 +2095,592 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def list_all_subscription_schedules(
+        self,
+        *,
+        pending_only: Optional[bool] = None,
+        subscription_id: Optional[str] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.GetPendingSchedulesResponse:
+        r"""List all subscription schedules
+
+        Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
+
+        :param pending_only: Filter to pending schedules only
+        :param subscription_id: Filter by subscription ID
+        :param limit: Limit results
+        :param offset: Offset for pagination
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListAllSubscriptionSchedulesRequest(
+            pending_only=pending_only,
+            subscription_id=subscription_id,
+            limit=limit,
+            offset=offset,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/subscriptions/schedules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAllSubscriptionSchedules",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def list_all_subscription_schedules_async(
+        self,
+        *,
+        pending_only: Optional[bool] = None,
+        subscription_id: Optional[str] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.GetPendingSchedulesResponse:
+        r"""List all subscription schedules
+
+        Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
+
+        :param pending_only: Filter to pending schedules only
+        :param subscription_id: Filter by subscription ID
+        :param limit: Limit results
+        :param offset: Offset for pagination
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListAllSubscriptionSchedulesRequest(
+            pending_only=pending_only,
+            subscription_id=subscription_id,
+            limit=limit,
+            offset=offset,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/subscriptions/schedules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAllSubscriptionSchedules",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def get_subscription_schedule(
+        self,
+        *,
+        schedule_id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SubscriptionScheduleResponse:
+        r"""Get subscription schedule
+
+        Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
+
+        :param schedule_id: Schedule ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetSubscriptionScheduleRequest(
+            schedule_id=schedule_id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/subscriptions/schedules/{schedule_id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getSubscriptionSchedule",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.SubscriptionScheduleResponse, http_res
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def get_subscription_schedule_async(
+        self,
+        *,
+        schedule_id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.SubscriptionScheduleResponse:
+        r"""Get subscription schedule
+
+        Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
+
+        :param schedule_id: Schedule ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetSubscriptionScheduleRequest(
+            schedule_id=schedule_id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/subscriptions/schedules/{schedule_id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getSubscriptionSchedule",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(
+                models.SubscriptionScheduleResponse, http_res
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def cancel_subscription_schedule(
+        self,
+        *,
+        schedule_id_param: str,
+        schedule_id: Optional[str] = None,
+        schedule_type: Optional[models.SubscriptionScheduleChangeType] = None,
+        subscription_id: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.CancelScheduleResponse:
+        r"""Cancel subscription schedule
+
+        Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
+
+        :param schedule_id_param: Schedule ID (optional if using request body)
+        :param schedule_id: schedule_id is the ID of the schedule to cancel (optional if subscription_id and schedule_type are provided)
+        :param schedule_type:
+        :param subscription_id: subscription_id is the ID of the subscription (required if schedule_id is not provided)
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.CancelSubscriptionScheduleRequest(
+            schedule_id_param=schedule_id_param,
+            body=models.CancelScheduleRequest(
+                schedule_id=schedule_id,
+                schedule_type=schedule_type,
+                subscription_id=subscription_id,
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/subscriptions/schedules/{schedule_id}/cancel",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.CancelScheduleRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="cancelSubscriptionSchedule",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions={"x-codegen-request-body-name": "request"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.CancelScheduleResponse, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def cancel_subscription_schedule_async(
+        self,
+        *,
+        schedule_id_param: str,
+        schedule_id: Optional[str] = None,
+        schedule_type: Optional[models.SubscriptionScheduleChangeType] = None,
+        subscription_id: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.CancelScheduleResponse:
+        r"""Cancel subscription schedule
+
+        Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
+
+        :param schedule_id_param: Schedule ID (optional if using request body)
+        :param schedule_id: schedule_id is the ID of the schedule to cancel (optional if subscription_id and schedule_type are provided)
+        :param schedule_type:
+        :param subscription_id: subscription_id is the ID of the subscription (required if schedule_id is not provided)
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.CancelSubscriptionScheduleRequest(
+            schedule_id_param=schedule_id_param,
+            body=models.CancelScheduleRequest(
+                schedule_id=schedule_id,
+                schedule_type=schedule_type,
+                subscription_id=subscription_id,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/subscriptions/schedules/{schedule_id}/cancel",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.CancelScheduleRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="cancelSubscriptionSchedule",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions={"x-codegen-request-body-name": "request"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.CancelScheduleResponse, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def query_subscription(
         self,
         *,
@@ -3401,7 +3987,7 @@ class Subscriptions(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> List[models.AddonAssociationResponse]:
+    ) -> models.ListAddonAssociationsResponse:
         r"""Get active addon associations
 
         Use when listing which add-ons are currently attached to a subscription (e.g. for display or editing).
@@ -3469,7 +4055,7 @@ class Subscriptions(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(
-                List[models.AddonAssociationResponse], http_res
+                models.ListAddonAssociationsResponse, http_res
             )
         if utils.match_response(http_res, ["400", "404"], "application/json"):
             response_data = unmarshal_json_response(
@@ -3502,7 +4088,7 @@ class Subscriptions(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> List[models.AddonAssociationResponse]:
+    ) -> models.ListAddonAssociationsResponse:
         r"""Get active addon associations
 
         Use when listing which add-ons are currently attached to a subscription (e.g. for display or editing).
@@ -3570,7 +4156,7 @@ class Subscriptions(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(
-                List[models.AddonAssociationResponse], http_res
+                models.ListAddonAssociationsResponse, http_res
             )
         if utils.match_response(http_res, ["400", "404"], "application/json"):
             response_data = unmarshal_json_response(
@@ -6497,6 +7083,182 @@ class Subscriptions(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def list_subscription_schedules(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.GetPendingSchedulesResponse:
+        r"""List subscription schedules
+
+        Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
+
+        :param id: Subscription ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListSubscriptionSchedulesRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/subscriptions/{id}/schedules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listSubscriptionSchedules",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def list_subscription_schedules_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.GetPendingSchedulesResponse:
+        r"""List subscription schedules
+
+        Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
+
+        :param id: Subscription ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListSubscriptionSchedulesRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/subscriptions/{id}/schedules",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listSubscriptionSchedules",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Subscriptions"],
+                extensions=None,
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def get_subscription_v2(
         self,
         *,
@@ -6688,768 +7450,6 @@ class Subscriptions(BaseSDK):
                 models.errors.ErrorResponseData, http_res
             )
             raise models.errors.ErrorResponse(response_data, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    def list_all_subscription_schedules(
-        self,
-        *,
-        pending_only: Optional[bool] = None,
-        subscription_id: Optional[str] = None,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetPendingSchedulesResponse:
-        r"""List all subscription schedules
-
-        Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
-
-        :param pending_only: Filter to pending schedules only
-        :param subscription_id: Filter by subscription ID
-        :param limit: Limit results
-        :param offset: Offset for pagination
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.ListAllSubscriptionSchedulesRequest(
-            pending_only=pending_only,
-            subscription_id=subscription_id,
-            limit=limit,
-            offset=offset,
-        )
-
-        req = self._build_request(
-            method="GET",
-            path="/v1/subscription-schedules",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="listAllSubscriptionSchedules",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    async def list_all_subscription_schedules_async(
-        self,
-        *,
-        pending_only: Optional[bool] = None,
-        subscription_id: Optional[str] = None,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetPendingSchedulesResponse:
-        r"""List all subscription schedules
-
-        Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
-
-        :param pending_only: Filter to pending schedules only
-        :param subscription_id: Filter by subscription ID
-        :param limit: Limit results
-        :param offset: Offset for pagination
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.ListAllSubscriptionSchedulesRequest(
-            pending_only=pending_only,
-            subscription_id=subscription_id,
-            limit=limit,
-            offset=offset,
-        )
-
-        req = self._build_request_async(
-            method="GET",
-            path="/v1/subscription-schedules",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="listAllSubscriptionSchedules",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    def get_subscription_schedule(
-        self,
-        *,
-        id: str,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SubscriptionScheduleResponse:
-        r"""Get subscription schedule
-
-        Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
-
-        :param id: Schedule ID
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.GetSubscriptionScheduleRequest(
-            id=id,
-        )
-
-        req = self._build_request(
-            method="GET",
-            path="/v1/subscription-schedules/{id}",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="getSubscriptionSchedule",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(
-                models.SubscriptionScheduleResponse, http_res
-            )
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    async def get_subscription_schedule_async(
-        self,
-        *,
-        id: str,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SubscriptionScheduleResponse:
-        r"""Get subscription schedule
-
-        Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
-
-        :param id: Schedule ID
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.GetSubscriptionScheduleRequest(
-            id=id,
-        )
-
-        req = self._build_request_async(
-            method="GET",
-            path="/v1/subscription-schedules/{id}",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="getSubscriptionSchedule",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(
-                models.SubscriptionScheduleResponse, http_res
-            )
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    def cancel_subscription_schedule(
-        self,
-        *,
-        schedule_id_param: str,
-        schedule_id: Optional[str] = None,
-        schedule_type: Optional[models.SubscriptionScheduleChangeType] = None,
-        subscription_id: Optional[str] = None,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CancelScheduleResponse:
-        r"""Cancel subscription schedule
-
-        Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
-
-        :param schedule_id_param: Schedule ID (optional if using request body)
-        :param schedule_id: schedule_id is the ID of the schedule to cancel (optional if subscription_id and schedule_type are provided)
-        :param schedule_type:
-        :param subscription_id: subscription_id is the ID of the subscription (required if schedule_id is not provided)
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.CancelSubscriptionScheduleRequest(
-            schedule_id_param=schedule_id_param,
-            body=models.CancelScheduleRequest(
-                schedule_id=schedule_id,
-                schedule_type=schedule_type,
-                subscription_id=subscription_id,
-            ),
-        )
-
-        req = self._build_request(
-            method="POST",
-            path="/v1/subscriptions/schedules/{schedule_id}/cancel",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body if request is not None else None,
-                False,
-                True,
-                "json",
-                Optional[models.CancelScheduleRequest],
-            ),
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="cancelSubscriptionSchedule",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions={"x-codegen-request-body-name": "request"},
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CancelScheduleResponse, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    async def cancel_subscription_schedule_async(
-        self,
-        *,
-        schedule_id_param: str,
-        schedule_id: Optional[str] = None,
-        schedule_type: Optional[models.SubscriptionScheduleChangeType] = None,
-        subscription_id: Optional[str] = None,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.CancelScheduleResponse:
-        r"""Cancel subscription schedule
-
-        Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
-
-        :param schedule_id_param: Schedule ID (optional if using request body)
-        :param schedule_id: schedule_id is the ID of the schedule to cancel (optional if subscription_id and schedule_type are provided)
-        :param schedule_type:
-        :param subscription_id: subscription_id is the ID of the subscription (required if schedule_id is not provided)
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.CancelSubscriptionScheduleRequest(
-            schedule_id_param=schedule_id_param,
-            body=models.CancelScheduleRequest(
-                schedule_id=schedule_id,
-                schedule_type=schedule_type,
-                subscription_id=subscription_id,
-            ),
-        )
-
-        req = self._build_request_async(
-            method="POST",
-            path="/v1/subscriptions/schedules/{schedule_id}/cancel",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(
-                request.body if request is not None else None,
-                False,
-                True,
-                "json",
-                Optional[models.CancelScheduleRequest],
-            ),
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="cancelSubscriptionSchedule",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions={"x-codegen-request-body-name": "request"},
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.CancelScheduleResponse, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = await utils.stream_to_text_async(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    def list_subscription_schedules(
-        self,
-        *,
-        subscription_id: str,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetPendingSchedulesResponse:
-        r"""List subscription schedules
-
-        Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
-
-        :param subscription_id: Subscription ID
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.ListSubscriptionSchedulesRequest(
-            subscription_id=subscription_id,
-        )
-
-        req = self._build_request(
-            method="GET",
-            path="/v1/subscriptions/{subscription_id}/schedules",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = self.do_request(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="listSubscriptionSchedules",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
-        if utils.match_response(http_res, "4XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-        if utils.match_response(http_res, "5XX", "*"):
-            http_res_text = utils.stream_to_text(http_res)
-            raise models.errors.TirdadDefaultError(
-                "API error occurred", http_res, http_res_text
-            )
-
-        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
-
-    async def list_subscription_schedules_async(
-        self,
-        *,
-        subscription_id: str,
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-        http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.GetPendingSchedulesResponse:
-        r"""List subscription schedules
-
-        Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
-
-        :param subscription_id: Subscription ID
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        :param http_headers: Additional headers to set or replace on requests.
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-
-        if server_url is not None:
-            base_url = server_url
-        else:
-            base_url = self._get_url(base_url, url_variables)
-
-        request = models.ListSubscriptionSchedulesRequest(
-            subscription_id=subscription_id,
-        )
-
-        req = self._build_request_async(
-            method="GET",
-            path="/v1/subscriptions/{subscription_id}/schedules",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=True,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            http_headers=http_headers,
-            security=self.sdk_configuration.security,
-            allow_empty_value=None,
-            timeout_ms=timeout_ms,
-        )
-
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, ["429", "500", "502", "503", "504"])
-
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(
-                config=self.sdk_configuration,
-                base_url=base_url or "",
-                operation_id="listSubscriptionSchedules",
-                oauth2_scopes=None,
-                security_source=self.sdk_configuration.security,
-                tags=["Subscriptions"],
-                extensions=None,
-            ),
-            request=req,
-            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
-            retry_config=retry_config,
-        )
-
-        if utils.match_response(http_res, "200", "application/json"):
-            return unmarshal_json_response(models.GetPendingSchedulesResponse, http_res)
         if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise models.errors.TirdadDefaultError(

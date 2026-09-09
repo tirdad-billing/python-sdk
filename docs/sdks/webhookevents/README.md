@@ -33,6 +33,9 @@
 * [post_webhook_events_payment_pending](#post_webhook_events_payment_pending) - payment.pending
 * [post_webhook_events_payment_success](#post_webhook_events_payment_success) - payment.success
 * [post_webhook_events_payment_updated](#post_webhook_events_payment_updated) - payment.updated
+* [post_webhook_events_refund_created](#post_webhook_events_refund_created) - refund.created
+* [post_webhook_events_refund_failed](#post_webhook_events_refund_failed) - refund.failed
+* [post_webhook_events_refund_succeeded](#post_webhook_events_refund_succeeded) - refund.succeeded
 * [post_webhook_events_subscription_activated](#post_webhook_events_subscription_activated) - subscription.activated
 * [post_webhook_events_subscription_cancelled](#post_webhook_events_subscription_cancelled) - subscription.cancelled
 * [post_webhook_events_subscription_created](#post_webhook_events_subscription_created) - subscription.created
@@ -710,7 +713,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_communication_triggered
 
-Fired when an invoice communication (e.g. email notification) is triggered. Doc-only for parsing.
+Fired when an invoice communication (e.g. email notification) is triggered. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -748,7 +751,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_create_drafted
 
-Fired when a new invoice is created in draft state. Doc-only for parsing.
+Fired when a new invoice is created in draft state. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -786,7 +789,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_payment_overdue
 
-Fired when an invoice payment is overdue past the due date. Doc-only for parsing.
+Fired when an invoice payment is overdue past the due date. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -824,7 +827,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_update
 
-Fired when an invoice is updated. Doc-only for parsing.
+Fired when an invoice is updated. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -862,7 +865,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_update_finalized
 
-Fired when an invoice is finalized and locked for payment. Doc-only for parsing.
+Fired when an invoice is finalized and locked for payment. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -900,7 +903,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_update_payment
 
-Fired when an invoice payment status changes. Doc-only for parsing.
+Fired when an invoice payment status changes. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -938,7 +941,7 @@ with Tirdad(
 
 ## post_webhook_events_invoice_update_voided
 
-Fired when an invoice is voided (e.g. order cancelled or duplicate). Doc-only for parsing.
+Fired when an invoice is voided (e.g. order cancelled or duplicate). `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1157,6 +1160,120 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoPaymentWebhookPayload](../../models/webhookdtopaymentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_refund_created
+
+Fired when a refund is planned against an invoice, before the money moves. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/refund.created" method="post" path="/webhook-events/refund.created" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_refund_created()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoRefundWebhookPayload](../../models/webhookdtorefundwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_refund_failed
+
+Fired when a refund fails. A gateway refund that fails is retried into the customer's wallet. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/refund.failed" method="post" path="/webhook-events/refund.failed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_refund_failed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoRefundWebhookPayload](../../models/webhookdtorefundwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_refund_succeeded
+
+Fired when a refund settles, to the original payment gateway or to a wallet. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/refund.succeeded" method="post" path="/webhook-events/refund.succeeded" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_refund_succeeded()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoRefundWebhookPayload](../../models/webhookdtorefundwebhookpayload.md)**
 
 ### Errors
 

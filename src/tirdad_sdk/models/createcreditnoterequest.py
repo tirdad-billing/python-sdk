@@ -6,6 +6,7 @@ from .createcreditnotelineitemrequest import (
     CreateCreditNoteLineItemRequestTypedDict,
 )
 from .creditnotereason import CreditNoteReason
+from .refundtarget import RefundTarget
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, List, Optional
@@ -27,6 +28,7 @@ class CreateCreditNoteRequestTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
     process_credit_note: NotRequired[bool]
     r"""process_credit_note is a flag to process the credit note after creation"""
+    refund_target: NotRequired[RefundTarget]
 
 
 class CreateCreditNoteRequest(BaseModel):
@@ -52,6 +54,8 @@ class CreateCreditNoteRequest(BaseModel):
     process_credit_note: Optional[bool] = True
     r"""process_credit_note is a flag to process the credit note after creation"""
 
+    refund_target: Optional[RefundTarget] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -62,6 +66,7 @@ class CreateCreditNoteRequest(BaseModel):
                 "memo",
                 "metadata",
                 "process_credit_note",
+                "refund_target",
             ]
         )
         serialized = handler(self)

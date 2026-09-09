@@ -12,6 +12,10 @@ class UpdatePaymentRequestTypedDict(TypedDict):
     error_message: NotRequired[str]
     failed_at: NotRequired[datetime]
     gateway_payment_id: NotRequired[str]
+    gateway_tracking_id: NotRequired[str]
+    r"""GatewayTrackingID is the pre-payment handle at the gateway — link, hosted page,
+    invoice or order — recorded at checkout creation so the payment can be reconciled.
+    """
     metadata: NotRequired[Dict[str, str]]
     payment_gateway: NotRequired[str]
     payment_method_id: NotRequired[str]
@@ -27,6 +31,11 @@ class UpdatePaymentRequest(BaseModel):
     failed_at: Optional[datetime] = None
 
     gateway_payment_id: Optional[str] = None
+
+    gateway_tracking_id: Optional[str] = None
+    r"""GatewayTrackingID is the pre-payment handle at the gateway — link, hosted page,
+    invoice or order — recorded at checkout creation so the payment can be reconciled.
+    """
 
     metadata: Optional[Dict[str, str]] = None
 
@@ -49,6 +58,7 @@ class UpdatePaymentRequest(BaseModel):
                 "error_message",
                 "failed_at",
                 "gateway_payment_id",
+                "gateway_tracking_id",
                 "metadata",
                 "payment_gateway",
                 "payment_method_id",

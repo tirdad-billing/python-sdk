@@ -42,6 +42,9 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"payment.failed"`
 - `"payment.success"`
 - `"payment.pending"`
+- `"refund.created"`
+- `"refund.succeeded"`
+- `"refund.failed"`
 - `"customer.created"`
 - `"customer.updated"`
 - `"customer.deleted"`

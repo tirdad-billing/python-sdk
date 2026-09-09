@@ -25,6 +25,7 @@ class CreditNotes(BaseSDK):
         memo: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
         process_credit_note: Optional[bool] = True,
+        refund_target: Optional[models.RefundTarget] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -44,6 +45,7 @@ class CreditNotes(BaseSDK):
         :param memo: memo is an optional free-text field for additional notes about the credit note
         :param metadata:
         :param process_credit_note: process_credit_note is a flag to process the credit note after creation
+        :param refund_target:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -70,6 +72,7 @@ class CreditNotes(BaseSDK):
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             process_credit_note=process_credit_note,
             reason=reason,
+            refund_target=refund_target,
         )
 
         req = self._build_request(
@@ -160,6 +163,7 @@ class CreditNotes(BaseSDK):
         memo: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
         process_credit_note: Optional[bool] = True,
+        refund_target: Optional[models.RefundTarget] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -179,6 +183,7 @@ class CreditNotes(BaseSDK):
         :param memo: memo is an optional free-text field for additional notes about the credit note
         :param metadata:
         :param process_credit_note: process_credit_note is a flag to process the credit note after creation
+        :param refund_target:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -205,6 +210,7 @@ class CreditNotes(BaseSDK):
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             process_credit_note=process_credit_note,
             reason=reason,
+            refund_target=refund_target,
         )
 
         req = self._build_request_async(
@@ -481,6 +487,7 @@ class CreditNotes(BaseSDK):
         self,
         *,
         id: str,
+        refund_target: Optional[models.RefundTarget] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -493,6 +500,7 @@ class CreditNotes(BaseSDK):
         This operation requires either `api_key_auth` or `api_key_auth` to be set on the `security` parameter when initializing the SDK.
 
         :param id: Credit note ID
+        :param refund_target:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -510,6 +518,9 @@ class CreditNotes(BaseSDK):
 
         request = models.ProcessCreditNoteRequest(
             id=id,
+            body=models.FinalizeCreditNoteRequest(
+                refund_target=refund_target,
+            ),
         )
 
         req = self._build_request(
@@ -525,6 +536,13 @@ class CreditNotes(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.FinalizeCreditNoteRequest],
+            ),
             allow_empty_value=None,
             allowed_fields=["api_key_auth", "api_key_auth"],
             timeout_ms=timeout_ms,
@@ -546,7 +564,7 @@ class CreditNotes(BaseSDK):
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
                 tags=["Credit Notes"],
-                extensions=None,
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
@@ -585,6 +603,7 @@ class CreditNotes(BaseSDK):
         self,
         *,
         id: str,
+        refund_target: Optional[models.RefundTarget] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -597,6 +616,7 @@ class CreditNotes(BaseSDK):
         This operation requires either `api_key_auth` or `api_key_auth` to be set on the `security` parameter when initializing the SDK.
 
         :param id: Credit note ID
+        :param refund_target:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -614,6 +634,9 @@ class CreditNotes(BaseSDK):
 
         request = models.ProcessCreditNoteRequest(
             id=id,
+            body=models.FinalizeCreditNoteRequest(
+                refund_target=refund_target,
+            ),
         )
 
         req = self._build_request_async(
@@ -629,6 +652,13 @@ class CreditNotes(BaseSDK):
             accept_header_value="application/json",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.FinalizeCreditNoteRequest],
+            ),
             allow_empty_value=None,
             allowed_fields=["api_key_auth", "api_key_auth"],
             timeout_ms=timeout_ms,
@@ -650,7 +680,7 @@ class CreditNotes(BaseSDK):
                 oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
                 tags=["Credit Notes"],
-                extensions=None,
+                extensions={"x-codegen-request-body-name": "request"},
             ),
             request=req,
             is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),

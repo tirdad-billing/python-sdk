@@ -10,6 +10,9 @@
 * [query_subscription_line_items](#query_subscription_line_items) - Search subscription line items
 * [update_subscription_line_item](#update_subscription_line_item) - Update subscription line item
 * [delete_subscription_line_item](#delete_subscription_line_item) - Delete subscription line item
+* [list_all_subscription_schedules](#list_all_subscription_schedules) - List all subscription schedules
+* [get_subscription_schedule](#get_subscription_schedule) - Get subscription schedule
+* [cancel_subscription_schedule](#cancel_subscription_schedule) - Cancel subscription schedule
 * [query_subscription](#query_subscription) - Query subscriptions
 * [get_subscription_usage](#get_subscription_usage) - Get usage by subscription
 * [get_subscription](#get_subscription) - Get subscription
@@ -26,11 +29,8 @@
 * [create_subscription_line_item](#create_subscription_line_item) - Create subscription line item
 * [execute_subscription_modify](#execute_subscription_modify) - Execute subscription modification
 * [preview_subscription_modify](#preview_subscription_modify) - Preview subscription modification
-* [get_subscription_v2](#get_subscription_v2) - Get subscription (V2)
-* [list_all_subscription_schedules](#list_all_subscription_schedules) - List all subscription schedules
-* [get_subscription_schedule](#get_subscription_schedule) - Get subscription schedule
-* [cancel_subscription_schedule](#cancel_subscription_schedule) - Cancel subscription schedule
 * [list_subscription_schedules](#list_subscription_schedules) - List subscription schedules
+* [get_subscription_v2](#get_subscription_v2) - Get subscription (V2)
 
 ## create_subscription
 
@@ -371,6 +371,129 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## list_all_subscription_schedules
+
+Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="listAllSubscriptionSchedules" method="get" path="/subscriptions/schedules" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.list_all_subscription_schedules()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `pending_only`                                                      | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Filter to pending schedules only                                    |
+| `subscription_id`                                                   | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter by subscription ID                                           |
+| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Limit results                                                       |
+| `offset`                                                            | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Offset for pagination                                               |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.GetPendingSchedulesResponse](../../models/getpendingschedulesresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## get_subscription_schedule
+
+Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getSubscriptionSchedule" method="get" path="/subscriptions/schedules/{schedule_id}" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.get_subscription_schedule(schedule_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `schedule_id`                                                       | *str*                                                               | :heavy_check_mark:                                                  | Schedule ID                                                         |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.SubscriptionScheduleResponse](../../models/subscriptionscheduleresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## cancel_subscription_schedule
+
+Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="cancelSubscriptionSchedule" method="post" path="/subscriptions/schedules/{schedule_id}/cancel" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.cancel_subscription_schedule(schedule_id_param="<value>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `schedule_id_param`                                                                                          | *str*                                                                                                        | :heavy_check_mark:                                                                                           | Schedule ID (optional if using request body)                                                                 |
+| `schedule_id`                                                                                                | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | schedule_id is the ID of the schedule to cancel (optional if subscription_id and schedule_type are provided) |
+| `schedule_type`                                                                                              | [Optional[models.SubscriptionScheduleChangeType]](../../models/subscriptionschedulechangetype.md)            | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |
+| `subscription_id`                                                                                            | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | subscription_id is the ID of the subscription (required if schedule_id is not provided)                      |
+| `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
+
+### Response
+
+**[models.CancelScheduleResponse](../../models/cancelscheduleresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## query_subscription
 
 Use when listing or searching subscriptions (e.g. admin view or customer subscription list). Returns a paginated list; supports filtering by customer, plan, status.
@@ -641,7 +764,7 @@ with Tirdad(
 
 ### Response
 
-**[List[models.AddonAssociationResponse]](../../models/.md)**
+**[models.ListAddonAssociationsResponse](../../models/listaddonassociationsresponse.md)**
 
 ### Errors
 
@@ -1144,6 +1267,45 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## list_subscription_schedules
+
+Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="listSubscriptionSchedules" method="get" path="/subscriptions/{id}/schedules" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.list_subscription_schedules(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Subscription ID                                                     |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.GetPendingSchedulesResponse](../../models/getpendingschedulesresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## get_subscription_v2
 
 Use when you need a subscription with related data (line items, prices, plan). Supports expand for detailed payloads without extra round-trips.
@@ -1184,166 +1346,4 @@ with Tirdad(
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400                              | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## list_all_subscription_schedules
-
-Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="listAllSubscriptionSchedules" method="get" path="/v1/subscription-schedules" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.subscriptions.list_all_subscription_schedules()
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `pending_only`                                                      | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Filter to pending schedules only                                    |
-| `subscription_id`                                                   | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | Filter by subscription ID                                           |
-| `limit`                                                             | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Limit results                                                       |
-| `offset`                                                            | *Optional[int]*                                                     | :heavy_minus_sign:                                                  | Offset for pagination                                               |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.GetPendingSchedulesResponse](../../models/getpendingschedulesresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## get_subscription_schedule
-
-Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="getSubscriptionSchedule" method="get" path="/v1/subscription-schedules/{id}" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.subscriptions.get_subscription_schedule(id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Schedule ID                                                         |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.SubscriptionScheduleResponse](../../models/subscriptionscheduleresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## cancel_subscription_schedule
-
-Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="cancelSubscriptionSchedule" method="post" path="/v1/subscriptions/schedules/{schedule_id}/cancel" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.subscriptions.cancel_subscription_schedule(schedule_id_param="<value>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `schedule_id_param`                                                                                          | *str*                                                                                                        | :heavy_check_mark:                                                                                           | Schedule ID (optional if using request body)                                                                 |
-| `schedule_id`                                                                                                | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | schedule_id is the ID of the schedule to cancel (optional if subscription_id and schedule_type are provided) |
-| `schedule_type`                                                                                              | [Optional[models.SubscriptionScheduleChangeType]](../../models/subscriptionschedulechangetype.md)            | :heavy_minus_sign:                                                                                           | N/A                                                                                                          |
-| `subscription_id`                                                                                            | *Optional[str]*                                                                                              | :heavy_minus_sign:                                                                                           | subscription_id is the ID of the subscription (required if schedule_id is not provided)                      |
-| `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
-
-### Response
-
-**[models.CancelScheduleResponse](../../models/cancelscheduleresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## list_subscription_schedules
-
-Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="listSubscriptionSchedules" method="get" path="/v1/subscriptions/{subscription_id}/schedules" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.subscriptions.list_subscription_schedules(subscription_id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `subscription_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | Subscription ID                                                     |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.GetPendingSchedulesResponse](../../models/getpendingschedulesresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |

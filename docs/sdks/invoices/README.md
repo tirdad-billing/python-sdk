@@ -12,6 +12,7 @@
 * [update_invoice](#update_invoice) - Update invoice
 * [trigger_invoice_comms_webhook](#trigger_invoice_comms_webhook) - Trigger invoice communication webhook
 * [finalize_invoice](#finalize_invoice) - Finalize invoice
+* [execute_invoice_modify](#execute_invoice_modify) - Execute invoice modification
 * [update_invoice_payment_status](#update_invoice_payment_status) - Update invoice payment status
 * [attempt_invoice_payment](#attempt_invoice_payment) - Attempt invoice payment
 * [get_invoice_pdf](#get_invoice_pdf) - Get invoice PDF
@@ -407,6 +408,49 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## execute_invoice_modify
+
+Execute a modification on a draft or finalized invoice. Supports line item changes: add (bulk), update (one line item per call; the edit is versioned, so the line item id changes), and remove (bulk, soft delete). Totals are recalculated from the remaining line items; a manual edit marks the invoice as manually edited, which disables recompute. Modifying a FINALIZED invoice voids it and recreates it as a draft copy carrying all current data (description, billing period, due date, metadata, line items); the modification lands on the copy and the response returns the new draft — chain subsequent calls to the returned invoice id; a call that still targets the voided original is rejected with an error naming the replacement.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="executeInvoiceModify" method="post" path="/invoices/{id}/modify/execute" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.invoices.execute_invoice_modify(id="<id>", type_="line_item")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `id`                                                                                        | *str*                                                                                       | :heavy_check_mark:                                                                          | Invoice ID                                                                                  |
+| `type`                                                                                      | [models.InvoiceModifyType](../../models/invoicemodifytype.md)                               | :heavy_check_mark:                                                                          | N/A                                                                                         |
+| `line_item_params`                                                                          | [Optional[models.InvoiceModifyLineItemParams]](../../models/invoicemodifylineitemparams.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `retries`                                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                            | :heavy_minus_sign:                                                                          | Configuration to override the default retry behavior of the client.                         |
+
+### Response
+
+**[models.InvoiceModifyResponse](../../models/invoicemodifyresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 

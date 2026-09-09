@@ -20,7 +20,6 @@ class ChangedInvoiceTypedDict(TypedDict):
     id: NotRequired[str]
     invoice: NotRequired[InvoiceResponseTypedDict]
     status: NotRequired[ChangedInvoiceStatus]
-    r"""preview | issued | INITIATED | PENDING | PROCESSING | SUCCEEDED | OVERPAID | FAILED | REFUNDED | PARTIALLY_REFUNDED"""
     wallet_transaction: NotRequired[WalletTransactionResponseTypedDict]
 
 
@@ -33,7 +32,6 @@ class ChangedInvoice(BaseModel):
     invoice: Optional[InvoiceResponse] = None
 
     status: Optional[ChangedInvoiceStatus] = None
-    r"""preview | issued | INITIATED | PENDING | PROCESSING | SUCCEEDED | OVERPAID | FAILED | REFUNDED | PARTIALLY_REFUNDED"""
 
     wallet_transaction: Optional[WalletTransactionResponse] = None
 

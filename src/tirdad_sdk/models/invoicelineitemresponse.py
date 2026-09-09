@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .commitmentinfo import CommitmentInfo, CommitmentInfoTypedDict
+from .customcurrencylineitem import (
+    CustomCurrencyLineItem,
+    CustomCurrencyLineItemTypedDict,
+)
 from .sourceusageitem import SourceUsageItem, SourceUsageItemTypedDict
 from .status import Status
 from .usagebreakdownitem import UsageBreakdownItem, UsageBreakdownItemTypedDict
@@ -22,6 +26,7 @@ class InvoiceLineItemResponseTypedDict(TypedDict):
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     currency: NotRequired[str]
+    custom_currency: NotRequired[CustomCurrencyLineItemTypedDict]
     customer_id: NotRequired[str]
     display_name: NotRequired[str]
     entity_id: NotRequired[str]
@@ -79,6 +84,8 @@ class InvoiceLineItemResponse(BaseModel):
     created_by: Optional[str] = None
 
     currency: Optional[str] = None
+
+    custom_currency: Optional[CustomCurrencyLineItem] = None
 
     customer_id: Optional[str] = None
 
@@ -161,6 +168,7 @@ class InvoiceLineItemResponse(BaseModel):
                 "created_at",
                 "created_by",
                 "currency",
+                "custom_currency",
                 "customer_id",
                 "display_name",
                 "entity_id",

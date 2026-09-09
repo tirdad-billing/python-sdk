@@ -12,4 +12,3 @@ ChangedInvoiceStatus = Union[
     ],
     UnrecognizedStr,
 ]
-r"""preview | issued | INITIATED | PENDING | PROCESSING | SUCCEEDED | OVERPAID | FAILED | REFUNDED | PARTIALLY_REFUNDED"""

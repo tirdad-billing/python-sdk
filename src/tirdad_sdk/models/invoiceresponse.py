@@ -5,6 +5,7 @@ from .couponapplicationresponse import (
     CouponApplicationResponse,
     CouponApplicationResponseTypedDict,
 )
+from .customcurrency import CustomCurrency, CustomCurrencyTypedDict
 from .customerresponse import CustomerResponse, CustomerResponseTypedDict
 from .invoicelineitemresponse import (
     InvoiceLineItemResponse,
@@ -53,6 +54,7 @@ class InvoiceResponseTypedDict(TypedDict):
     created_by: NotRequired[str]
     currency: NotRequired[str]
     r"""currency is the three-letter ISO currency code (e.g., USD, EUR, GBP) that applies to all monetary amounts on this invoice"""
+    custom_currency: NotRequired[CustomCurrencyTypedDict]
     customer: NotRequired[CustomerResponseTypedDict]
     r"""Customer response object containing all customer information"""
     customer_id: NotRequired[str]
@@ -167,6 +169,8 @@ class InvoiceResponse(BaseModel):
 
     currency: Optional[str] = None
     r"""currency is the three-letter ISO currency code (e.g., USD, EUR, GBP) that applies to all monetary amounts on this invoice"""
+
+    custom_currency: Optional[CustomCurrency] = None
 
     customer: Optional[CustomerResponse] = None
     r"""Customer response object containing all customer information"""
@@ -303,6 +307,7 @@ class InvoiceResponse(BaseModel):
                 "created_at",
                 "created_by",
                 "currency",
+                "custom_currency",
                 "customer",
                 "customer_id",
                 "description",

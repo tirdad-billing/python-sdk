@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .alertthreshold import AlertThreshold, AlertThresholdTypedDict
+from .alertthresholdtype import AlertThresholdType
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
@@ -10,6 +11,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class AlertSettingsTypedDict(TypedDict):
     alert_enabled: NotRequired[bool]
+    alert_threshold_type: NotRequired[AlertThresholdType]
     critical: NotRequired[AlertThresholdTypedDict]
     info: NotRequired[AlertThresholdTypedDict]
     warning: NotRequired[AlertThresholdTypedDict]
@@ -17,6 +19,8 @@ class AlertSettingsTypedDict(TypedDict):
 
 class AlertSettings(BaseModel):
     alert_enabled: Optional[bool] = None
+
+    alert_threshold_type: Optional[AlertThresholdType] = None
 
     critical: Optional[AlertThreshold] = None
 
@@ -26,7 +30,9 @@ class AlertSettings(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["alert_enabled", "critical", "info", "warning"])
+        optional_fields = set(
+            ["alert_enabled", "alert_threshold_type", "critical", "info", "warning"]
+        )
         serialized = handler(self)
         m = {}
 

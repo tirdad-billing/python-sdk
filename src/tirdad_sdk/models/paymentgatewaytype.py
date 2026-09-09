@@ -11,4 +11,5 @@ PaymentGatewayType = Literal[
     "moyasar",
     "paddle",
     "whop",
+    "chargebee",
 ]

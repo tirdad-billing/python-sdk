@@ -7,7 +7,7 @@ from .awsmarketplacesyncconfig import (
 )
 from .entitysyncconfig import EntitySyncConfig, EntitySyncConfigTypedDict
 from .invoicesyncsettings import InvoiceSyncSettings, InvoiceSyncSettingsTypedDict
-from .s3exportconfig import S3ExportConfig, S3ExportConfigTypedDict
+from .storageexportconfig import StorageExportConfig, StorageExportConfigTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
@@ -24,7 +24,7 @@ class SyncConfigTypedDict(TypedDict):
     plan: NotRequired[EntitySyncConfigTypedDict]
     price: NotRequired[EntitySyncConfigTypedDict]
     quote: NotRequired[EntitySyncConfigTypedDict]
-    s3: NotRequired[S3ExportConfigTypedDict]
+    s3: NotRequired[StorageExportConfigTypedDict]
     subscription: NotRequired[EntitySyncConfigTypedDict]
 
 
@@ -47,7 +47,7 @@ class SyncConfig(BaseModel):
 
     quote: Optional[EntitySyncConfig] = None
 
-    s3: Optional[S3ExportConfig] = None
+    s3: Optional[StorageExportConfig] = None
 
     subscription: Optional[EntitySyncConfig] = None
 

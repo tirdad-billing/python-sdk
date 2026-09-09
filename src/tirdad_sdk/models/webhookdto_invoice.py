@@ -4,6 +4,11 @@ from __future__ import annotations
 from .invoicestatus import InvoiceStatus
 from .invoicetype import InvoiceType
 from .paymentstatus import PaymentStatus
+from .taxsummary import TaxSummary, TaxSummaryTypedDict
+from .webhookdto_couponapplication import (
+    WebhookDtoCouponApplication,
+    WebhookDtoCouponApplicationTypedDict,
+)
 from .webhookdto_customer import WebhookDtoCustomer, WebhookDtoCustomerTypedDict
 from .webhookdto_invoicelineitem import (
     WebhookDtoInvoiceLineItem,
@@ -13,6 +18,7 @@ from .webhookdto_subscription import (
     WebhookDtoSubscription,
     WebhookDtoSubscriptionTypedDict,
 )
+from .webhookdto_taxapplied import WebhookDtoTaxApplied, WebhookDtoTaxAppliedTypedDict
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -24,14 +30,20 @@ class WebhookDtoInvoiceTypedDict(TypedDict):
     amount_due: NotRequired[str]
     amount_paid: NotRequired[str]
     amount_remaining: NotRequired[str]
+    billing_period: NotRequired[str]
     billing_reason: NotRequired[str]
+    billing_sequence: NotRequired[int]
+    coupon_applications: NotRequired[List[WebhookDtoCouponApplicationTypedDict]]
+    created_at: NotRequired[datetime]
     currency: NotRequired[str]
     customer: NotRequired[WebhookDtoCustomerTypedDict]
     customer_id: NotRequired[str]
+    description: NotRequired[str]
     due_date: NotRequired[datetime]
     environment_id: NotRequired[str]
     finalized_at: NotRequired[datetime]
     id: NotRequired[str]
+    idempotency_key: NotRequired[str]
     invoice_number: NotRequired[str]
     invoice_pdf_url: NotRequired[str]
     invoice_status: NotRequired[InvoiceStatus]
@@ -45,7 +57,13 @@ class WebhookDtoInvoiceTypedDict(TypedDict):
     subscription: NotRequired[WebhookDtoSubscriptionTypedDict]
     subscription_id: NotRequired[str]
     subtotal: NotRequired[str]
+    tax_summary: NotRequired[TaxSummaryTypedDict]
+    taxes: NotRequired[List[WebhookDtoTaxAppliedTypedDict]]
     total: NotRequired[str]
+    total_discount: NotRequired[str]
+    total_prepaid_credits_applied: NotRequired[str]
+    total_tax: NotRequired[str]
+    updated_at: NotRequired[datetime]
     voided_at: NotRequired[datetime]
 
 
@@ -56,13 +74,23 @@ class WebhookDtoInvoice(BaseModel):
 
     amount_remaining: Optional[str] = None
 
+    billing_period: Optional[str] = None
+
     billing_reason: Optional[str] = None
+
+    billing_sequence: Optional[int] = None
+
+    coupon_applications: Optional[List[WebhookDtoCouponApplication]] = None
+
+    created_at: Optional[datetime] = None
 
     currency: Optional[str] = None
 
     customer: Optional[WebhookDtoCustomer] = None
 
     customer_id: Optional[str] = None
+
+    description: Optional[str] = None
 
     due_date: Optional[datetime] = None
 
@@ -71,6 +99,8 @@ class WebhookDtoInvoice(BaseModel):
     finalized_at: Optional[datetime] = None
 
     id: Optional[str] = None
+
+    idempotency_key: Optional[str] = None
 
     invoice_number: Optional[str] = None
 
@@ -98,7 +128,19 @@ class WebhookDtoInvoice(BaseModel):
 
     subtotal: Optional[str] = None
 
+    tax_summary: Optional[TaxSummary] = None
+
+    taxes: Optional[List[WebhookDtoTaxApplied]] = None
+
     total: Optional[str] = None
+
+    total_discount: Optional[str] = None
+
+    total_prepaid_credits_applied: Optional[str] = None
+
+    total_tax: Optional[str] = None
+
+    updated_at: Optional[datetime] = None
 
     voided_at: Optional[datetime] = None
 
@@ -109,14 +151,20 @@ class WebhookDtoInvoice(BaseModel):
                 "amount_due",
                 "amount_paid",
                 "amount_remaining",
+                "billing_period",
                 "billing_reason",
+                "billing_sequence",
+                "coupon_applications",
+                "created_at",
                 "currency",
                 "customer",
                 "customer_id",
+                "description",
                 "due_date",
                 "environment_id",
                 "finalized_at",
                 "id",
+                "idempotency_key",
                 "invoice_number",
                 "invoice_pdf_url",
                 "invoice_status",
@@ -130,7 +178,13 @@ class WebhookDtoInvoice(BaseModel):
                 "subscription",
                 "subscription_id",
                 "subtotal",
+                "tax_summary",
+                "taxes",
                 "total",
+                "total_discount",
+                "total_prepaid_credits_applied",
+                "total_tax",
+                "updated_at",
                 "voided_at",
             ]
         )

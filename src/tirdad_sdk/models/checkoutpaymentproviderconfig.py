@@ -11,12 +11,23 @@ from typing_extensions import NotRequired, TypedDict
 
 class CheckoutPaymentProviderConfigTypedDict(TypedDict):
     collection_method: NotRequired[CollectionMethod]
+    customer_not_present: NotRequired[bool]
+    r"""CustomerNotPresent is the unattended/MIT opt-in. Zero value (omitted) means
+    the customer is present, so a missed auto-charge may fall back to a hosted
+    authorization link. Set true only from merchant-initiated paths (auto top-up).
+    """
     max_mandate_limit: NotRequired[str]
     payment_method: NotRequired[PaymentMethodType]
 
 
 class CheckoutPaymentProviderConfig(BaseModel):
     collection_method: Optional[CollectionMethod] = None
+
+    customer_not_present: Optional[bool] = None
+    r"""CustomerNotPresent is the unattended/MIT opt-in. Zero value (omitted) means
+    the customer is present, so a missed auto-charge may fall back to a hosted
+    authorization link. Set true only from merchant-initiated paths (auto top-up).
+    """
 
     max_mandate_limit: Optional[str] = None
 
@@ -25,7 +36,12 @@ class CheckoutPaymentProviderConfig(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["collection_method", "max_mandate_limit", "payment_method"]
+            [
+                "collection_method",
+                "customer_not_present",
+                "max_mandate_limit",
+                "payment_method",
+            ]
         )
         serialized = handler(self)
         m = {}

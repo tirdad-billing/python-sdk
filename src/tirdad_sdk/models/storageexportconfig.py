@@ -9,35 +9,35 @@ from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class S3ExportConfigTypedDict(TypedDict):
+class StorageExportConfigTypedDict(TypedDict):
     bucket: NotRequired[str]
-    r"""S3 bucket name"""
+    r"""Storage bucket name"""
     compression: NotRequired[S3CompressionType]
     encryption: NotRequired[S3EncryptionType]
     is_flexprice_managed: NotRequired[bool]
-    r"""If true, use Flexprice-managed S3 credentials instead of user-provided"""
+    r"""If true, use Flexprice-managed storage credentials instead of user-provided"""
     key_prefix: NotRequired[str]
-    r"""Optional prefix for S3 keys (e.g., \"flexprice-exports/\")"""
+    r"""Optional prefix for object keys (e.g., \"flexprice-exports/\")"""
     region: NotRequired[str]
-    r"""AWS region (e.g., \"us-west-2\")"""
+    r"""Cloud region (e.g., \"us-west-2\"); unused for GCS"""
 
 
-class S3ExportConfig(BaseModel):
+class StorageExportConfig(BaseModel):
     bucket: Optional[str] = None
-    r"""S3 bucket name"""
+    r"""Storage bucket name"""
 
     compression: Optional[S3CompressionType] = None
 
     encryption: Optional[S3EncryptionType] = None
 
     is_flexprice_managed: Optional[bool] = None
-    r"""If true, use Flexprice-managed S3 credentials instead of user-provided"""
+    r"""If true, use Flexprice-managed storage credentials instead of user-provided"""
 
     key_prefix: Optional[str] = None
-    r"""Optional prefix for S3 keys (e.g., \"flexprice-exports/\")"""
+    r"""Optional prefix for object keys (e.g., \"flexprice-exports/\")"""
 
     region: Optional[str] = None
-    r"""AWS region (e.g., \"us-west-2\")"""
+    r"""Cloud region (e.g., \"us-west-2\"); unused for GCS"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

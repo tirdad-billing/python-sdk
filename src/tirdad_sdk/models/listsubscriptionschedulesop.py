@@ -7,12 +7,12 @@ from typing_extensions import Annotated, TypedDict
 
 
 class ListSubscriptionSchedulesRequestTypedDict(TypedDict):
-    subscription_id: str
+    id: str
     r"""Subscription ID"""
 
 
 class ListSubscriptionSchedulesRequest(BaseModel):
-    subscription_id: Annotated[
+    id: Annotated[
         str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
     ]
     r"""Subscription ID"""

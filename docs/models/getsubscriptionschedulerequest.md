@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *str*              | :heavy_check_mark: | Schedule ID        |
+| `schedule_id`      | *str*              | :heavy_check_mark: | Schedule ID        |

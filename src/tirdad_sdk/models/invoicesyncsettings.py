@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .billingperiod import BillingPeriod
+from .globalcustomfield import GlobalCustomField, GlobalCustomFieldTypedDict
 from .metadatacustomfield import MetadataCustomField, MetadataCustomFieldTypedDict
 from .serviceperiodcustomfields import (
     ServicePeriodCustomFields,
@@ -14,43 +15,65 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class InvoiceSyncSettingsTypedDict(TypedDict):
-    metadata_custom_fields: NotRequired[List[MetadataCustomFieldTypedDict]]
-    r"""MetadataCustomFields copies metadata values onto Zoho invoice custom fields
-    verbatim.
+    deposit_to_account_id: NotRequired[str]
+    r"""Zoho chart-of-accounts id (\"Deposit To\"). Empty omits account_id, leaving Zoho's
+    Undeposited Funds default.a
     """
+    global_custom_fields: NotRequired[List[GlobalCustomFieldTypedDict]]
+    r"""Fixed values written to Zoho invoice custom fields on every sync, independent of
+    any metadata source.
+    """
+    metadata_custom_fields: NotRequired[List[MetadataCustomFieldTypedDict]]
+    r"""Copies metadata values onto Zoho invoice custom fields verbatim."""
     normalize_fixed_to: NotRequired[BillingPeriod]
+    payment_mode: NotRequired[str]
+    r"""Zoho payment modes are merchant-editable free strings with no id, so this is passed
+    through verbatim. Empty means DefaultZohoPaymentMode.
+    """
     service_period_custom_fields: NotRequired[ServicePeriodCustomFieldsTypedDict]
     submit_for_approval: NotRequired[bool]
-    r"""SubmitForApproval submits the synced invoice into the merchant's Zoho Books approval
-    flow before recording payment. Zoho rejects payments on draft invoices, and merchants
-    configure a Zoho auto-approval rule for FlexPrice-sent invoices, so we submit, wait for
-    that rule to fire, then pay.
+    r"""Zoho rejects payments on draft invoices, and merchants configure a Zoho auto-approval
+    rule for FlexPrice-sent invoices, so we submit, wait for that rule to fire, then pay.
     """
 
 
 class InvoiceSyncSettings(BaseModel):
-    metadata_custom_fields: Optional[List[MetadataCustomField]] = None
-    r"""MetadataCustomFields copies metadata values onto Zoho invoice custom fields
-    verbatim.
+    deposit_to_account_id: Optional[str] = None
+    r"""Zoho chart-of-accounts id (\"Deposit To\"). Empty omits account_id, leaving Zoho's
+    Undeposited Funds default.a
     """
 
+    global_custom_fields: Optional[List[GlobalCustomField]] = None
+    r"""Fixed values written to Zoho invoice custom fields on every sync, independent of
+    any metadata source.
+    """
+
+    metadata_custom_fields: Optional[List[MetadataCustomField]] = None
+    r"""Copies metadata values onto Zoho invoice custom fields verbatim."""
+
     normalize_fixed_to: Optional[BillingPeriod] = None
+
+    payment_mode: Optional[str] = None
+    r"""Zoho payment modes are merchant-editable free strings with no id, so this is passed
+    through verbatim. Empty means DefaultZohoPaymentMode.
+    """
 
     service_period_custom_fields: Optional[ServicePeriodCustomFields] = None
 
     submit_for_approval: Optional[bool] = None
-    r"""SubmitForApproval submits the synced invoice into the merchant's Zoho Books approval
-    flow before recording payment. Zoho rejects payments on draft invoices, and merchants
-    configure a Zoho auto-approval rule for FlexPrice-sent invoices, so we submit, wait for
-    that rule to fire, then pay.
+    r"""Zoho rejects payments on draft invoices, and merchants configure a Zoho auto-approval
+    rule for FlexPrice-sent invoices, so we submit, wait for that rule to fire, then pay.
     """
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "deposit_to_account_id",
+                "global_custom_fields",
                 "metadata_custom_fields",
                 "normalize_fixed_to",
+                "payment_mode",
                 "service_period_custom_fields",
                 "submit_for_approval",
             ]

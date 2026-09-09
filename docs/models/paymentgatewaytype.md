@@ -16,3 +16,4 @@ value: PaymentGatewayType = "stripe"
 - `"moyasar"`
 - `"paddle"`
 - `"whop"`
+- `"chargebee"`

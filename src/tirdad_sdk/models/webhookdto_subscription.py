@@ -6,11 +6,20 @@ from .billingperiod import BillingPeriod
 from .pausestatus import PauseStatus
 from .subscriptionstatus import SubscriptionStatus
 from .subscriptiontype import SubscriptionType
+from .webhookdto_couponassociation import (
+    WebhookDtoCouponAssociation,
+    WebhookDtoCouponAssociationTypedDict,
+)
 from .webhookdto_customer import WebhookDtoCustomer, WebhookDtoCustomerTypedDict
+from .webhookdto_plan import WebhookDtoPlan, WebhookDtoPlanTypedDict
+from .webhookdto_subscriptionlineitem import (
+    WebhookDtoSubscriptionLineItem,
+    WebhookDtoSubscriptionLineItemTypedDict,
+)
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -21,6 +30,7 @@ class WebhookDtoSubscriptionTypedDict(TypedDict):
     cancel_at: NotRequired[datetime]
     cancel_at_period_end: NotRequired[bool]
     cancelled_at: NotRequired[datetime]
+    coupon_associations: NotRequired[List[WebhookDtoCouponAssociationTypedDict]]
     currency: NotRequired[str]
     current_period_end: NotRequired[datetime]
     current_period_start: NotRequired[datetime]
@@ -28,10 +38,13 @@ class WebhookDtoSubscriptionTypedDict(TypedDict):
     customer_id: NotRequired[str]
     end_date: NotRequired[datetime]
     id: NotRequired[str]
+    invoicing_customer_id: NotRequired[str]
+    line_items: NotRequired[List[WebhookDtoSubscriptionLineItemTypedDict]]
     lookup_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     parent_subscription_id: NotRequired[str]
     pause_status: NotRequired[PauseStatus]
+    plan: NotRequired[WebhookDtoPlanTypedDict]
     plan_id: NotRequired[str]
     start_date: NotRequired[datetime]
     subscription_status: NotRequired[SubscriptionStatus]
@@ -53,6 +66,8 @@ class WebhookDtoSubscription(BaseModel):
 
     cancelled_at: Optional[datetime] = None
 
+    coupon_associations: Optional[List[WebhookDtoCouponAssociation]] = None
+
     currency: Optional[str] = None
 
     current_period_end: Optional[datetime] = None
@@ -67,6 +82,10 @@ class WebhookDtoSubscription(BaseModel):
 
     id: Optional[str] = None
 
+    invoicing_customer_id: Optional[str] = None
+
+    line_items: Optional[List[WebhookDtoSubscriptionLineItem]] = None
+
     lookup_key: Optional[str] = None
 
     metadata: Optional[Dict[str, str]] = None
@@ -74,6 +93,8 @@ class WebhookDtoSubscription(BaseModel):
     parent_subscription_id: Optional[str] = None
 
     pause_status: Optional[PauseStatus] = None
+
+    plan: Optional[WebhookDtoPlan] = None
 
     plan_id: Optional[str] = None
 
@@ -97,6 +118,7 @@ class WebhookDtoSubscription(BaseModel):
                 "cancel_at",
                 "cancel_at_period_end",
                 "cancelled_at",
+                "coupon_associations",
                 "currency",
                 "current_period_end",
                 "current_period_start",
@@ -104,10 +126,13 @@ class WebhookDtoSubscription(BaseModel):
                 "customer_id",
                 "end_date",
                 "id",
+                "invoicing_customer_id",
+                "line_items",
                 "lookup_key",
                 "metadata",
                 "parent_subscription_id",
                 "pause_status",
+                "plan",
                 "plan_id",
                 "start_date",
                 "subscription_status",
