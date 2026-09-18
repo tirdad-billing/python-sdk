@@ -5,13 +5,10 @@ from tirdad_sdk.types import UnrecognizedStr
 from typing import Literal, Union
 
 
-CheckoutAction = Union[
+LineItemGrouping = Union[
     Literal[
-        "create_subscription",
-        "modify_subscription",
-        "wallet_topup",
-        "add_addon",
-        "pay_invoice",
+        "per_charge_period",
+        "per_billing_period",
     ],
     UnrecognizedStr,
 ]

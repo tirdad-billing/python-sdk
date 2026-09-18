@@ -10,6 +10,7 @@ from .couponassociationresponse import (
 )
 from .creditgrantresponse import CreditGrantResponse, CreditGrantResponseTypedDict
 from .customerresponse import CustomerResponse, CustomerResponseTypedDict
+from .lineitemgrouping import LineItemGrouping
 from .pausestatus import PauseStatus
 from .paymentterms import PaymentTerms
 from .planresponse import PlanResponse, PlanResponseTypedDict
@@ -100,6 +101,7 @@ class SubscriptionResponseV2TypedDict(TypedDict):
     r"""InvoicingCustomerID is the customer ID to use for invoicing
     This can differ from the subscription customer (e.g., parent company invoicing for child company)
     """
+    line_item_grouping: NotRequired[LineItemGrouping]
     line_items: NotRequired[List[SubscriptionLineItemResponseTypedDict]]
     r"""LineItems is expanded only if \"subscription_line_items\" is in expand parameter
     Each line item can optionally include expanded price data
@@ -242,6 +244,8 @@ class SubscriptionResponseV2(BaseModel):
     This can differ from the subscription customer (e.g., parent company invoicing for child company)
     """
 
+    line_item_grouping: Optional[LineItemGrouping] = None
+
     line_items: Optional[List[SubscriptionLineItemResponse]] = None
     r"""LineItems is expanded only if \"subscription_line_items\" is in expand parameter
     Each line item can optionally include expanded price data
@@ -348,6 +352,7 @@ class SubscriptionResponseV2(BaseModel):
                 "gateway_payment_method_id",
                 "id",
                 "invoicing_customer_id",
+                "line_item_grouping",
                 "line_items",
                 "lookup_key",
                 "metadata",

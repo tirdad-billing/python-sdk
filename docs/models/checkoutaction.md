@@ -18,3 +18,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"modify_subscription"`
 - `"wallet_topup"`
 - `"add_addon"`
+- `"pay_invoice"`

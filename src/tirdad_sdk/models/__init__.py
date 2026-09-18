@@ -118,6 +118,10 @@ if TYPE_CHECKING:
         BulkIngestEventRequest,
         BulkIngestEventRequestTypedDict,
     )
+    from .cancelcheckoutsessionop import (
+        CancelCheckoutSessionRequest,
+        CancelCheckoutSessionRequestTypedDict,
+    )
     from .cancelimmediatelyinvoicepolicy import CancelImmediatelyInvoicePolicy
     from .cancellationtype import CancellationType
     from .cancelschedulerequest import (
@@ -805,6 +809,7 @@ if TYPE_CHECKING:
     )
     from .invoicemodifytype import InvoiceModifyType
     from .invoicepreview import InvoicePreview, InvoicePreviewTypedDict
+    from .invoicesourcetype import InvoiceSourceType
     from .invoicestatus import InvoiceStatus
     from .invoicesyncsettings import InvoiceSyncSettings, InvoiceSyncSettingsTypedDict
     from .invoicetype import InvoiceType
@@ -812,6 +817,7 @@ if TYPE_CHECKING:
         LineItemCommitmentConfig,
         LineItemCommitmentConfigTypedDict,
     )
+    from .lineitemgrouping import LineItemGrouping
     from .lineitemquantitychange import (
         LineItemQuantityChange,
         LineItemQuantityChangeTypedDict,
@@ -1013,6 +1019,7 @@ if TYPE_CHECKING:
     from .paginationresponse import PaginationResponse, PaginationResponseTypedDict
     from .pausemode import PauseMode
     from .pausestatus import PauseStatus
+    from .payinvoiceparams import PayInvoiceParams, PayInvoiceParamsTypedDict
     from .paymentaction import PaymentAction, PaymentActionTypedDict
     from .paymentactiontype import PaymentActionType
     from .paymentattemptresponse import (
@@ -1276,10 +1283,6 @@ if TYPE_CHECKING:
     )
     from .subscriptionschedulechangetype import SubscriptionScheduleChangeType
     from .subscriptionscheduleresponse import (
-        Configuration,
-        ConfigurationTypedDict,
-        ExecutionResult,
-        ExecutionResultTypedDict,
         SubscriptionScheduleResponse,
         SubscriptionScheduleResponseTypedDict,
     )
@@ -1821,6 +1824,8 @@ __all__ = [
     "BucketTypedDict",
     "BulkIngestEventRequest",
     "BulkIngestEventRequestTypedDict",
+    "CancelCheckoutSessionRequest",
+    "CancelCheckoutSessionRequestTypedDict",
     "CancelImmediatelyInvoicePolicy",
     "CancelScheduleRequest",
     "CancelScheduleRequestTypedDict",
@@ -1880,8 +1885,6 @@ __all__ = [
     "CommitmentType",
     "ConfigValue",
     "ConfigValueTypedDict",
-    "Configuration",
-    "ConfigurationTypedDict",
     "CostAnalyticItem",
     "CostAnalyticItemTypedDict",
     "CostPoint",
@@ -2127,8 +2130,6 @@ __all__ = [
     "ExecuteSubscriptionModifyRequestTypedDict",
     "ExecuteSubscriptionPlanChangeV2Request",
     "ExecuteSubscriptionPlanChangeV2RequestTypedDict",
-    "ExecutionResult",
-    "ExecutionResultTypedDict",
     "ExportMetadataEntityType",
     "ExportMetadataField",
     "ExportMetadataFieldTypedDict",
@@ -2349,12 +2350,14 @@ __all__ = [
     "InvoicePreviewTypedDict",
     "InvoiceResponse",
     "InvoiceResponseTypedDict",
+    "InvoiceSourceType",
     "InvoiceStatus",
     "InvoiceSyncSettings",
     "InvoiceSyncSettingsTypedDict",
     "InvoiceType",
     "LineItemCommitmentConfig",
     "LineItemCommitmentConfigTypedDict",
+    "LineItemGrouping",
     "LineItemQuantityChange",
     "LineItemQuantityChangeTypedDict",
     "LinkIntegrationMappingRequest",
@@ -2492,6 +2495,8 @@ __all__ = [
     "PaginationResponseTypedDict",
     "PauseMode",
     "PauseStatus",
+    "PayInvoiceParams",
+    "PayInvoiceParamsTypedDict",
     "PaymentAction",
     "PaymentActionType",
     "PaymentActionTypedDict",
@@ -3098,6 +3103,8 @@ _dynamic_imports: dict[str, str] = {
     "BucketSummaryTypedDict": ".bucketsummary",
     "BulkIngestEventRequest": ".bulkingesteventrequest",
     "BulkIngestEventRequestTypedDict": ".bulkingesteventrequest",
+    "CancelCheckoutSessionRequest": ".cancelcheckoutsessionop",
+    "CancelCheckoutSessionRequestTypedDict": ".cancelcheckoutsessionop",
     "CancelImmediatelyInvoicePolicy": ".cancelimmediatelyinvoicepolicy",
     "CancellationType": ".cancellationtype",
     "CancelScheduleRequest": ".cancelschedulerequest",
@@ -3618,12 +3625,14 @@ _dynamic_imports: dict[str, str] = {
     "InvoiceModifyType": ".invoicemodifytype",
     "InvoicePreview": ".invoicepreview",
     "InvoicePreviewTypedDict": ".invoicepreview",
+    "InvoiceSourceType": ".invoicesourcetype",
     "InvoiceStatus": ".invoicestatus",
     "InvoiceSyncSettings": ".invoicesyncsettings",
     "InvoiceSyncSettingsTypedDict": ".invoicesyncsettings",
     "InvoiceType": ".invoicetype",
     "LineItemCommitmentConfig": ".lineitemcommitmentconfig",
     "LineItemCommitmentConfigTypedDict": ".lineitemcommitmentconfig",
+    "LineItemGrouping": ".lineitemgrouping",
     "LineItemQuantityChange": ".lineitemquantitychange",
     "LineItemQuantityChangeTypedDict": ".lineitemquantitychange",
     "LinkIntegrationMappingRequest": ".linkintegrationmappingrequest",
@@ -3761,6 +3770,8 @@ _dynamic_imports: dict[str, str] = {
     "PaginationResponseTypedDict": ".paginationresponse",
     "PauseMode": ".pausemode",
     "PauseStatus": ".pausestatus",
+    "PayInvoiceParams": ".payinvoiceparams",
+    "PayInvoiceParamsTypedDict": ".payinvoiceparams",
     "PaymentAction": ".paymentaction",
     "PaymentActionTypedDict": ".paymentaction",
     "PaymentActionType": ".paymentactiontype",
@@ -3958,10 +3969,6 @@ _dynamic_imports: dict[str, str] = {
     "SubscriptionResponseV2": ".subscriptionresponsev2",
     "SubscriptionResponseV2TypedDict": ".subscriptionresponsev2",
     "SubscriptionScheduleChangeType": ".subscriptionschedulechangetype",
-    "Configuration": ".subscriptionscheduleresponse",
-    "ConfigurationTypedDict": ".subscriptionscheduleresponse",
-    "ExecutionResult": ".subscriptionscheduleresponse",
-    "ExecutionResultTypedDict": ".subscriptionscheduleresponse",
     "SubscriptionScheduleResponse": ".subscriptionscheduleresponse",
     "SubscriptionScheduleResponseTypedDict": ".subscriptionscheduleresponse",
     "SubscriptionStatus": ".subscriptionstatus",

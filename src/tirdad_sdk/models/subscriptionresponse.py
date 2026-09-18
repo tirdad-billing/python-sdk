@@ -15,6 +15,7 @@ from .couponassociationresponse import (
 )
 from .creditgrantresponse import CreditGrantResponse, CreditGrantResponseTypedDict
 from .customerresponse import CustomerResponse, CustomerResponseTypedDict
+from .lineitemgrouping import LineItemGrouping
 from .pausestatus import PauseStatus
 from .paymentterms import PaymentTerms
 from .planresponse import PlanResponse, PlanResponseTypedDict
@@ -115,6 +116,7 @@ class SubscriptionResponseTypedDict(TypedDict):
     This can differ from the subscription customer (e.g., parent company invoicing for child company)
     """
     latest_invoice: NotRequired["InvoiceResponseTypedDict"]
+    line_item_grouping: NotRequired[LineItemGrouping]
     line_items: NotRequired[List[SubscriptionSubscriptionLineItemTypedDict]]
     lookup_key: NotRequired[str]
     r"""LookupKey is the key used to lookup the subscription in our system"""
@@ -258,6 +260,8 @@ class SubscriptionResponse(BaseModel):
 
     latest_invoice: Optional["InvoiceResponse"] = None
 
+    line_item_grouping: Optional[LineItemGrouping] = None
+
     line_items: Optional[List[SubscriptionSubscriptionLineItem]] = None
 
     lookup_key: Optional[str] = None
@@ -357,6 +361,7 @@ class SubscriptionResponse(BaseModel):
                 "id",
                 "invoicing_customer_id",
                 "latest_invoice",
+                "line_item_grouping",
                 "line_items",
                 "lookup_key",
                 "metadata",

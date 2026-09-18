@@ -7,6 +7,7 @@
 * [create_checkout_session](#create_checkout_session) - Create checkout session
 * [get_checkout_session](#get_checkout_session) - Get checkout session
 * [delete_checkout_session](#delete_checkout_session) - Delete checkout session
+* [cancel_checkout_session](#cancel_checkout_session) - Cancel checkout session
 
 ## create_checkout_session
 
@@ -23,7 +24,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.checkout.create_checkout_session(action="add_addon", customer_external_id="<id>", payment_provider="razorpay")
+    res = tirdad.checkout.create_checkout_session(action="pay_invoice", customer_external_id="<id>", payment_provider="razorpay")
 
     # Handle response
     print(res)
@@ -132,5 +133,46 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 404                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## cancel_checkout_session
+
+Cancel checkout session
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="cancelCheckoutSession" method="post" path="/checkout/sessions/{id}/cancel" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.checkout.cancel_checkout_session(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Checkout session ID                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.CheckoutSessionResponse](../../models/checkoutsessionresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |

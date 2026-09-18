@@ -224,6 +224,9 @@ class Invoices(BaseSDK):
         amount_paid: Optional[str] = None,
         billing_period: Optional[str] = None,
         billing_reason: Optional[models.InvoiceBillingReason] = None,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         coupons: Optional[Iterable[str]] = None,
         description: Optional[str] = None,
         due_date: Optional[datetime] = None,
@@ -272,6 +275,7 @@ class Invoices(BaseSDK):
         r"""Create one-off invoice
 
         Use when creating a manual or one-off invoice (e.g. custom charge or non-recurring billing). Invoice is created in draft; finalize when ready.
+        Pass a `checkout` object to gate the invoice behind a hosted payment session: the invoice stays DRAFT with no invoice number, and the response carries `checkout_session.payment_action.url` for the customer to pay. It finalizes only when the payment webhook lands; if the session expires the invoice is voided and archived. Poll `GET /checkout/sessions/{id}` until `terminal` is true. One-off invoices only.
 
         :param amount_due: amount_due is the total amount that needs to be paid for this invoice
         :param currency: currency is the three-letter ISO currency code (e.g., USD, EUR) for the invoice
@@ -281,6 +285,7 @@ class Invoices(BaseSDK):
         :param amount_paid: amount_paid is the amount that has been paid towards this invoice
         :param billing_period: billing_period is the period this invoice covers (e.g., \"monthly\", \"yearly\")
         :param billing_reason:
+        :param checkout:
         :param coupons: coupons
         :param description: description is an optional text description of the invoice
         :param due_date: due_date is the date by which payment is expected
@@ -326,6 +331,9 @@ class Invoices(BaseSDK):
             amount_paid=amount_paid,
             billing_period=billing_period,
             billing_reason=billing_reason,
+            checkout=utils.get_pydantic_model(
+                checkout, Optional[models.CheckoutParams]
+            ),
             coupons=utils.unmarshal(coupons, Optional[List[str]]),
             currency=currency,
             customer_id=customer_id,
@@ -441,6 +449,9 @@ class Invoices(BaseSDK):
         amount_paid: Optional[str] = None,
         billing_period: Optional[str] = None,
         billing_reason: Optional[models.InvoiceBillingReason] = None,
+        checkout: Optional[
+            Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
+        ] = None,
         coupons: Optional[Iterable[str]] = None,
         description: Optional[str] = None,
         due_date: Optional[datetime] = None,
@@ -489,6 +500,7 @@ class Invoices(BaseSDK):
         r"""Create one-off invoice
 
         Use when creating a manual or one-off invoice (e.g. custom charge or non-recurring billing). Invoice is created in draft; finalize when ready.
+        Pass a `checkout` object to gate the invoice behind a hosted payment session: the invoice stays DRAFT with no invoice number, and the response carries `checkout_session.payment_action.url` for the customer to pay. It finalizes only when the payment webhook lands; if the session expires the invoice is voided and archived. Poll `GET /checkout/sessions/{id}` until `terminal` is true. One-off invoices only.
 
         :param amount_due: amount_due is the total amount that needs to be paid for this invoice
         :param currency: currency is the three-letter ISO currency code (e.g., USD, EUR) for the invoice
@@ -498,6 +510,7 @@ class Invoices(BaseSDK):
         :param amount_paid: amount_paid is the amount that has been paid towards this invoice
         :param billing_period: billing_period is the period this invoice covers (e.g., \"monthly\", \"yearly\")
         :param billing_reason:
+        :param checkout:
         :param coupons: coupons
         :param description: description is an optional text description of the invoice
         :param due_date: due_date is the date by which payment is expected
@@ -543,6 +556,9 @@ class Invoices(BaseSDK):
             amount_paid=amount_paid,
             billing_period=billing_period,
             billing_reason=billing_reason,
+            checkout=utils.get_pydantic_model(
+                checkout, Optional[models.CheckoutParams]
+            ),
             coupons=utils.unmarshal(coupons, Optional[List[str]]),
             currency=currency,
             customer_id=customer_id,

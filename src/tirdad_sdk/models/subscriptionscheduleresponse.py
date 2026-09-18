@@ -6,24 +6,8 @@ from .subscriptionschedulechangetype import SubscriptionScheduleChangeType
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 from typing_extensions import NotRequired, TypedDict
-
-
-class ConfigurationTypedDict(TypedDict):
-    r"""configuration contains type-specific configuration (e.g., target_plan_id for plan changes)"""
-
-
-class Configuration(BaseModel):
-    r"""configuration contains type-specific configuration (e.g., target_plan_id for plan changes)"""
-
-
-class ExecutionResultTypedDict(TypedDict):
-    r"""execution_result contains type-specific execution result"""
-
-
-class ExecutionResult(BaseModel):
-    r"""execution_result contains type-specific execution result"""
 
 
 class SubscriptionScheduleResponseTypedDict(TypedDict):
@@ -33,7 +17,7 @@ class SubscriptionScheduleResponseTypedDict(TypedDict):
     r"""can_be_cancelled indicates if the schedule can be cancelled"""
     cancelled_at: NotRequired[datetime]
     r"""cancelled_at is when the schedule was cancelled"""
-    configuration: NotRequired[ConfigurationTypedDict]
+    configuration: NotRequired[Dict[str, Any]]
     r"""configuration contains type-specific configuration (e.g., target_plan_id for plan changes)"""
     created_at: NotRequired[datetime]
     r"""created_at timestamp"""
@@ -43,7 +27,7 @@ class SubscriptionScheduleResponseTypedDict(TypedDict):
     r"""error_message contains the error if execution failed"""
     executed_at: NotRequired[datetime]
     r"""executed_at is when the schedule was executed"""
-    execution_result: NotRequired[ExecutionResultTypedDict]
+    execution_result: NotRequired[Dict[str, Any]]
     r"""execution_result contains type-specific execution result"""
     id: NotRequired[str]
     r"""id of the schedule"""
@@ -68,7 +52,7 @@ class SubscriptionScheduleResponse(BaseModel):
     cancelled_at: Optional[datetime] = None
     r"""cancelled_at is when the schedule was cancelled"""
 
-    configuration: Optional[Configuration] = None
+    configuration: Optional[Dict[str, Any]] = None
     r"""configuration contains type-specific configuration (e.g., target_plan_id for plan changes)"""
 
     created_at: Optional[datetime] = None
@@ -83,7 +67,7 @@ class SubscriptionScheduleResponse(BaseModel):
     executed_at: Optional[datetime] = None
     r"""executed_at is when the schedule was executed"""
 
-    execution_result: Optional[ExecutionResult] = None
+    execution_result: Optional[Dict[str, Any]] = None
     r"""execution_result contains type-specific execution result"""
 
     id: Optional[str] = None

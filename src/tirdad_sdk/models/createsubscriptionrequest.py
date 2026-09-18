@@ -21,6 +21,7 @@ from .lineitemcommitmentconfig import (
     LineItemCommitmentConfig,
     LineItemCommitmentConfigTypedDict,
 )
+from .lineitemgrouping import LineItemGrouping
 from .overrideentitlementrequest import (
     OverrideEntitlementRequest,
     OverrideEntitlementRequestTypedDict,
@@ -97,6 +98,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
     line_item_coupons: NotRequired[Dict[str, List[str]]]
     r"""Deprecated: use SubscriptionCoupons instead."""
+    line_item_grouping: NotRequired[LineItemGrouping]
     line_items: NotRequired[List[CreateSubscriptionLineItemRequestTypedDict]]
     r"""LineItems are extra (non-plan) line items added at creation."""
     lookup_key: NotRequired[str]
@@ -188,6 +190,8 @@ class CreateSubscriptionRequest(BaseModel):
     line_item_coupons: Optional[Dict[str, List[str]]] = None
     r"""Deprecated: use SubscriptionCoupons instead."""
 
+    line_item_grouping: Optional[LineItemGrouping] = None
+
     line_items: Optional[List[CreateSubscriptionLineItemRequest]] = None
     r"""LineItems are extra (non-plan) line items added at creation."""
 
@@ -250,6 +254,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "inheritance",
                 "line_item_commitments",
                 "line_item_coupons",
+                "line_item_grouping",
                 "line_items",
                 "lookup_key",
                 "metadata",

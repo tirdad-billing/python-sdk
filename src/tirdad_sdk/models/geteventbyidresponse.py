@@ -14,6 +14,7 @@ from typing_extensions import NotRequired, TypedDict
 class GetEventByIDResponseTypedDict(TypedDict):
     debug_tracker: NotRequired[DebugTrackerTypedDict]
     event: NotRequired[EventTypedDict]
+    events: NotRequired[List[EventTypedDict]]
     processed_events: NotRequired[List[FeatureUsageInfoTypedDict]]
     status: NotRequired[EventProcessingStatusType]
 
@@ -23,13 +24,17 @@ class GetEventByIDResponse(BaseModel):
 
     event: Optional[Event] = None
 
+    events: Optional[List[Event]] = None
+
     processed_events: Optional[List[FeatureUsageInfo]] = None
 
     status: Optional[EventProcessingStatusType] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["debug_tracker", "event", "processed_events", "status"])
+        optional_fields = set(
+            ["debug_tracker", "event", "events", "processed_events", "status"]
+        )
         serialized = handler(self)
         m = {}
 

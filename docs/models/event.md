@@ -3,13 +3,14 @@
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `customer_id`          | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `environment_id`       | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `event_name`           | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `external_customer_id` | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `id`                   | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `properties`           | Dict[str, *Any*]       | :heavy_minus_sign:     | N/A                    |
-| `source`               | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
-| `timestamp`            | *Optional[str]*        | :heavy_minus_sign:     | N/A                    |
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `customer_id`                                                        | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `environment_id`                                                     | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `event_name`                                                         | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `external_customer_id`                                               | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `id`                                                                 | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `ingested_at`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `properties`                                                         | Dict[str, *Any*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `source`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `timestamp`                                                          | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |

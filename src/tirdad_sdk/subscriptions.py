@@ -59,6 +59,7 @@ class Subscriptions(BaseSDK):
             ]
         ] = None,
         line_item_coupons: Optional[Mapping[str, Iterable[str]]] = None,
+        line_item_grouping: Optional[models.LineItemGrouping] = None,
         line_items: Optional[
             Union[
                 Iterable[models.CreateSubscriptionLineItemRequest],
@@ -147,6 +148,7 @@ class Subscriptions(BaseSDK):
         :param inheritance:
         :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
+        :param line_item_grouping:
         :param line_items: LineItems are extra (non-plan) line items added at creation.
         :param lookup_key:
         :param metadata:
@@ -215,6 +217,7 @@ class Subscriptions(BaseSDK):
             line_item_coupons=utils.unmarshal(
                 line_item_coupons, Optional[Dict[str, List[str]]]
             ),
+            line_item_grouping=line_item_grouping,
             line_items=utils.get_pydantic_model(
                 line_items, Optional[List[models.CreateSubscriptionLineItemRequest]]
             ),
@@ -363,6 +366,7 @@ class Subscriptions(BaseSDK):
             ]
         ] = None,
         line_item_coupons: Optional[Mapping[str, Iterable[str]]] = None,
+        line_item_grouping: Optional[models.LineItemGrouping] = None,
         line_items: Optional[
             Union[
                 Iterable[models.CreateSubscriptionLineItemRequest],
@@ -451,6 +455,7 @@ class Subscriptions(BaseSDK):
         :param inheritance:
         :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
+        :param line_item_grouping:
         :param line_items: LineItems are extra (non-plan) line items added at creation.
         :param lookup_key:
         :param metadata:
@@ -519,6 +524,7 @@ class Subscriptions(BaseSDK):
             line_item_coupons=utils.unmarshal(
                 line_item_coupons, Optional[Dict[str, List[str]]]
             ),
+            line_item_grouping=line_item_grouping,
             line_items=utils.get_pydantic_model(
                 line_items, Optional[List[models.CreateSubscriptionLineItemRequest]]
             ),

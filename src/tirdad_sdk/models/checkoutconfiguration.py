@@ -10,6 +10,7 @@ from .modifysubscriptionparams import (
     ModifySubscriptionParams,
     ModifySubscriptionParamsTypedDict,
 )
+from .payinvoiceparams import PayInvoiceParams, PayInvoiceParamsTypedDict
 from .wallettopupparams import WalletTopupParams, WalletTopupParamsTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -21,6 +22,7 @@ class CheckoutConfigurationTypedDict(TypedDict):
     add_addon_params: NotRequired[AddAddonParamsTypedDict]
     create_subscription_params: NotRequired[CreateSubscriptionParamsTypedDict]
     modify_subscription_params: NotRequired[ModifySubscriptionParamsTypedDict]
+    pay_invoice_params: NotRequired[PayInvoiceParamsTypedDict]
     wallet_topup_params: NotRequired[WalletTopupParamsTypedDict]
 
 
@@ -31,6 +33,8 @@ class CheckoutConfiguration(BaseModel):
 
     modify_subscription_params: Optional[ModifySubscriptionParams] = None
 
+    pay_invoice_params: Optional[PayInvoiceParams] = None
+
     wallet_topup_params: Optional[WalletTopupParams] = None
 
     @model_serializer(mode="wrap")
@@ -40,6 +44,7 @@ class CheckoutConfiguration(BaseModel):
                 "add_addon_params",
                 "create_subscription_params",
                 "modify_subscription_params",
+                "pay_invoice_params",
                 "wallet_topup_params",
             ]
         )
