@@ -3,6 +3,10 @@
 from __future__ import annotations
 from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
 from .submodifyaddonparams import SubModifyAddonParams, SubModifyAddonParamsTypedDict
+from .submodifybulkaddonparams import (
+    SubModifyBulkAddonParams,
+    SubModifyBulkAddonParamsTypedDict,
+)
 from .submodifycouponparams import SubModifyCouponParams, SubModifyCouponParamsTypedDict
 from .submodifygroupedinvoicingparams import (
     SubModifyGroupedInvoicingParams,
@@ -30,6 +34,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class ExecuteSubscriptionModifyRequestTypedDict(TypedDict):
     type: SubscriptionModifyType
+    addon_bulk_params: NotRequired[SubModifyBulkAddonParamsTypedDict]
     addon_params: NotRequired[SubModifyAddonParamsTypedDict]
     checkout: NotRequired[CheckoutParamsTypedDict]
     coupon_params: NotRequired[SubModifyCouponParamsTypedDict]
@@ -42,6 +47,8 @@ class ExecuteSubscriptionModifyRequestTypedDict(TypedDict):
 
 class ExecuteSubscriptionModifyRequest(BaseModel):
     type: SubscriptionModifyType
+
+    addon_bulk_params: Optional[SubModifyBulkAddonParams] = None
 
     addon_params: Optional[SubModifyAddonParams] = None
 
@@ -63,6 +70,7 @@ class ExecuteSubscriptionModifyRequest(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "addon_bulk_params",
                 "addon_params",
                 "checkout",
                 "coupon_params",

@@ -8,6 +8,7 @@ from .checkoutpaymentproviderconfig import (
     CheckoutPaymentProviderConfig,
     CheckoutPaymentProviderConfigTypedDict,
 )
+from .entitycreationoptions import EntityCreationOptions, EntityCreationOptionsTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, Optional
@@ -20,6 +21,7 @@ class CreateCheckoutSessionRequestTypedDict(TypedDict):
     payment_provider: CheckoutPaymentProvider
     cancel_url: NotRequired[str]
     configuration: NotRequired[CheckoutConfigurationTypedDict]
+    entity_creation_options: NotRequired[EntityCreationOptionsTypedDict]
     failure_url: NotRequired[str]
     idempotency_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
@@ -38,6 +40,8 @@ class CreateCheckoutSessionRequest(BaseModel):
 
     configuration: Optional[CheckoutConfiguration] = None
 
+    entity_creation_options: Optional[EntityCreationOptions] = None
+
     failure_url: Optional[str] = None
 
     idempotency_key: Optional[str] = None
@@ -54,6 +58,7 @@ class CreateCheckoutSessionRequest(BaseModel):
             [
                 "cancel_url",
                 "configuration",
+                "entity_creation_options",
                 "failure_url",
                 "idempotency_key",
                 "metadata",

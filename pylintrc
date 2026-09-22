@@ -189,6 +189,7 @@ good-names=i,
            _,
            e,
            id,
+           op,
            s3
 
 # Good variable names regexes, separated by a comma. If names match any regex,

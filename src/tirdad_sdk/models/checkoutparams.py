@@ -6,6 +6,7 @@ from .checkoutpaymentproviderconfig import (
     CheckoutPaymentProviderConfig,
     CheckoutPaymentProviderConfigTypedDict,
 )
+from .entitycreationoptions import EntityCreationOptions, EntityCreationOptionsTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, Optional
@@ -15,6 +16,7 @@ from typing_extensions import NotRequired, TypedDict
 class CheckoutParamsTypedDict(TypedDict):
     payment_provider: CheckoutPaymentProvider
     cancel_url: NotRequired[str]
+    entity_creation_options: NotRequired[EntityCreationOptionsTypedDict]
     failure_url: NotRequired[str]
     idempotency_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
@@ -26,6 +28,8 @@ class CheckoutParams(BaseModel):
     payment_provider: CheckoutPaymentProvider
 
     cancel_url: Optional[str] = None
+
+    entity_creation_options: Optional[EntityCreationOptions] = None
 
     failure_url: Optional[str] = None
 
@@ -42,6 +46,7 @@ class CheckoutParams(BaseModel):
         optional_fields = set(
             [
                 "cancel_url",
+                "entity_creation_options",
                 "failure_url",
                 "idempotency_key",
                 "metadata",

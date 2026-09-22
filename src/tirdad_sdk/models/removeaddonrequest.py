@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .prorationbehavior import ProrationBehavior
+from .scheduletype import ScheduleType
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -11,6 +12,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class RemoveAddonRequestTypedDict(TypedDict):
     addon_association_id: str
+    change_at: NotRequired[ScheduleType]
     effective_date: NotRequired[datetime]
     r"""EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit."""
     proration_behavior: NotRequired[ProrationBehavior]
@@ -19,6 +21,8 @@ class RemoveAddonRequestTypedDict(TypedDict):
 
 class RemoveAddonRequest(BaseModel):
     addon_association_id: str
+
+    change_at: Optional[ScheduleType] = None
 
     effective_date: Optional[datetime] = None
     r"""EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit."""
@@ -29,7 +33,9 @@ class RemoveAddonRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["effective_date", "proration_behavior", "reason"])
+        optional_fields = set(
+            ["change_at", "effective_date", "proration_behavior", "reason"]
+        )
         serialized = handler(self)
         m = {}
 

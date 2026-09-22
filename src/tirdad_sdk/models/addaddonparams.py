@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .addaddonref import AddAddonRef, AddAddonRefTypedDict
+from .removeaddonref import RemoveAddonRef, RemoveAddonRefTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -10,17 +11,20 @@ from typing_extensions import NotRequired, TypedDict
 
 class AddAddonParamsTypedDict(TypedDict):
     addons: NotRequired[List[AddAddonRefTypedDict]]
+    removes: NotRequired[List[RemoveAddonRefTypedDict]]
     subscription_id: NotRequired[str]
 
 
 class AddAddonParams(BaseModel):
     addons: Optional[List[AddAddonRef]] = None
 
+    removes: Optional[List[RemoveAddonRef]] = None
+
     subscription_id: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["addons", "subscription_id"])
+        optional_fields = set(["addons", "removes", "subscription_id"])
         serialized = handler(self)
         m = {}
 

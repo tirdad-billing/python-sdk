@@ -19,6 +19,9 @@ class Checkout(BaseSDK):
         configuration: Optional[
             Union[models.CheckoutConfiguration, models.CheckoutConfigurationTypedDict]
         ] = None,
+        entity_creation_options: Optional[
+            Union[models.EntityCreationOptions, models.EntityCreationOptionsTypedDict]
+        ] = None,
         failure_url: Optional[str] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -41,6 +44,7 @@ class Checkout(BaseSDK):
         :param payment_provider:
         :param cancel_url:
         :param configuration:
+        :param entity_creation_options:
         :param failure_url:
         :param idempotency_key:
         :param metadata:
@@ -68,6 +72,9 @@ class Checkout(BaseSDK):
                 configuration, Optional[models.CheckoutConfiguration]
             ),
             customer_external_id=customer_external_id,
+            entity_creation_options=utils.get_pydantic_model(
+                entity_creation_options, Optional[models.EntityCreationOptions]
+            ),
             failure_url=failure_url,
             idempotency_key=idempotency_key,
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
@@ -157,6 +164,9 @@ class Checkout(BaseSDK):
         configuration: Optional[
             Union[models.CheckoutConfiguration, models.CheckoutConfigurationTypedDict]
         ] = None,
+        entity_creation_options: Optional[
+            Union[models.EntityCreationOptions, models.EntityCreationOptionsTypedDict]
+        ] = None,
         failure_url: Optional[str] = None,
         idempotency_key: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -179,6 +189,7 @@ class Checkout(BaseSDK):
         :param payment_provider:
         :param cancel_url:
         :param configuration:
+        :param entity_creation_options:
         :param failure_url:
         :param idempotency_key:
         :param metadata:
@@ -206,6 +217,9 @@ class Checkout(BaseSDK):
                 configuration, Optional[models.CheckoutConfiguration]
             ),
             customer_external_id=customer_external_id,
+            entity_creation_options=utils.get_pydantic_model(
+                entity_creation_options, Optional[models.EntityCreationOptions]
+            ),
             failure_url=failure_url,
             idempotency_key=idempotency_key,
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),

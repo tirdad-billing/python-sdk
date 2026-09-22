@@ -36,6 +36,8 @@ class UsageAnalyticItemTypedDict(TypedDict):
     event_count: NotRequired[int]
     r"""Number of events that contributed to this aggregation"""
     event_name: NotRequired[str]
+    external_customer_id: NotRequired[str]
+    r"""Populated only when \"external_customer_id\" is a group_by dimension"""
     feature: NotRequired[FeatureTypedDict]
     feature_id: NotRequired[str]
     group: NotRequired[GroupGroupTypedDict]
@@ -92,6 +94,9 @@ class UsageAnalyticItem(BaseModel):
     r"""Number of events that contributed to this aggregation"""
 
     event_name: Optional[str] = None
+
+    external_customer_id: Optional[str] = None
+    r"""Populated only when \"external_customer_id\" is a group_by dimension"""
 
     feature: Optional[Feature] = None
 
@@ -165,6 +170,7 @@ class UsageAnalyticItem(BaseModel):
                 "currency",
                 "event_count",
                 "event_name",
+                "external_customer_id",
                 "feature",
                 "feature_id",
                 "group",

@@ -5,6 +5,7 @@ from .checkoutaction import CheckoutAction
 from .checkoutpaymentblock import CheckoutPaymentBlock, CheckoutPaymentBlockTypedDict
 from .checkoutpaymentprovider import CheckoutPaymentProvider
 from .checkoutstatus import CheckoutStatus
+from .entitycreationresult import EntityCreationResult, EntityCreationResultTypedDict
 from .paymentaction import PaymentAction, PaymentActionTypedDict
 from datetime import datetime
 from pydantic import model_serializer
@@ -23,6 +24,7 @@ class CheckoutSessionResponseTypedDict(TypedDict):
     completed_at: NotRequired[datetime]
     created_at: NotRequired[datetime]
     customer_id: NotRequired[str]
+    entity_creation_result: NotRequired[EntityCreationResultTypedDict]
     expires_at: NotRequired[datetime]
     failure_reason: NotRequired[str]
     failure_url: NotRequired[str]
@@ -70,6 +72,8 @@ class CheckoutSessionResponse(BaseModel):
     created_at: Optional[datetime] = None
 
     customer_id: Optional[str] = None
+
+    entity_creation_result: Optional[EntityCreationResult] = None
 
     expires_at: Optional[datetime] = None
 
@@ -125,6 +129,7 @@ class CheckoutSessionResponse(BaseModel):
                 "completed_at",
                 "created_at",
                 "customer_id",
+                "entity_creation_result",
                 "expires_at",
                 "failure_reason",
                 "failure_url",

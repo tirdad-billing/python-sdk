@@ -8,7 +8,7 @@ from typing import Literal, Union
 SubscriptionChangeEntityType = Union[
     Literal[
         "plan",
-        "addon",
+        "addon_association",
         "credit_grant",
         "entitlement",
         "entitlement_grant",

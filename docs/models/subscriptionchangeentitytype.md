@@ -15,7 +15,7 @@ value: SubscriptionChangeEntityType = "plan"
 This is an open enum. Unrecognized values will not fail type checks.
 
 - `"plan"`
-- `"addon"`
+- `"addon_association"`
 - `"credit_grant"`
 - `"entitlement"`
 - `"entitlement_grant"`

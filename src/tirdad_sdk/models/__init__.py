@@ -76,6 +76,27 @@ if TYPE_CHECKING:
     from .alertthreshold import AlertThreshold, AlertThresholdTypedDict
     from .alertthresholdtype import AlertThresholdType
     from .alerttype import AlertType
+    from .analytics_filter import AnalyticsFilter, AnalyticsFilterTypedDict
+    from .analytics_sortspec import AnalyticsSortSpec, AnalyticsSortSpecTypedDict
+    from .analytics_timespecraw import (
+        AnalyticsTimeSpecRaw,
+        AnalyticsTimeSpecRawTypedDict,
+    )
+    from .analytics_variable import AnalyticsVariable, AnalyticsVariableTypedDict
+    from .analytics_viewdefinition import (
+        AnalyticsViewDefinition,
+        AnalyticsViewDefinitionTypedDict,
+    )
+    from .analyticscolumn import AnalyticsColumn, AnalyticsColumnTypedDict
+    from .analyticsquerymeta import AnalyticsQueryMeta, AnalyticsQueryMetaTypedDict
+    from .analyticsqueryrequest import (
+        AnalyticsQueryRequest,
+        AnalyticsQueryRequestTypedDict,
+    )
+    from .analyticsqueryresult import (
+        AnalyticsQueryResult,
+        AnalyticsQueryResultTypedDict,
+    )
     from .applicationstatus import ApplicationStatus
     from .attemptinvoicepaymentop import (
         AttemptInvoicePaymentRequest,
@@ -192,6 +213,8 @@ if TYPE_CHECKING:
     from .cloneplanop import ClonePlanRequestRequest, ClonePlanRequestRequestTypedDict
     from .cloneplanrequest import ClonePlanRequest, ClonePlanRequestTypedDict
     from .collectionmethod import CollectionMethod
+    from .columnrole import ColumnRole
+    from .columntype import ColumnType
     from .commitmentbucketrequest import (
         CommitmentBucketRequest,
         CommitmentBucketRequestTypedDict,
@@ -338,6 +361,7 @@ if TYPE_CHECKING:
     )
     from .createuserrequest import CreateUserRequest, CreateUserRequestTypedDict
     from .createuserresponse import CreateUserResponse, CreateUserResponseTypedDict
+    from .createviewrequest import CreateViewRequest, CreateViewRequestTypedDict
     from .createwalletrequest import CreateWalletRequest, CreateWalletRequestTypedDict
     from .creditbreakdown import CreditBreakdown, CreditBreakdownTypedDict
     from .creditgrantapplicationreason import CreditGrantApplicationReason
@@ -486,6 +510,19 @@ if TYPE_CHECKING:
     from .entitychangebehaviour import EntityChangeBehaviour
     from .entitychangepolicy import EntityChangePolicy, EntityChangePolicyTypedDict
     from .entitychangeresult import EntityChangeResult, EntityChangeResultTypedDict
+    from .entitycreationconflictpolicies import (
+        EntityCreationConflictPolicies,
+        EntityCreationConflictPoliciesTypedDict,
+    )
+    from .entitycreationoptions import (
+        EntityCreationOptions,
+        EntityCreationOptionsTypedDict,
+    )
+    from .entitycreationresult import (
+        EntityCreationResult,
+        EntityCreationResultTypedDict,
+    )
+    from .entitycreationstatus import EntityCreationStatus
     from .entityintegrationmappingresponse import (
         EntityIntegrationMappingResponse,
         EntityIntegrationMappingResponseTypedDict,
@@ -762,6 +799,7 @@ if TYPE_CHECKING:
         Type,
     )
     from .globalcustomfield import GlobalCustomField, GlobalCustomFieldTypedDict
+    from .grain import Grain
     from .group_group import GroupGroup, GroupGroupTypedDict
     from .groupedinvoicingaction import GroupedInvoicingAction
     from .groupedinvoicingchildrequest import (
@@ -995,6 +1033,7 @@ if TYPE_CHECKING:
         MeterUsageAttribution,
         MeterUsageAttributionTypedDict,
     )
+    from .metric import Metric
     from .models_temporalworkflowresult import (
         ModelsTemporalWorkflowResult,
         ModelsTemporalWorkflowResultTypedDict,
@@ -1007,6 +1046,7 @@ if TYPE_CHECKING:
         ModifySubscriptionParams,
         ModifySubscriptionParamsTypedDict,
     )
+    from .onexistingentitypolicy import OnExistingEntityPolicy
     from .onpendingschedulepolicy import OnPendingSchedulePolicy
     from .overrideentitlementrequest import (
         OverrideEntitlementRequest,
@@ -1091,6 +1131,10 @@ if TYPE_CHECKING:
     from .prorationbehavior import ProrationBehavior
     from .prorationdetail import ProrationDetail, ProrationDetailTypedDict
     from .prorationdetails import ProrationDetails, ProrationDetailsTypedDict
+    from .queryanalyticsviewop import (
+        QueryAnalyticsViewRequest,
+        QueryAnalyticsViewRequestTypedDict,
+    )
     from .queryfilter import QueryFilter, QueryFilterOrder, QueryFilterTypedDict
     from .recalculateinvoiceop import (
         RecalculateInvoiceRequest,
@@ -1114,6 +1158,7 @@ if TYPE_CHECKING:
         RegisterMarketplaceAgreementResponseTypedDict,
     )
     from .rejectedeventreason import RejectedEventReason
+    from .removeaddonref import RemoveAddonRef, RemoveAddonRefTypedDict
     from .removeaddonrequest import RemoveAddonRequest, RemoveAddonRequestTypedDict
     from .removeuserop import RemoveUserRequest, RemoveUserRequestTypedDict
     from .reportingunit import ReportingUnit, ReportingUnitTypedDict
@@ -1150,6 +1195,7 @@ if TYPE_CHECKING:
         ServicePeriodCustomFields,
         ServicePeriodCustomFieldsTypedDict,
     )
+    from .shape import Shape
     from .sortcondition import SortCondition, SortConditionTypedDict
     from .sortdirection import SortDirection
     from .sourceusageitem import SourceUsageItem, SourceUsageItemTypedDict
@@ -1162,6 +1208,10 @@ if TYPE_CHECKING:
     from .submodifyaddonparams import (
         SubModifyAddonParams,
         SubModifyAddonParamsTypedDict,
+    )
+    from .submodifybulkaddonparams import (
+        SubModifyBulkAddonParams,
+        SubModifyBulkAddonParamsTypedDict,
     )
     from .submodifycouponaction import SubModifyCouponAction
     from .submodifycouponparams import (
@@ -1559,6 +1609,9 @@ if TYPE_CHECKING:
     from .userresponse import UserResponse, UserResponseTypedDict
     from .usertype import UserType
     from .value import Value, ValueTypedDict
+    from .variabletype import VariableType
+    from .viewqueryrequest import ViewQueryRequest, ViewQueryRequestTypedDict
+    from .viewresponse import ViewResponse, ViewResponseTypedDict
     from .voidcreditnoteop import VoidCreditNoteRequest, VoidCreditNoteRequestTypedDict
     from .voidinvoiceop import VoidInvoiceRequest, VoidInvoiceRequestTypedDict
     from .walletbalanceresponse import (
@@ -1795,6 +1848,24 @@ __all__ = [
     "AlertThresholdType",
     "AlertThresholdTypedDict",
     "AlertType",
+    "AnalyticsColumn",
+    "AnalyticsColumnTypedDict",
+    "AnalyticsFilter",
+    "AnalyticsFilterTypedDict",
+    "AnalyticsQueryMeta",
+    "AnalyticsQueryMetaTypedDict",
+    "AnalyticsQueryRequest",
+    "AnalyticsQueryRequestTypedDict",
+    "AnalyticsQueryResult",
+    "AnalyticsQueryResultTypedDict",
+    "AnalyticsSortSpec",
+    "AnalyticsSortSpecTypedDict",
+    "AnalyticsTimeSpecRaw",
+    "AnalyticsTimeSpecRawTypedDict",
+    "AnalyticsVariable",
+    "AnalyticsVariableTypedDict",
+    "AnalyticsViewDefinition",
+    "AnalyticsViewDefinitionTypedDict",
     "ApplicationStatus",
     "AttemptInvoicePaymentRequest",
     "AttemptInvoicePaymentRequestTypedDict",
@@ -1878,6 +1949,8 @@ __all__ = [
     "ClonePlanRequestRequestTypedDict",
     "ClonePlanRequestTypedDict",
     "CollectionMethod",
+    "ColumnRole",
+    "ColumnType",
     "CommitmentBucketRequest",
     "CommitmentBucketRequestTypedDict",
     "CommitmentInfo",
@@ -1984,6 +2057,8 @@ __all__ = [
     "CreateUserRequestTypedDict",
     "CreateUserResponse",
     "CreateUserResponseTypedDict",
+    "CreateViewRequest",
+    "CreateViewRequestTypedDict",
     "CreateWalletRequest",
     "CreateWalletRequestTypedDict",
     "CreditBreakdown",
@@ -2104,6 +2179,13 @@ __all__ = [
     "EntityChangePolicyTypedDict",
     "EntityChangeResult",
     "EntityChangeResultTypedDict",
+    "EntityCreationConflictPolicies",
+    "EntityCreationConflictPoliciesTypedDict",
+    "EntityCreationOptions",
+    "EntityCreationOptionsTypedDict",
+    "EntityCreationResult",
+    "EntityCreationResultTypedDict",
+    "EntityCreationStatus",
     "EntityIntegrationMappingResponse",
     "EntityIntegrationMappingResponseTypedDict",
     "EntitySyncConfig",
@@ -2308,6 +2390,7 @@ __all__ = [
     "GetWalletsByCustomerIDRequestTypedDict",
     "GlobalCustomField",
     "GlobalCustomFieldTypedDict",
+    "Grain",
     "GroupEntityType",
     "GroupFilter",
     "GroupFilterOrder",
@@ -2480,12 +2563,14 @@ __all__ = [
     "MeterResponseTypedDict",
     "MeterUsageAttribution",
     "MeterUsageAttributionTypedDict",
+    "Metric",
     "ModelsTemporalWorkflowResult",
     "ModelsTemporalWorkflowResultTypedDict",
     "ModifySubscriptionLineItem",
     "ModifySubscriptionLineItemTypedDict",
     "ModifySubscriptionParams",
     "ModifySubscriptionParamsTypedDict",
+    "OnExistingEntityPolicy",
     "OnPendingSchedulePolicy",
     "OverrideEntitlementRequest",
     "OverrideEntitlementRequestTypedDict",
@@ -2567,6 +2652,8 @@ __all__ = [
     "ProrationDetailTypedDict",
     "ProrationDetails",
     "ProrationDetailsTypedDict",
+    "QueryAnalyticsViewRequest",
+    "QueryAnalyticsViewRequestTypedDict",
     "QueryFilter",
     "QueryFilterOrder",
     "QueryFilterTypedDict",
@@ -2585,6 +2672,8 @@ __all__ = [
     "RegisterMarketplaceAgreementResponse",
     "RegisterMarketplaceAgreementResponseTypedDict",
     "RejectedEventReason",
+    "RemoveAddonRef",
+    "RemoveAddonRefTypedDict",
     "RemoveAddonRequest",
     "RemoveAddonRequestTypedDict",
     "RemoveUserRequest",
@@ -2621,6 +2710,7 @@ __all__ = [
     "SecurityTypedDict",
     "ServicePeriodCustomFields",
     "ServicePeriodCustomFieldsTypedDict",
+    "Shape",
     "SortCondition",
     "SortConditionTypedDict",
     "SortDirection",
@@ -2633,6 +2723,8 @@ __all__ = [
     "StripePaymentGatewayOptionsTypedDict",
     "SubModifyAddonParams",
     "SubModifyAddonParamsTypedDict",
+    "SubModifyBulkAddonParams",
+    "SubModifyBulkAddonParamsTypedDict",
     "SubModifyCouponAction",
     "SubModifyCouponParams",
     "SubModifyCouponParamsTypedDict",
@@ -2898,6 +2990,11 @@ __all__ = [
     "UserType",
     "Value",
     "ValueTypedDict",
+    "VariableType",
+    "ViewQueryRequest",
+    "ViewQueryRequestTypedDict",
+    "ViewResponse",
+    "ViewResponseTypedDict",
     "VoidCreditNoteRequest",
     "VoidCreditNoteRequestTypedDict",
     "VoidInvoiceRequest",
@@ -3070,6 +3167,24 @@ _dynamic_imports: dict[str, str] = {
     "AlertThresholdTypedDict": ".alertthreshold",
     "AlertThresholdType": ".alertthresholdtype",
     "AlertType": ".alerttype",
+    "AnalyticsFilter": ".analytics_filter",
+    "AnalyticsFilterTypedDict": ".analytics_filter",
+    "AnalyticsSortSpec": ".analytics_sortspec",
+    "AnalyticsSortSpecTypedDict": ".analytics_sortspec",
+    "AnalyticsTimeSpecRaw": ".analytics_timespecraw",
+    "AnalyticsTimeSpecRawTypedDict": ".analytics_timespecraw",
+    "AnalyticsVariable": ".analytics_variable",
+    "AnalyticsVariableTypedDict": ".analytics_variable",
+    "AnalyticsViewDefinition": ".analytics_viewdefinition",
+    "AnalyticsViewDefinitionTypedDict": ".analytics_viewdefinition",
+    "AnalyticsColumn": ".analyticscolumn",
+    "AnalyticsColumnTypedDict": ".analyticscolumn",
+    "AnalyticsQueryMeta": ".analyticsquerymeta",
+    "AnalyticsQueryMetaTypedDict": ".analyticsquerymeta",
+    "AnalyticsQueryRequest": ".analyticsqueryrequest",
+    "AnalyticsQueryRequestTypedDict": ".analyticsqueryrequest",
+    "AnalyticsQueryResult": ".analyticsqueryresult",
+    "AnalyticsQueryResultTypedDict": ".analyticsqueryresult",
     "ApplicationStatus": ".applicationstatus",
     "AttemptInvoicePaymentRequest": ".attemptinvoicepaymentop",
     "AttemptInvoicePaymentRequestTypedDict": ".attemptinvoicepaymentop",
@@ -3157,6 +3272,8 @@ _dynamic_imports: dict[str, str] = {
     "ClonePlanRequest": ".cloneplanrequest",
     "ClonePlanRequestTypedDict": ".cloneplanrequest",
     "CollectionMethod": ".collectionmethod",
+    "ColumnRole": ".columnrole",
+    "ColumnType": ".columntype",
     "CommitmentBucketRequest": ".commitmentbucketrequest",
     "CommitmentBucketRequestTypedDict": ".commitmentbucketrequest",
     "CommitmentInfo": ".commitmentinfo",
@@ -3261,6 +3378,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateUserRequestTypedDict": ".createuserrequest",
     "CreateUserResponse": ".createuserresponse",
     "CreateUserResponseTypedDict": ".createuserresponse",
+    "CreateViewRequest": ".createviewrequest",
+    "CreateViewRequestTypedDict": ".createviewrequest",
     "CreateWalletRequest": ".createwalletrequest",
     "CreateWalletRequestTypedDict": ".createwalletrequest",
     "CreditBreakdown": ".creditbreakdown",
@@ -3379,6 +3498,13 @@ _dynamic_imports: dict[str, str] = {
     "EntityChangePolicyTypedDict": ".entitychangepolicy",
     "EntityChangeResult": ".entitychangeresult",
     "EntityChangeResultTypedDict": ".entitychangeresult",
+    "EntityCreationConflictPolicies": ".entitycreationconflictpolicies",
+    "EntityCreationConflictPoliciesTypedDict": ".entitycreationconflictpolicies",
+    "EntityCreationOptions": ".entitycreationoptions",
+    "EntityCreationOptionsTypedDict": ".entitycreationoptions",
+    "EntityCreationResult": ".entitycreationresult",
+    "EntityCreationResultTypedDict": ".entitycreationresult",
+    "EntityCreationStatus": ".entitycreationstatus",
     "EntityIntegrationMappingResponse": ".entityintegrationmappingresponse",
     "EntityIntegrationMappingResponseTypedDict": ".entityintegrationmappingresponse",
     "EntitySyncConfig": ".entitysyncconfig",
@@ -3585,6 +3711,7 @@ _dynamic_imports: dict[str, str] = {
     "Type": ".getwallettransactionsop",
     "GlobalCustomField": ".globalcustomfield",
     "GlobalCustomFieldTypedDict": ".globalcustomfield",
+    "Grain": ".grain",
     "GroupGroup": ".group_group",
     "GroupGroupTypedDict": ".group_group",
     "GroupedInvoicingAction": ".groupedinvoicingaction",
@@ -3755,12 +3882,14 @@ _dynamic_imports: dict[str, str] = {
     "MeterResponseTypedDict": ".meterresponse",
     "MeterUsageAttribution": ".meterusageattribution",
     "MeterUsageAttributionTypedDict": ".meterusageattribution",
+    "Metric": ".metric",
     "ModelsTemporalWorkflowResult": ".models_temporalworkflowresult",
     "ModelsTemporalWorkflowResultTypedDict": ".models_temporalworkflowresult",
     "ModifySubscriptionLineItem": ".modifysubscriptionlineitem",
     "ModifySubscriptionLineItemTypedDict": ".modifysubscriptionlineitem",
     "ModifySubscriptionParams": ".modifysubscriptionparams",
     "ModifySubscriptionParamsTypedDict": ".modifysubscriptionparams",
+    "OnExistingEntityPolicy": ".onexistingentitypolicy",
     "OnPendingSchedulePolicy": ".onpendingschedulepolicy",
     "OverrideEntitlementRequest": ".overrideentitlementrequest",
     "OverrideEntitlementRequestTypedDict": ".overrideentitlementrequest",
@@ -3838,6 +3967,8 @@ _dynamic_imports: dict[str, str] = {
     "ProrationDetailTypedDict": ".prorationdetail",
     "ProrationDetails": ".prorationdetails",
     "ProrationDetailsTypedDict": ".prorationdetails",
+    "QueryAnalyticsViewRequest": ".queryanalyticsviewop",
+    "QueryAnalyticsViewRequestTypedDict": ".queryanalyticsviewop",
     "QueryFilter": ".queryfilter",
     "QueryFilterOrder": ".queryfilter",
     "QueryFilterTypedDict": ".queryfilter",
@@ -3856,6 +3987,8 @@ _dynamic_imports: dict[str, str] = {
     "RegisterMarketplaceAgreementResponse": ".registermarketplaceagreementresponse",
     "RegisterMarketplaceAgreementResponseTypedDict": ".registermarketplaceagreementresponse",
     "RejectedEventReason": ".rejectedeventreason",
+    "RemoveAddonRef": ".removeaddonref",
+    "RemoveAddonRefTypedDict": ".removeaddonref",
     "RemoveAddonRequest": ".removeaddonrequest",
     "RemoveAddonRequestTypedDict": ".removeaddonrequest",
     "RemoveUserRequest": ".removeuserop",
@@ -3891,6 +4024,7 @@ _dynamic_imports: dict[str, str] = {
     "SecurityTypedDict": ".security",
     "ServicePeriodCustomFields": ".serviceperiodcustomfields",
     "ServicePeriodCustomFieldsTypedDict": ".serviceperiodcustomfields",
+    "Shape": ".shape",
     "SortCondition": ".sortcondition",
     "SortConditionTypedDict": ".sortcondition",
     "SortDirection": ".sortdirection",
@@ -3903,6 +4037,8 @@ _dynamic_imports: dict[str, str] = {
     "StripePaymentGatewayOptionsTypedDict": ".stripepaymentgatewayoptions",
     "SubModifyAddonParams": ".submodifyaddonparams",
     "SubModifyAddonParamsTypedDict": ".submodifyaddonparams",
+    "SubModifyBulkAddonParams": ".submodifybulkaddonparams",
+    "SubModifyBulkAddonParamsTypedDict": ".submodifybulkaddonparams",
     "SubModifyCouponAction": ".submodifycouponaction",
     "SubModifyCouponParams": ".submodifycouponparams",
     "SubModifyCouponParamsTypedDict": ".submodifycouponparams",
@@ -4165,6 +4301,11 @@ _dynamic_imports: dict[str, str] = {
     "UserType": ".usertype",
     "Value": ".value",
     "ValueTypedDict": ".value",
+    "VariableType": ".variabletype",
+    "ViewQueryRequest": ".viewqueryrequest",
+    "ViewQueryRequestTypedDict": ".viewqueryrequest",
+    "ViewResponse": ".viewresponse",
+    "ViewResponseTypedDict": ".viewresponse",
     "VoidCreditNoteRequest": ".voidcreditnoteop",
     "VoidCreditNoteRequestTypedDict": ".voidcreditnoteop",
     "VoidInvoiceRequest": ".voidinvoiceop",
