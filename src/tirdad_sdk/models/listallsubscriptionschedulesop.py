@@ -4,8 +4,23 @@ from __future__ import annotations
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from tirdad_sdk.utils import FieldMetadata, QueryParamMetadata
-from typing import Optional
+from typing import List, Literal, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
+
+
+ListAllSubscriptionSchedulesScheduleType = Literal[
+    "plan_change",
+    "cancellation",
+]
+
+
+ListAllSubscriptionSchedulesScheduleStatus = Literal[
+    "pending",
+    "executing",
+    "executed",
+    "cancelled",
+    "failed",
+]
 
 
 class ListAllSubscriptionSchedulesRequestTypedDict(TypedDict):
@@ -13,6 +28,12 @@ class ListAllSubscriptionSchedulesRequestTypedDict(TypedDict):
     r"""Filter to pending schedules only"""
     subscription_id: NotRequired[str]
     r"""Filter by subscription ID"""
+    subscription_ids: NotRequired[List[str]]
+    r"""Filter by subscription IDs"""
+    schedule_type: NotRequired[List[ListAllSubscriptionSchedulesScheduleType]]
+    r"""Filter by schedule type"""
+    schedule_status: NotRequired[List[ListAllSubscriptionSchedulesScheduleStatus]]
+    r"""Filter by schedule status"""
     limit: NotRequired[int]
     r"""Limit results"""
     offset: NotRequired[int]
@@ -32,6 +53,24 @@ class ListAllSubscriptionSchedulesRequest(BaseModel):
     ] = None
     r"""Filter by subscription ID"""
 
+    subscription_ids: Annotated[
+        Optional[List[str]],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Filter by subscription IDs"""
+
+    schedule_type: Annotated[
+        Optional[List[ListAllSubscriptionSchedulesScheduleType]],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Filter by schedule type"""
+
+    schedule_status: Annotated[
+        Optional[List[ListAllSubscriptionSchedulesScheduleStatus]],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Filter by schedule status"""
+
     limit: Annotated[
         Optional[int],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
@@ -46,7 +85,17 @@ class ListAllSubscriptionSchedulesRequest(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["pending_only", "subscription_id", "limit", "offset"])
+        optional_fields = set(
+            [
+                "pending_only",
+                "subscription_id",
+                "subscription_ids",
+                "schedule_type",
+                "schedule_status",
+                "limit",
+                "offset",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

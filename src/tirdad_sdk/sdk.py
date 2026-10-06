@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.environments import Environments
     from tirdad_sdk.events import Events
     from tirdad_sdk.features import Features
+    from tirdad_sdk.fx_rates import FXRates
     from tirdad_sdk.groups import Groups
     from tirdad_sdk.integrations import Integrations
     from tirdad_sdk.invoices import Invoices
@@ -74,6 +75,7 @@ class Tirdad(BaseSDK):
     environments: "Environments"
     events: "Events"
     features: "Features"
+    fx_rates: "FXRates"
     groups: "Groups"
     integrations: "Integrations"
     marketplace: "Marketplace"
@@ -112,6 +114,7 @@ class Tirdad(BaseSDK):
         "environments": ("tirdad_sdk.environments", "Environments"),
         "events": ("tirdad_sdk.events", "Events"),
         "features": ("tirdad_sdk.features", "Features"),
+        "fx_rates": ("tirdad_sdk.fx_rates", "FXRates"),
         "groups": ("tirdad_sdk.groups", "Groups"),
         "integrations": ("tirdad_sdk.integrations", "Integrations"),
         "marketplace": ("tirdad_sdk.marketplace", "Marketplace"),

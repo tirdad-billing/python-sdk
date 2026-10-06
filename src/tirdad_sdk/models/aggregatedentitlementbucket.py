@@ -15,6 +15,7 @@ class AggregatedEntitlementBucketTypedDict(TypedDict):
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
     grant_quota: NotRequired[str]
+    grant_unlimited: NotRequired[bool]
     source_entity_id: NotRequired[str]
     usage_limit: NotRequired[int]
 
@@ -30,6 +31,8 @@ class AggregatedEntitlementBucket(BaseModel):
 
     grant_quota: Optional[str] = None
 
+    grant_unlimited: Optional[bool] = None
+
     source_entity_id: Optional[str] = None
 
     usage_limit: Optional[int] = None
@@ -43,6 +46,7 @@ class AggregatedEntitlementBucket(BaseModel):
                 "grant_duration_value",
                 "grant_measure",
                 "grant_quota",
+                "grant_unlimited",
                 "source_entity_id",
                 "usage_limit",
             ]

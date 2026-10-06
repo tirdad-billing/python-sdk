@@ -17,3 +17,4 @@ value: SubscriptionModifyType = "inheritance"
 - `"coupon"`
 - `"tax"`
 - `"addon"`
+- `"line_item_change"`

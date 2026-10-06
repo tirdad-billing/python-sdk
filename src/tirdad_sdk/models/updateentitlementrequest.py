@@ -14,16 +14,13 @@ from typing_extensions import NotRequired, TypedDict
 
 class UpdateEntitlementRequestTypedDict(TypedDict):
     aggregation_mode: NotRequired[EntitlementAggregationMode]
-    clear_grant_config: NotRequired[bool]
-    r"""Grant config — nil fields leave the current value alone.
-    ClearGrantConfig=true wipes the whole grant config (back to a legacy entitlement).
-    """
     config_value: NotRequired[Dict[str, Any]]
     grant_allocation_behavior: NotRequired[EntitlementGrantAllocationBehavior]
     grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
     grant_quota: NotRequired[str]
+    grant_unlimited: NotRequired[bool]
     is_enabled: NotRequired[bool]
     is_soft_limit: NotRequired[bool]
     static_value: NotRequired[str]
@@ -33,11 +30,6 @@ class UpdateEntitlementRequestTypedDict(TypedDict):
 
 class UpdateEntitlementRequest(BaseModel):
     aggregation_mode: Optional[EntitlementAggregationMode] = None
-
-    clear_grant_config: Optional[bool] = None
-    r"""Grant config — nil fields leave the current value alone.
-    ClearGrantConfig=true wipes the whole grant config (back to a legacy entitlement).
-    """
 
     config_value: Optional[Dict[str, Any]] = None
 
@@ -50,6 +42,8 @@ class UpdateEntitlementRequest(BaseModel):
     grant_measure: Optional[EntitlementGrantMeasure] = None
 
     grant_quota: Optional[str] = None
+
+    grant_unlimited: Optional[bool] = None
 
     is_enabled: Optional[bool] = None
 
@@ -66,13 +60,13 @@ class UpdateEntitlementRequest(BaseModel):
         optional_fields = set(
             [
                 "aggregation_mode",
-                "clear_grant_config",
                 "config_value",
                 "grant_allocation_behavior",
                 "grant_duration_unit",
                 "grant_duration_value",
                 "grant_measure",
                 "grant_quota",
+                "grant_unlimited",
                 "is_enabled",
                 "is_soft_limit",
                 "static_value",

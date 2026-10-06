@@ -1,0 +1,16 @@
+# CreateFXRateRequest
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `end_date`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `from_currency`                                                      | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `metadata`                                                           | Dict[str, *str*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `rate`                                                               | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `scope`                                                              | [models.FXRateScope](../models/fxratescope.md)                       | :heavy_check_mark:                                                   | N/A                                                                  |
+| `scope_id`                                                           | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `source`                                                             | [Optional[models.FXRateSource]](../models/fxratesource.md)           | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `start_date`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `to_currency`                                                        | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |

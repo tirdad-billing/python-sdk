@@ -9,12 +9,15 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class ModifySubscriptionLineItemTypedDict(TypedDict):
+    amount: NotRequired[str]
     effective_date: NotRequired[datetime]
     line_item_id: NotRequired[str]
     quantity: NotRequired[str]
 
 
 class ModifySubscriptionLineItem(BaseModel):
+    amount: Optional[str] = None
+
     effective_date: Optional[datetime] = None
 
     line_item_id: Optional[str] = None
@@ -23,7 +26,7 @@ class ModifySubscriptionLineItem(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["effective_date", "line_item_id", "quantity"])
+        optional_fields = set(["amount", "effective_date", "line_item_id", "quantity"])
         serialized = handler(self)
         m = {}
 

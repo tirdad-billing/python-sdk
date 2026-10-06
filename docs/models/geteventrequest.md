@@ -3,6 +3,9 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *str*              | :heavy_check_mark: | Event ID           |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                                                                               | *str*                                                                              | :heavy_check_mark:                                                                 | Event ID                                                                           |
+| `external_customer_id`                                                             | *str*                                                                              | :heavy_check_mark:                                                                 | External customer ID the event was ingested with                                   |
+| `start_time`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | Start of the event timestamp window (RFC3339); defaults to 14 days before end_time |
+| `end_time`                                                                         | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | End of the event timestamp window (RFC3339); defaults to now                       |

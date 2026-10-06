@@ -16,6 +16,10 @@ from .submodifyinheritancerequest import (
     SubModifyInheritanceRequest,
     SubModifyInheritanceRequestTypedDict,
 )
+from .submodifylineitemchangerequest import (
+    SubModifyLineItemChangeRequest,
+    SubModifyLineItemChangeRequestTypedDict,
+)
 from .submodifyquantitychangerequest import (
     SubModifyQuantityChangeRequest,
     SubModifyQuantityChangeRequestTypedDict,
@@ -40,6 +44,7 @@ class ExecuteSubscriptionModifyRequestTypedDict(TypedDict):
     coupon_params: NotRequired[SubModifyCouponParamsTypedDict]
     grouped_invoicing_params: NotRequired[SubModifyGroupedInvoicingParamsTypedDict]
     inheritance_params: NotRequired[SubModifyInheritanceRequestTypedDict]
+    line_item_change_params: NotRequired[SubModifyLineItemChangeRequestTypedDict]
     quantity_change_params: NotRequired[SubModifyQuantityChangeRequestTypedDict]
     tax_params: NotRequired[SubModifyTaxParamsTypedDict]
     trial_end_params: NotRequired[SubModifyTrialEndRequestTypedDict]
@@ -60,6 +65,8 @@ class ExecuteSubscriptionModifyRequest(BaseModel):
 
     inheritance_params: Optional[SubModifyInheritanceRequest] = None
 
+    line_item_change_params: Optional[SubModifyLineItemChangeRequest] = None
+
     quantity_change_params: Optional[SubModifyQuantityChangeRequest] = None
 
     tax_params: Optional[SubModifyTaxParams] = None
@@ -76,6 +83,7 @@ class ExecuteSubscriptionModifyRequest(BaseModel):
                 "coupon_params",
                 "grouped_invoicing_params",
                 "inheritance_params",
+                "line_item_change_params",
                 "quantity_change_params",
                 "tax_params",
                 "trial_end_params",

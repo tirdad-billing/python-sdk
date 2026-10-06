@@ -28,6 +28,7 @@ class CreateEntitlementRequestTypedDict(TypedDict):
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
     grant_quota: NotRequired[str]
+    grant_unlimited: NotRequired[bool]
     is_enabled: NotRequired[bool]
     is_soft_limit: NotRequired[bool]
     parent_entitlement_id: NotRequired[str]
@@ -63,6 +64,8 @@ class CreateEntitlementRequest(BaseModel):
 
     grant_quota: Optional[str] = None
 
+    grant_unlimited: Optional[bool] = None
+
     is_enabled: Optional[bool] = None
 
     is_soft_limit: Optional[bool] = None
@@ -93,6 +96,7 @@ class CreateEntitlementRequest(BaseModel):
                 "grant_duration_value",
                 "grant_measure",
                 "grant_quota",
+                "grant_unlimited",
                 "is_enabled",
                 "is_soft_limit",
                 "parent_entitlement_id",

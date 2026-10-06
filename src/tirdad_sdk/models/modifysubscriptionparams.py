@@ -5,6 +5,7 @@ from .modifysubscriptionlineitem import (
     ModifySubscriptionLineItem,
     ModifySubscriptionLineItemTypedDict,
 )
+from .modifysubscriptiontype import ModifySubscriptionType
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -13,17 +14,22 @@ from typing_extensions import NotRequired, TypedDict
 
 class ModifySubscriptionParamsTypedDict(TypedDict):
     line_item_modifications: NotRequired[List[ModifySubscriptionLineItemTypedDict]]
+    modify_type: NotRequired[ModifySubscriptionType]
     subscription_id: NotRequired[str]
 
 
 class ModifySubscriptionParams(BaseModel):
     line_item_modifications: Optional[List[ModifySubscriptionLineItem]] = None
 
+    modify_type: Optional[ModifySubscriptionType] = None
+
     subscription_id: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["line_item_modifications", "subscription_id"])
+        optional_fields = set(
+            ["line_item_modifications", "modify_type", "subscription_id"]
+        )
         serialized = handler(self)
         m = {}
 

@@ -19,3 +19,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"credit_topups"`
 - `"credit_usage"`
 - `"usage_analytics"`
+- `"revenue_facts"`

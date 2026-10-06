@@ -9,6 +9,7 @@ CheckoutPaymentProvider = Union[
     Literal[
         "razorpay",
         "chargebee",
+        "stripe",
     ],
     UnrecognizedStr,
 ]

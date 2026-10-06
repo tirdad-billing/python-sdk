@@ -19,7 +19,6 @@ class AnalyticsViewDefinitionTypedDict(TypedDict):
     dimensions: NotRequired[List[str]]
     filters: NotRequired[List[AnalyticsFilterTypedDict]]
     limit: NotRequired[int]
-    name: NotRequired[str]
     sort: NotRequired[List[AnalyticsSortSpecTypedDict]]
     time: NotRequired[AnalyticsTimeSpecRawTypedDict]
     variables: NotRequired[List[AnalyticsVariableTypedDict]]
@@ -36,8 +35,6 @@ class AnalyticsViewDefinition(BaseModel):
 
     limit: Optional[int] = None
 
-    name: Optional[str] = None
-
     sort: Optional[List[AnalyticsSortSpec]] = None
 
     time: Optional[AnalyticsTimeSpecRaw] = None
@@ -47,7 +44,7 @@ class AnalyticsViewDefinition(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["dimensions", "filters", "limit", "name", "sort", "time", "variables"]
+            ["dimensions", "filters", "limit", "sort", "time", "variables"]
         )
         serialized = handler(self)
         m = {}

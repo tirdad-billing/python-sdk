@@ -12,7 +12,7 @@ from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class MeterMeterTypedDict(TypedDict):
+class MeterTypedDict(TypedDict):
     aggregation: NotRequired[MeterAggregationTypedDict]
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
@@ -38,7 +38,7 @@ class MeterMeterTypedDict(TypedDict):
     updated_by: NotRequired[str]
 
 
-class MeterMeter(BaseModel):
+class Meter(BaseModel):
     aggregation: Optional[MeterAggregation] = None
 
     created_at: Optional[datetime] = None

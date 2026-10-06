@@ -7,7 +7,7 @@ from .bucketsummary import BucketSummary, BucketSummaryTypedDict
 from .commitmentinfo import CommitmentInfo, CommitmentInfoTypedDict
 from .feature import Feature, FeatureTypedDict
 from .group_group import GroupGroup, GroupGroupTypedDict
-from .meter_meter import MeterMeter, MeterMeterTypedDict
+from .meter import Meter, MeterTypedDict
 from .plan import Plan, PlanTypedDict
 from .priceresponse import PriceResponse, PriceResponseTypedDict
 from .reportingunit import ReportingUnit, ReportingUnitTypedDict
@@ -41,7 +41,7 @@ class UsageAnalyticItemTypedDict(TypedDict):
     feature: NotRequired[FeatureTypedDict]
     feature_id: NotRequired[str]
     group: NotRequired[GroupGroupTypedDict]
-    meter: NotRequired[MeterMeterTypedDict]
+    meter: NotRequired[MeterTypedDict]
     meter_id: NotRequired[str]
     r"""Meter ID"""
     name: NotRequired[str]
@@ -104,7 +104,7 @@ class UsageAnalyticItem(BaseModel):
 
     group: Optional[GroupGroup] = None
 
-    meter: Optional[MeterMeter] = None
+    meter: Optional[Meter] = None
 
     meter_id: Optional[str] = None
     r"""Meter ID"""

@@ -833,6 +833,7 @@ class Prices(BaseSDK):
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
         subscription_id: Optional[str] = None,
+        updated_after: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -861,6 +862,9 @@ class Prices(BaseSDK):
         :param start_time:
         :param status:
         :param subscription_id:
+        :param updated_after: UpdatedAfter matches prices edited since the given time. TimeRangeFilter
+            above filters on created_at, so it cannot see an edit to an existing
+            price.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -900,6 +904,7 @@ class Prices(BaseSDK):
             start_time=start_time,
             status=status,
             subscription_id=subscription_id,
+            updated_after=updated_after,
         )
 
         req = self._build_request(
@@ -998,6 +1003,7 @@ class Prices(BaseSDK):
         start_time: Optional[datetime] = None,
         status: Optional[models.Status] = None,
         subscription_id: Optional[str] = None,
+        updated_after: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1026,6 +1032,9 @@ class Prices(BaseSDK):
         :param start_time:
         :param status:
         :param subscription_id:
+        :param updated_after: UpdatedAfter matches prices edited since the given time. TimeRangeFilter
+            above filters on created_at, so it cannot see an edit to an existing
+            price.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1065,6 +1074,7 @@ class Prices(BaseSDK):
             start_time=start_time,
             status=status,
             subscription_id=subscription_id,
+            updated_after=updated_after,
         )
 
         req = self._build_request_async(

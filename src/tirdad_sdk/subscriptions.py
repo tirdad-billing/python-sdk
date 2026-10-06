@@ -2118,6 +2118,13 @@ class Subscriptions(BaseSDK):
         *,
         pending_only: Optional[bool] = None,
         subscription_id: Optional[str] = None,
+        subscription_ids: Optional[Iterable[str]] = None,
+        schedule_type: Optional[
+            Iterable[models.ListAllSubscriptionSchedulesScheduleType]
+        ] = None,
+        schedule_status: Optional[
+            Iterable[models.ListAllSubscriptionSchedulesScheduleStatus]
+        ] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -2131,6 +2138,9 @@ class Subscriptions(BaseSDK):
 
         :param pending_only: Filter to pending schedules only
         :param subscription_id: Filter by subscription ID
+        :param subscription_ids: Filter by subscription IDs
+        :param schedule_type: Filter by schedule type
+        :param schedule_status: Filter by schedule status
         :param limit: Limit results
         :param offset: Offset for pagination
         :param retries: Override the default retry configuration for this method
@@ -2151,6 +2161,15 @@ class Subscriptions(BaseSDK):
         request = models.ListAllSubscriptionSchedulesRequest(
             pending_only=pending_only,
             subscription_id=subscription_id,
+            subscription_ids=utils.unmarshal(subscription_ids, Optional[List[str]]),
+            schedule_type=utils.unmarshal(
+                schedule_type,
+                Optional[List[models.ListAllSubscriptionSchedulesScheduleType]],
+            ),
+            schedule_status=utils.unmarshal(
+                schedule_status,
+                Optional[List[models.ListAllSubscriptionSchedulesScheduleStatus]],
+            ),
             limit=limit,
             offset=offset,
         )
@@ -2215,6 +2234,13 @@ class Subscriptions(BaseSDK):
         *,
         pending_only: Optional[bool] = None,
         subscription_id: Optional[str] = None,
+        subscription_ids: Optional[Iterable[str]] = None,
+        schedule_type: Optional[
+            Iterable[models.ListAllSubscriptionSchedulesScheduleType]
+        ] = None,
+        schedule_status: Optional[
+            Iterable[models.ListAllSubscriptionSchedulesScheduleStatus]
+        ] = None,
         limit: Optional[int] = None,
         offset: Optional[int] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -2228,6 +2254,9 @@ class Subscriptions(BaseSDK):
 
         :param pending_only: Filter to pending schedules only
         :param subscription_id: Filter by subscription ID
+        :param subscription_ids: Filter by subscription IDs
+        :param schedule_type: Filter by schedule type
+        :param schedule_status: Filter by schedule status
         :param limit: Limit results
         :param offset: Offset for pagination
         :param retries: Override the default retry configuration for this method
@@ -2248,6 +2277,15 @@ class Subscriptions(BaseSDK):
         request = models.ListAllSubscriptionSchedulesRequest(
             pending_only=pending_only,
             subscription_id=subscription_id,
+            subscription_ids=utils.unmarshal(subscription_ids, Optional[List[str]]),
+            schedule_type=utils.unmarshal(
+                schedule_type,
+                Optional[List[models.ListAllSubscriptionSchedulesScheduleType]],
+            ),
+            schedule_status=utils.unmarshal(
+                schedule_status,
+                Optional[List[models.ListAllSubscriptionSchedulesScheduleStatus]],
+            ),
             limit=limit,
             offset=offset,
         )
@@ -6397,6 +6435,12 @@ class Subscriptions(BaseSDK):
                 models.SubModifyInheritanceRequestTypedDict,
             ]
         ] = None,
+        line_item_change_params: Optional[
+            Union[
+                models.SubModifyLineItemChangeRequest,
+                models.SubModifyLineItemChangeRequestTypedDict,
+            ]
+        ] = None,
         quantity_change_params: Optional[
             Union[
                 models.SubModifyQuantityChangeRequest,
@@ -6419,7 +6463,8 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Execute subscription modification
 
-        Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes settled as one netted document).
+        Execute a mid-cycle subscription modification (inheritance, line item change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes settled as one netted document).
+        Type \"quantity_change\" is deprecated: use \"line_item_change\", which changes a fixed charge's quantity, price, or both, with the same proration and checkout behaviour.
 
         :param id: Subscription ID
         :param type:
@@ -6429,6 +6474,7 @@ class Subscriptions(BaseSDK):
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
+        :param line_item_change_params:
         :param quantity_change_params:
         :param tax_params:
         :param trial_end_params:
@@ -6468,6 +6514,10 @@ class Subscriptions(BaseSDK):
                 ),
                 inheritance_params=utils.get_pydantic_model(
                     inheritance_params, Optional[models.SubModifyInheritanceRequest]
+                ),
+                line_item_change_params=utils.get_pydantic_model(
+                    line_item_change_params,
+                    Optional[models.SubModifyLineItemChangeRequest],
                 ),
                 quantity_change_params=utils.get_pydantic_model(
                     quantity_change_params,
@@ -6591,6 +6641,12 @@ class Subscriptions(BaseSDK):
                 models.SubModifyInheritanceRequestTypedDict,
             ]
         ] = None,
+        line_item_change_params: Optional[
+            Union[
+                models.SubModifyLineItemChangeRequest,
+                models.SubModifyLineItemChangeRequestTypedDict,
+            ]
+        ] = None,
         quantity_change_params: Optional[
             Union[
                 models.SubModifyQuantityChangeRequest,
@@ -6613,7 +6669,8 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Execute subscription modification
 
-        Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes settled as one netted document).
+        Execute a mid-cycle subscription modification (inheritance, line item change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes settled as one netted document).
+        Type \"quantity_change\" is deprecated: use \"line_item_change\", which changes a fixed charge's quantity, price, or both, with the same proration and checkout behaviour.
 
         :param id: Subscription ID
         :param type:
@@ -6623,6 +6680,7 @@ class Subscriptions(BaseSDK):
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
+        :param line_item_change_params:
         :param quantity_change_params:
         :param tax_params:
         :param trial_end_params:
@@ -6662,6 +6720,10 @@ class Subscriptions(BaseSDK):
                 ),
                 inheritance_params=utils.get_pydantic_model(
                     inheritance_params, Optional[models.SubModifyInheritanceRequest]
+                ),
+                line_item_change_params=utils.get_pydantic_model(
+                    line_item_change_params,
+                    Optional[models.SubModifyLineItemChangeRequest],
                 ),
                 quantity_change_params=utils.get_pydantic_model(
                     quantity_change_params,
@@ -6785,6 +6847,12 @@ class Subscriptions(BaseSDK):
                 models.SubModifyInheritanceRequestTypedDict,
             ]
         ] = None,
+        line_item_change_params: Optional[
+            Union[
+                models.SubModifyLineItemChangeRequest,
+                models.SubModifyLineItemChangeRequestTypedDict,
+            ]
+        ] = None,
         quantity_change_params: Optional[
             Union[
                 models.SubModifyQuantityChangeRequest,
@@ -6807,7 +6875,8 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Preview subscription modification
 
-        Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes) without committing changes.
+        Preview the impact of a mid-cycle subscription modification (inheritance, line item change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes) without committing changes.
+        Type \"quantity_change\" is deprecated: use \"line_item_change\".
 
         :param id: Subscription ID
         :param type:
@@ -6817,6 +6886,7 @@ class Subscriptions(BaseSDK):
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
+        :param line_item_change_params:
         :param quantity_change_params:
         :param tax_params:
         :param trial_end_params:
@@ -6856,6 +6926,10 @@ class Subscriptions(BaseSDK):
                 ),
                 inheritance_params=utils.get_pydantic_model(
                     inheritance_params, Optional[models.SubModifyInheritanceRequest]
+                ),
+                line_item_change_params=utils.get_pydantic_model(
+                    line_item_change_params,
+                    Optional[models.SubModifyLineItemChangeRequest],
                 ),
                 quantity_change_params=utils.get_pydantic_model(
                     quantity_change_params,
@@ -6979,6 +7053,12 @@ class Subscriptions(BaseSDK):
                 models.SubModifyInheritanceRequestTypedDict,
             ]
         ] = None,
+        line_item_change_params: Optional[
+            Union[
+                models.SubModifyLineItemChangeRequest,
+                models.SubModifyLineItemChangeRequestTypedDict,
+            ]
+        ] = None,
         quantity_change_params: Optional[
             Union[
                 models.SubModifyQuantityChangeRequest,
@@ -7001,7 +7081,8 @@ class Subscriptions(BaseSDK):
     ) -> models.SubscriptionModifyResponse:
         r"""Preview subscription modification
 
-        Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes) without committing changes.
+        Preview the impact of a mid-cycle subscription modification (inheritance, line item change, grouped invoicing, trial end, coupon, tax, a single addon add/remove, or a batch of addon adds and removes) without committing changes.
+        Type \"quantity_change\" is deprecated: use \"line_item_change\".
 
         :param id: Subscription ID
         :param type:
@@ -7011,6 +7092,7 @@ class Subscriptions(BaseSDK):
         :param coupon_params:
         :param grouped_invoicing_params:
         :param inheritance_params:
+        :param line_item_change_params:
         :param quantity_change_params:
         :param tax_params:
         :param trial_end_params:
@@ -7050,6 +7132,10 @@ class Subscriptions(BaseSDK):
                 ),
                 inheritance_params=utils.get_pydantic_model(
                     inheritance_params, Optional[models.SubModifyInheritanceRequest]
+                ),
+                line_item_change_params=utils.get_pydantic_model(
+                    line_item_change_params,
+                    Optional[models.SubModifyLineItemChangeRequest],
                 ),
                 quantity_change_params=utils.get_pydantic_model(
                     quantity_change_params,

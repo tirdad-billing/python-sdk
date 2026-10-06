@@ -24,6 +24,8 @@
 * [post_webhook_events_invoice_communication_triggered](#post_webhook_events_invoice_communication_triggered) - invoice.communication.triggered
 * [post_webhook_events_invoice_create_drafted](#post_webhook_events_invoice_create_drafted) - invoice.create.drafted
 * [post_webhook_events_invoice_payment_overdue](#post_webhook_events_invoice_payment_overdue) - invoice.payment.overdue
+* [post_webhook_events_invoice_sync_failed](#post_webhook_events_invoice_sync_failed) - invoice.sync.failed
+* [post_webhook_events_invoice_sync_success](#post_webhook_events_invoice_sync_success) - invoice.sync.success
 * [post_webhook_events_invoice_update](#post_webhook_events_invoice_update) - invoice.update
 * [post_webhook_events_invoice_update_finalized](#post_webhook_events_invoice_update_finalized) - invoice.update.finalized
 * [post_webhook_events_invoice_update_payment](#post_webhook_events_invoice_update_payment) - invoice.update.payment
@@ -818,6 +820,82 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoInvoiceWebhookPayload](../../models/webhookdtoinvoicewebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_invoice_sync_failed
+
+Fired once per provider when an invoice sync fails after its last retry.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/invoice.sync.failed" method="post" path="/webhook-events/invoice.sync.failed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_invoice_sync_failed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoInvoiceSyncWebhookPayload](../../models/webhookdtoinvoicesyncwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_invoice_sync_success
+
+Fired once per provider when an invoice is synced to that provider.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/invoice.sync.success" method="post" path="/webhook-events/invoice.sync.success" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_invoice_sync_success()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoInvoiceSyncWebhookPayload](../../models/webhookdtoinvoicesyncwebhookpayload.md)**
 
 ### Errors
 

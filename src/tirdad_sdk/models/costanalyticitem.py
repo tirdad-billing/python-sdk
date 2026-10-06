@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from .costpoint import CostPoint, CostPointTypedDict
-from .meter_meter import MeterMeter, MeterMeterTypedDict
+from .meter import Meter, MeterTypedDict
 from .price_price import PricePrice, PricePriceTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -18,7 +18,7 @@ class CostAnalyticItemTypedDict(TypedDict):
     r"""Metadata"""
     customer_id: NotRequired[str]
     external_customer_id: NotRequired[str]
-    meter: NotRequired[MeterMeterTypedDict]
+    meter: NotRequired[MeterTypedDict]
     meter_id: NotRequired[str]
     meter_name: NotRequired[str]
     price: NotRequired[PricePriceTypedDict]
@@ -44,7 +44,7 @@ class CostAnalyticItem(BaseModel):
 
     external_customer_id: Optional[str] = None
 
-    meter: Optional[MeterMeter] = None
+    meter: Optional[Meter] = None
 
     meter_id: Optional[str] = None
 

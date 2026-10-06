@@ -15,6 +15,7 @@
 * [delete_customer](#delete_customer) - Delete customer
 * [get_customer_entitlements](#get_customer_entitlements) - Get customer entitlements
 * [get_customer_upcoming_grants](#get_customer_upcoming_grants) - Get upcoming credit grant applications
+* [list_customer_payment_methods](#list_customer_payment_methods) - List customer payment methods
 
 ## update_customer
 
@@ -502,6 +503,48 @@ with Tirdad(
 ### Response
 
 **[models.ListCreditGrantApplicationsResponse](../../models/listcreditgrantapplicationsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## list_customer_payment_methods
+
+Use when you need a customer's saved payment methods across every connected gateway, including whether each can be auto-charged. Only gateways that can list saved methods are included.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="listCustomerPaymentMethods" method="get" path="/customers/{id}/payment-methods" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.customers.list_customer_payment_methods(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Customer ID                                                         |
+| `providers`                                                         | List[*str*]                                                         | :heavy_minus_sign:                                                  | Limit to these payment gateways                                     |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.SavedPaymentMethodsResponse](../../models/savedpaymentmethodsresponse.md)**
 
 ### Errors
 

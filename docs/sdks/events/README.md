@@ -7,7 +7,6 @@
 * [ingest_event](#ingest_event) - Ingest event
 * [get_usage_analytics](#get_usage_analytics) - Get usage analytics
 * [ingest_events_bulk](#ingest_events_bulk) - Bulk ingest events
-* [get_huggingface_inference_data](#get_huggingface_inference_data) - Get Hugging Face inference data
 * [get_event](#get_event) - Get event
 * [list_raw_events](#list_raw_events) - List raw events
 * [get_usage_statistics](#get_usage_statistics) - Get usage statistics
@@ -155,49 +154,6 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
-## get_huggingface_inference_data
-
-Use when fetching Hugging Face inference usage or billing data (e.g. for HF-specific reporting or reconciliation). Reads the meter-usage pipeline.
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="getHuggingfaceInferenceData" method="post" path="/events/huggingface-inference" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.events.get_huggingface_inference_data(request_ids=[
-        "<value 1>",
-        "<value 2>",
-    ])
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request_ids`                                                       | List[*str*]                                                         | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.GetHuggingFaceBillingDataResponse](../../models/gethuggingfacebillingdataresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 500                              | application/json                 |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
 ## get_event
 
 Use when debugging a specific event (e.g. why it failed or how it was aggregated). Reads the meter-usage pipeline; includes processing status and step-by-step debug tracker when unprocessed. Uses ?id= query param because event IDs can contain "/".
@@ -213,7 +169,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.events.get_event(id="<id>")
+    res = tirdad.events.get_event(id="<id>", external_customer_id="<id>")
 
     # Handle response
     print(res)
@@ -222,10 +178,13 @@ with Tirdad(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Event ID                                                            |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                                                                               | *str*                                                                              | :heavy_check_mark:                                                                 | Event ID                                                                           |
+| `external_customer_id`                                                             | *str*                                                                              | :heavy_check_mark:                                                                 | External customer ID the event was ingested with                                   |
+| `start_time`                                                                       | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | Start of the event timestamp window (RFC3339); defaults to 14 days before end_time |
+| `end_time`                                                                         | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | End of the event timestamp window (RFC3339); defaults to now                       |
+| `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
 ### Response
 
@@ -235,7 +194,7 @@ with Tirdad(
 
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 404                              | application/json                 |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 

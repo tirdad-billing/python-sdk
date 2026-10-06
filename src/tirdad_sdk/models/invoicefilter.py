@@ -46,6 +46,8 @@ class InvoiceFilterTypedDict(TypedDict):
     This is the ID you provided when creating the customer in FlexPrice
     """
     filters: NotRequired[List[FilterConditionTypedDict]]
+    finalized_at_gte: NotRequired[datetime]
+    r"""finalized_at_gte filters invoices finalized at or after the given instant"""
     invoice_ids: NotRequired[List[str]]
     r"""invoice_ids restricts results to invoices with the specified IDs
     Use this to retrieve specific invoices when you know their exact identifiers
@@ -81,6 +83,8 @@ class InvoiceFilterTypedDict(TypedDict):
     r"""subscription_id filters invoices generated for a specific subscription
     Only returns invoices that were created as part of the specified subscription's billing
     """
+    voided_at_gte: NotRequired[datetime]
+    r"""voided_at_gte filters invoices voided at or after the given instant"""
 
 
 class InvoiceFilter(BaseModel):
@@ -116,6 +120,9 @@ class InvoiceFilter(BaseModel):
     """
 
     filters: Optional[List[FilterCondition]] = None
+
+    finalized_at_gte: Optional[datetime] = None
+    r"""finalized_at_gte filters invoices finalized at or after the given instant"""
 
     invoice_ids: Optional[List[str]] = None
     r"""invoice_ids restricts results to invoices with the specified IDs
@@ -169,6 +176,9 @@ class InvoiceFilter(BaseModel):
     Only returns invoices that were created as part of the specified subscription's billing
     """
 
+    voided_at_gte: Optional[datetime] = None
+    r"""voided_at_gte filters invoices voided at or after the given instant"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -182,6 +192,7 @@ class InvoiceFilter(BaseModel):
                 "expand",
                 "external_customer_id",
                 "filters",
+                "finalized_at_gte",
                 "invoice_ids",
                 "invoice_status",
                 "invoice_type",
@@ -199,6 +210,7 @@ class InvoiceFilter(BaseModel):
                 "status",
                 "subscription_customer_id",
                 "subscription_id",
+                "voided_at_gte",
             ]
         )
         serialized = handler(self)

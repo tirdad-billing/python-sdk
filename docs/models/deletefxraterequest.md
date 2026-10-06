@@ -1,8 +1,8 @@
-# GetHuggingFaceBillingDataRequest
+# DeleteFXRateRequest
 
 
 ## Fields
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `request_ids`      | List[*str*]        | :heavy_check_mark: | N/A                |
+| `id`               | *str*              | :heavy_check_mark: | FX rate ID         |

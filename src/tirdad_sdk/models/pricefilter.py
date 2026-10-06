@@ -40,6 +40,11 @@ class PriceFilterTypedDict(TypedDict):
     start_time: NotRequired[datetime]
     status: NotRequired[Status]
     subscription_id: NotRequired[str]
+    updated_after: NotRequired[str]
+    r"""UpdatedAfter matches prices edited since the given time. TimeRangeFilter
+    above filters on created_at, so it cannot see an edit to an existing
+    price.
+    """
 
 
 class PriceFilter(BaseModel):
@@ -83,6 +88,12 @@ class PriceFilter(BaseModel):
 
     subscription_id: Optional[str] = None
 
+    updated_after: Optional[str] = None
+    r"""UpdatedAfter matches prices edited since the given time. TimeRangeFilter
+    above filters on created_at, so it cannot see an edit to an existing
+    price.
+    """
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -106,6 +117,7 @@ class PriceFilter(BaseModel):
                 "start_time",
                 "status",
                 "subscription_id",
+                "updated_after",
             ]
         )
         serialized = handler(self)

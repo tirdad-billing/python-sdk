@@ -902,6 +902,7 @@ class Invoices(BaseSDK):
                 Iterable[models.FilterConditionTypedDict],
             ]
         ] = None,
+        finalized_at_gte: Optional[datetime] = None,
         invoice_ids: Optional[Iterable[str]] = None,
         invoice_status: Optional[Iterable[models.InvoiceStatus]] = None,
         invoice_type: Optional[models.InvoiceType] = None,
@@ -923,6 +924,7 @@ class Invoices(BaseSDK):
         status: Optional[models.Status] = None,
         subscription_customer_id: Optional[Iterable[str]] = None,
         subscription_id: Optional[str] = None,
+        voided_at_gte: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -946,6 +948,7 @@ class Invoices(BaseSDK):
         :param external_customer_id: external_customer_id filters invoices for a customer using your system's customer identifier
             This is the ID you provided when creating the customer in FlexPrice
         :param filters:
+        :param finalized_at_gte: finalized_at_gte filters invoices finalized at or after the given instant
         :param invoice_ids: invoice_ids restricts results to invoices with the specified IDs
             Use this to retrieve specific invoices when you know their exact identifiers
         :param invoice_status: invoice_status filters by the current state of invoices in their lifecycle
@@ -967,6 +970,7 @@ class Invoices(BaseSDK):
         :param subscription_customer_id: subscription_customer_id filters invoices by the subscription owner's customer ID
         :param subscription_id: subscription_id filters invoices generated for a specific subscription
             Only returns invoices that were created as part of the specified subscription's billing
+        :param voided_at_gte: voided_at_gte filters invoices voided at or after the given instant
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -994,6 +998,7 @@ class Invoices(BaseSDK):
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
+            finalized_at_gte=finalized_at_gte,
             invoice_ids=utils.unmarshal(invoice_ids, Optional[List[str]]),
             invoice_status=utils.unmarshal(
                 invoice_status, Optional[List[models.InvoiceStatus]]
@@ -1017,6 +1022,7 @@ class Invoices(BaseSDK):
                 subscription_customer_id, Optional[List[str]]
             ),
             subscription_id=subscription_id,
+            voided_at_gte=voided_at_gte,
         )
 
         req = self._build_request(
@@ -1105,6 +1111,7 @@ class Invoices(BaseSDK):
                 Iterable[models.FilterConditionTypedDict],
             ]
         ] = None,
+        finalized_at_gte: Optional[datetime] = None,
         invoice_ids: Optional[Iterable[str]] = None,
         invoice_status: Optional[Iterable[models.InvoiceStatus]] = None,
         invoice_type: Optional[models.InvoiceType] = None,
@@ -1126,6 +1133,7 @@ class Invoices(BaseSDK):
         status: Optional[models.Status] = None,
         subscription_customer_id: Optional[Iterable[str]] = None,
         subscription_id: Optional[str] = None,
+        voided_at_gte: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1149,6 +1157,7 @@ class Invoices(BaseSDK):
         :param external_customer_id: external_customer_id filters invoices for a customer using your system's customer identifier
             This is the ID you provided when creating the customer in FlexPrice
         :param filters:
+        :param finalized_at_gte: finalized_at_gte filters invoices finalized at or after the given instant
         :param invoice_ids: invoice_ids restricts results to invoices with the specified IDs
             Use this to retrieve specific invoices when you know their exact identifiers
         :param invoice_status: invoice_status filters by the current state of invoices in their lifecycle
@@ -1170,6 +1179,7 @@ class Invoices(BaseSDK):
         :param subscription_customer_id: subscription_customer_id filters invoices by the subscription owner's customer ID
         :param subscription_id: subscription_id filters invoices generated for a specific subscription
             Only returns invoices that were created as part of the specified subscription's billing
+        :param voided_at_gte: voided_at_gte filters invoices voided at or after the given instant
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1197,6 +1207,7 @@ class Invoices(BaseSDK):
             filters=utils.get_pydantic_model(
                 filters, Optional[List[models.FilterCondition]]
             ),
+            finalized_at_gte=finalized_at_gte,
             invoice_ids=utils.unmarshal(invoice_ids, Optional[List[str]]),
             invoice_status=utils.unmarshal(
                 invoice_status, Optional[List[models.InvoiceStatus]]
@@ -1220,6 +1231,7 @@ class Invoices(BaseSDK):
                 subscription_customer_id, Optional[List[str]]
             ),
             subscription_id=subscription_id,
+            voided_at_gte=voided_at_gte,
         )
 
         req = self._build_request_async(

@@ -12,4 +12,5 @@ SubscriptionModifyType = Literal[
     "coupon",
     "tax",
     "addon",
+    "line_item_change",
 ]

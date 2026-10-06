@@ -6,7 +6,10 @@ from .aggregatedentitlementbucket import (
     AggregatedEntitlementBucketTypedDict,
 )
 from .entitlementaggregationmode import EntitlementAggregationMode
+from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
+from .entitlementgrantmeasure import EntitlementGrantMeasure
 from .entitlementusageresetperiod import EntitlementUsageResetPeriod
+from .grantstate import GrantState, GrantStateTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, List, Optional
@@ -25,6 +28,12 @@ class AggregatedEntitlementTypedDict(TypedDict):
     aggregation_mode: NotRequired[EntitlementAggregationMode]
     buckets: NotRequired[List[AggregatedEntitlementBucketTypedDict]]
     config_values: NotRequired[List[Dict[str, ConfigValueTypedDict]]]
+    grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
+    grant_duration_value: NotRequired[int]
+    grant_measure: NotRequired[EntitlementGrantMeasure]
+    grant_quota: NotRequired[str]
+    grant_state: NotRequired[GrantStateTypedDict]
+    grant_unlimited: NotRequired[bool]
     is_enabled: NotRequired[bool]
     is_soft_limit: NotRequired[bool]
     static_values: NotRequired[List[str]]
@@ -38,6 +47,18 @@ class AggregatedEntitlement(BaseModel):
     buckets: Optional[List[AggregatedEntitlementBucket]] = None
 
     config_values: Optional[List[Dict[str, ConfigValue]]] = None
+
+    grant_duration_unit: Optional[EntitlementGrantDurationUnit] = None
+
+    grant_duration_value: Optional[int] = None
+
+    grant_measure: Optional[EntitlementGrantMeasure] = None
+
+    grant_quota: Optional[str] = None
+
+    grant_state: Optional[GrantState] = None
+
+    grant_unlimited: Optional[bool] = None
 
     is_enabled: Optional[bool] = None
 
@@ -56,6 +77,12 @@ class AggregatedEntitlement(BaseModel):
                 "aggregation_mode",
                 "buckets",
                 "config_values",
+                "grant_duration_unit",
+                "grant_duration_value",
+                "grant_measure",
+                "grant_quota",
+                "grant_state",
+                "grant_unlimited",
                 "is_enabled",
                 "is_soft_limit",
                 "static_values",

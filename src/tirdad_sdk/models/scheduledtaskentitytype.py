@@ -12,6 +12,7 @@ ScheduledTaskEntityType = Union[
         "credit_topups",
         "credit_usage",
         "usage_analytics",
+        "revenue_facts",
     ],
     UnrecognizedStr,
 ]
