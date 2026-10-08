@@ -6,6 +6,7 @@ from .customcurrencylineitem import (
     CustomCurrencyLineItem,
     CustomCurrencyLineItemTypedDict,
 )
+from .fxconversion import FxConversion, FxConversionTypedDict
 from .sourceusageitem import SourceUsageItem, SourceUsageItemTypedDict
 from .status import Status
 from .usagebreakdownitem import UsageBreakdownItem, UsageBreakdownItemTypedDict
@@ -32,6 +33,7 @@ class InvoiceLineItemResponseTypedDict(TypedDict):
     entity_id: NotRequired[str]
     entity_type: NotRequired[str]
     environment_id: NotRequired[str]
+    fx_conversion: NotRequired[FxConversionTypedDict]
     id: NotRequired[str]
     invoice_id: NotRequired[str]
     invoice_level_discount: NotRequired[str]
@@ -96,6 +98,8 @@ class InvoiceLineItemResponse(BaseModel):
     entity_type: Optional[str] = None
 
     environment_id: Optional[str] = None
+
+    fx_conversion: Optional[FxConversion] = None
 
     id: Optional[str] = None
 
@@ -174,6 +178,7 @@ class InvoiceLineItemResponse(BaseModel):
                 "entity_id",
                 "entity_type",
                 "environment_id",
+                "fx_conversion",
                 "id",
                 "invoice_id",
                 "invoice_level_discount",

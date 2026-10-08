@@ -44,6 +44,9 @@ class Subscriptions(BaseSDK):
         enable_true_up: Optional[bool] = None,
         end_date: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
+        fx_rates: Optional[
+            Union[Iterable[models.InlineFXRate], Iterable[models.InlineFXRateTypedDict]]
+        ] = None,
         gateway_payment_method_id: Optional[str] = None,
         include_price_ids: Optional[Iterable[str]] = None,
         inheritance: Optional[
@@ -135,6 +138,8 @@ class Subscriptions(BaseSDK):
         :param enable_true_up:
         :param end_date:
         :param external_customer_id:
+        :param fx_rates: FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
+            non-overlapping window. Rejected when nothing needs converting or the pair has no tenant rate.
         :param gateway_payment_method_id:
         :param include_price_ids: IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
             prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
@@ -205,6 +210,9 @@ class Subscriptions(BaseSDK):
             enable_true_up=enable_true_up,
             end_date=end_date,
             external_customer_id=external_customer_id,
+            fx_rates=utils.get_pydantic_model(
+                fx_rates, Optional[List[models.InlineFXRate]]
+            ),
             gateway_payment_method_id=gateway_payment_method_id,
             include_price_ids=utils.unmarshal(include_price_ids, Optional[List[str]]),
             inheritance=utils.get_pydantic_model(
@@ -351,6 +359,9 @@ class Subscriptions(BaseSDK):
         enable_true_up: Optional[bool] = None,
         end_date: Optional[datetime] = None,
         external_customer_id: Optional[str] = None,
+        fx_rates: Optional[
+            Union[Iterable[models.InlineFXRate], Iterable[models.InlineFXRateTypedDict]]
+        ] = None,
         gateway_payment_method_id: Optional[str] = None,
         include_price_ids: Optional[Iterable[str]] = None,
         inheritance: Optional[
@@ -442,6 +453,8 @@ class Subscriptions(BaseSDK):
         :param enable_true_up:
         :param end_date:
         :param external_customer_id:
+        :param fx_rates: FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
+            non-overlapping window. Rejected when nothing needs converting or the pair has no tenant rate.
         :param gateway_payment_method_id:
         :param include_price_ids: IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
             prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
@@ -512,6 +525,9 @@ class Subscriptions(BaseSDK):
             enable_true_up=enable_true_up,
             end_date=end_date,
             external_customer_id=external_customer_id,
+            fx_rates=utils.get_pydantic_model(
+                fx_rates, Optional[List[models.InlineFXRate]]
+            ),
             gateway_payment_method_id=gateway_payment_method_id,
             include_price_ids=utils.unmarshal(include_price_ids, Optional[List[str]]),
             inheritance=utils.get_pydantic_model(
@@ -1549,6 +1565,13 @@ class Subscriptions(BaseSDK):
         commitment_windowed: Optional[bool] = None,
         effective_from: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        price_unit_amount: Optional[str] = None,
+        price_unit_tiers: Optional[
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
+        ] = None,
         tier_mode: Optional[models.BillingTier] = None,
         tiers: Optional[
             Union[
@@ -1582,6 +1605,8 @@ class Subscriptions(BaseSDK):
         :param commitment_windowed:
         :param effective_from: EffectiveFrom for the existing line item (if not provided, defaults to now)
         :param metadata: Metadata for the new line item
+        :param price_unit_amount: PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
+        :param price_unit_tiers: PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)
         :param tier_mode:
         :param tiers: Tiers determines the pricing tiers for this line item
         :param transform_quantity:
@@ -1619,6 +1644,10 @@ class Subscriptions(BaseSDK):
                 commitment_windowed=commitment_windowed,
                 effective_from=effective_from,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                price_unit_amount=price_unit_amount,
+                price_unit_tiers=utils.get_pydantic_model(
+                    price_unit_tiers, Optional[List[models.CreatePriceTier]]
+                ),
                 tier_mode=tier_mode,
                 tiers=utils.get_pydantic_model(
                     tiers, Optional[List[models.CreatePriceTier]]
@@ -1726,6 +1755,13 @@ class Subscriptions(BaseSDK):
         commitment_windowed: Optional[bool] = None,
         effective_from: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
+        price_unit_amount: Optional[str] = None,
+        price_unit_tiers: Optional[
+            Union[
+                Iterable[models.CreatePriceTier],
+                Iterable[models.CreatePriceTierTypedDict],
+            ]
+        ] = None,
         tier_mode: Optional[models.BillingTier] = None,
         tiers: Optional[
             Union[
@@ -1759,6 +1795,8 @@ class Subscriptions(BaseSDK):
         :param commitment_windowed:
         :param effective_from: EffectiveFrom for the existing line item (if not provided, defaults to now)
         :param metadata: Metadata for the new line item
+        :param price_unit_amount: PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
+        :param price_unit_tiers: PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)
         :param tier_mode:
         :param tiers: Tiers determines the pricing tiers for this line item
         :param transform_quantity:
@@ -1796,6 +1834,10 @@ class Subscriptions(BaseSDK):
                 commitment_windowed=commitment_windowed,
                 effective_from=effective_from,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
+                price_unit_amount=price_unit_amount,
+                price_unit_tiers=utils.get_pydantic_model(
+                    price_unit_tiers, Optional[List[models.CreatePriceTier]]
+                ),
                 tier_mode=tier_mode,
                 tiers=utils.get_pydantic_model(
                     tiers, Optional[List[models.CreatePriceTier]]

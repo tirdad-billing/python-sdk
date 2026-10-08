@@ -593,6 +593,8 @@ if TYPE_CHECKING:
         FinalizeInvoiceRequest,
         FinalizeInvoiceRequestTypedDict,
     )
+    from .fxconversion import FxConversion, FxConversionTypedDict
+    from .fxconversionsource import FxConversionSource, FxConversionSourceTypedDict
     from .fxratefilter import FXRateFilter, FXRateFilterOrder, FXRateFilterTypedDict
     from .fxrateresponse import FXRateResponse, FXRateResponseTypedDict
     from .fxratescope import FXRateScope
@@ -823,6 +825,7 @@ if TYPE_CHECKING:
     from .groupresponse import GroupResponse, GroupResponseTypedDict
     from .ingesteventrequest import IngestEventRequest, IngestEventRequestTypedDict
     from .inheritanceaction import InheritanceAction
+    from .inlinefxrate import InlineFXRate, InlineFXRateTypedDict
     from .integrationconfigentry import (
         IntegrationConfigEntry,
         IntegrationConfigEntryTypedDict,
@@ -1638,6 +1641,11 @@ if TYPE_CHECKING:
         UpdateTaxRateRequest,
         UpdateTaxRateRequestTypedDict,
     )
+    from .updatetenantaddress import UpdateTenantAddress, UpdateTenantAddressTypedDict
+    from .updatetenantbillingdetails import (
+        UpdateTenantBillingDetails,
+        UpdateTenantBillingDetailsTypedDict,
+    )
     from .updatetenantrequest import UpdateTenantRequest, UpdateTenantRequestTypedDict
     from .updateuserrequest import UpdateUserRequest, UpdateUserRequestTypedDict
     from .updateuserresponse import UpdateUserResponse, UpdateUserResponseTypedDict
@@ -2331,6 +2339,10 @@ __all__ = [
     "FinalizeCreditNoteRequestTypedDict",
     "FinalizeInvoiceRequest",
     "FinalizeInvoiceRequestTypedDict",
+    "FxConversion",
+    "FxConversionSource",
+    "FxConversionSourceTypedDict",
+    "FxConversionTypedDict",
     "GCPMarketplaceAgreement",
     "GCPMarketplaceAgreementTypedDict",
     "GetAddonByLookupKeyRequest",
@@ -2500,6 +2512,8 @@ __all__ = [
     "IngestEventRequest",
     "IngestEventRequestTypedDict",
     "InheritanceAction",
+    "InlineFXRate",
+    "InlineFXRateTypedDict",
     "IntegrationConfigEntry",
     "IntegrationConfigEntryTypedDict",
     "IntegrationConfigResponse",
@@ -3089,6 +3103,10 @@ __all__ = [
     "UpdateTaxRateRequestRequest",
     "UpdateTaxRateRequestRequestTypedDict",
     "UpdateTaxRateRequestTypedDict",
+    "UpdateTenantAddress",
+    "UpdateTenantAddressTypedDict",
+    "UpdateTenantBillingDetails",
+    "UpdateTenantBillingDetailsTypedDict",
     "UpdateTenantRequest",
     "UpdateTenantRequestTypedDict",
     "UpdateUserRequest",
@@ -3710,6 +3728,10 @@ _dynamic_imports: dict[str, str] = {
     "FinalizeCreditNoteRequestTypedDict": ".finalizecreditnoterequest",
     "FinalizeInvoiceRequest": ".finalizeinvoiceop",
     "FinalizeInvoiceRequestTypedDict": ".finalizeinvoiceop",
+    "FxConversion": ".fxconversion",
+    "FxConversionTypedDict": ".fxconversion",
+    "FxConversionSource": ".fxconversionsource",
+    "FxConversionSourceTypedDict": ".fxconversionsource",
     "FXRateFilter": ".fxratefilter",
     "FXRateFilterOrder": ".fxratefilter",
     "FXRateFilterTypedDict": ".fxratefilter",
@@ -3888,6 +3910,8 @@ _dynamic_imports: dict[str, str] = {
     "IngestEventRequest": ".ingesteventrequest",
     "IngestEventRequestTypedDict": ".ingesteventrequest",
     "InheritanceAction": ".inheritanceaction",
+    "InlineFXRate": ".inlinefxrate",
+    "InlineFXRateTypedDict": ".inlinefxrate",
     "IntegrationConfigEntry": ".integrationconfigentry",
     "IntegrationConfigEntryTypedDict": ".integrationconfigentry",
     "IntegrationConfigResponse": ".integrationconfigresponse",
@@ -4467,6 +4491,10 @@ _dynamic_imports: dict[str, str] = {
     "UpdateTaxRateRequestRequestTypedDict": ".updatetaxrateop",
     "UpdateTaxRateRequest": ".updatetaxraterequest",
     "UpdateTaxRateRequestTypedDict": ".updatetaxraterequest",
+    "UpdateTenantAddress": ".updatetenantaddress",
+    "UpdateTenantAddressTypedDict": ".updatetenantaddress",
+    "UpdateTenantBillingDetails": ".updatetenantbillingdetails",
+    "UpdateTenantBillingDetailsTypedDict": ".updatetenantbillingdetails",
     "UpdateTenantRequest": ".updatetenantrequest",
     "UpdateTenantRequestTypedDict": ".updatetenantrequest",
     "UpdateUserRequest": ".updateuserrequest",

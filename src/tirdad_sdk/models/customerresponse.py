@@ -29,6 +29,8 @@ class CustomerResponseTypedDict(TypedDict):
     r"""AddressPostalCode is the postal code of the customer's address"""
     address_state: NotRequired[str]
     r"""AddressState is the state of the customer's address"""
+    billing_currency: NotRequired[str]
+    r"""BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is."""
     contact: NotRequired[str]
     r"""Contact is an optional contact number for the customer (e.g. phone)"""
     created_at: NotRequired[datetime]
@@ -77,6 +79,9 @@ class CustomerResponse(BaseModel):
 
     address_state: Optional[str] = None
     r"""AddressState is the state of the customer's address"""
+
+    billing_currency: Optional[str] = None
+    r"""BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is."""
 
     contact: Optional[str] = None
     r"""Contact is an optional contact number for the customer (e.g. phone)"""
@@ -130,6 +135,7 @@ class CustomerResponse(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "billing_currency",
                 "contact",
                 "created_at",
                 "created_by",

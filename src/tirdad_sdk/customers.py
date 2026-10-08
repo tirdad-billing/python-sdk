@@ -21,6 +21,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        billing_currency: Optional[str] = None,
         contact: Optional[str] = None,
         email: Optional[str] = None,
         external_id: Optional[str] = None,
@@ -51,6 +52,7 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the updated secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the updated postal code with maximum 20 characters
         :param address_state: address_state is the updated state, province, or region name with maximum 100 characters
+        :param billing_currency: billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency
         :param contact: contact is the updated contact number for the customer (e.g. phone)
         :param email: email is the updated email address and must be a valid email format if provided
         :param external_id: external_id is the updated external identifier for the customer
@@ -84,6 +86,7 @@ class Customers(BaseSDK):
                 address_line2=address_line2,
                 address_postal_code=address_postal_code,
                 address_state=address_state,
+                billing_currency=billing_currency,
                 contact=contact,
                 email=email,
                 external_id=external_id,
@@ -178,6 +181,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        billing_currency: Optional[str] = None,
         contact: Optional[str] = None,
         email: Optional[str] = None,
         external_id: Optional[str] = None,
@@ -208,6 +212,7 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the updated secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the updated postal code with maximum 20 characters
         :param address_state: address_state is the updated state, province, or region name with maximum 100 characters
+        :param billing_currency: billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency
         :param contact: contact is the updated contact number for the customer (e.g. phone)
         :param email: email is the updated email address and must be a valid email format if provided
         :param external_id: external_id is the updated external identifier for the customer
@@ -241,6 +246,7 @@ class Customers(BaseSDK):
                 address_line2=address_line2,
                 address_postal_code=address_postal_code,
                 address_state=address_state,
+                billing_currency=billing_currency,
                 contact=contact,
                 email=email,
                 external_id=external_id,
@@ -335,6 +341,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        billing_currency: Optional[str] = None,
         contact: Optional[str] = None,
         email: Optional[str] = None,
         integration_entity_mapping: Optional[
@@ -371,6 +378,7 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the ZIP code or postal code with maximum 20 characters
         :param address_state: address_state is the state, province, or region name with maximum 100 characters
+        :param billing_currency: billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is
         :param contact: contact is an optional contact number for the customer (e.g. phone)
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
@@ -405,6 +413,7 @@ class Customers(BaseSDK):
             address_line2=address_line2,
             address_postal_code=address_postal_code,
             address_state=address_state,
+            billing_currency=billing_currency,
             contact=contact,
             email=email,
             external_id=external_id,
@@ -506,6 +515,7 @@ class Customers(BaseSDK):
         address_line2: Optional[str] = None,
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
+        billing_currency: Optional[str] = None,
         contact: Optional[str] = None,
         email: Optional[str] = None,
         integration_entity_mapping: Optional[
@@ -542,6 +552,7 @@ class Customers(BaseSDK):
         :param address_line2: address_line2 is the secondary address line with maximum 255 characters
         :param address_postal_code: address_postal_code is the ZIP code or postal code with maximum 20 characters
         :param address_state: address_state is the state, province, or region name with maximum 100 characters
+        :param billing_currency: billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is
         :param contact: contact is an optional contact number for the customer (e.g. phone)
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
@@ -576,6 +587,7 @@ class Customers(BaseSDK):
             address_line2=address_line2,
             address_postal_code=address_postal_code,
             address_state=address_state,
+            billing_currency=billing_currency,
             contact=contact,
             email=email,
             external_id=external_id,

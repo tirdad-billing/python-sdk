@@ -11,6 +11,7 @@ from .couponapplicationresponse import (
 )
 from .customcurrency import CustomCurrency, CustomCurrencyTypedDict
 from .customerresponse import CustomerResponse, CustomerResponseTypedDict
+from .fxconversion import FxConversion, FxConversionTypedDict
 from .invoicelineitemresponse import (
     InvoiceLineItemResponse,
     InvoiceLineItemResponseTypedDict,
@@ -73,6 +74,7 @@ class InvoiceResponseTypedDict(TypedDict):
     r"""environment_id is the ID of the environment this invoice belongs to (for multi-environment setups)"""
     finalized_at: NotRequired[datetime]
     r"""finalized_at is the timestamp when this invoice was finalized and made ready for payment"""
+    fx_conversion: NotRequired[FxConversionTypedDict]
     id: NotRequired[str]
     r"""id is the unique identifier for this invoice"""
     idempotency_key: NotRequired[str]
@@ -198,6 +200,8 @@ class InvoiceResponse(BaseModel):
 
     finalized_at: Optional[datetime] = None
     r"""finalized_at is the timestamp when this invoice was finalized and made ready for payment"""
+
+    fx_conversion: Optional[FxConversion] = None
 
     id: Optional[str] = None
     r"""id is the unique identifier for this invoice"""
@@ -326,6 +330,7 @@ class InvoiceResponse(BaseModel):
                 "due_date",
                 "environment_id",
                 "finalized_at",
+                "fx_conversion",
                 "id",
                 "idempotency_key",
                 "invoice_number",

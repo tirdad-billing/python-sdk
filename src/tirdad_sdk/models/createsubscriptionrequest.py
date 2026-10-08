@@ -17,6 +17,7 @@ from .createsubscriptionlineitemrequest import (
     CreateSubscriptionLineItemRequest,
     CreateSubscriptionLineItemRequestTypedDict,
 )
+from .inlinefxrate import InlineFXRate, InlineFXRateTypedDict
 from .lineitemcommitmentconfig import (
     LineItemCommitmentConfig,
     LineItemCommitmentConfigTypedDict,
@@ -81,6 +82,10 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     enable_true_up: NotRequired[bool]
     end_date: NotRequired[datetime]
     external_customer_id: NotRequired[str]
+    fx_rates: NotRequired[List[InlineFXRateTypedDict]]
+    r"""FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
+    non-overlapping window. Rejected when nothing needs converting or the pair has no tenant rate.
+    """
     gateway_payment_method_id: NotRequired[str]
     include_price_ids: NotRequired[List[str]]
     r"""IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
@@ -168,6 +173,11 @@ class CreateSubscriptionRequest(BaseModel):
 
     external_customer_id: Optional[str] = None
 
+    fx_rates: Optional[List[InlineFXRate]] = None
+    r"""FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
+    non-overlapping window. Rejected when nothing needs converting or the pair has no tenant rate.
+    """
+
     gateway_payment_method_id: Optional[str] = None
 
     include_price_ids: Optional[List[str]] = None
@@ -249,6 +259,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "enable_true_up",
                 "end_date",
                 "external_customer_id",
+                "fx_rates",
                 "gateway_payment_method_id",
                 "include_price_ids",
                 "inheritance",

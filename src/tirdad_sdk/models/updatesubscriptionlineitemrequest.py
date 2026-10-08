@@ -40,6 +40,10 @@ class UpdateSubscriptionLineItemRequestTypedDict(TypedDict):
     r"""EffectiveFrom for the existing line item (if not provided, defaults to now)"""
     metadata: NotRequired[Dict[str, str]]
     r"""Metadata for the new line item"""
+    price_unit_amount: NotRequired[str]
+    r"""PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)"""
+    price_unit_tiers: NotRequired[List[CreatePriceTierTypedDict]]
+    r"""PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)"""
     tier_mode: NotRequired[BillingTier]
     tiers: NotRequired[List[CreatePriceTierTypedDict]]
     r"""Tiers determines the pricing tiers for this line item"""
@@ -78,6 +82,12 @@ class UpdateSubscriptionLineItemRequest(BaseModel):
     metadata: Optional[Dict[str, str]] = None
     r"""Metadata for the new line item"""
 
+    price_unit_amount: Optional[str] = None
+    r"""PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)"""
+
+    price_unit_tiers: Optional[List[CreatePriceTier]] = None
+    r"""PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)"""
+
     tier_mode: Optional[BillingTier] = None
 
     tiers: Optional[List[CreatePriceTier]] = None
@@ -102,6 +112,8 @@ class UpdateSubscriptionLineItemRequest(BaseModel):
                 "commitment_windowed",
                 "effective_from",
                 "metadata",
+                "price_unit_amount",
+                "price_unit_tiers",
                 "tier_mode",
                 "tiers",
                 "transform_quantity",

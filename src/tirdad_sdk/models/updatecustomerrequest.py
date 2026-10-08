@@ -27,6 +27,8 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""address_postal_code is the updated postal code with maximum 20 characters"""
     address_state: NotRequired[str]
     r"""address_state is the updated state, province, or region name with maximum 100 characters"""
+    billing_currency: NotRequired[str]
+    r"""billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency"""
     contact: NotRequired[str]
     r"""contact is the updated contact number for the customer (e.g. phone)"""
     email: NotRequired[str]
@@ -67,6 +69,9 @@ class UpdateCustomerRequest(BaseModel):
     address_state: Optional[str] = None
     r"""address_state is the updated state, province, or region name with maximum 100 characters"""
 
+    billing_currency: Optional[str] = None
+    r"""billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency"""
+
     contact: Optional[str] = None
     r"""contact is the updated contact number for the customer (e.g. phone)"""
 
@@ -102,6 +107,7 @@ class UpdateCustomerRequest(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "billing_currency",
                 "contact",
                 "email",
                 "external_id",

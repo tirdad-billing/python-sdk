@@ -32,6 +32,8 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""address_postal_code is the ZIP code or postal code with maximum 20 characters"""
     address_state: NotRequired[str]
     r"""address_state is the state, province, or region name with maximum 100 characters"""
+    billing_currency: NotRequired[str]
+    r"""billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is"""
     contact: NotRequired[str]
     r"""contact is an optional contact number for the customer (e.g. phone)"""
     email: NotRequired[str]
@@ -85,6 +87,9 @@ class CreateCustomerRequest(BaseModel):
     address_state: Optional[str] = None
     r"""address_state is the state, province, or region name with maximum 100 characters"""
 
+    billing_currency: Optional[str] = None
+    r"""billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is"""
+
     contact: Optional[str] = None
     r"""contact is an optional contact number for the customer (e.g. phone)"""
 
@@ -128,6 +133,7 @@ class CreateCustomerRequest(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "billing_currency",
                 "contact",
                 "email",
                 "integration_entity_mapping",
