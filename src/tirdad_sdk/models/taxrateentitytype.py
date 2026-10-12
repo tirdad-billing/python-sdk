@@ -11,6 +11,7 @@ TaxRateEntityType = Union[
         "subscription",
         "invoice",
         "tenant",
+        "credit_note",
     ],
     UnrecognizedStr,
 ]

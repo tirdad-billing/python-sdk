@@ -12,6 +12,10 @@ from .overridelineitemrequest import (
 )
 from .prorationbehavior import ProrationBehavior
 from .scheduletype import ScheduleType
+from .subscriptioncouponinput import (
+    SubscriptionCouponInput,
+    SubscriptionCouponInputTypedDict,
+)
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -23,6 +27,8 @@ class AddAddonToSubscriptionRequestTypedDict(TypedDict):
     addon_id: str
     cadence: NotRequired[AddonCadence]
     change_at: NotRequired[ScheduleType]
+    coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
+    r"""Coupons apply to this addon's line items; price_id targets one price, omitted targets all."""
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
     r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
     metadata: NotRequired[Dict[str, Any]]
@@ -38,6 +44,9 @@ class AddAddonToSubscriptionRequest(BaseModel):
     cadence: Optional[AddonCadence] = None
 
     change_at: Optional[ScheduleType] = None
+
+    coupons: Optional[List[SubscriptionCouponInput]] = None
+    r"""Coupons apply to this addon's line items; price_id targets one price, omitted targets all."""
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
     r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
@@ -57,6 +66,7 @@ class AddAddonToSubscriptionRequest(BaseModel):
             [
                 "cadence",
                 "change_at",
+                "coupons",
                 "line_item_commitments",
                 "metadata",
                 "override_line_items",

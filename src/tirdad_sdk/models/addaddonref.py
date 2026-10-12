@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 from .addoncadence import AddonCadence
+from .couponref import CouponRef, CouponRefTypedDict
 from .prorationbehavior import ProrationBehavior
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -14,6 +15,7 @@ class AddAddonRefTypedDict(TypedDict):
     addon_id: NotRequired[str]
     association_id: NotRequired[str]
     cadence: NotRequired[AddonCadence]
+    coupons: NotRequired[List[CouponRefTypedDict]]
     proration_behavior: NotRequired[ProrationBehavior]
     start_date: NotRequired[datetime]
 
@@ -24,6 +26,8 @@ class AddAddonRef(BaseModel):
     association_id: Optional[str] = None
 
     cadence: Optional[AddonCadence] = None
+
+    coupons: Optional[List[CouponRef]] = None
 
     proration_behavior: Optional[ProrationBehavior] = None
 
@@ -36,6 +40,7 @@ class AddAddonRef(BaseModel):
                 "addon_id",
                 "association_id",
                 "cadence",
+                "coupons",
                 "proration_behavior",
                 "start_date",
             ]

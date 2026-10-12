@@ -226,6 +226,7 @@ class CreditGrants(BaseSDK):
         period_count: Optional[int] = None,
         plan_id: Optional[str] = None,
         priority: Optional[int] = None,
+        proration_behavior: Optional[models.ProrationBehavior] = None,
         start_date: Optional[datetime] = None,
         subscription_id: Optional[str] = None,
         topup_conversion_rate: Optional[str] = None,
@@ -256,6 +257,7 @@ class CreditGrants(BaseSDK):
         :param period_count:
         :param plan_id:
         :param priority:
+        :param proration_behavior:
         :param start_date:
         :param subscription_id:
         :param topup_conversion_rate: topup_conversion_rate is the conversion rate for the topup to the currency
@@ -292,6 +294,7 @@ class CreditGrants(BaseSDK):
             period_count=period_count,
             plan_id=plan_id,
             priority=priority,
+            proration_behavior=proration_behavior,
             scope=scope,
             start_date=start_date,
             subscription_id=subscription_id,
@@ -385,6 +388,7 @@ class CreditGrants(BaseSDK):
         period_count: Optional[int] = None,
         plan_id: Optional[str] = None,
         priority: Optional[int] = None,
+        proration_behavior: Optional[models.ProrationBehavior] = None,
         start_date: Optional[datetime] = None,
         subscription_id: Optional[str] = None,
         topup_conversion_rate: Optional[str] = None,
@@ -415,6 +419,7 @@ class CreditGrants(BaseSDK):
         :param period_count:
         :param plan_id:
         :param priority:
+        :param proration_behavior:
         :param start_date:
         :param subscription_id:
         :param topup_conversion_rate: topup_conversion_rate is the conversion rate for the topup to the currency
@@ -451,6 +456,7 @@ class CreditGrants(BaseSDK):
             period_count=period_count,
             plan_id=plan_id,
             priority=priority,
+            proration_behavior=proration_behavior,
             scope=scope,
             start_date=start_date,
             subscription_id=subscription_id,

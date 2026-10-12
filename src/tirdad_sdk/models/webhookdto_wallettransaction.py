@@ -4,16 +4,19 @@ from __future__ import annotations
 from .transactionreason import TransactionReason
 from .transactionstatus import TransactionStatus
 from .transactiontype import TransactionType
+from .wallettxconsumption import WalletTxConsumption, WalletTxConsumptionTypedDict
 from .wallettxreferencetype import WalletTxReferenceType
+from .wallettxsourcetype import WalletTxSourceType
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class WebhookDtoWalletTransactionTypedDict(TypedDict):
     amount: NotRequired[str]
+    consumption_breakdown: NotRequired[List[WalletTxConsumptionTypedDict]]
     credit_amount: NotRequired[str]
     credit_balance_after: NotRequired[str]
     credit_balance_before: NotRequired[str]
@@ -25,6 +28,8 @@ class WebhookDtoWalletTransactionTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, str]]
     reference_id: NotRequired[str]
     reference_type: NotRequired[WalletTxReferenceType]
+    source_id: NotRequired[str]
+    source_type: NotRequired[WalletTxSourceType]
     transaction_reason: NotRequired[TransactionReason]
     transaction_status: NotRequired[TransactionStatus]
     type: NotRequired[TransactionType]
@@ -33,6 +38,8 @@ class WebhookDtoWalletTransactionTypedDict(TypedDict):
 
 class WebhookDtoWalletTransaction(BaseModel):
     amount: Optional[str] = None
+
+    consumption_breakdown: Optional[List[WalletTxConsumption]] = None
 
     credit_amount: Optional[str] = None
 
@@ -56,6 +63,10 @@ class WebhookDtoWalletTransaction(BaseModel):
 
     reference_type: Optional[WalletTxReferenceType] = None
 
+    source_id: Optional[str] = None
+
+    source_type: Optional[WalletTxSourceType] = None
+
     transaction_reason: Optional[TransactionReason] = None
 
     transaction_status: Optional[TransactionStatus] = None
@@ -69,6 +80,7 @@ class WebhookDtoWalletTransaction(BaseModel):
         optional_fields = set(
             [
                 "amount",
+                "consumption_breakdown",
                 "credit_amount",
                 "credit_balance_after",
                 "credit_balance_before",
@@ -80,6 +92,8 @@ class WebhookDtoWalletTransaction(BaseModel):
                 "metadata",
                 "reference_id",
                 "reference_type",
+                "source_id",
+                "source_type",
                 "transaction_reason",
                 "transaction_status",
                 "type",

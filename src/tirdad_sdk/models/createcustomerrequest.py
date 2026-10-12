@@ -5,6 +5,10 @@ from .createentityintegrationmappingrequest import (
     CreateEntityIntegrationMappingRequest,
     CreateEntityIntegrationMappingRequestTypedDict,
 )
+from .customer_contactperson import (
+    CustomerContactPerson,
+    CustomerContactPersonTypedDict,
+)
 from .taxrateoverride import TaxRateOverride, TaxRateOverrideTypedDict
 from .taxtreatment import TaxTreatment
 from pydantic import model_serializer
@@ -16,6 +20,8 @@ from typing_extensions import NotRequired, TypedDict
 class CreateCustomerRequestTypedDict(TypedDict):
     r"""Request object for creating a new customer in the system"""
 
+    contact_persons: List[CustomerContactPersonTypedDict]
+    r"""contact_persons are people at the customer; at most one may be primary"""
     external_id: str
     r"""external_id is the unique identifier from your system to reference this customer (required)"""
     name: str
@@ -62,6 +68,9 @@ class CreateCustomerRequestTypedDict(TypedDict):
 
 class CreateCustomerRequest(BaseModel):
     r"""Request object for creating a new customer in the system"""
+
+    contact_persons: List[CustomerContactPerson]
+    r"""contact_persons are people at the customer; at most one may be primary"""
 
     external_id: str
     r"""external_id is the unique identifier from your system to reference this customer (required)"""

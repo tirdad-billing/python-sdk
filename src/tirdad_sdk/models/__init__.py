@@ -244,6 +244,7 @@ if TYPE_CHECKING:
     )
     from .couponcadence import CouponCadence
     from .couponfilter import CouponFilter, CouponFilterOrder, CouponFilterTypedDict
+    from .couponref import CouponRef, CouponRefTypedDict
     from .couponresponse import CouponResponse, CouponResponseTypedDict
     from .coupontype import CouponType
     from .createaddonrequest import CreateAddonRequest, CreateAddonRequestTypedDict
@@ -400,6 +401,10 @@ if TYPE_CHECKING:
         CustomCurrencyLineItemTypedDict,
     )
     from .customer import Customer, CustomerTypedDict
+    from .customer_contactperson import (
+        CustomerContactPerson,
+        CustomerContactPersonTypedDict,
+    )
     from .customerentitlementsresponse import (
         CustomerEntitlementsResponse,
         CustomerEntitlementsResponseTypedDict,
@@ -573,6 +578,7 @@ if TYPE_CHECKING:
     from .executiondetails import ExecutionDetails, ExecutionDetailsTypedDict
     from .exportmetadataentitytype import ExportMetadataEntityType
     from .exportmetadatafield import ExportMetadataField, ExportMetadataFieldTypedDict
+    from .externaltaxdetails import ExternalTaxDetails, ExternalTaxDetailsTypedDict
     from .factstatus import FactStatus
     from .failurepoint import FailurePoint, FailurePointTypedDict
     from .failurepointtype import FailurePointType
@@ -1426,13 +1432,18 @@ if TYPE_CHECKING:
     from .taxbehavior import TaxBehavior
     from .taxexemptionreasoncode import TaxExemptionReasonCode
     from .taxexemptionsummary import TaxExemptionSummary, TaxExemptionSummaryTypedDict
+    from .taxjurisdiction import TaxJurisdiction, TaxJurisdictionTypedDict
+    from .taxprovider import TaxProvider
     from .taxrateentitytype import TaxRateEntityType
     from .taxrateoverride import TaxRateOverride, TaxRateOverrideTypedDict
     from .taxrateresponse import TaxRateResponse, TaxRateResponseTypedDict
     from .taxratescope import TaxRateScope
     from .taxratestatus import TaxRateStatus
     from .taxratetype import TaxRateType
+    from .taxreversal import TaxReversal, TaxReversalTypedDict
+    from .taxreversalmode import TaxReversalMode
     from .taxsummary import TaxSummary, TaxSummaryTypedDict
+    from .taxtransactiontype import TaxTransactionType
     from .taxtreatment import TaxTreatment
     from .tenantbillingdetails import (
         TenantBillingDetails,
@@ -1446,6 +1457,7 @@ if TYPE_CHECKING:
     )
     from .timeofdaybucket import TimeOfDayBucket, TimeOfDayBucketTypedDict
     from .timerangefilter import TimeRangeFilter, TimeRangeFilterTypedDict
+    from .topupcoupon import TopUpCoupon, TopUpCouponTypedDict
     from .topupwalletop import (
         TopUpWalletRequestRequest,
         TopUpWalletRequestRequestTypedDict,
@@ -1708,7 +1720,9 @@ if TYPE_CHECKING:
         WalletTransactionResponse,
         WalletTransactionResponseTypedDict,
     )
+    from .wallettxconsumption import WalletTxConsumption, WalletTxConsumptionTypedDict
     from .wallettxreferencetype import WalletTxReferenceType
+    from .wallettxsourcetype import WalletTxSourceType
     from .wallettype import WalletType
     from .webhookdto_alertwebhookpayload import (
         WebhookDtoAlertWebhookPayload,
@@ -2062,6 +2076,8 @@ __all__ = [
     "CouponFilter",
     "CouponFilterOrder",
     "CouponFilterTypedDict",
+    "CouponRef",
+    "CouponRefTypedDict",
     "CouponResponse",
     "CouponResponseTypedDict",
     "CouponType",
@@ -2177,6 +2193,8 @@ __all__ = [
     "CustomCurrencyLineItemTypedDict",
     "CustomCurrencyTypedDict",
     "Customer",
+    "CustomerContactPerson",
+    "CustomerContactPersonTypedDict",
     "CustomerEntitlementsResponse",
     "CustomerEntitlementsResponseTypedDict",
     "CustomerFilter",
@@ -2308,6 +2326,8 @@ __all__ = [
     "ExportMetadataEntityType",
     "ExportMetadataField",
     "ExportMetadataFieldTypedDict",
+    "ExternalTaxDetails",
+    "ExternalTaxDetailsTypedDict",
     "FXRateFilter",
     "FXRateFilterOrder",
     "FXRateFilterTypedDict",
@@ -2969,6 +2989,9 @@ __all__ = [
     "TaxExemptionReasonCode",
     "TaxExemptionSummary",
     "TaxExemptionSummaryTypedDict",
+    "TaxJurisdiction",
+    "TaxJurisdictionTypedDict",
+    "TaxProvider",
     "TaxRateEntityType",
     "TaxRateOverride",
     "TaxRateOverrideTypedDict",
@@ -2977,8 +3000,12 @@ __all__ = [
     "TaxRateScope",
     "TaxRateStatus",
     "TaxRateType",
+    "TaxReversal",
+    "TaxReversalMode",
+    "TaxReversalTypedDict",
     "TaxSummary",
     "TaxSummaryTypedDict",
+    "TaxTransactionType",
     "TaxTreatment",
     "TenantBillingDetails",
     "TenantBillingDetailsTypedDict",
@@ -2992,6 +3019,8 @@ __all__ = [
     "TimeOfDayBucketTypedDict",
     "TimeRangeFilter",
     "TimeRangeFilterTypedDict",
+    "TopUpCoupon",
+    "TopUpCouponTypedDict",
     "TopUpWalletRequest",
     "TopUpWalletRequestRequest",
     "TopUpWalletRequestRequestTypedDict",
@@ -3173,7 +3202,10 @@ __all__ = [
     "WalletTransactionFilterTypedDict",
     "WalletTransactionResponse",
     "WalletTransactionResponseTypedDict",
+    "WalletTxConsumption",
+    "WalletTxConsumptionTypedDict",
     "WalletTxReferenceType",
+    "WalletTxSourceType",
     "WalletType",
     "WebhookDtoAlertWebhookPayload",
     "WebhookDtoAlertWebhookPayloadTypedDict",
@@ -3460,6 +3492,8 @@ _dynamic_imports: dict[str, str] = {
     "CouponFilter": ".couponfilter",
     "CouponFilterOrder": ".couponfilter",
     "CouponFilterTypedDict": ".couponfilter",
+    "CouponRef": ".couponref",
+    "CouponRefTypedDict": ".couponref",
     "CouponResponse": ".couponresponse",
     "CouponResponseTypedDict": ".couponresponse",
     "CouponType": ".coupontype",
@@ -3576,6 +3610,8 @@ _dynamic_imports: dict[str, str] = {
     "CustomCurrencyLineItemTypedDict": ".customcurrencylineitem",
     "Customer": ".customer",
     "CustomerTypedDict": ".customer",
+    "CustomerContactPerson": ".customer_contactperson",
+    "CustomerContactPersonTypedDict": ".customer_contactperson",
     "CustomerEntitlementsResponse": ".customerentitlementsresponse",
     "CustomerEntitlementsResponseTypedDict": ".customerentitlementsresponse",
     "CustomerFilter": ".customerfilter",
@@ -3704,6 +3740,8 @@ _dynamic_imports: dict[str, str] = {
     "ExportMetadataEntityType": ".exportmetadataentitytype",
     "ExportMetadataField": ".exportmetadatafield",
     "ExportMetadataFieldTypedDict": ".exportmetadatafield",
+    "ExternalTaxDetails": ".externaltaxdetails",
+    "ExternalTaxDetailsTypedDict": ".externaltaxdetails",
     "FactStatus": ".factstatus",
     "FailurePoint": ".failurepoint",
     "FailurePointTypedDict": ".failurepoint",
@@ -4358,6 +4396,9 @@ _dynamic_imports: dict[str, str] = {
     "TaxExemptionReasonCode": ".taxexemptionreasoncode",
     "TaxExemptionSummary": ".taxexemptionsummary",
     "TaxExemptionSummaryTypedDict": ".taxexemptionsummary",
+    "TaxJurisdiction": ".taxjurisdiction",
+    "TaxJurisdictionTypedDict": ".taxjurisdiction",
+    "TaxProvider": ".taxprovider",
     "TaxRateEntityType": ".taxrateentitytype",
     "TaxRateOverride": ".taxrateoverride",
     "TaxRateOverrideTypedDict": ".taxrateoverride",
@@ -4366,8 +4407,12 @@ _dynamic_imports: dict[str, str] = {
     "TaxRateScope": ".taxratescope",
     "TaxRateStatus": ".taxratestatus",
     "TaxRateType": ".taxratetype",
+    "TaxReversal": ".taxreversal",
+    "TaxReversalTypedDict": ".taxreversal",
+    "TaxReversalMode": ".taxreversalmode",
     "TaxSummary": ".taxsummary",
     "TaxSummaryTypedDict": ".taxsummary",
+    "TaxTransactionType": ".taxtransactiontype",
     "TaxTreatment": ".taxtreatment",
     "TenantBillingDetails": ".tenantbillingdetails",
     "TenantBillingDetailsTypedDict": ".tenantbillingdetails",
@@ -4381,6 +4426,8 @@ _dynamic_imports: dict[str, str] = {
     "TimeOfDayBucketTypedDict": ".timeofdaybucket",
     "TimeRangeFilter": ".timerangefilter",
     "TimeRangeFilterTypedDict": ".timerangefilter",
+    "TopUpCoupon": ".topupcoupon",
+    "TopUpCouponTypedDict": ".topupcoupon",
     "TopUpWalletRequestRequest": ".topupwalletop",
     "TopUpWalletRequestRequestTypedDict": ".topupwalletop",
     "TopUpWalletRequest": ".topupwalletrequest",
@@ -4561,7 +4608,10 @@ _dynamic_imports: dict[str, str] = {
     "WalletTransactionFilterTypedDict": ".wallettransactionfilter",
     "WalletTransactionResponse": ".wallettransactionresponse",
     "WalletTransactionResponseTypedDict": ".wallettransactionresponse",
+    "WalletTxConsumption": ".wallettxconsumption",
+    "WalletTxConsumptionTypedDict": ".wallettxconsumption",
     "WalletTxReferenceType": ".wallettxreferencetype",
+    "WalletTxSourceType": ".wallettxsourcetype",
     "WalletType": ".wallettype",
     "WebhookDtoAlertWebhookPayload": ".webhookdto_alertwebhookpayload",
     "WebhookDtoAlertWebhookPayloadTypedDict": ".webhookdto_alertwebhookpayload",

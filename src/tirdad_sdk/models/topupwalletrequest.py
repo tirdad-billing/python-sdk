@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
+from .topupcoupon import TopUpCoupon, TopUpCouponTypedDict
 from .transactionreason import TransactionReason
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
@@ -31,6 +32,7 @@ class TopUpWalletRequestTypedDict(TypedDict):
     used as-is, skipping slab resolution. To grant no bonus, omit this field entirely.
     """
     checkout: NotRequired[CheckoutParamsTypedDict]
+    coupons: NotRequired[List[TopUpCouponTypedDict]]
     credits_to_add: NotRequired[str]
     r"""credits_to_add is the number of credits to add to the wallet"""
     description: NotRequired[str]
@@ -77,6 +79,8 @@ class TopUpWalletRequest(BaseModel):
 
     checkout: Optional[CheckoutParams] = None
 
+    coupons: Optional[List[TopUpCoupon]] = None
+
     credits_to_add: Optional[str] = None
     r"""credits_to_add is the number of credits to add to the wallet"""
 
@@ -109,6 +113,7 @@ class TopUpWalletRequest(BaseModel):
                 "bonus_credits_expiry_date_utc",
                 "bonus_credits_to_add",
                 "checkout",
+                "coupons",
                 "credits_to_add",
                 "description",
                 "expiry_date_utc",

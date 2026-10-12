@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .commitmentinfo import CommitmentInfo, CommitmentInfoTypedDict
+from .fxconversion import FxConversion, FxConversionTypedDict
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -17,6 +18,7 @@ class WebhookDtoInvoiceLineItemTypedDict(TypedDict):
     display_name: NotRequired[str]
     entity_id: NotRequired[str]
     entity_type: NotRequired[str]
+    fx_conversion: NotRequired[FxConversionTypedDict]
     id: NotRequired[str]
     invoice_level_discount: NotRequired[str]
     line_item_discount: NotRequired[str]
@@ -49,6 +51,8 @@ class WebhookDtoInvoiceLineItem(BaseModel):
     entity_id: Optional[str] = None
 
     entity_type: Optional[str] = None
+
+    fx_conversion: Optional[FxConversion] = None
 
     id: Optional[str] = None
 
@@ -93,6 +97,7 @@ class WebhookDtoInvoiceLineItem(BaseModel):
                 "display_name",
                 "entity_id",
                 "entity_type",
+                "fx_conversion",
                 "id",
                 "invoice_level_discount",
                 "line_item_discount",

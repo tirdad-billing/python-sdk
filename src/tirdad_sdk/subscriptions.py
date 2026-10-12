@@ -654,6 +654,12 @@ class Subscriptions(BaseSDK):
         checkout: Optional[
             Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
         ] = None,
+        coupons: Optional[
+            Union[
+                Iterable[models.SubscriptionCouponInput],
+                Iterable[models.SubscriptionCouponInputTypedDict],
+            ]
+        ] = None,
         line_item_commitments: Optional[
             Union[
                 Mapping[str, models.LineItemCommitmentConfig],
@@ -684,6 +690,7 @@ class Subscriptions(BaseSDK):
         :param cadence:
         :param change_at:
         :param checkout:
+        :param coupons: Coupons apply to this addon's line items; price_id targets one price, omitted targets all.
         :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
         :param metadata:
         :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
@@ -710,6 +717,9 @@ class Subscriptions(BaseSDK):
             change_at=change_at,
             checkout=utils.get_pydantic_model(
                 checkout, Optional[models.CheckoutParams]
+            ),
+            coupons=utils.get_pydantic_model(
+                coupons, Optional[List[models.SubscriptionCouponInput]]
             ),
             line_item_commitments=utils.get_pydantic_model(
                 line_item_commitments,
@@ -808,6 +818,12 @@ class Subscriptions(BaseSDK):
         checkout: Optional[
             Union[models.CheckoutParams, models.CheckoutParamsTypedDict]
         ] = None,
+        coupons: Optional[
+            Union[
+                Iterable[models.SubscriptionCouponInput],
+                Iterable[models.SubscriptionCouponInputTypedDict],
+            ]
+        ] = None,
         line_item_commitments: Optional[
             Union[
                 Mapping[str, models.LineItemCommitmentConfig],
@@ -838,6 +854,7 @@ class Subscriptions(BaseSDK):
         :param cadence:
         :param change_at:
         :param checkout:
+        :param coupons: Coupons apply to this addon's line items; price_id targets one price, omitted targets all.
         :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
         :param metadata:
         :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
@@ -864,6 +881,9 @@ class Subscriptions(BaseSDK):
             change_at=change_at,
             checkout=utils.get_pydantic_model(
                 checkout, Optional[models.CheckoutParams]
+            ),
+            coupons=utils.get_pydantic_model(
+                coupons, Optional[List[models.SubscriptionCouponInput]]
             ),
             line_item_commitments=utils.get_pydantic_model(
                 line_item_commitments,

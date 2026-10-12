@@ -13,6 +13,10 @@ class Customers(BaseSDK):
     def update_customer(
         self,
         *,
+        contact_persons: Union[
+            Iterable[models.CustomerContactPerson],
+            Iterable[models.CustomerContactPersonTypedDict],
+        ],
         id: Optional[str] = None,
         external_customer_id: Optional[str] = None,
         address_city: Optional[str] = None,
@@ -44,6 +48,7 @@ class Customers(BaseSDK):
 
         Use when updating customer details (e.g. name, email, or metadata). Identify by id or external_customer_id.
 
+        :param contact_persons: contact_persons replaces the customer's contact persons when provided; at most one may be primary
         :param id: Customer ID
         :param external_customer_id: Customer External ID
         :param address_city: address_city is the updated city name with maximum 100 characters
@@ -88,6 +93,9 @@ class Customers(BaseSDK):
                 address_state=address_state,
                 billing_currency=billing_currency,
                 contact=contact,
+                contact_persons=utils.get_pydantic_model(
+                    contact_persons, List[models.CustomerContactPerson]
+                ),
                 email=email,
                 external_id=external_id,
                 integration_entity_mapping=utils.get_pydantic_model(
@@ -173,6 +181,10 @@ class Customers(BaseSDK):
     async def update_customer_async(
         self,
         *,
+        contact_persons: Union[
+            Iterable[models.CustomerContactPerson],
+            Iterable[models.CustomerContactPersonTypedDict],
+        ],
         id: Optional[str] = None,
         external_customer_id: Optional[str] = None,
         address_city: Optional[str] = None,
@@ -204,6 +216,7 @@ class Customers(BaseSDK):
 
         Use when updating customer details (e.g. name, email, or metadata). Identify by id or external_customer_id.
 
+        :param contact_persons: contact_persons replaces the customer's contact persons when provided; at most one may be primary
         :param id: Customer ID
         :param external_customer_id: Customer External ID
         :param address_city: address_city is the updated city name with maximum 100 characters
@@ -248,6 +261,9 @@ class Customers(BaseSDK):
                 address_state=address_state,
                 billing_currency=billing_currency,
                 contact=contact,
+                contact_persons=utils.get_pydantic_model(
+                    contact_persons, List[models.CustomerContactPerson]
+                ),
                 email=email,
                 external_id=external_id,
                 integration_entity_mapping=utils.get_pydantic_model(
@@ -333,6 +349,10 @@ class Customers(BaseSDK):
     def create_customer(
         self,
         *,
+        contact_persons: Union[
+            Iterable[models.CustomerContactPerson],
+            Iterable[models.CustomerContactPersonTypedDict],
+        ],
         external_id: str,
         name: str,
         address_city: Optional[str] = None,
@@ -370,6 +390,7 @@ class Customers(BaseSDK):
 
         Use when onboarding a new billing customer (e.g. sign-up or CRM sync). Ideal for linking via external_customer_id to your app's user id.
 
+        :param contact_persons: contact_persons are people at the customer; at most one may be primary
         :param external_id: external_id is the unique identifier from your system to reference this customer (required)
         :param name: name is the full name or company name of the customer
         :param address_city: address_city is the city name with maximum 100 characters
@@ -415,6 +436,9 @@ class Customers(BaseSDK):
             address_state=address_state,
             billing_currency=billing_currency,
             contact=contact,
+            contact_persons=utils.get_pydantic_model(
+                contact_persons, List[models.CustomerContactPerson]
+            ),
             email=email,
             external_id=external_id,
             integration_entity_mapping=utils.get_pydantic_model(
@@ -507,6 +531,10 @@ class Customers(BaseSDK):
     async def create_customer_async(
         self,
         *,
+        contact_persons: Union[
+            Iterable[models.CustomerContactPerson],
+            Iterable[models.CustomerContactPersonTypedDict],
+        ],
         external_id: str,
         name: str,
         address_city: Optional[str] = None,
@@ -544,6 +572,7 @@ class Customers(BaseSDK):
 
         Use when onboarding a new billing customer (e.g. sign-up or CRM sync). Ideal for linking via external_customer_id to your app's user id.
 
+        :param contact_persons: contact_persons are people at the customer; at most one may be primary
         :param external_id: external_id is the unique identifier from your system to reference this customer (required)
         :param name: name is the full name or company name of the customer
         :param address_city: address_city is the city name with maximum 100 characters
@@ -589,6 +618,9 @@ class Customers(BaseSDK):
             address_state=address_state,
             billing_currency=billing_currency,
             contact=contact,
+            contact_persons=utils.get_pydantic_model(
+                contact_persons, List[models.CustomerContactPerson]
+            ),
             email=email,
             external_id=external_id,
             integration_entity_mapping=utils.get_pydantic_model(

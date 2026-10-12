@@ -9,6 +9,10 @@ TaxExemptionReasonCode = Union[
     Literal[
         "customer_exempt",
         "no_tax_configured",
+        "reverse_charge",
+        "not_collecting",
+        "not_subject_to_tax",
+        "not_supported",
     ],
     UnrecognizedStr,
 ]

@@ -8,16 +8,20 @@ from .transactionstatus import TransactionStatus
 from .transactiontype import TransactionType
 from .userresponse import UserResponse, UserResponseTypedDict
 from .walletresponse import WalletResponse, WalletResponseTypedDict
+from .wallettxconsumption import WalletTxConsumption, WalletTxConsumptionTypedDict
 from .wallettxreferencetype import WalletTxReferenceType
+from .wallettxsourcetype import WalletTxSourceType
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class WalletTransactionResponseTypedDict(TypedDict):
     amount: NotRequired[str]
+    consumption_breakdown: NotRequired[List[WalletTxConsumptionTypedDict]]
+    r"""ConsumptionBreakdown is set on debits: the credits drawn from each credit batch."""
     conversion_rate: NotRequired[str]
     r"""conversion_rate is the conversion rate for the transaction to the currency"""
     created_at: NotRequired[datetime]
@@ -44,6 +48,8 @@ class WalletTransactionResponseTypedDict(TypedDict):
     priority: NotRequired[int]
     reference_id: NotRequired[str]
     reference_type: NotRequired[WalletTxReferenceType]
+    source_id: NotRequired[str]
+    source_type: NotRequired[WalletTxSourceType]
     status: NotRequired[Status]
     tenant_id: NotRequired[str]
     topup_conversion_rate: NotRequired[str]
@@ -59,6 +65,9 @@ class WalletTransactionResponseTypedDict(TypedDict):
 
 class WalletTransactionResponse(BaseModel):
     amount: Optional[str] = None
+
+    consumption_breakdown: Optional[List[WalletTxConsumption]] = None
+    r"""ConsumptionBreakdown is set on debits: the credits drawn from each credit batch."""
 
     conversion_rate: Optional[str] = None
     r"""conversion_rate is the conversion rate for the transaction to the currency"""
@@ -107,6 +116,10 @@ class WalletTransactionResponse(BaseModel):
 
     reference_type: Optional[WalletTxReferenceType] = None
 
+    source_id: Optional[str] = None
+
+    source_type: Optional[WalletTxSourceType] = None
+
     status: Optional[Status] = None
 
     tenant_id: Optional[str] = None
@@ -133,6 +146,7 @@ class WalletTransactionResponse(BaseModel):
         optional_fields = set(
             [
                 "amount",
+                "consumption_breakdown",
                 "conversion_rate",
                 "created_at",
                 "created_by",
@@ -154,6 +168,8 @@ class WalletTransactionResponse(BaseModel):
                 "priority",
                 "reference_id",
                 "reference_type",
+                "source_id",
+                "source_type",
                 "status",
                 "tenant_id",
                 "topup_conversion_rate",

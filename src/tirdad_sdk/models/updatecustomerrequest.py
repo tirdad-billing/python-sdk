@@ -5,6 +5,10 @@ from .createentityintegrationmappingrequest import (
     CreateEntityIntegrationMappingRequest,
     CreateEntityIntegrationMappingRequestTypedDict,
 )
+from .customer_contactperson import (
+    CustomerContactPerson,
+    CustomerContactPersonTypedDict,
+)
 from .taxtreatment import TaxTreatment
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -15,6 +19,8 @@ from typing_extensions import NotRequired, TypedDict
 class UpdateCustomerRequestTypedDict(TypedDict):
     r"""Request object for updating an existing customer. All fields are optional - only provided fields will be updated"""
 
+    contact_persons: List[CustomerContactPersonTypedDict]
+    r"""contact_persons replaces the customer's contact persons when provided; at most one may be primary"""
     address_city: NotRequired[str]
     r"""address_city is the updated city name with maximum 100 characters"""
     address_country: NotRequired[str]
@@ -50,6 +56,9 @@ class UpdateCustomerRequestTypedDict(TypedDict):
 
 class UpdateCustomerRequest(BaseModel):
     r"""Request object for updating an existing customer. All fields are optional - only provided fields will be updated"""
+
+    contact_persons: List[CustomerContactPerson]
+    r"""contact_persons replaces the customer's contact persons when provided; at most one may be primary"""
 
     address_city: Optional[str] = None
     r"""address_city is the updated city name with maximum 100 characters"""
