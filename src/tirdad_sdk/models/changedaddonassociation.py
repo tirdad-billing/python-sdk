@@ -18,6 +18,7 @@ class ChangedAddonAssociationTypedDict(TypedDict):
     end_date: NotRequired[datetime]
     id: NotRequired[str]
     start_date: NotRequired[datetime]
+    subscription_id: NotRequired[str]
 
 
 class ChangedAddonAssociation(BaseModel):
@@ -34,6 +35,8 @@ class ChangedAddonAssociation(BaseModel):
 
     start_date: Optional[datetime] = None
 
+    subscription_id: Optional[str] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -44,6 +47,7 @@ class ChangedAddonAssociation(BaseModel):
                 "end_date",
                 "id",
                 "start_date",
+                "subscription_id",
             ]
         )
         serialized = handler(self)

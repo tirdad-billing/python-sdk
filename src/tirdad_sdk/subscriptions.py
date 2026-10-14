@@ -4305,7 +4305,7 @@ class Subscriptions(BaseSDK):
         id: str,
         cancellation_type: models.CancellationType,
         cancel_at: Optional[datetime] = None,
-        cancel_immediately_inovice_policy: Optional[
+        cancel_immediately_invoice_policy: Optional[
             models.CancelImmediatelyInvoicePolicy
         ] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
@@ -4325,7 +4325,7 @@ class Subscriptions(BaseSDK):
             Required for cancellation_type \"scheduled_date\"; optional for \"immediate\" (past dates only — backdated cancellation).
             For \"scheduled_date\", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
             For \"immediate\", accepts past/current dates only; use \"scheduled_date\" for future dates.
-        :param cancel_immediately_inovice_policy:
+        :param cancel_immediately_invoice_policy:
         :param proration_behavior:
         :param reason: Reason for cancellation (for audit and business intelligence)
         :param retries: Override the default retry configuration for this method
@@ -4347,7 +4347,7 @@ class Subscriptions(BaseSDK):
             id=id,
             body=models.CancelSubscriptionRequest(
                 cancel_at=cancel_at,
-                cancel_immediately_inovice_policy=cancel_immediately_inovice_policy,
+                cancel_immediately_invoice_policy=cancel_immediately_invoice_policy,
                 cancellation_type=cancellation_type,
                 proration_behavior=proration_behavior,
                 reason=reason,
@@ -4429,7 +4429,7 @@ class Subscriptions(BaseSDK):
         id: str,
         cancellation_type: models.CancellationType,
         cancel_at: Optional[datetime] = None,
-        cancel_immediately_inovice_policy: Optional[
+        cancel_immediately_invoice_policy: Optional[
             models.CancelImmediatelyInvoicePolicy
         ] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
@@ -4449,7 +4449,7 @@ class Subscriptions(BaseSDK):
             Required for cancellation_type \"scheduled_date\"; optional for \"immediate\" (past dates only — backdated cancellation).
             For \"scheduled_date\", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
             For \"immediate\", accepts past/current dates only; use \"scheduled_date\" for future dates.
-        :param cancel_immediately_inovice_policy:
+        :param cancel_immediately_invoice_policy:
         :param proration_behavior:
         :param reason: Reason for cancellation (for audit and business intelligence)
         :param retries: Override the default retry configuration for this method
@@ -4471,7 +4471,7 @@ class Subscriptions(BaseSDK):
             id=id,
             body=models.CancelSubscriptionRequest(
                 cancel_at=cancel_at,
-                cancel_immediately_inovice_policy=cancel_immediately_inovice_policy,
+                cancel_immediately_invoice_policy=cancel_immediately_invoice_policy,
                 cancellation_type=cancellation_type,
                 proration_behavior=proration_behavior,
                 reason=reason,

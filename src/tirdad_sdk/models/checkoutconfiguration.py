@@ -14,11 +14,12 @@ from .payinvoiceparams import PayInvoiceParams, PayInvoiceParamsTypedDict
 from .wallettopupparams import WalletTopupParams, WalletTopupParamsTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class CheckoutConfigurationTypedDict(TypedDict):
+    add_addon_batch_params: NotRequired[List[AddAddonParamsTypedDict]]
     add_addon_params: NotRequired[AddAddonParamsTypedDict]
     create_subscription_params: NotRequired[CreateSubscriptionParamsTypedDict]
     modify_subscription_params: NotRequired[ModifySubscriptionParamsTypedDict]
@@ -27,6 +28,8 @@ class CheckoutConfigurationTypedDict(TypedDict):
 
 
 class CheckoutConfiguration(BaseModel):
+    add_addon_batch_params: Optional[List[AddAddonParams]] = None
+
     add_addon_params: Optional[AddAddonParams] = None
 
     create_subscription_params: Optional[CreateSubscriptionParams] = None
@@ -41,6 +44,7 @@ class CheckoutConfiguration(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "add_addon_batch_params",
                 "add_addon_params",
                 "create_subscription_params",
                 "modify_subscription_params",

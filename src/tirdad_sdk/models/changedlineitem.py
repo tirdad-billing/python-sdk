@@ -17,6 +17,7 @@ class ChangedLineItemTypedDict(TypedDict):
     price_id: NotRequired[str]
     quantity: NotRequired[str]
     start_date: NotRequired[datetime]
+    subscription_id: NotRequired[str]
 
 
 class ChangedLineItem(BaseModel):
@@ -33,10 +34,20 @@ class ChangedLineItem(BaseModel):
 
     start_date: Optional[datetime] = None
 
+    subscription_id: Optional[str] = None
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["change_action", "end_date", "id", "price_id", "quantity", "start_date"]
+            [
+                "change_action",
+                "end_date",
+                "id",
+                "price_id",
+                "quantity",
+                "start_date",
+                "subscription_id",
+            ]
         )
         serialized = handler(self)
         m = {}

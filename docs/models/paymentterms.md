@@ -20,3 +20,5 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"60 NET"`
 - `"75 NET"`
 - `"90 NET"`
+- `"END_OF_MONTH"`
+- `"END_OF_NEXT_MONTH"`

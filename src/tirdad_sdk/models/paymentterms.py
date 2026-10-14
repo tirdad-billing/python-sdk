@@ -13,6 +13,8 @@ PaymentTerms = Union[
         "60 NET",
         "75 NET",
         "90 NET",
+        "END_OF_MONTH",
+        "END_OF_NEXT_MONTH",
     ],
     UnrecognizedStr,
 ]

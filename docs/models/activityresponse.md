@@ -1,0 +1,18 @@
+# ActivityResponse
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `action`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `actor`                                                              | [Optional[models.ActivityActor]](../models/activityactor.md)         | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `customer_id`                                                        | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `entity`                                                             | [Optional[models.ActivityEntity]](../models/activityentity.md)       | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `id`                                                                 | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `ip`                                                                 | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `occurred_at`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `request_id`                                                         | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `source`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `state`                                                              | [Optional[models.State]](../models/state.md)                         | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `user_agent`                                                         | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |

@@ -19,7 +19,7 @@ class CancelSubscriptionRequestTypedDict(TypedDict):
     For \"scheduled_date\", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
     For \"immediate\", accepts past/current dates only; use \"scheduled_date\" for future dates.
     """
-    cancel_immediately_inovice_policy: NotRequired[CancelImmediatelyInvoicePolicy]
+    cancel_immediately_invoice_policy: NotRequired[CancelImmediatelyInvoicePolicy]
     proration_behavior: NotRequired[ProrationBehavior]
     reason: NotRequired[str]
     r"""Reason for cancellation (for audit and business intelligence)"""
@@ -35,7 +35,7 @@ class CancelSubscriptionRequest(BaseModel):
     For \"immediate\", accepts past/current dates only; use \"scheduled_date\" for future dates.
     """
 
-    cancel_immediately_inovice_policy: Optional[CancelImmediatelyInvoicePolicy] = None
+    cancel_immediately_invoice_policy: Optional[CancelImmediatelyInvoicePolicy] = None
 
     proration_behavior: Optional[ProrationBehavior] = None
 
@@ -47,7 +47,7 @@ class CancelSubscriptionRequest(BaseModel):
         optional_fields = set(
             [
                 "cancel_at",
-                "cancel_immediately_inovice_policy",
+                "cancel_immediately_invoice_policy",
                 "proration_behavior",
                 "reason",
             ]

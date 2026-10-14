@@ -19,8 +19,6 @@ from typing_extensions import NotRequired, TypedDict
 class UpdateCustomerRequestTypedDict(TypedDict):
     r"""Request object for updating an existing customer. All fields are optional - only provided fields will be updated"""
 
-    contact_persons: List[CustomerContactPersonTypedDict]
-    r"""contact_persons replaces the customer's contact persons when provided; at most one may be primary"""
     address_city: NotRequired[str]
     r"""address_city is the updated city name with maximum 100 characters"""
     address_country: NotRequired[str]
@@ -37,6 +35,8 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency"""
     contact: NotRequired[str]
     r"""contact is the updated contact number for the customer (e.g. phone)"""
+    contact_persons: NotRequired[List[CustomerContactPersonTypedDict]]
+    r"""contact_persons replaces the customer's contact persons when provided; at most one may be primary"""
     email: NotRequired[str]
     r"""email is the updated email address and must be a valid email format if provided"""
     external_id: NotRequired[str]
@@ -56,9 +56,6 @@ class UpdateCustomerRequestTypedDict(TypedDict):
 
 class UpdateCustomerRequest(BaseModel):
     r"""Request object for updating an existing customer. All fields are optional - only provided fields will be updated"""
-
-    contact_persons: List[CustomerContactPerson]
-    r"""contact_persons replaces the customer's contact persons when provided; at most one may be primary"""
 
     address_city: Optional[str] = None
     r"""address_city is the updated city name with maximum 100 characters"""
@@ -83,6 +80,9 @@ class UpdateCustomerRequest(BaseModel):
 
     contact: Optional[str] = None
     r"""contact is the updated contact number for the customer (e.g. phone)"""
+
+    contact_persons: Optional[List[CustomerContactPerson]] = None
+    r"""contact_persons replaces the customer's contact persons when provided; at most one may be primary"""
 
     email: Optional[str] = None
     r"""email is the updated email address and must be a valid email format if provided"""
@@ -118,6 +118,7 @@ class UpdateCustomerRequest(BaseModel):
                 "address_state",
                 "billing_currency",
                 "contact",
+                "contact_persons",
                 "email",
                 "external_id",
                 "integration_entity_mapping",

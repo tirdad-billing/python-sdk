@@ -7,4 +7,5 @@ from typing import Literal
 GroupedInvoicingAction = Literal[
     "add",
     "remove",
+    "modify",
 ]

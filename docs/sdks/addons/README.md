@@ -10,6 +10,7 @@
 * [get_addon](#get_addon) - Get addon
 * [update_addon](#update_addon) - Update addon
 * [delete_addon](#delete_addon) - Delete addon
+* [sync_addon_prices](#sync_addon_prices) - Synchronize addon prices
 
 ## create_addon
 
@@ -270,5 +271,46 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## sync_addon_prices
+
+Use when you have changed an addon's usage charges and need to push them to all active subscriptions holding the addon. Returns workflow ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="syncAddonPrices" method="post" path="/addons/{id}/sync/subscriptions" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.addons.sync_addon_prices(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Addon ID                                                            |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ModelsTemporalWorkflowResult](../../models/modelstemporalworkflowresult.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404, 422                    | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |

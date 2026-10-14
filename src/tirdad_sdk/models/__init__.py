@@ -19,6 +19,15 @@ if TYPE_CHECKING:
         ActivateSubscriptionRequest,
         ActivateSubscriptionRequestTypedDict,
     )
+    from .activityactor import ActivityActor, ActivityActorTypedDict
+    from .activityentity import ActivityEntity, ActivityEntityTypedDict
+    from .activitypagination import ActivityPagination, ActivityPaginationTypedDict
+    from .activityresponse import (
+        ActivityResponse,
+        ActivityResponseTypedDict,
+        State,
+        StateTypedDict,
+    )
     from .addaddonparams import AddAddonParams, AddAddonParamsTypedDict
     from .addaddonref import AddAddonRef, AddAddonRefTypedDict
     from .addaddonrequest import AddAddonRequest, AddAddonRequestTypedDict
@@ -39,6 +48,10 @@ if TYPE_CHECKING:
     )
     from .addoncadence import AddonCadence
     from .addonfilter import AddonFilter, AddonFilterOrder, AddonFilterTypedDict
+    from .addonpricesyncstatusresponse import (
+        AddonPriceSyncStatusResponse,
+        AddonPriceSyncStatusResponseTypedDict,
+    )
     from .addonstatus import AddonStatus
     from .address import Address, AddressTypedDict
     from .aggregatedentitlement import (
@@ -609,6 +622,7 @@ if TYPE_CHECKING:
         GCPMarketplaceAgreement,
         GCPMarketplaceAgreementTypedDict,
     )
+    from .getactivityop import GetActivityRequest, GetActivityRequestTypedDict
     from .getaddonbylookupkeyop import (
         GetAddonByLookupKeyRequest,
         GetAddonByLookupKeyRequestTypedDict,
@@ -822,6 +836,10 @@ if TYPE_CHECKING:
     from .grantstate import GrantState, GrantStateTypedDict
     from .group_group import GroupGroup, GroupGroupTypedDict
     from .groupedinvoicingaction import GroupedInvoicingAction
+    from .groupedinvoicingchange import (
+        GroupedInvoicingChange,
+        GroupedInvoicingChangeTypedDict,
+    )
     from .groupedinvoicingchildrequest import (
         GroupedInvoicingChildRequest,
         GroupedInvoicingChildRequestTypedDict,
@@ -889,6 +907,11 @@ if TYPE_CHECKING:
     from .linkintegrationmappingresponse import (
         LinkIntegrationMappingResponse,
         LinkIntegrationMappingResponseTypedDict,
+    )
+    from .listactivityrequest import ListActivityRequest, ListActivityRequestTypedDict
+    from .listactivityresponse import (
+        ListActivityResponse,
+        ListActivityResponseTypedDict,
     )
     from .listaddonassociationsresponse import (
         ListAddonAssociationsResponse,
@@ -1415,6 +1438,10 @@ if TYPE_CHECKING:
         SubscriptionUsageByMetersResponseTypedDict,
     )
     from .successresponse import SuccessResponse, SuccessResponseTypedDict
+    from .syncaddonpricesop import (
+        SyncAddonPricesRequest,
+        SyncAddonPricesRequestTypedDict,
+    )
     from .syncconfig import SyncConfig, SyncConfigTypedDict
     from .syncplanpricesop import SyncPlanPricesRequest, SyncPlanPricesRequestTypedDict
     from .taskresponse import TaskResponse, TaskResponseTypedDict
@@ -1891,6 +1918,14 @@ __all__ = [
     "ActivateDraftSubscriptionRequestTypedDict",
     "ActivateSubscriptionRequest",
     "ActivateSubscriptionRequestTypedDict",
+    "ActivityActor",
+    "ActivityActorTypedDict",
+    "ActivityEntity",
+    "ActivityEntityTypedDict",
+    "ActivityPagination",
+    "ActivityPaginationTypedDict",
+    "ActivityResponse",
+    "ActivityResponseTypedDict",
     "AddAddonParams",
     "AddAddonParamsTypedDict",
     "AddAddonRef",
@@ -1911,6 +1946,8 @@ __all__ = [
     "AddonFilter",
     "AddonFilterOrder",
     "AddonFilterTypedDict",
+    "AddonPriceSyncStatusResponse",
+    "AddonPriceSyncStatusResponseTypedDict",
     "AddonResponse",
     "AddonResponseTypedDict",
     "AddonStatus",
@@ -2365,6 +2402,8 @@ __all__ = [
     "FxConversionTypedDict",
     "GCPMarketplaceAgreement",
     "GCPMarketplaceAgreementTypedDict",
+    "GetActivityRequest",
+    "GetActivityRequestTypedDict",
     "GetAddonByLookupKeyRequest",
     "GetAddonByLookupKeyRequestTypedDict",
     "GetAddonCreditGrantsRequest",
@@ -2527,6 +2566,8 @@ __all__ = [
     "GroupResponse",
     "GroupResponseTypedDict",
     "GroupedInvoicingAction",
+    "GroupedInvoicingChange",
+    "GroupedInvoicingChangeTypedDict",
     "GroupedInvoicingChildRequest",
     "GroupedInvoicingChildRequestTypedDict",
     "IngestEventRequest",
@@ -2580,6 +2621,10 @@ __all__ = [
     "LinkIntegrationMappingResponseTypedDict",
     "ListAPIKeysRequest",
     "ListAPIKeysRequestTypedDict",
+    "ListActivityRequest",
+    "ListActivityRequestTypedDict",
+    "ListActivityResponse",
+    "ListActivityResponseTypedDict",
     "ListAddonAssociationsResponse",
     "ListAddonAssociationsResponseTypedDict",
     "ListAddonsResponse",
@@ -2882,6 +2927,8 @@ __all__ = [
     "SortDirection",
     "SourceUsageItem",
     "SourceUsageItemTypedDict",
+    "State",
+    "StateTypedDict",
     "Status",
     "StorageExportConfig",
     "StorageExportConfigTypedDict",
@@ -2971,6 +3018,8 @@ __all__ = [
     "SubscriptionUsageByMetersResponseTypedDict",
     "SuccessResponse",
     "SuccessResponseTypedDict",
+    "SyncAddonPricesRequest",
+    "SyncAddonPricesRequestTypedDict",
     "SyncConfig",
     "SyncConfigTypedDict",
     "SyncPlanPricesRequest",
@@ -3305,6 +3354,16 @@ _dynamic_imports: dict[str, str] = {
     "ActivateDraftSubscriptionRequestTypedDict": ".activatedraftsubscriptionrequest",
     "ActivateSubscriptionRequest": ".activatesubscriptionop",
     "ActivateSubscriptionRequestTypedDict": ".activatesubscriptionop",
+    "ActivityActor": ".activityactor",
+    "ActivityActorTypedDict": ".activityactor",
+    "ActivityEntity": ".activityentity",
+    "ActivityEntityTypedDict": ".activityentity",
+    "ActivityPagination": ".activitypagination",
+    "ActivityPaginationTypedDict": ".activitypagination",
+    "ActivityResponse": ".activityresponse",
+    "ActivityResponseTypedDict": ".activityresponse",
+    "State": ".activityresponse",
+    "StateTypedDict": ".activityresponse",
     "AddAddonParams": ".addaddonparams",
     "AddAddonParamsTypedDict": ".addaddonparams",
     "AddAddonRef": ".addaddonref",
@@ -3326,6 +3385,8 @@ _dynamic_imports: dict[str, str] = {
     "AddonFilter": ".addonfilter",
     "AddonFilterOrder": ".addonfilter",
     "AddonFilterTypedDict": ".addonfilter",
+    "AddonPriceSyncStatusResponse": ".addonpricesyncstatusresponse",
+    "AddonPriceSyncStatusResponseTypedDict": ".addonpricesyncstatusresponse",
     "AddonStatus": ".addonstatus",
     "Address": ".address",
     "AddressTypedDict": ".address",
@@ -3779,6 +3840,8 @@ _dynamic_imports: dict[str, str] = {
     "FXRateSource": ".fxratesource",
     "GCPMarketplaceAgreement": ".gcpmarketplaceagreement",
     "GCPMarketplaceAgreementTypedDict": ".gcpmarketplaceagreement",
+    "GetActivityRequest": ".getactivityop",
+    "GetActivityRequestTypedDict": ".getactivityop",
     "GetAddonByLookupKeyRequest": ".getaddonbylookupkeyop",
     "GetAddonByLookupKeyRequestTypedDict": ".getaddonbylookupkeyop",
     "GetAddonCreditGrantsRequest": ".getaddoncreditgrantsop",
@@ -3937,6 +4000,8 @@ _dynamic_imports: dict[str, str] = {
     "GroupGroup": ".group_group",
     "GroupGroupTypedDict": ".group_group",
     "GroupedInvoicingAction": ".groupedinvoicingaction",
+    "GroupedInvoicingChange": ".groupedinvoicingchange",
+    "GroupedInvoicingChangeTypedDict": ".groupedinvoicingchange",
     "GroupedInvoicingChildRequest": ".groupedinvoicingchildrequest",
     "GroupedInvoicingChildRequestTypedDict": ".groupedinvoicingchildrequest",
     "GroupEntityType": ".groupentitytype",
@@ -3992,6 +4057,10 @@ _dynamic_imports: dict[str, str] = {
     "LinkIntegrationMappingRequestTypedDict": ".linkintegrationmappingrequest",
     "LinkIntegrationMappingResponse": ".linkintegrationmappingresponse",
     "LinkIntegrationMappingResponseTypedDict": ".linkintegrationmappingresponse",
+    "ListActivityRequest": ".listactivityrequest",
+    "ListActivityRequestTypedDict": ".listactivityrequest",
+    "ListActivityResponse": ".listactivityresponse",
+    "ListActivityResponseTypedDict": ".listactivityresponse",
     "ListAddonAssociationsResponse": ".listaddonassociationsresponse",
     "ListAddonAssociationsResponseTypedDict": ".listaddonassociationsresponse",
     "ListAddonsResponse": ".listaddonsresponse",
@@ -4378,6 +4447,8 @@ _dynamic_imports: dict[str, str] = {
     "SubscriptionUsageByMetersResponseTypedDict": ".subscriptionusagebymetersresponse",
     "SuccessResponse": ".successresponse",
     "SuccessResponseTypedDict": ".successresponse",
+    "SyncAddonPricesRequest": ".syncaddonpricesop",
+    "SyncAddonPricesRequestTypedDict": ".syncaddonpricesop",
     "SyncConfig": ".syncconfig",
     "SyncConfigTypedDict": ".syncconfig",
     "SyncPlanPricesRequest": ".syncplanpricesop",

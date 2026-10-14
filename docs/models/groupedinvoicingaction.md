@@ -12,3 +12,4 @@ value: GroupedInvoicingAction = "add"
 
 - `"add"`
 - `"remove"`
+- `"modify"`

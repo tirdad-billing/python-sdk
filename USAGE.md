@@ -8,7 +8,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.addons.create_addon(lookup_key="<value>", name="<value>")
+    res = tirdad.activity.list_activity()
 
     # Handle response
     print(res)
@@ -29,7 +29,7 @@ async def main():
         api_key_auth="<YOUR_API_KEY_HERE>",
     ) as tirdad:
 
-        res = await tirdad.addons.create_addon_async(lookup_key="<value>", name="<value>")
+        res = await tirdad.activity.list_activity_async()
 
         # Handle response
         print(res)

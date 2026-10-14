@@ -33,6 +33,10 @@ class AddAddonToSubscriptionResponseTypedDict(TypedDict):
     metadata: NotRequired[Dict[str, Any]]
     start_date: NotRequired[datetime]
     status: NotRequired[Status]
+    synced_price_sequence: NotRequired[int]
+    r"""SyncedPriceSequence is the addon price sequence this association's line items
+    have been reconciled up to. Written only by the addon usage-price sync.
+    """
     tenant_id: NotRequired[str]
     updated_at: NotRequired[datetime]
     updated_by: NotRequired[str]
@@ -71,6 +75,11 @@ class AddAddonToSubscriptionResponse(BaseModel):
 
     status: Optional[Status] = None
 
+    synced_price_sequence: Optional[int] = None
+    r"""SyncedPriceSequence is the addon price sequence this association's line items
+    have been reconciled up to. Written only by the addon usage-price sync.
+    """
+
     tenant_id: Optional[str] = None
 
     updated_at: Optional[datetime] = None
@@ -97,6 +106,7 @@ class AddAddonToSubscriptionResponse(BaseModel):
                 "metadata",
                 "start_date",
                 "status",
+                "synced_price_sequence",
                 "tenant_id",
                 "updated_at",
                 "updated_by",

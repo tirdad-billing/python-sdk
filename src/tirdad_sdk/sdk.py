@@ -15,6 +15,7 @@ from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
 if TYPE_CHECKING:
+    from tirdad_sdk.activity import Activity
     from tirdad_sdk.addons import Addons
     from tirdad_sdk.alerts import Alerts
     from tirdad_sdk.alertsettings import AlertSettings
@@ -58,6 +59,7 @@ if TYPE_CHECKING:
 class Tirdad(BaseSDK):
     r"""Flexprice API: Flexprice API Service"""
 
+    activity: "Activity"
     addons: "Addons"
     credit_grants: "CreditGrants"
     entitlements: "Entitlements"
@@ -97,6 +99,7 @@ class Tirdad(BaseSDK):
     webhook_events: "WebhookEvents"
     workflows: "Workflows"
     _sub_sdk_map = {
+        "activity": ("tirdad_sdk.activity", "Activity"),
         "addons": ("tirdad_sdk.addons", "Addons"),
         "credit_grants": ("tirdad_sdk.credit_grants", "CreditGrants"),
         "entitlements": ("tirdad_sdk.entitlements", "Entitlements"),

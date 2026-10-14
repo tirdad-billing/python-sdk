@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .groupedinvoicingaction import GroupedInvoicingAction
+from .groupedinvoicingchange import (
+    GroupedInvoicingChange,
+    GroupedInvoicingChangeTypedDict,
+)
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -10,6 +14,8 @@ from typing_extensions import NotRequired, TypedDict
 
 class SubModifyGroupedInvoicingParamsTypedDict(TypedDict):
     action: GroupedInvoicingAction
+    changes: NotRequired[List[GroupedInvoicingChangeTypedDict]]
+    r"""Changes is required for action 'modify'; the path subscription is the parent."""
     child_subscription_ids: NotRequired[List[str]]
     parent_subscription_id: NotRequired[str]
     r"""ParentSubscriptionID is required for action 'add'."""
@@ -18,6 +24,9 @@ class SubModifyGroupedInvoicingParamsTypedDict(TypedDict):
 class SubModifyGroupedInvoicingParams(BaseModel):
     action: GroupedInvoicingAction
 
+    changes: Optional[List[GroupedInvoicingChange]] = None
+    r"""Changes is required for action 'modify'; the path subscription is the parent."""
+
     child_subscription_ids: Optional[List[str]] = None
 
     parent_subscription_id: Optional[str] = None
@@ -25,7 +34,9 @@ class SubModifyGroupedInvoicingParams(BaseModel):
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["child_subscription_ids", "parent_subscription_id"])
+        optional_fields = set(
+            ["changes", "child_subscription_ids", "parent_subscription_id"]
+        )
         serialized = handler(self)
         m = {}
 

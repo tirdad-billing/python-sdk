@@ -20,8 +20,6 @@ from typing_extensions import NotRequired, TypedDict
 class CreateCustomerRequestTypedDict(TypedDict):
     r"""Request object for creating a new customer in the system"""
 
-    contact_persons: List[CustomerContactPersonTypedDict]
-    r"""contact_persons are people at the customer; at most one may be primary"""
     external_id: str
     r"""external_id is the unique identifier from your system to reference this customer (required)"""
     name: str
@@ -42,6 +40,8 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is"""
     contact: NotRequired[str]
     r"""contact is an optional contact number for the customer (e.g. phone)"""
+    contact_persons: NotRequired[List[CustomerContactPersonTypedDict]]
+    r"""contact_persons are people at the customer; at most one may be primary"""
     email: NotRequired[str]
     r"""email is the customer's email address and must be a valid email format if provided"""
     integration_entity_mapping: NotRequired[
@@ -68,9 +68,6 @@ class CreateCustomerRequestTypedDict(TypedDict):
 
 class CreateCustomerRequest(BaseModel):
     r"""Request object for creating a new customer in the system"""
-
-    contact_persons: List[CustomerContactPerson]
-    r"""contact_persons are people at the customer; at most one may be primary"""
 
     external_id: str
     r"""external_id is the unique identifier from your system to reference this customer (required)"""
@@ -101,6 +98,9 @@ class CreateCustomerRequest(BaseModel):
 
     contact: Optional[str] = None
     r"""contact is an optional contact number for the customer (e.g. phone)"""
+
+    contact_persons: Optional[List[CustomerContactPerson]] = None
+    r"""contact_persons are people at the customer; at most one may be primary"""
 
     email: Optional[str] = None
     r"""email is the customer's email address and must be a valid email format if provided"""
@@ -144,6 +144,7 @@ class CreateCustomerRequest(BaseModel):
                 "address_state",
                 "billing_currency",
                 "contact",
+                "contact_persons",
                 "email",
                 "integration_entity_mapping",
                 "metadata",
