@@ -3662,7 +3662,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param cancel_at:
-        :param cancel_at_period_end:
+        :param cancel_at_period_end: Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.
         :param parent_subscription_id: ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear.
         :param status:
         :param retries: Override the default retry configuration for this method
@@ -3778,7 +3778,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param cancel_at:
-        :param cancel_at_period_end:
+        :param cancel_at_period_end: Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.
         :param parent_subscription_id: ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear.
         :param status:
         :param retries: Override the default retry configuration for this method

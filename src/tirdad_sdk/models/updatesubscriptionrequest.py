@@ -12,6 +12,7 @@ from typing_extensions import NotRequired, TypedDict
 class UpdateSubscriptionRequestTypedDict(TypedDict):
     cancel_at: NotRequired[datetime]
     cancel_at_period_end: NotRequired[bool]
+    r"""Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag."""
     parent_subscription_id: NotRequired[str]
     r"""ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear."""
     status: NotRequired[SubscriptionStatus]
@@ -21,6 +22,7 @@ class UpdateSubscriptionRequest(BaseModel):
     cancel_at: Optional[datetime] = None
 
     cancel_at_period_end: Optional[bool] = None
+    r"""Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag."""
 
     parent_subscription_id: Optional[str] = None
     r"""ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear."""
