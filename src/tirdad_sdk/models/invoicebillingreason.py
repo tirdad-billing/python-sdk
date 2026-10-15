@@ -14,4 +14,6 @@ InvoiceBillingReason = Literal[
     "MANUAL",
     "AUTO_INVOICE_THRESHOLD",
     "WALLET_AUTO_TOPUP",
+    "SUBSCRIPTION_PAUSED",
+    "SUBSCRIPTION_RESUME",
 ]

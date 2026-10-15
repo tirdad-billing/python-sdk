@@ -1112,6 +1112,18 @@ if TYPE_CHECKING:
     from .paginationresponse import PaginationResponse, PaginationResponseTypedDict
     from .pausemode import PauseMode
     from .pausestatus import PauseStatus
+    from .pausesubscriptionop import (
+        PauseSubscriptionRequestRequest,
+        PauseSubscriptionRequestRequestTypedDict,
+    )
+    from .pausesubscriptionrequest import (
+        PauseSubscriptionRequest,
+        PauseSubscriptionRequestTypedDict,
+    )
+    from .pausesubscriptionresponse import (
+        PauseSubscriptionResponse,
+        PauseSubscriptionResponseTypedDict,
+    )
     from .payinvoiceparams import PayInvoiceParams, PayInvoiceParamsTypedDict
     from .paymentaction import PaymentAction, PaymentActionTypedDict
     from .paymentactiontype import PaymentActionType
@@ -1232,6 +1244,18 @@ if TYPE_CHECKING:
     from .reportingunit import ReportingUnit, ReportingUnitTypedDict
     from .resetusage import ResetUsage
     from .resumemode import ResumeMode
+    from .resumesubscriptionop import (
+        ResumeSubscriptionRequestRequest,
+        ResumeSubscriptionRequestRequestTypedDict,
+    )
+    from .resumesubscriptionrequest import (
+        ResumeSubscriptionRequest,
+        ResumeSubscriptionRequestTypedDict,
+    )
+    from .resumesubscriptionresponse import (
+        ResumeSubscriptionResponse,
+        ResumeSubscriptionResponseTypedDict,
+    )
     from .retryrefundop import RetryRefundRequest, RetryRefundRequestTypedDict
     from .revenueallocationpolicy import RevenueAllocationPolicy
     from .revenueanalyticsrequest import (
@@ -1409,6 +1433,10 @@ if TYPE_CHECKING:
         SubscriptionModifyResponseTypedDict,
     )
     from .subscriptionmodifytype import SubscriptionModifyType
+    from .subscriptionpauseresponse import (
+        SubscriptionPauseResponse,
+        SubscriptionPauseResponseTypedDict,
+    )
     from .subscriptionphasecreaterequest import (
         SubscriptionPhaseCreateRequest,
         SubscriptionPhaseCreateRequestTypedDict,
@@ -2763,6 +2791,12 @@ __all__ = [
     "PaginationResponseTypedDict",
     "PauseMode",
     "PauseStatus",
+    "PauseSubscriptionRequest",
+    "PauseSubscriptionRequestRequest",
+    "PauseSubscriptionRequestRequestTypedDict",
+    "PauseSubscriptionRequestTypedDict",
+    "PauseSubscriptionResponse",
+    "PauseSubscriptionResponseTypedDict",
     "PayInvoiceParams",
     "PayInvoiceParamsTypedDict",
     "PaymentAction",
@@ -2875,6 +2909,12 @@ __all__ = [
     "ReportingUnitTypedDict",
     "ResetUsage",
     "ResumeMode",
+    "ResumeSubscriptionRequest",
+    "ResumeSubscriptionRequestRequest",
+    "ResumeSubscriptionRequestRequestTypedDict",
+    "ResumeSubscriptionRequestTypedDict",
+    "ResumeSubscriptionResponse",
+    "ResumeSubscriptionResponseTypedDict",
     "RetryRefundRequest",
     "RetryRefundRequestTypedDict",
     "RevenueAllocationPolicy",
@@ -2993,6 +3033,8 @@ __all__ = [
     "SubscriptionModifyResponse",
     "SubscriptionModifyResponseTypedDict",
     "SubscriptionModifyType",
+    "SubscriptionPauseResponse",
+    "SubscriptionPauseResponseTypedDict",
     "SubscriptionPhaseCreateRequest",
     "SubscriptionPhaseCreateRequestTypedDict",
     "SubscriptionPhaseResponse",
@@ -4201,6 +4243,12 @@ _dynamic_imports: dict[str, str] = {
     "PaginationResponseTypedDict": ".paginationresponse",
     "PauseMode": ".pausemode",
     "PauseStatus": ".pausestatus",
+    "PauseSubscriptionRequestRequest": ".pausesubscriptionop",
+    "PauseSubscriptionRequestRequestTypedDict": ".pausesubscriptionop",
+    "PauseSubscriptionRequest": ".pausesubscriptionrequest",
+    "PauseSubscriptionRequestTypedDict": ".pausesubscriptionrequest",
+    "PauseSubscriptionResponse": ".pausesubscriptionresponse",
+    "PauseSubscriptionResponseTypedDict": ".pausesubscriptionresponse",
     "PayInvoiceParams": ".payinvoiceparams",
     "PayInvoiceParamsTypedDict": ".payinvoiceparams",
     "PaymentAction": ".paymentaction",
@@ -4309,6 +4357,12 @@ _dynamic_imports: dict[str, str] = {
     "ReportingUnitTypedDict": ".reportingunit",
     "ResetUsage": ".resetusage",
     "ResumeMode": ".resumemode",
+    "ResumeSubscriptionRequestRequest": ".resumesubscriptionop",
+    "ResumeSubscriptionRequestRequestTypedDict": ".resumesubscriptionop",
+    "ResumeSubscriptionRequest": ".resumesubscriptionrequest",
+    "ResumeSubscriptionRequestTypedDict": ".resumesubscriptionrequest",
+    "ResumeSubscriptionResponse": ".resumesubscriptionresponse",
+    "ResumeSubscriptionResponseTypedDict": ".resumesubscriptionresponse",
     "RetryRefundRequest": ".retryrefundop",
     "RetryRefundRequestTypedDict": ".retryrefundop",
     "RevenueAllocationPolicy": ".revenueallocationpolicy",
@@ -4428,6 +4482,8 @@ _dynamic_imports: dict[str, str] = {
     "SubscriptionModifyResponse": ".subscriptionmodifyresponse",
     "SubscriptionModifyResponseTypedDict": ".subscriptionmodifyresponse",
     "SubscriptionModifyType": ".subscriptionmodifytype",
+    "SubscriptionPauseResponse": ".subscriptionpauseresponse",
+    "SubscriptionPauseResponseTypedDict": ".subscriptionpauseresponse",
     "SubscriptionPhaseCreateRequest": ".subscriptionphasecreaterequest",
     "SubscriptionPhaseCreateRequestTypedDict": ".subscriptionphasecreaterequest",
     "SubscriptionPhaseResponse": ".subscriptionphaseresponse",

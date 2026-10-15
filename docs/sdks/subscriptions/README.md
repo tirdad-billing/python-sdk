@@ -29,6 +29,8 @@
 * [create_subscription_line_item](#create_subscription_line_item) - Create subscription line item
 * [execute_subscription_modify](#execute_subscription_modify) - Execute subscription modification
 * [preview_subscription_modify](#preview_subscription_modify) - Preview subscription modification
+* [pause_subscription](#pause_subscription) - Pause subscription
+* [resume_subscription](#resume_subscription) - Resume subscription
 * [list_subscription_schedules](#list_subscription_schedules) - List subscription schedules
 * [get_subscription_v2](#get_subscription_v2) - Get subscription (V2)
 
@@ -1274,6 +1276,93 @@ with Tirdad(
 ### Response
 
 **[models.SubscriptionModifyResponse](../../models/subscriptionmodifyresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## pause_subscription
+
+Use when a customer stops temporarily. Pauses an active subscription now: usage and arrear fixed charges up to the pause are billed on a closing invoice, and every paused period after it gets a $0 skipped invoice.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="pauseSubscription" method="post" path="/subscriptions/{id}/pause" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.pause_subscription(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                 | Type                                                                                                                                                      | Required                                                                                                                                                  | Description                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                                                      | *str*                                                                                                                                                     | :heavy_check_mark:                                                                                                                                        | Subscription ID                                                                                                                                           |
+| `metadata`                                                                                                                                                | Dict[str, *str*]                                                                                                                                          | :heavy_minus_sign:                                                                                                                                        | Metadata stored on the pause<br/>@Example {"requested_by": "customer", "channel": "support_ticket"}                                                       |
+| `proration_behavior`                                                                                                                                      | [Optional[models.ProrationBehavior]](../../models/prorationbehavior.md)                                                                                   | :heavy_minus_sign:                                                                                                                                        | N/A                                                                                                                                                       |
+| `reason`                                                                                                                                                  | *Optional[str]*                                                                                                                                           | :heavy_minus_sign:                                                                                                                                        | Reason for pausing the subscription<br/>@Description Optional reason for the pause. Maximum 255 characters<br/>@Example "Customer requested temporary suspension" |
+| `retries`                                                                                                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                          | :heavy_minus_sign:                                                                                                                                        | Configuration to override the default retry behavior of the client.                                                                                       |
+
+### Response
+
+**[models.PauseSubscriptionResponse](../../models/pausesubscriptionresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## resume_subscription
+
+Use when a paused customer comes back. Resumes a paused subscription now on its existing billing anchor: the first period runs from the resume to the next billing date and its advance charges are invoiced at once.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="resumeSubscription" method="post" path="/subscriptions/{id}/resume" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.resume_subscription(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `id`                                                                    | *str*                                                                   | :heavy_check_mark:                                                      | Subscription ID                                                         |
+| `metadata`                                                              | Dict[str, *str*]                                                        | :heavy_minus_sign:                                                      | Metadata merged into the pause<br/>@Example {"resumed_by": "admin"}     |
+| `proration_behavior`                                                    | [Optional[models.ProrationBehavior]](../../models/prorationbehavior.md) | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `retries`                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)        | :heavy_minus_sign:                                                      | Configuration to override the default retry behavior of the client.     |
+
+### Response
+
+**[models.ResumeSubscriptionResponse](../../models/resumesubscriptionresponse.md)**
 
 ### Errors
 
