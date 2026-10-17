@@ -7,4 +7,5 @@ from typing import Literal
 ModifySubscriptionType = Literal[
     "quantity_change",
     "line_item_change",
+    "trial_end",
 ]

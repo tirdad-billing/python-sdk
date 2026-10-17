@@ -9,6 +9,7 @@ Metric = Union[
     Literal[
         "usage_quantity",
         "event_count",
+        "invoice_total",
     ],
     UnrecognizedStr,
 ]

@@ -9,6 +9,7 @@
 * [get_customer_by_external_id](#get_customer_by_external_id) - Get customer by external ID
 * [get_customer_entitlements_by_external_id](#get_customer_entitlements_by_external_id) - Get customer entitlements by external ID
 * [get_subscriptions_for_customer](#get_subscriptions_for_customer) - Get subscriptions for customer by external ID
+* [create_customer_portal_session](#create_customer_portal_session) - Create customer portal session
 * [query_customer](#query_customer) - Query customers
 * [get_customer_usage_summary](#get_customer_usage_summary) - Get customer usage summary
 * [get_customer](#get_customer) - Get customer
@@ -249,6 +250,47 @@ with Tirdad(
 ### Response
 
 **[models.ListSubscriptionsResponse](../../models/listsubscriptionsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## create_customer_portal_session
+
+Use when sending a customer to their self-serve billing portal (invoices, usage, payment methods). Returns a short-lived URL and token scoped to that customer.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="createCustomerPortalSession" method="get" path="/customers/portal/{external_id}" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.customers.create_customer_portal_session(external_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `external_id`                                                       | *str*                                                               | :heavy_check_mark:                                                  | Customer external ID                                                |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.PortalSessionResponse](../../models/portalsessionresponse.md)**
 
 ### Errors
 

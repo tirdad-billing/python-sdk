@@ -6,6 +6,7 @@ from .modifysubscriptionlineitem import (
     ModifySubscriptionLineItemTypedDict,
 )
 from .modifysubscriptiontype import ModifySubscriptionType
+from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -16,6 +17,8 @@ class ModifySubscriptionParamsTypedDict(TypedDict):
     line_item_modifications: NotRequired[List[ModifySubscriptionLineItemTypedDict]]
     modify_type: NotRequired[ModifySubscriptionType]
     subscription_id: NotRequired[str]
+    trial_end_at: NotRequired[datetime]
+    r"""TrialEndAt is where a trial_end checkout starts the first paid period."""
 
 
 class ModifySubscriptionParams(BaseModel):
@@ -25,10 +28,18 @@ class ModifySubscriptionParams(BaseModel):
 
     subscription_id: Optional[str] = None
 
+    trial_end_at: Optional[datetime] = None
+    r"""TrialEndAt is where a trial_end checkout starts the first paid period."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["line_item_modifications", "modify_type", "subscription_id"]
+            [
+                "line_item_modifications",
+                "modify_type",
+                "subscription_id",
+                "trial_end_at",
+            ]
         )
         serialized = handler(self)
         m = {}

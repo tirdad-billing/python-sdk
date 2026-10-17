@@ -28,7 +28,7 @@ with Tirdad(
         "metrics": [
             "usage_quantity",
         ],
-        "shape": "breakdown",
+        "shape": "scalar",
     })
 
     # Handle response
@@ -126,9 +126,9 @@ with Tirdad(
 
     res = tirdad.analytics.create_analytics_view(definition={
         "metrics": [
-            "event_count",
+            "invoice_total",
         ],
-        "shape": "breakdown",
+        "shape": "scalar",
     }, name="<value>")
 
     # Handle response

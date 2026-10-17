@@ -12,3 +12,4 @@ value: ModifySubscriptionType = "quantity_change"
 
 - `"quantity_change"`
 - `"line_item_change"`
+- `"trial_end"`

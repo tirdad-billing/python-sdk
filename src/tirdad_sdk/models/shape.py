@@ -9,6 +9,7 @@ Shape = Union[
     Literal[
         "timeseries",
         "breakdown",
+        "scalar",
     ],
     UnrecognizedStr,
 ]

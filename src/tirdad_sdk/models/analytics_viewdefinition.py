@@ -5,6 +5,7 @@ from .analytics_filter import AnalyticsFilter, AnalyticsFilterTypedDict
 from .analytics_sortspec import AnalyticsSortSpec, AnalyticsSortSpecTypedDict
 from .analytics_timespecraw import AnalyticsTimeSpecRaw, AnalyticsTimeSpecRawTypedDict
 from .analytics_variable import AnalyticsVariable, AnalyticsVariableTypedDict
+from .family import Family
 from .metric import Metric
 from .shape import Shape
 from pydantic import model_serializer
@@ -17,6 +18,7 @@ class AnalyticsViewDefinitionTypedDict(TypedDict):
     metrics: List[Metric]
     shape: Shape
     dimensions: NotRequired[List[str]]
+    family: NotRequired[Family]
     filters: NotRequired[List[AnalyticsFilterTypedDict]]
     limit: NotRequired[int]
     sort: NotRequired[List[AnalyticsSortSpecTypedDict]]
@@ -31,6 +33,8 @@ class AnalyticsViewDefinition(BaseModel):
 
     dimensions: Optional[List[str]] = None
 
+    family: Optional[Family] = None
+
     filters: Optional[List[AnalyticsFilter]] = None
 
     limit: Optional[int] = None
@@ -44,7 +48,7 @@ class AnalyticsViewDefinition(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["dimensions", "filters", "limit", "sort", "time", "variables"]
+            ["dimensions", "family", "filters", "limit", "sort", "time", "variables"]
         )
         serialized = handler(self)
         m = {}

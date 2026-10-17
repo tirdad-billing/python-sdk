@@ -312,6 +312,10 @@ if TYPE_CHECKING:
         CreateCreditNoteRequest,
         CreateCreditNoteRequestTypedDict,
     )
+    from .createcustomerportalsessionop import (
+        CreateCustomerPortalSessionRequest,
+        CreateCustomerPortalSessionRequestTypedDict,
+    )
     from .createcustomerrequest import (
         CreateCustomerRequest,
         CreateCustomerRequestTypedDict,
@@ -595,6 +599,7 @@ if TYPE_CHECKING:
     from .factstatus import FactStatus
     from .failurepoint import FailurePoint, FailurePointTypedDict
     from .failurepointtype import FailurePointType
+    from .family import Family
     from .feature import Feature, FeatureTypedDict
     from .featurefilter import FeatureFilter, FeatureFilterOrder, FeatureFilterTypedDict
     from .featureresponse import FeatureResponse, FeatureResponseTypedDict
@@ -1159,6 +1164,10 @@ if TYPE_CHECKING:
     )
     from .plansummary import PlanSummary, PlanSummaryTypedDict
     from .pointbucket import PointBucket, PointBucketTypedDict
+    from .portalsessionresponse import (
+        PortalSessionResponse,
+        PortalSessionResponseTypedDict,
+    )
     from .previewsubscriptionchangeop import (
         PreviewSubscriptionChangeRequest,
         PreviewSubscriptionChangeRequestTypedDict,
@@ -2178,6 +2187,8 @@ __all__ = [
     "CreateCreditNoteLineItemRequestTypedDict",
     "CreateCreditNoteRequest",
     "CreateCreditNoteRequestTypedDict",
+    "CreateCustomerPortalSessionRequest",
+    "CreateCustomerPortalSessionRequestTypedDict",
     "CreateCustomerRequest",
     "CreateCustomerRequestTypedDict",
     "CreateEntitlementRequest",
@@ -2404,6 +2415,7 @@ __all__ = [
     "FailurePoint",
     "FailurePointType",
     "FailurePointTypedDict",
+    "Family",
     "Feature",
     "FeatureFilter",
     "FeatureFilterOrder",
@@ -2832,6 +2844,8 @@ __all__ = [
     "PlanTypedDict",
     "PointBucket",
     "PointBucketTypedDict",
+    "PortalSessionResponse",
+    "PortalSessionResponseTypedDict",
     "PreviewSubscriptionChangeRequest",
     "PreviewSubscriptionChangeRequestTypedDict",
     "PreviewSubscriptionModifyRequest",
@@ -3632,6 +3646,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateCreditNoteLineItemRequestTypedDict": ".createcreditnotelineitemrequest",
     "CreateCreditNoteRequest": ".createcreditnoterequest",
     "CreateCreditNoteRequestTypedDict": ".createcreditnoterequest",
+    "CreateCustomerPortalSessionRequest": ".createcustomerportalsessionop",
+    "CreateCustomerPortalSessionRequestTypedDict": ".createcustomerportalsessionop",
     "CreateCustomerRequest": ".createcustomerrequest",
     "CreateCustomerRequestTypedDict": ".createcustomerrequest",
     "CreateEntitlementRequest": ".createentitlementrequest",
@@ -3849,6 +3865,7 @@ _dynamic_imports: dict[str, str] = {
     "FailurePoint": ".failurepoint",
     "FailurePointTypedDict": ".failurepoint",
     "FailurePointType": ".failurepointtype",
+    "Family": ".family",
     "Feature": ".feature",
     "FeatureTypedDict": ".feature",
     "FeatureFilter": ".featurefilter",
@@ -4282,6 +4299,8 @@ _dynamic_imports: dict[str, str] = {
     "PlanSummaryTypedDict": ".plansummary",
     "PointBucket": ".pointbucket",
     "PointBucketTypedDict": ".pointbucket",
+    "PortalSessionResponse": ".portalsessionresponse",
+    "PortalSessionResponseTypedDict": ".portalsessionresponse",
     "PreviewSubscriptionChangeRequest": ".previewsubscriptionchangeop",
     "PreviewSubscriptionChangeRequestTypedDict": ".previewsubscriptionchangeop",
     "PreviewSubscriptionModifyRequest": ".previewsubscriptionmodifyop",
