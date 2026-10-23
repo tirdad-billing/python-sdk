@@ -4,6 +4,7 @@ from __future__ import annotations
 from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
 from .topupcoupon import TopUpCoupon, TopUpCouponTypedDict
 from .transactionreason import TransactionReason
+from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Dict, List, Optional
@@ -37,6 +38,10 @@ class TopUpWalletRequestTypedDict(TypedDict):
     r"""credits_to_add is the number of credits to add to the wallet"""
     description: NotRequired[str]
     r"""description to add any specific details about the transaction"""
+    effective_date: NotRequired[datetime]
+    r"""effective_date is stored as the credit transaction's created_at.
+    Omit to use the current time. Must not be in the future.
+    """
     expiry_date_utc: NotRequired[str]
     r"""expiry_date_utc is the expiry date in UTC timezone
     ex 2025-01-01 00:00:00 UTC
@@ -87,6 +92,11 @@ class TopUpWalletRequest(BaseModel):
     description: Optional[str] = None
     r"""description to add any specific details about the transaction"""
 
+    effective_date: Optional[datetime] = None
+    r"""effective_date is stored as the credit transaction's created_at.
+    Omit to use the current time. Must not be in the future.
+    """
+
     expiry_date_utc: Optional[str] = None
     r"""expiry_date_utc is the expiry date in UTC timezone
     ex 2025-01-01 00:00:00 UTC
@@ -116,6 +126,7 @@ class TopUpWalletRequest(BaseModel):
                 "coupons",
                 "credits_to_add",
                 "description",
+                "effective_date",
                 "expiry_date_utc",
                 "force_sync_invoice",
                 "idempotency_key",

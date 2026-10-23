@@ -5,6 +5,7 @@ from .analytics_viewdefinition import (
     AnalyticsViewDefinition,
     AnalyticsViewDefinitionTypedDict,
 )
+from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
@@ -12,24 +13,43 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class ViewResponseTypedDict(TypedDict):
+    created_at: NotRequired[datetime]
+    created_by: NotRequired[str]
     definition: NotRequired[AnalyticsViewDefinitionTypedDict]
     id: NotRequired[str]
     name: NotRequired[str]
+    updated_at: NotRequired[datetime]
     version: NotRequired[int]
 
 
 class ViewResponse(BaseModel):
+    created_at: Optional[datetime] = None
+
+    created_by: Optional[str] = None
+
     definition: Optional[AnalyticsViewDefinition] = None
 
     id: Optional[str] = None
 
     name: Optional[str] = None
 
+    updated_at: Optional[datetime] = None
+
     version: Optional[int] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["definition", "id", "name", "version"])
+        optional_fields = set(
+            [
+                "created_at",
+                "created_by",
+                "definition",
+                "id",
+                "name",
+                "updated_at",
+                "version",
+            ]
+        )
         serialized = handler(self)
         m = {}
 

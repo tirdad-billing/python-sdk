@@ -2224,6 +2224,7 @@ class Wallets(BaseSDK):
         ] = None,
         credits_to_add: Optional[str] = None,
         description: Optional[str] = None,
+        effective_date: Optional[datetime] = None,
         expiry_date_utc: Optional[str] = None,
         force_sync_invoice: Optional[bool] = None,
         idempotency_key: Optional[str] = None,
@@ -2257,6 +2258,8 @@ class Wallets(BaseSDK):
         :param coupons:
         :param credits_to_add: credits_to_add is the number of credits to add to the wallet
         :param description: description to add any specific details about the transaction
+        :param effective_date: effective_date is stored as the credit transaction's created_at.
+            Omit to use the current time. Must not be in the future.
         :param expiry_date_utc: expiry_date_utc is the expiry date in UTC timezone
             ex 2025-01-01 00:00:00 UTC
         :param force_sync_invoice:
@@ -2294,6 +2297,7 @@ class Wallets(BaseSDK):
                 ),
                 credits_to_add=credits_to_add,
                 description=description,
+                effective_date=effective_date,
                 expiry_date_utc=expiry_date_utc,
                 force_sync_invoice=force_sync_invoice,
                 idempotency_key=idempotency_key,
@@ -2388,6 +2392,7 @@ class Wallets(BaseSDK):
         ] = None,
         credits_to_add: Optional[str] = None,
         description: Optional[str] = None,
+        effective_date: Optional[datetime] = None,
         expiry_date_utc: Optional[str] = None,
         force_sync_invoice: Optional[bool] = None,
         idempotency_key: Optional[str] = None,
@@ -2421,6 +2426,8 @@ class Wallets(BaseSDK):
         :param coupons:
         :param credits_to_add: credits_to_add is the number of credits to add to the wallet
         :param description: description to add any specific details about the transaction
+        :param effective_date: effective_date is stored as the credit transaction's created_at.
+            Omit to use the current time. Must not be in the future.
         :param expiry_date_utc: expiry_date_utc is the expiry date in UTC timezone
             ex 2025-01-01 00:00:00 UTC
         :param force_sync_invoice:
@@ -2458,6 +2465,7 @@ class Wallets(BaseSDK):
                 ),
                 credits_to_add=credits_to_add,
                 description=description,
+                effective_date=effective_date,
                 expiry_date_utc=expiry_date_utc,
                 force_sync_invoice=force_sync_invoice,
                 idempotency_key=idempotency_key,

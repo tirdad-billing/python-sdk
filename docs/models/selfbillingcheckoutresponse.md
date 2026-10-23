@@ -1,0 +1,12 @@
+# SelfBillingCheckoutResponse
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `checkout_id`                                                              | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `status`                                                                   | [Optional[models.CheckoutStatus]](../models/checkoutstatus.md)             | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `tenant_status`                                                            | [Optional[models.TenantInternalStatus]](../models/tenantinternalstatus.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `terminal`                                                                 | *Optional[bool]*                                                           | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `url`                                                                      | *Optional[str]*                                                            | :heavy_minus_sign:                                                         | N/A                                                                        |

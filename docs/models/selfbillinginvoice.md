@@ -1,0 +1,15 @@
+# SelfBillingInvoice
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `currency`                                                           | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `due_date`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `id`                                                                 | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `number`                                                             | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `payment_status`                                                     | [Optional[models.PaymentStatus]](../models/paymentstatus.md)         | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `pdf_url`                                                            | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `status`                                                             | [Optional[models.InvoiceStatus]](../models/invoicestatus.md)         | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `total`                                                              | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |

@@ -9,15 +9,36 @@ from .family import Family
 from .metric import Metric
 from .shape import Shape
 from pydantic import model_serializer
-from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import List, Optional
+from tirdad_sdk.types import BaseModel, UNSET_SENTINEL, UnrecognizedStr
+from typing import List, Literal, Optional, Union
 from typing_extensions import NotRequired, TypedDict
+
+
+AnalyticsViewDefinitionCompare = Union[
+    Literal[
+        "previous_period",
+        "previous_year",
+    ],
+    UnrecognizedStr,
+]
+
+
+Display = Union[
+    Literal[
+        "chart",
+        "table",
+    ],
+    UnrecognizedStr,
+]
 
 
 class AnalyticsViewDefinitionTypedDict(TypedDict):
     metrics: List[Metric]
     shape: Shape
+    compare: NotRequired[AnalyticsViewDefinitionCompare]
+    currency: NotRequired[str]
     dimensions: NotRequired[List[str]]
+    display: NotRequired[Display]
     family: NotRequired[Family]
     filters: NotRequired[List[AnalyticsFilterTypedDict]]
     limit: NotRequired[int]
@@ -31,7 +52,13 @@ class AnalyticsViewDefinition(BaseModel):
 
     shape: Shape
 
+    compare: Optional[AnalyticsViewDefinitionCompare] = None
+
+    currency: Optional[str] = None
+
     dimensions: Optional[List[str]] = None
+
+    display: Optional[Display] = None
 
     family: Optional[Family] = None
 
@@ -48,7 +75,18 @@ class AnalyticsViewDefinition(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["dimensions", "family", "filters", "limit", "sort", "time", "variables"]
+            [
+                "compare",
+                "currency",
+                "dimensions",
+                "display",
+                "family",
+                "filters",
+                "limit",
+                "sort",
+                "time",
+                "variables",
+            ]
         )
         serialized = handler(self)
         m = {}

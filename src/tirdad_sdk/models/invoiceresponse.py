@@ -75,6 +75,8 @@ class InvoiceResponseTypedDict(TypedDict):
     finalized_at: NotRequired[datetime]
     r"""finalized_at is the timestamp when this invoice was finalized and made ready for payment"""
     fx_conversion: NotRequired[FxConversionTypedDict]
+    hosted_invoice_url: NotRequired[str]
+    r"""hosted_invoice_url is the page where the customer can view, download and pay this invoice"""
     id: NotRequired[str]
     r"""id is the unique identifier for this invoice"""
     idempotency_key: NotRequired[str]
@@ -202,6 +204,9 @@ class InvoiceResponse(BaseModel):
     r"""finalized_at is the timestamp when this invoice was finalized and made ready for payment"""
 
     fx_conversion: Optional[FxConversion] = None
+
+    hosted_invoice_url: Optional[str] = None
+    r"""hosted_invoice_url is the page where the customer can view, download and pay this invoice"""
 
     id: Optional[str] = None
     r"""id is the unique identifier for this invoice"""
@@ -331,6 +336,7 @@ class InvoiceResponse(BaseModel):
                 "environment_id",
                 "finalized_at",
                 "fx_conversion",
+                "hosted_invoice_url",
                 "id",
                 "idempotency_key",
                 "invoice_number",

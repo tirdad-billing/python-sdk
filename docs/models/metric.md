@@ -16,4 +16,16 @@ This is an open enum. Unrecognized values will not fail type checks.
 
 - `"usage_quantity"`
 - `"event_count"`
+- `"events_volume"`
 - `"invoice_total"`
+- `"total_receivables"`
+- `"receivables_aging"`
+- `"days_to_pay"`
+- `"arpu"`
+- `"arpu_paid"`
+- `"credit_consumption"`
+- `"credit_topups"`
+- `"net_billing"`
+- `"invoice_total_issued"`
+- `"net_billing_issued"`
+- `"active_customers"`

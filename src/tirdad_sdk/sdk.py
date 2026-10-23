@@ -44,6 +44,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.refunds import Refunds
     from tirdad_sdk.scheduled_tasks import ScheduledTasks
     from tirdad_sdk.secrets import Secrets
+    from tirdad_sdk.selfbilling import SelfBilling
     from tirdad_sdk.subscriptions import Subscriptions
     from tirdad_sdk.tasks import Tasks
     from tirdad_sdk.tax_associations import TaxAssociations
@@ -83,6 +84,7 @@ class Tirdad(BaseSDK):
     marketplace: "Marketplace"
     payments: "Payments"
     plans: "Plans"
+    self_billing: "SelfBilling"
     prices: "Prices"
     price_units: "PriceUnits"
     rbac: "Rbac"
@@ -123,6 +125,7 @@ class Tirdad(BaseSDK):
         "marketplace": ("tirdad_sdk.marketplace", "Marketplace"),
         "payments": ("tirdad_sdk.payments", "Payments"),
         "plans": ("tirdad_sdk.plans", "Plans"),
+        "self_billing": ("tirdad_sdk.selfbilling", "SelfBilling"),
         "prices": ("tirdad_sdk.prices", "Prices"),
         "price_units": ("tirdad_sdk.price_units", "PriceUnits"),
         "rbac": ("tirdad_sdk.rbac", "Rbac"),

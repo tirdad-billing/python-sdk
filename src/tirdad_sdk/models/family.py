@@ -9,6 +9,7 @@ Family = Union[
     Literal[
         "usage",
         "billing",
+        "report",
     ],
     UnrecognizedStr,
 ]

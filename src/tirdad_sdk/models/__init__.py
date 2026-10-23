@@ -98,7 +98,9 @@ if TYPE_CHECKING:
     from .analytics_variable import AnalyticsVariable, AnalyticsVariableTypedDict
     from .analytics_viewdefinition import (
         AnalyticsViewDefinition,
+        AnalyticsViewDefinitionCompare,
         AnalyticsViewDefinitionTypedDict,
+        Display,
     )
     from .analyticscolumn import AnalyticsColumn, AnalyticsColumnTypedDict
     from .analyticsquerymeta import AnalyticsQueryMeta, AnalyticsQueryMetaTypedDict
@@ -165,6 +167,10 @@ if TYPE_CHECKING:
     from .cancelscheduleresponse import (
         CancelScheduleResponse,
         CancelScheduleResponseTypedDict,
+    )
+    from .cancelselfbillingcheckoutop import (
+        CancelSelfBillingCheckoutRequest,
+        CancelSelfBillingCheckoutRequestTypedDict,
     )
     from .cancelsubscriptionop import (
         CancelSubscriptionRequestRequest,
@@ -456,6 +462,10 @@ if TYPE_CHECKING:
         DeleteAlertSettingsRequest,
         DeleteAlertSettingsRequestTypedDict,
     )
+    from .deleteanalyticsviewop import (
+        DeleteAnalyticsViewRequest,
+        DeleteAnalyticsViewRequestTypedDict,
+    )
     from .deleteapikeyop import DeleteAPIKeyRequest, DeleteAPIKeyRequestTypedDict
     from .deletecheckoutsessionop import (
         DeleteCheckoutSessionRequest,
@@ -644,6 +654,10 @@ if TYPE_CHECKING:
     from .getalertsettingsop import (
         GetAlertSettingsRequest,
         GetAlertSettingsRequestTypedDict,
+    )
+    from .getanalyticsviewop import (
+        GetAnalyticsViewRequest,
+        GetAnalyticsViewRequestTypedDict,
     )
     from .getcheckoutsessionop import (
         GetCheckoutSessionRequest,
@@ -852,6 +866,7 @@ if TYPE_CHECKING:
     from .groupentitytype import GroupEntityType
     from .groupfilter import GroupFilter, GroupFilterOrder, GroupFilterTypedDict
     from .groupresponse import GroupResponse, GroupResponseTypedDict
+    from .improvementdirection import ImprovementDirection
     from .ingesteventrequest import IngestEventRequest, IngestEventRequestTypedDict
     from .inheritanceaction import InheritanceAction
     from .inlinefxrate import InlineFXRate, InlineFXRateTypedDict
@@ -936,6 +951,10 @@ if TYPE_CHECKING:
         ListAllSubscriptionSchedulesRequestTypedDict,
         ListAllSubscriptionSchedulesScheduleStatus,
         ListAllSubscriptionSchedulesScheduleType,
+    )
+    from .listanalyticsviewsop import (
+        ListAnalyticsViewsRequest,
+        ListAnalyticsViewsRequestTypedDict,
     )
     from .listapikeysop import ListAPIKeysRequest, ListAPIKeysRequestTypedDict
     from .listcostsheetresponse import (
@@ -1065,6 +1084,7 @@ if TYPE_CHECKING:
         ListUsageRecordsResponseTypedDict,
     )
     from .listusersresponse import ListUsersResponse, ListUsersResponseTypedDict
+    from .listviewsresponse import ListViewsResponse, ListViewsResponseTypedDict
     from .listwallettransactionsresponse import (
         ListWalletTransactionsResponse,
         ListWalletTransactionsResponseTypedDict,
@@ -1164,6 +1184,10 @@ if TYPE_CHECKING:
     )
     from .plansummary import PlanSummary, PlanSummaryTypedDict
     from .pointbucket import PointBucket, PointBucketTypedDict
+    from .pollselfbillingcheckoutop import (
+        PollSelfBillingCheckoutRequest,
+        PollSelfBillingCheckoutRequestTypedDict,
+    )
     from .portalsessionresponse import (
         PortalSessionResponse,
         PortalSessionResponseTypedDict,
@@ -1250,7 +1274,31 @@ if TYPE_CHECKING:
     from .removeaddonref import RemoveAddonRef, RemoveAddonRefTypedDict
     from .removeaddonrequest import RemoveAddonRequest, RemoveAddonRequestTypedDict
     from .removeuserop import RemoveUserRequest, RemoveUserRequestTypedDict
+    from .reportcatalogentry import (
+        DefaultShape,
+        ReportCatalogEntry,
+        ReportCatalogEntryGrain,
+        ReportCatalogEntryShape,
+        ReportCatalogEntryTypedDict,
+    )
+    from .reportcatalogresponse import (
+        ReportCatalogResponse,
+        ReportCatalogResponseTypedDict,
+    )
+    from .reportcategory import ReportCategory
+    from .reportdimension import ReportDimension, ReportDimensionTypedDict
+    from .reportfilter import Op, ReportFilter, ReportFilterTypedDict
     from .reportingunit import ReportingUnit, ReportingUnitTypedDict
+    from .reportkind import ReportKind
+    from .reportqueryrequest import (
+        ReportQueryRequest,
+        ReportQueryRequestCompare,
+        ReportQueryRequestGrain,
+        ReportQueryRequestShape,
+        ReportQueryRequestTypedDict,
+    )
+    from .reportsort import Dir, ReportSort, ReportSortTypedDict
+    from .reportvaluetype import ReportValueType
     from .resetusage import ResetUsage
     from .resumemode import ResumeMode
     from .resumesubscriptionop import (
@@ -1278,6 +1326,10 @@ if TYPE_CHECKING:
     from .revenueanalyticsrow import RevenueAnalyticsRow, RevenueAnalyticsRowTypedDict
     from .revenuegranularity import RevenueGranularity
     from .roundtype import RoundType
+    from .runanalyticsreportop import (
+        RunAnalyticsReportRequest,
+        RunAnalyticsReportRequestTypedDict,
+    )
     from .s3compressiontype import S3CompressionType
     from .s3encryptiontype import S3EncryptionType
     from .s3jobconfig import S3JobConfig, S3JobConfigTypedDict
@@ -1314,6 +1366,27 @@ if TYPE_CHECKING:
     from .secretresponse import SecretResponse, SecretResponseTypedDict
     from .secrettype import SecretType
     from .security import Security, SecurityTypedDict
+    from .selfbillingcheckoutrequest import (
+        SelfBillingCheckoutRequest,
+        SelfBillingCheckoutRequestTypedDict,
+    )
+    from .selfbillingcheckoutresponse import (
+        SelfBillingCheckoutResponse,
+        SelfBillingCheckoutResponseTypedDict,
+    )
+    from .selfbillinginvoice import SelfBillingInvoice, SelfBillingInvoiceTypedDict
+    from .selfbillingportalresponse import (
+        SelfBillingPortalResponse,
+        SelfBillingPortalResponseTypedDict,
+    )
+    from .selfbillingstatusresponse import (
+        SelfBillingStatusResponse,
+        SelfBillingStatusResponseTypedDict,
+    )
+    from .selfbillingsummaryresponse import (
+        SelfBillingSummaryResponse,
+        SelfBillingSummaryResponseTypedDict,
+    )
     from .serviceperiodcustomfields import (
         ServicePeriodCustomFields,
         ServicePeriodCustomFieldsTypedDict,
@@ -1513,7 +1586,7 @@ if TYPE_CHECKING:
         TenantBillingDetails,
         TenantBillingDetailsTypedDict,
     )
-    from .tenantbillingusage import TenantBillingUsage, TenantBillingUsageTypedDict
+    from .tenantinternalstatus import TenantInternalStatus
     from .tenantresponse import TenantResponse, TenantResponseTypedDict
     from .terminatewalletop import (
         TerminateWalletRequest,
@@ -1560,6 +1633,10 @@ if TYPE_CHECKING:
     from .updatealertsettingsrequest import (
         UpdateAlertSettingsRequest,
         UpdateAlertSettingsRequestTypedDict,
+    )
+    from .updateanalyticsviewop import (
+        UpdateAnalyticsViewRequest,
+        UpdateAnalyticsViewRequestTypedDict,
     )
     from .updatecostsheetop import (
         UpdateCostsheetRequestRequest,
@@ -2036,6 +2113,7 @@ __all__ = [
     "AnalyticsVariable",
     "AnalyticsVariableTypedDict",
     "AnalyticsViewDefinition",
+    "AnalyticsViewDefinitionCompare",
     "AnalyticsViewDefinitionTypedDict",
     "ApplicationStatus",
     "AttemptInvoicePaymentRequest",
@@ -2073,6 +2151,8 @@ __all__ = [
     "CancelScheduleRequestTypedDict",
     "CancelScheduleResponse",
     "CancelScheduleResponseTypedDict",
+    "CancelSelfBillingCheckoutRequest",
+    "CancelSelfBillingCheckoutRequestTypedDict",
     "CancelSubscriptionRequest",
     "CancelSubscriptionRequestRequest",
     "CancelSubscriptionRequestRequestTypedDict",
@@ -2291,12 +2371,15 @@ __all__ = [
     "DebugTracker",
     "DebugTrackerStatus",
     "DebugTrackerTypedDict",
+    "DefaultShape",
     "DeleteAPIKeyRequest",
     "DeleteAPIKeyRequestTypedDict",
     "DeleteAddonRequest",
     "DeleteAddonRequestTypedDict",
     "DeleteAlertSettingsRequest",
     "DeleteAlertSettingsRequestTypedDict",
+    "DeleteAnalyticsViewRequest",
+    "DeleteAnalyticsViewRequestTypedDict",
     "DeleteCheckoutSessionRequest",
     "DeleteCheckoutSessionRequestTypedDict",
     "DeleteCostsheetRequest",
@@ -2343,6 +2426,8 @@ __all__ = [
     "DeleteTaxRateRequestTypedDict",
     "DelinkIntegrationMappingRequest",
     "DelinkIntegrationMappingRequestTypedDict",
+    "Dir",
+    "Display",
     "DownloadTaskExportRequest",
     "DownloadTaskExportRequestTypedDict",
     "DurationUnit",
@@ -2454,6 +2539,8 @@ __all__ = [
     "GetAddonRequestTypedDict",
     "GetAlertSettingsRequest",
     "GetAlertSettingsRequestTypedDict",
+    "GetAnalyticsViewRequest",
+    "GetAnalyticsViewRequestTypedDict",
     "GetCheckoutSessionRequest",
     "GetCheckoutSessionRequestTypedDict",
     "GetCostAnalyticsRequest",
@@ -2610,6 +2697,7 @@ __all__ = [
     "GroupedInvoicingChangeTypedDict",
     "GroupedInvoicingChildRequest",
     "GroupedInvoicingChildRequestTypedDict",
+    "ImprovementDirection",
     "IngestEventRequest",
     "IngestEventRequestTypedDict",
     "InheritanceAction",
@@ -2677,6 +2765,8 @@ __all__ = [
     "ListAllSubscriptionSchedulesRequestTypedDict",
     "ListAllSubscriptionSchedulesScheduleStatus",
     "ListAllSubscriptionSchedulesScheduleType",
+    "ListAnalyticsViewsRequest",
+    "ListAnalyticsViewsRequestTypedDict",
     "ListCostsheetResponse",
     "ListCostsheetResponseTypedDict",
     "ListCouponAssociationsRequest",
@@ -2760,6 +2850,8 @@ __all__ = [
     "ListUsageRecordsResponseTypedDict",
     "ListUsersResponse",
     "ListUsersResponseTypedDict",
+    "ListViewsResponse",
+    "ListViewsResponseTypedDict",
     "ListWalletTransactionsResponse",
     "ListWalletTransactionsResponseTypedDict",
     "ListWorkflowsResponse",
@@ -2795,6 +2887,7 @@ __all__ = [
     "ModifySubscriptionType",
     "OnExistingEntityPolicy",
     "OnPendingSchedulePolicy",
+    "Op",
     "OverrideEntitlementRequest",
     "OverrideEntitlementRequestTypedDict",
     "OverrideLineItemRequest",
@@ -2844,6 +2937,8 @@ __all__ = [
     "PlanTypedDict",
     "PointBucket",
     "PointBucketTypedDict",
+    "PollSelfBillingCheckoutRequest",
+    "PollSelfBillingCheckoutRequestTypedDict",
     "PortalSessionResponse",
     "PortalSessionResponseTypedDict",
     "PreviewSubscriptionChangeRequest",
@@ -2919,6 +3014,26 @@ __all__ = [
     "RemoveAddonRequestTypedDict",
     "RemoveUserRequest",
     "RemoveUserRequestTypedDict",
+    "ReportCatalogEntry",
+    "ReportCatalogEntryGrain",
+    "ReportCatalogEntryShape",
+    "ReportCatalogEntryTypedDict",
+    "ReportCatalogResponse",
+    "ReportCatalogResponseTypedDict",
+    "ReportCategory",
+    "ReportDimension",
+    "ReportDimensionTypedDict",
+    "ReportFilter",
+    "ReportFilterTypedDict",
+    "ReportKind",
+    "ReportQueryRequest",
+    "ReportQueryRequestCompare",
+    "ReportQueryRequestGrain",
+    "ReportQueryRequestShape",
+    "ReportQueryRequestTypedDict",
+    "ReportSort",
+    "ReportSortTypedDict",
+    "ReportValueType",
     "ReportingUnit",
     "ReportingUnitTypedDict",
     "ResetUsage",
@@ -2940,6 +3055,8 @@ __all__ = [
     "RevenueAnalyticsRowTypedDict",
     "RevenueGranularity",
     "RoundType",
+    "RunAnalyticsReportRequest",
+    "RunAnalyticsReportRequestTypedDict",
     "S3CompressionType",
     "S3EncryptionType",
     "S3JobConfig",
@@ -2973,6 +3090,18 @@ __all__ = [
     "SecretType",
     "Security",
     "SecurityTypedDict",
+    "SelfBillingCheckoutRequest",
+    "SelfBillingCheckoutRequestTypedDict",
+    "SelfBillingCheckoutResponse",
+    "SelfBillingCheckoutResponseTypedDict",
+    "SelfBillingInvoice",
+    "SelfBillingInvoiceTypedDict",
+    "SelfBillingPortalResponse",
+    "SelfBillingPortalResponseTypedDict",
+    "SelfBillingStatusResponse",
+    "SelfBillingStatusResponseTypedDict",
+    "SelfBillingSummaryResponse",
+    "SelfBillingSummaryResponseTypedDict",
     "ServicePeriodCustomFields",
     "ServicePeriodCustomFieldsTypedDict",
     "Shape",
@@ -3114,8 +3243,7 @@ __all__ = [
     "TaxTreatment",
     "TenantBillingDetails",
     "TenantBillingDetailsTypedDict",
-    "TenantBillingUsage",
-    "TenantBillingUsageTypedDict",
+    "TenantInternalStatus",
     "TenantResponse",
     "TenantResponseTypedDict",
     "TerminateWalletRequest",
@@ -3153,6 +3281,8 @@ __all__ = [
     "UpdateAlertSettingsRequestRequest",
     "UpdateAlertSettingsRequestRequestTypedDict",
     "UpdateAlertSettingsRequestTypedDict",
+    "UpdateAnalyticsViewRequest",
+    "UpdateAnalyticsViewRequestTypedDict",
     "UpdateCostsheetRequest",
     "UpdateCostsheetRequestRequest",
     "UpdateCostsheetRequestRequestTypedDict",
@@ -3485,7 +3615,9 @@ _dynamic_imports: dict[str, str] = {
     "AnalyticsVariable": ".analytics_variable",
     "AnalyticsVariableTypedDict": ".analytics_variable",
     "AnalyticsViewDefinition": ".analytics_viewdefinition",
+    "AnalyticsViewDefinitionCompare": ".analytics_viewdefinition",
     "AnalyticsViewDefinitionTypedDict": ".analytics_viewdefinition",
+    "Display": ".analytics_viewdefinition",
     "AnalyticsColumn": ".analyticscolumn",
     "AnalyticsColumnTypedDict": ".analyticscolumn",
     "AnalyticsQueryMeta": ".analyticsquerymeta",
@@ -3535,6 +3667,8 @@ _dynamic_imports: dict[str, str] = {
     "CancelScheduleRequestTypedDict": ".cancelschedulerequest",
     "CancelScheduleResponse": ".cancelscheduleresponse",
     "CancelScheduleResponseTypedDict": ".cancelscheduleresponse",
+    "CancelSelfBillingCheckoutRequest": ".cancelselfbillingcheckoutop",
+    "CancelSelfBillingCheckoutRequestTypedDict": ".cancelselfbillingcheckoutop",
     "CancelSubscriptionRequestRequest": ".cancelsubscriptionop",
     "CancelSubscriptionRequestRequestTypedDict": ".cancelsubscriptionop",
     "CancelSubscriptionRequest": ".cancelsubscriptionrequest",
@@ -3754,6 +3888,8 @@ _dynamic_imports: dict[str, str] = {
     "DeleteAddonRequestTypedDict": ".deleteaddonop",
     "DeleteAlertSettingsRequest": ".deletealertsettingsop",
     "DeleteAlertSettingsRequestTypedDict": ".deletealertsettingsop",
+    "DeleteAnalyticsViewRequest": ".deleteanalyticsviewop",
+    "DeleteAnalyticsViewRequestTypedDict": ".deleteanalyticsviewop",
     "DeleteAPIKeyRequest": ".deleteapikeyop",
     "DeleteAPIKeyRequestTypedDict": ".deleteapikeyop",
     "DeleteCheckoutSessionRequest": ".deletecheckoutsessionop",
@@ -3911,6 +4047,8 @@ _dynamic_imports: dict[str, str] = {
     "GetAddonRequestTypedDict": ".getaddonop",
     "GetAlertSettingsRequest": ".getalertsettingsop",
     "GetAlertSettingsRequestTypedDict": ".getalertsettingsop",
+    "GetAnalyticsViewRequest": ".getanalyticsviewop",
+    "GetAnalyticsViewRequestTypedDict": ".getanalyticsviewop",
     "GetCheckoutSessionRequest": ".getcheckoutsessionop",
     "GetCheckoutSessionRequestTypedDict": ".getcheckoutsessionop",
     "GetCostAnalyticsRequest": ".getcostanalyticsrequest",
@@ -4069,6 +4207,7 @@ _dynamic_imports: dict[str, str] = {
     "GroupFilterTypedDict": ".groupfilter",
     "GroupResponse": ".groupresponse",
     "GroupResponseTypedDict": ".groupresponse",
+    "ImprovementDirection": ".improvementdirection",
     "IngestEventRequest": ".ingesteventrequest",
     "IngestEventRequestTypedDict": ".ingesteventrequest",
     "InheritanceAction": ".inheritanceaction",
@@ -4132,6 +4271,8 @@ _dynamic_imports: dict[str, str] = {
     "ListAllSubscriptionSchedulesRequestTypedDict": ".listallsubscriptionschedulesop",
     "ListAllSubscriptionSchedulesScheduleStatus": ".listallsubscriptionschedulesop",
     "ListAllSubscriptionSchedulesScheduleType": ".listallsubscriptionschedulesop",
+    "ListAnalyticsViewsRequest": ".listanalyticsviewsop",
+    "ListAnalyticsViewsRequestTypedDict": ".listanalyticsviewsop",
     "ListAPIKeysRequest": ".listapikeysop",
     "ListAPIKeysRequestTypedDict": ".listapikeysop",
     "ListCostsheetResponse": ".listcostsheetresponse",
@@ -4217,6 +4358,8 @@ _dynamic_imports: dict[str, str] = {
     "ListUsageRecordsResponseTypedDict": ".listusagerecordsresponse",
     "ListUsersResponse": ".listusersresponse",
     "ListUsersResponseTypedDict": ".listusersresponse",
+    "ListViewsResponse": ".listviewsresponse",
+    "ListViewsResponseTypedDict": ".listviewsresponse",
     "ListWalletTransactionsResponse": ".listwallettransactionsresponse",
     "ListWalletTransactionsResponseTypedDict": ".listwallettransactionsresponse",
     "ListWorkflowsResponse": ".listworkflowsresponse",
@@ -4299,6 +4442,8 @@ _dynamic_imports: dict[str, str] = {
     "PlanSummaryTypedDict": ".plansummary",
     "PointBucket": ".pointbucket",
     "PointBucketTypedDict": ".pointbucket",
+    "PollSelfBillingCheckoutRequest": ".pollselfbillingcheckoutop",
+    "PollSelfBillingCheckoutRequestTypedDict": ".pollselfbillingcheckoutop",
     "PortalSessionResponse": ".portalsessionresponse",
     "PortalSessionResponseTypedDict": ".portalsessionresponse",
     "PreviewSubscriptionChangeRequest": ".previewsubscriptionchangeop",
@@ -4372,8 +4517,31 @@ _dynamic_imports: dict[str, str] = {
     "RemoveAddonRequestTypedDict": ".removeaddonrequest",
     "RemoveUserRequest": ".removeuserop",
     "RemoveUserRequestTypedDict": ".removeuserop",
+    "DefaultShape": ".reportcatalogentry",
+    "ReportCatalogEntry": ".reportcatalogentry",
+    "ReportCatalogEntryGrain": ".reportcatalogentry",
+    "ReportCatalogEntryShape": ".reportcatalogentry",
+    "ReportCatalogEntryTypedDict": ".reportcatalogentry",
+    "ReportCatalogResponse": ".reportcatalogresponse",
+    "ReportCatalogResponseTypedDict": ".reportcatalogresponse",
+    "ReportCategory": ".reportcategory",
+    "ReportDimension": ".reportdimension",
+    "ReportDimensionTypedDict": ".reportdimension",
+    "Op": ".reportfilter",
+    "ReportFilter": ".reportfilter",
+    "ReportFilterTypedDict": ".reportfilter",
     "ReportingUnit": ".reportingunit",
     "ReportingUnitTypedDict": ".reportingunit",
+    "ReportKind": ".reportkind",
+    "ReportQueryRequest": ".reportqueryrequest",
+    "ReportQueryRequestCompare": ".reportqueryrequest",
+    "ReportQueryRequestGrain": ".reportqueryrequest",
+    "ReportQueryRequestShape": ".reportqueryrequest",
+    "ReportQueryRequestTypedDict": ".reportqueryrequest",
+    "Dir": ".reportsort",
+    "ReportSort": ".reportsort",
+    "ReportSortTypedDict": ".reportsort",
+    "ReportValueType": ".reportvaluetype",
     "ResetUsage": ".resetusage",
     "ResumeMode": ".resumemode",
     "ResumeSubscriptionRequestRequest": ".resumesubscriptionop",
@@ -4393,6 +4561,8 @@ _dynamic_imports: dict[str, str] = {
     "RevenueAnalyticsRowTypedDict": ".revenueanalyticsrow",
     "RevenueGranularity": ".revenuegranularity",
     "RoundType": ".roundtype",
+    "RunAnalyticsReportRequest": ".runanalyticsreportop",
+    "RunAnalyticsReportRequestTypedDict": ".runanalyticsreportop",
     "S3CompressionType": ".s3compressiontype",
     "S3EncryptionType": ".s3encryptiontype",
     "S3JobConfig": ".s3jobconfig",
@@ -4425,6 +4595,18 @@ _dynamic_imports: dict[str, str] = {
     "SecretType": ".secrettype",
     "Security": ".security",
     "SecurityTypedDict": ".security",
+    "SelfBillingCheckoutRequest": ".selfbillingcheckoutrequest",
+    "SelfBillingCheckoutRequestTypedDict": ".selfbillingcheckoutrequest",
+    "SelfBillingCheckoutResponse": ".selfbillingcheckoutresponse",
+    "SelfBillingCheckoutResponseTypedDict": ".selfbillingcheckoutresponse",
+    "SelfBillingInvoice": ".selfbillinginvoice",
+    "SelfBillingInvoiceTypedDict": ".selfbillinginvoice",
+    "SelfBillingPortalResponse": ".selfbillingportalresponse",
+    "SelfBillingPortalResponseTypedDict": ".selfbillingportalresponse",
+    "SelfBillingStatusResponse": ".selfbillingstatusresponse",
+    "SelfBillingStatusResponseTypedDict": ".selfbillingstatusresponse",
+    "SelfBillingSummaryResponse": ".selfbillingsummaryresponse",
+    "SelfBillingSummaryResponseTypedDict": ".selfbillingsummaryresponse",
     "ServicePeriodCustomFields": ".serviceperiodcustomfields",
     "ServicePeriodCustomFieldsTypedDict": ".serviceperiodcustomfields",
     "Shape": ".shape",
@@ -4562,8 +4744,7 @@ _dynamic_imports: dict[str, str] = {
     "TaxTreatment": ".taxtreatment",
     "TenantBillingDetails": ".tenantbillingdetails",
     "TenantBillingDetailsTypedDict": ".tenantbillingdetails",
-    "TenantBillingUsage": ".tenantbillingusage",
-    "TenantBillingUsageTypedDict": ".tenantbillingusage",
+    "TenantInternalStatus": ".tenantinternalstatus",
     "TenantResponse": ".tenantresponse",
     "TenantResponseTypedDict": ".tenantresponse",
     "TerminateWalletRequest": ".terminatewalletop",
@@ -4600,6 +4781,8 @@ _dynamic_imports: dict[str, str] = {
     "UpdateAlertSettingsRequestRequestTypedDict": ".updatealertsettingsop",
     "UpdateAlertSettingsRequest": ".updatealertsettingsrequest",
     "UpdateAlertSettingsRequestTypedDict": ".updatealertsettingsrequest",
+    "UpdateAnalyticsViewRequest": ".updateanalyticsviewop",
+    "UpdateAnalyticsViewRequestTypedDict": ".updateanalyticsviewop",
     "UpdateCostsheetRequestRequest": ".updatecostsheetop",
     "UpdateCostsheetRequestRequestTypedDict": ".updatecostsheetop",
     "UpdateCostsheetRequest": ".updatecostsheetrequest",

@@ -234,6 +234,470 @@ class Analytics(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def list_analytics_reports(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ReportCatalogResponse:
+        r"""List financial reports
+
+        Returns the catalog of reports with their allowed shapes, dimensions and grains.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+        req = self._build_request(
+            method="GET",
+            path="/analytics/reports",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAnalyticsReports",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ReportCatalogResponse, http_res)
+        if utils.match_response(http_res, "403", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def list_analytics_reports_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ReportCatalogResponse:
+        r"""List financial reports
+
+        Returns the catalog of reports with their allowed shapes, dimensions and grains.
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+        req = self._build_request_async(
+            method="GET",
+            path="/analytics/reports",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAnalyticsReports",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ReportCatalogResponse, http_res)
+        if utils.match_response(http_res, "403", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def run_analytics_report(
+        self,
+        *,
+        key: str,
+        range: str,
+        shape: models.ReportQueryRequestShape,
+        compare: Optional[models.ReportQueryRequestCompare] = None,
+        currency: Optional[str] = None,
+        dimensions: Optional[Iterable[str]] = None,
+        filters: Optional[
+            Union[Iterable[models.ReportFilter], Iterable[models.ReportFilterTypedDict]]
+        ] = None,
+        grain: Optional[models.ReportQueryRequestGrain] = None,
+        limit: Optional[int] = None,
+        sort: Optional[
+            Union[Iterable[models.ReportSort], Iterable[models.ReportSortTypedDict]]
+        ] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.AnalyticsQueryResult:
+        r"""Run a financial report
+
+        Runs the report identified by key. range is an absolute YYYY-MM-DD..YYYY-MM-DD (end exclusive) or last_N_days. compare is previous_period or previous_year.
+
+        :param key: Report key
+        :param range:
+        :param shape:
+        :param compare:
+        :param currency:
+        :param dimensions:
+        :param filters:
+        :param grain:
+        :param limit:
+        :param sort:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.RunAnalyticsReportRequest(
+            key=key,
+            body=models.ReportQueryRequest(
+                compare=compare,
+                currency=currency,
+                dimensions=utils.unmarshal(dimensions, Optional[List[str]]),
+                filters=utils.get_pydantic_model(
+                    filters, Optional[List[models.ReportFilter]]
+                ),
+                grain=grain,
+                limit=limit,
+                range=range,
+                shape=shape,
+                sort=utils.get_pydantic_model(sort, Optional[List[models.ReportSort]]),
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/analytics/reports/{key}/query",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ReportQueryRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="runAnalyticsReport",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "read",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.AnalyticsQueryResult, http_res)
+        if utils.match_response(http_res, ["400", "403", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def run_analytics_report_async(
+        self,
+        *,
+        key: str,
+        range: str,
+        shape: models.ReportQueryRequestShape,
+        compare: Optional[models.ReportQueryRequestCompare] = None,
+        currency: Optional[str] = None,
+        dimensions: Optional[Iterable[str]] = None,
+        filters: Optional[
+            Union[Iterable[models.ReportFilter], Iterable[models.ReportFilterTypedDict]]
+        ] = None,
+        grain: Optional[models.ReportQueryRequestGrain] = None,
+        limit: Optional[int] = None,
+        sort: Optional[
+            Union[Iterable[models.ReportSort], Iterable[models.ReportSortTypedDict]]
+        ] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.AnalyticsQueryResult:
+        r"""Run a financial report
+
+        Runs the report identified by key. range is an absolute YYYY-MM-DD..YYYY-MM-DD (end exclusive) or last_N_days. compare is previous_period or previous_year.
+
+        :param key: Report key
+        :param range:
+        :param shape:
+        :param compare:
+        :param currency:
+        :param dimensions:
+        :param filters:
+        :param grain:
+        :param limit:
+        :param sort:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.RunAnalyticsReportRequest(
+            key=key,
+            body=models.ReportQueryRequest(
+                compare=compare,
+                currency=currency,
+                dimensions=utils.unmarshal(dimensions, Optional[List[str]]),
+                filters=utils.get_pydantic_model(
+                    filters, Optional[List[models.ReportFilter]]
+                ),
+                grain=grain,
+                limit=limit,
+                range=range,
+                shape=shape,
+                sort=utils.get_pydantic_model(sort, Optional[List[models.ReportSort]]),
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/analytics/reports/{key}/query",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ReportQueryRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="runAnalyticsReport",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "read",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.AnalyticsQueryResult, http_res)
+        if utils.match_response(http_res, ["400", "403", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def get_revenue_analytics(
         self,
         *,
@@ -530,6 +994,204 @@ class Analytics(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def list_analytics_views(
+        self,
+        *,
+        family: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ListViewsResponse:
+        r"""List analytics views
+
+        Lists saved views, optionally filtered by family.
+
+        :param family: Filter by view family
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListAnalyticsViewsRequest(
+            family=family,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/analytics/views",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAnalyticsViews",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ListViewsResponse, http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def list_analytics_views_async(
+        self,
+        *,
+        family: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ListViewsResponse:
+        r"""List analytics views
+
+        Lists saved views, optionally filtered by family.
+
+        :param family: Filter by view family
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListAnalyticsViewsRequest(
+            family=family,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/analytics/views",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listAnalyticsViews",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ListViewsResponse, http_res)
+        if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def create_analytics_view(
         self,
         *,
@@ -726,6 +1388,636 @@ class Analytics(BaseSDK):
         if utils.match_response(http_res, "201", "application/json"):
             return unmarshal_json_response(models.ViewResponse, http_res)
         if utils.match_response(http_res, "400", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def get_analytics_view(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ViewResponse:
+        r"""Get an analytics view
+
+        Returns a saved view by ID.
+
+        :param id: View ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetAnalyticsViewRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/analytics/views/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAnalyticsView",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ViewResponse, http_res)
+        if utils.match_response(http_res, "404", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def get_analytics_view_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ViewResponse:
+        r"""Get an analytics view
+
+        Returns a saved view by ID.
+
+        :param id: View ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetAnalyticsViewRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/analytics/views/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAnalyticsView",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ViewResponse, http_res)
+        if utils.match_response(http_res, "404", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def update_analytics_view(
+        self,
+        *,
+        id: str,
+        definition: Union[
+            models.AnalyticsViewDefinition, models.AnalyticsViewDefinitionTypedDict
+        ],
+        name: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ViewResponse:
+        r"""Update an analytics view
+
+        Replaces the name and definition of a saved view.
+
+        :param id: View ID
+        :param definition:
+        :param name:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateAnalyticsViewRequest(
+            id=id,
+            body=models.CreateViewRequest(
+                definition=utils.get_pydantic_model(
+                    definition, models.AnalyticsViewDefinition
+                ),
+                name=name,
+            ),
+        )
+
+        req = self._build_request(
+            method="PUT",
+            path="/analytics/views/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.CreateViewRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="updateAnalyticsView",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "write",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ViewResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def update_analytics_view_async(
+        self,
+        *,
+        id: str,
+        definition: Union[
+            models.AnalyticsViewDefinition, models.AnalyticsViewDefinitionTypedDict
+        ],
+        name: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ViewResponse:
+        r"""Update an analytics view
+
+        Replaces the name and definition of a saved view.
+
+        :param id: View ID
+        :param definition:
+        :param name:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.UpdateAnalyticsViewRequest(
+            id=id,
+            body=models.CreateViewRequest(
+                definition=utils.get_pydantic_model(
+                    definition, models.AnalyticsViewDefinition
+                ),
+                name=name,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="PUT",
+            path="/analytics/views/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.CreateViewRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="updateAnalyticsView",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "write",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ViewResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def delete_analytics_view(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ):
+        r"""Delete an analytics view
+
+        Deletes a saved view by ID.
+
+        :param id: View ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.DeleteAnalyticsViewRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="DELETE",
+            path="/analytics/views/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteAnalyticsView",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "write"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return
+        if utils.match_response(http_res, "404", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def delete_analytics_view_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ):
+        r"""Delete an analytics view
+
+        Deletes a saved view by ID.
+
+        :param id: View ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.DeleteAnalyticsViewRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/analytics/views/{id}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteAnalyticsView",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Analytics"],
+                extensions={"x-scope": "write"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "204", "*"):
+            return
+        if utils.match_response(http_res, "404", "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
             )
