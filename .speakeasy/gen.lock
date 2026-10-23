@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
-id: 7eedafba-b0c7-4df0-a769-7c9b48368dc0
+id: 58741a9b-8158-4619-97e3-f44b92d847da
 management:
-  docChecksum: 8e9594e0abd0de6cc426fa0062da3cde
+  docChecksum: 6fdcfc2db8d0ddd629c50cc768b942c8
   docVersion: "1.0"
   speakeasyVersion: 1.802.0
   generationVersion: 2.948.4
-  releaseVersion: 2.1.42
-  configChecksum: c5951b45bc2e7f65f45ac95bb2fe9acc
+  releaseVersion: 2.1.43
+  configChecksum: 2a5d3c2bdc87060ca18f80a277fe40b2
   published: true
 persistentEdits:
-  generation_id: 27bc21c2-90c9-4402-9a83-402e7482b7f2
-  pristine_commit_hash: 02e5c7b50607e26b448c53237bb1b7829f6d47fa
-  pristine_tree_hash: da6d71911e5f048bba040ad5d7eef333111f74db
+  generation_id: c4801dfe-8149-4662-be17-c159f3c2370a
+  pristine_commit_hash: 007135ef67a26692b42fd5c7aeb4f3c30aafa72e
+  pristine_tree_hash: f71d716d9ba63d7466deadc67732ed596538f880
 features:
   python:
     additionalDependencies: 1.1.0
@@ -78,8 +78,8 @@ trackedFiles:
     pristine_git_object: ee0aa2ea45a9241c75bddcf5246993caa45f19d6
   docs/models/addaddonref.md:
     id: 5f481acef528
-    last_write_checksum: sha1:2d2c13b88b8d1d6dcbbdcc70dc7789ecc95d2eb3
-    pristine_git_object: 02f828e332e49beac33570e33d3cf5990d75b799
+    last_write_checksum: sha1:667458d948dda03199257cb148502c3fe461e56d
+    pristine_git_object: 304ea34b0a1f667942dcf2ca3e21a4128bdaeca9
   docs/models/addaddonrequest.md:
     id: 5323917753a8
     last_write_checksum: sha1:89da898d46ee9b9a6d69cc98a93a15af67649f81
@@ -120,6 +120,10 @@ trackedFiles:
     id: dfbe43d86857
     last_write_checksum: sha1:b9d8e98d4e409dcf0c7a3720c188e954a99de421
     pristine_git_object: 467dfc6b8eb3f9e5c0a06dad6f662f403796c5a6
+  docs/models/addonpriceoverrideref.md:
+    id: c0cbd7f5199e
+    last_write_checksum: sha1:723cefec59e19bd75fb5e0e777049a19b5f84cd5
+    pristine_git_object: ad27377df2e7c1363c43a09dae6034f1766375cb
   docs/models/addonpricesyncstatusresponse.md:
     id: a32f7a0a69eb
     last_write_checksum: sha1:769701321a85cd73a119da0982da76f54bd3348c
@@ -3666,8 +3670,8 @@ trackedFiles:
     pristine_git_object: 7f0d9ece48da15eb6a946ca0be15d7b30235b467
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:751ed27c65175728bb68544bb098ecfb2e9e2db5
-    pristine_git_object: 7c7fc70a776dce81e6ee65a05cab132421aa0d87
+    last_write_checksum: sha1:ba421caf277b214113e794d826266b75ffa76652
+    pristine_git_object: 61488137042c6a31881936763916ec3d045bdeb1
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -3690,8 +3694,8 @@ trackedFiles:
     pristine_git_object: 25287402d8a523280da352f25ab6fd511e50f499
   src/tirdad_sdk/_version.py:
     id: 55a4ad0b1139
-    last_write_checksum: sha1:f662ba618315a93524cd1f90383040b45743544b
-    pristine_git_object: cfd56c93529b875698ca35f0870fe7c3203b498a
+    last_write_checksum: sha1:08182e9ec755a3a60e74f52d964e2acc25eaa369
+    pristine_git_object: 2776c54f9035ddc118df4dcf3aa6ad450323b29e
   src/tirdad_sdk/activity.py:
     id: 73736bd0f420
     last_write_checksum: sha1:696ebe3263fb65728c05e7e507ff66ef53ca76f1
@@ -3786,8 +3790,8 @@ trackedFiles:
     pristine_git_object: 2609317fa1aca57ae23c2e3fd0f5b0132ab5c966
   src/tirdad_sdk/models/__init__.py:
     id: 2e433a069963
-    last_write_checksum: sha1:0cfdee98b45808a1530df619244c8b6ea0434f2b
-    pristine_git_object: 7d5e022d78ea19ec5ad6c88999e33f7a99672714
+    last_write_checksum: sha1:ae94f51beb71aaac0c6a74c96c7b6a6d09604c37
+    pristine_git_object: d99e6d8b4deb3039a40ed1b0a8de93de55cee0fb
   src/tirdad_sdk/models/activatedraftsubscriptionrequest.py:
     id: dcb35e4f9c51
     last_write_checksum: sha1:3f1293fd6c2602c7fe35f3f1125a7e13632ff671
@@ -3818,8 +3822,8 @@ trackedFiles:
     pristine_git_object: 75a05a8e23aaf5ea2d27897f6d0d25694cfe0d2f
   src/tirdad_sdk/models/addaddonref.py:
     id: 0bfeec730e66
-    last_write_checksum: sha1:90661af68935d62bd10a578b718ff2da0913c6e1
-    pristine_git_object: d827e5096259b50807b3c629a6334c07faa72f93
+    last_write_checksum: sha1:b0e943948e547ea4950800a6593533d2d4fc6437
+    pristine_git_object: 78fbfd1f2a479c5919042fe76c9f24c46d4e0bb4
   src/tirdad_sdk/models/addaddonrequest.py:
     id: 12a46cf0d18f
     last_write_checksum: sha1:37f634a5b0fa9e57e6c861d062224abd463c4297
@@ -3856,6 +3860,10 @@ trackedFiles:
     id: 81624d19e13b
     last_write_checksum: sha1:8522509b9823d2d83d2e9e7f9f54e54417091966
     pristine_git_object: c2b9d1e8b8870b34cd2c7703208da9cb9495c869
+  src/tirdad_sdk/models/addonpriceoverrideref.py:
+    id: fb756eca0441
+    last_write_checksum: sha1:eaa6f12b474df4530f1010457de8ceadd2337251
+    pristine_git_object: 8d11fa38b54bb5555d2dd6319159583d73329ada
   src/tirdad_sdk/models/addonpricesyncstatusresponse.py:
     id: 229b2ba7c697
     last_write_checksum: sha1:c88f7bd203c2ea0b4635a9bc644ab1b6686e96f9

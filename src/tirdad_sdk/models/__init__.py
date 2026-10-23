@@ -48,6 +48,10 @@ if TYPE_CHECKING:
     )
     from .addoncadence import AddonCadence
     from .addonfilter import AddonFilter, AddonFilterOrder, AddonFilterTypedDict
+    from .addonpriceoverrideref import (
+        AddonPriceOverrideRef,
+        AddonPriceOverrideRefTypedDict,
+    )
     from .addonpricesyncstatusresponse import (
         AddonPriceSyncStatusResponse,
         AddonPriceSyncStatusResponseTypedDict,
@@ -2060,6 +2064,8 @@ __all__ = [
     "AddonFilter",
     "AddonFilterOrder",
     "AddonFilterTypedDict",
+    "AddonPriceOverrideRef",
+    "AddonPriceOverrideRefTypedDict",
     "AddonPriceSyncStatusResponse",
     "AddonPriceSyncStatusResponseTypedDict",
     "AddonResponse",
@@ -3571,6 +3577,8 @@ _dynamic_imports: dict[str, str] = {
     "AddonFilter": ".addonfilter",
     "AddonFilterOrder": ".addonfilter",
     "AddonFilterTypedDict": ".addonfilter",
+    "AddonPriceOverrideRef": ".addonpriceoverrideref",
+    "AddonPriceOverrideRefTypedDict": ".addonpriceoverrideref",
     "AddonPriceSyncStatusResponse": ".addonpricesyncstatusresponse",
     "AddonPriceSyncStatusResponseTypedDict": ".addonpricesyncstatusresponse",
     "AddonStatus": ".addonstatus",

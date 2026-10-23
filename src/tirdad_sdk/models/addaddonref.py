@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .addoncadence import AddonCadence
+from .addonpriceoverrideref import AddonPriceOverrideRef, AddonPriceOverrideRefTypedDict
 from .couponref import CouponRef, CouponRefTypedDict
 from .prorationbehavior import ProrationBehavior
 from datetime import datetime
@@ -16,6 +17,8 @@ class AddAddonRefTypedDict(TypedDict):
     association_id: NotRequired[str]
     cadence: NotRequired[AddonCadence]
     coupons: NotRequired[List[CouponRefTypedDict]]
+    price_overrides: NotRequired[List[AddonPriceOverrideRefTypedDict]]
+    r"""Price overrides minted at execute time; completion repoints the line items instead of minting again."""
     proration_behavior: NotRequired[ProrationBehavior]
     start_date: NotRequired[datetime]
 
@@ -29,6 +32,9 @@ class AddAddonRef(BaseModel):
 
     coupons: Optional[List[CouponRef]] = None
 
+    price_overrides: Optional[List[AddonPriceOverrideRef]] = None
+    r"""Price overrides minted at execute time; completion repoints the line items instead of minting again."""
+
     proration_behavior: Optional[ProrationBehavior] = None
 
     start_date: Optional[datetime] = None
@@ -41,6 +47,7 @@ class AddAddonRef(BaseModel):
                 "association_id",
                 "cadence",
                 "coupons",
+                "price_overrides",
                 "proration_behavior",
                 "start_date",
             ]
