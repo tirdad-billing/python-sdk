@@ -16,13 +16,14 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CreateEntitlementRequestTypedDict(TypedDict):
-    feature_id: str
-    feature_type: FeatureType
     aggregation_mode: NotRequired[EntitlementAggregationMode]
     config_value: NotRequired[Dict[str, Any]]
     end_date: NotRequired[datetime]
     entity_id: NotRequired[str]
     entity_type: NotRequired[EntitlementEntityType]
+    feature_id: NotRequired[str]
+    r"""Required, except on a subscription entitlement grant (entity_type SUBSCRIPTION with grant config), which has no feature."""
+    feature_type: NotRequired[FeatureType]
     grant_allocation_behavior: NotRequired[EntitlementGrantAllocationBehavior]
     grant_duration_unit: NotRequired[EntitlementGrantDurationUnit]
     grant_duration_value: NotRequired[int]
@@ -41,10 +42,6 @@ class CreateEntitlementRequestTypedDict(TypedDict):
 
 
 class CreateEntitlementRequest(BaseModel):
-    feature_id: str
-
-    feature_type: FeatureType
-
     aggregation_mode: Optional[EntitlementAggregationMode] = None
 
     config_value: Optional[Dict[str, Any]] = None
@@ -54,6 +51,11 @@ class CreateEntitlementRequest(BaseModel):
     entity_id: Optional[str] = None
 
     entity_type: Optional[EntitlementEntityType] = None
+
+    feature_id: Optional[str] = None
+    r"""Required, except on a subscription entitlement grant (entity_type SUBSCRIPTION with grant config), which has no feature."""
+
+    feature_type: Optional[FeatureType] = None
 
     grant_allocation_behavior: Optional[EntitlementGrantAllocationBehavior] = None
 
@@ -93,6 +95,8 @@ class CreateEntitlementRequest(BaseModel):
                 "end_date",
                 "entity_id",
                 "entity_type",
+                "feature_id",
+                "feature_type",
                 "grant_allocation_behavior",
                 "grant_duration_unit",
                 "grant_duration_value",

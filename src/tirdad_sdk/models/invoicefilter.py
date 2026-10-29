@@ -87,6 +87,8 @@ class InvoiceFilterTypedDict(TypedDict):
     r"""subscription_id filters invoices generated for a specific subscription
     Only returns invoices that were created as part of the specified subscription's billing
     """
+    updated_at_gte: NotRequired[datetime]
+    r"""updated_at_gte filters invoices updated at or after the given instant"""
     voided_at_gte: NotRequired[datetime]
     r"""voided_at_gte filters invoices voided at or after the given instant"""
 
@@ -186,6 +188,9 @@ class InvoiceFilter(BaseModel):
     Only returns invoices that were created as part of the specified subscription's billing
     """
 
+    updated_at_gte: Optional[datetime] = None
+    r"""updated_at_gte filters invoices updated at or after the given instant"""
+
     voided_at_gte: Optional[datetime] = None
     r"""voided_at_gte filters invoices voided at or after the given instant"""
 
@@ -222,6 +227,7 @@ class InvoiceFilter(BaseModel):
                 "status",
                 "subscription_customer_id",
                 "subscription_id",
+                "updated_at_gte",
                 "voided_at_gte",
             ]
         )

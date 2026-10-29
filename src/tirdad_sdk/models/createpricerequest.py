@@ -46,6 +46,7 @@ class CreatePriceRequestTypedDict(TypedDict):
     min_quantity: NotRequired[int]
     r"""MinQuantity is the minimum quantity of the price"""
     price_unit_config: NotRequired[PriceUnitConfigTypedDict]
+    product_id: NotRequired[str]
     start_date: NotRequired[datetime]
     tier_mode: NotRequired[BillingTier]
     tiers: NotRequired[List[CreatePriceTierTypedDict]]
@@ -98,6 +99,8 @@ class CreatePriceRequest(BaseModel):
 
     price_unit_config: Optional[PriceUnitConfig] = None
 
+    product_id: Optional[str] = None
+
     start_date: Optional[datetime] = None
 
     tier_mode: Optional[BillingTier] = None
@@ -125,6 +128,7 @@ class CreatePriceRequest(BaseModel):
                 "meter_id",
                 "min_quantity",
                 "price_unit_config",
+                "product_id",
                 "start_date",
                 "tier_mode",
                 "tiers",

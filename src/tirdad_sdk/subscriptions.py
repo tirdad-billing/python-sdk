@@ -106,6 +106,12 @@ class Subscriptions(BaseSDK):
                 Iterable[models.SubscriptionCouponInputTypedDict],
             ]
         ] = None,
+        subscription_entitlement_grants: Optional[
+            Union[
+                Iterable[models.CreateSubscriptionEntitlementGrantRequest],
+                Iterable[models.CreateSubscriptionEntitlementGrantRequestTypedDict],
+            ]
+        ] = None,
         subscription_status: Optional[models.SubscriptionStatus] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -175,6 +181,7 @@ class Subscriptions(BaseSDK):
         :param start_date:
         :param subscription_coupons: SubscriptionCoupons is the preferred way to attach coupons at creation.
             Accepts coupon_code; optionally targets a line item via price_id.
+        :param subscription_entitlement_grants: SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription.
         :param subscription_status:
         :param tax_rate_overrides:
         :param timezone:
@@ -259,6 +266,10 @@ class Subscriptions(BaseSDK):
             start_date=start_date,
             subscription_coupons=utils.get_pydantic_model(
                 subscription_coupons, Optional[List[models.SubscriptionCouponInput]]
+            ),
+            subscription_entitlement_grants=utils.get_pydantic_model(
+                subscription_entitlement_grants,
+                Optional[List[models.CreateSubscriptionEntitlementGrantRequest]],
             ),
             subscription_status=subscription_status,
             tax_rate_overrides=utils.get_pydantic_model(
@@ -432,6 +443,12 @@ class Subscriptions(BaseSDK):
                 Iterable[models.SubscriptionCouponInputTypedDict],
             ]
         ] = None,
+        subscription_entitlement_grants: Optional[
+            Union[
+                Iterable[models.CreateSubscriptionEntitlementGrantRequest],
+                Iterable[models.CreateSubscriptionEntitlementGrantRequestTypedDict],
+            ]
+        ] = None,
         subscription_status: Optional[models.SubscriptionStatus] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -501,6 +518,7 @@ class Subscriptions(BaseSDK):
         :param start_date:
         :param subscription_coupons: SubscriptionCoupons is the preferred way to attach coupons at creation.
             Accepts coupon_code; optionally targets a line item via price_id.
+        :param subscription_entitlement_grants: SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription.
         :param subscription_status:
         :param tax_rate_overrides:
         :param timezone:
@@ -585,6 +603,10 @@ class Subscriptions(BaseSDK):
             start_date=start_date,
             subscription_coupons=utils.get_pydantic_model(
                 subscription_coupons, Optional[List[models.SubscriptionCouponInput]]
+            ),
+            subscription_entitlement_grants=utils.get_pydantic_model(
+                subscription_entitlement_grants,
+                Optional[List[models.CreateSubscriptionEntitlementGrantRequest]],
             ),
             subscription_status=subscription_status,
             tax_rate_overrides=utils.get_pydantic_model(

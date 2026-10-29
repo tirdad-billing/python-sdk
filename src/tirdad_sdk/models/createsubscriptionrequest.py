@@ -17,6 +17,10 @@ from .createcreditgrantrequest import (
     CreateCreditGrantRequest,
     CreateCreditGrantRequestTypedDict,
 )
+from .createsubscriptionentitlementgrantrequest import (
+    CreateSubscriptionEntitlementGrantRequest,
+    CreateSubscriptionEntitlementGrantRequestTypedDict,
+)
 from .createsubscriptionlineitemrequest import (
     CreateSubscriptionLineItemRequest,
     CreateSubscriptionLineItemRequestTypedDict,
@@ -129,6 +133,10 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
     Accepts coupon_code; optionally targets a line item via price_id.
     """
+    subscription_entitlement_grants: NotRequired[
+        List[CreateSubscriptionEntitlementGrantRequestTypedDict]
+    ]
+    r"""SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription."""
     subscription_status: NotRequired[SubscriptionStatus]
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
     timezone: NotRequired[str]
@@ -244,6 +252,11 @@ class CreateSubscriptionRequest(BaseModel):
     Accepts coupon_code; optionally targets a line item via price_id.
     """
 
+    subscription_entitlement_grants: Optional[
+        List[CreateSubscriptionEntitlementGrantRequest]
+    ] = None
+    r"""SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription."""
+
     subscription_status: Optional[SubscriptionStatus] = None
 
     tax_rate_overrides: Optional[List[TaxRateOverride]] = None
@@ -292,6 +305,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "proration_behavior",
                 "start_date",
                 "subscription_coupons",
+                "subscription_entitlement_grants",
                 "subscription_status",
                 "tax_rate_overrides",
                 "timezone",

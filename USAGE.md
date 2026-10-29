@@ -8,7 +8,7 @@ with Tirdad(
     api_key_auth="<YOUR_API_KEY_HERE>",
 ) as tirdad:
 
-    res = tirdad.activity.list_activity()
+    res = tirdad.accounting_periods.query_accounting_period()
 
     # Handle response
     print(res)
@@ -29,7 +29,7 @@ async def main():
         api_key_auth="<YOUR_API_KEY_HERE>",
     ) as tirdad:
 
-        res = await tirdad.activity.list_activity_async()
+        res = await tirdad.accounting_periods.query_accounting_period_async()
 
         # Handle response
         print(res)

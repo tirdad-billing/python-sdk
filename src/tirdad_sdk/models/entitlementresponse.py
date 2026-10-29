@@ -6,6 +6,7 @@ from .entitlemententitytype import EntitlementEntityType
 from .entitlementgrantallocationbehavior import EntitlementGrantAllocationBehavior
 from .entitlementgrantdurationunit import EntitlementGrantDurationUnit
 from .entitlementgrantmeasure import EntitlementGrantMeasure
+from .entitlementgrantscopeentitytype import EntitlementGrantScopeEntityType
 from .entitlementusageresetperiod import EntitlementUsageResetPeriod
 from .featureresponse import FeatureResponse, FeatureResponseTypedDict
 from .featuretype import FeatureType
@@ -40,6 +41,7 @@ class EntitlementResponseTypedDict(TypedDict):
     grant_duration_value: NotRequired[int]
     grant_measure: NotRequired[EntitlementGrantMeasure]
     grant_quota: NotRequired[str]
+    grant_scope: NotRequired[EntitlementGrantScopeEntityType]
     id: NotRequired[str]
     is_enabled: NotRequired[bool]
     is_soft_limit: NotRequired[bool]
@@ -94,6 +96,8 @@ class EntitlementResponse(BaseModel):
 
     grant_quota: Optional[str] = None
 
+    grant_scope: Optional[EntitlementGrantScopeEntityType] = None
+
     id: Optional[str] = None
 
     is_enabled: Optional[bool] = None
@@ -145,6 +149,7 @@ class EntitlementResponse(BaseModel):
                 "grant_duration_value",
                 "grant_measure",
                 "grant_quota",
+                "grant_scope",
                 "id",
                 "is_enabled",
                 "is_soft_limit",

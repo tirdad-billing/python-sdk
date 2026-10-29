@@ -10,6 +10,10 @@ from .createcreditgrantrequest import (
     CreateCreditGrantRequest,
     CreateCreditGrantRequestTypedDict,
 )
+from .createsubscriptionentitlementgrantrequest import (
+    CreateSubscriptionEntitlementGrantRequest,
+    CreateSubscriptionEntitlementGrantRequestTypedDict,
+)
 from .createsubscriptionlineitemrequest import (
     CreateSubscriptionLineItemRequest,
     CreateSubscriptionLineItemRequestTypedDict,
@@ -66,6 +70,10 @@ class GroupedInvoicingChildRequestTypedDict(TypedDict):
     r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
     Accepts coupon_code; optionally targets a line item via price_id.
     """
+    subscription_entitlement_grants: NotRequired[
+        List[CreateSubscriptionEntitlementGrantRequestTypedDict]
+    ]
+    r"""SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription."""
     tax_rate_overrides: NotRequired[List[TaxRateOverrideTypedDict]]
     trial_period_days: NotRequired[int]
     r"""TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days."""
@@ -112,6 +120,11 @@ class GroupedInvoicingChildRequest(BaseModel):
     Accepts coupon_code; optionally targets a line item via price_id.
     """
 
+    subscription_entitlement_grants: Optional[
+        List[CreateSubscriptionEntitlementGrantRequest]
+    ] = None
+    r"""SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription."""
+
     tax_rate_overrides: Optional[List[TaxRateOverride]] = None
 
     trial_period_days: Optional[int] = None
@@ -135,6 +148,7 @@ class GroupedInvoicingChildRequest(BaseModel):
                 "override_line_items",
                 "phases",
                 "subscription_coupons",
+                "subscription_entitlement_grants",
                 "tax_rate_overrides",
                 "trial_period_days",
             ]

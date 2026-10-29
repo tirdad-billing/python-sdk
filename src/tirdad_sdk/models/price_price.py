@@ -86,6 +86,7 @@ class PricePriceTypedDict(TypedDict):
     price_unit_tiers: NotRequired[List[PricePriceTierTypedDict]]
     r"""PriceUnitTiers are the tiers for the price unit when BillingModel is TIERED"""
     price_unit_type: NotRequired[PriceUnitType]
+    product_id: NotRequired[str]
     sequence: NotRequired[int]
     r"""Sequence is the monotonic stamp bumped on every state change that
     subscription line items need to react to. Read by the plan-price sync;
@@ -196,6 +197,8 @@ class PricePrice(BaseModel):
 
     price_unit_type: Optional[PriceUnitType] = None
 
+    product_id: Optional[str] = None
+
     sequence: Optional[int] = None
     r"""Sequence is the monotonic stamp bumped on every state change that
     subscription line items need to react to. Read by the plan-price sync;
@@ -262,6 +265,7 @@ class PricePrice(BaseModel):
                 "price_unit_id",
                 "price_unit_tiers",
                 "price_unit_type",
+                "product_id",
                 "sequence",
                 "start_date",
                 "status",

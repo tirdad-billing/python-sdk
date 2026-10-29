@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .entitlemententitytype import EntitlementEntityType
+from .entitlementgrantscopeentitytype import EntitlementGrantScopeEntityType
 from .featuretype import FeatureType
 from .filtercondition import FilterCondition, FilterConditionTypedDict
 from .sortcondition import SortCondition, SortConditionTypedDict
@@ -28,6 +29,10 @@ class EntitlementFilterTypedDict(TypedDict):
     feature_type: NotRequired[FeatureType]
     filters: NotRequired[List[FilterConditionTypedDict]]
     r"""Specific filters for entitlements"""
+    grant_scopes: NotRequired[List[EntitlementGrantScopeEntityType]]
+    r"""GrantScopes selects entitlements by grant scope. Empty means feature only, so
+    subscription entitlement grants, which have no feature, never reach feature-based reads.
+    """
     has_grant_config: NotRequired[bool]
     r"""HasGrantConfig filters on grant-config presence (grant_quota set or not)."""
     is_enabled: NotRequired[bool]
@@ -55,6 +60,11 @@ class EntitlementFilter(BaseModel):
 
     filters: Optional[List[FilterCondition]] = None
     r"""Specific filters for entitlements"""
+
+    grant_scopes: Optional[List[EntitlementGrantScopeEntityType]] = None
+    r"""GrantScopes selects entitlements by grant scope. Empty means feature only, so
+    subscription entitlement grants, which have no feature, never reach feature-based reads.
+    """
 
     has_grant_config: Optional[bool] = None
     r"""HasGrantConfig filters on grant-config presence (grant_quota set or not)."""
@@ -86,6 +96,7 @@ class EntitlementFilter(BaseModel):
                 "feature_ids",
                 "feature_type",
                 "filters",
+                "grant_scopes",
                 "has_grant_config",
                 "is_enabled",
                 "limit",

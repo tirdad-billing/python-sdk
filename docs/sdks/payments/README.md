@@ -54,6 +54,7 @@ with Tirdad(
 | `sort`                                                                    | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
 | `start_time`                                                              | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
 | `status`                                                                  | [Optional[models.ListPaymentsStatus]](../../models/listpaymentsstatus.md) | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `updated_at_gte`                                                          | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | UpdatedAtGTE bounds updated_at, which every lifecycle change bumps.       |
 | `retries`                                                                 | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)          | :heavy_minus_sign:                                                        | Configuration to override the default retry behavior of the client.       |
 
 ### Response

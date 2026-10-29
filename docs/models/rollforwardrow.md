@@ -1,0 +1,15 @@
+# RollforwardRow
+
+
+## Fields
+
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `account`                                                          | [Optional[models.LedgerAccountKey]](../models/ledgeraccountkey.md) | :heavy_minus_sign:                                                 | N/A                                                                |
+| `closing`                                                          | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |
+| `contract_id`                                                      | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |
+| `customer_id`                                                      | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |
+| `movements`                                                        | Dict[str, *str*]                                                   | :heavy_minus_sign:                                                 | a missing category is 0                                            |
+| `opening`                                                          | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |
+| `period`                                                           | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | YYYY-MM                                                            |
+| `pob_id`                                                           | *Optional[str]*                                                    | :heavy_minus_sign:                                                 | N/A                                                                |

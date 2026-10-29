@@ -38,6 +38,8 @@ class UpdatePriceRequestTypedDict(TypedDict):
     r"""PriceUnitAmount is the price unit amount (for CUSTOM price unit type, FLAT_FEE/PACKAGE billing models)"""
     price_unit_tiers: NotRequired[List[CreatePriceTierTypedDict]]
     r"""PriceUnitTiers are the price unit tiers (for CUSTOM price unit type, TIERED billing model)"""
+    product_id: NotRequired[str]
+    r"""ProductID sets the price's product while it has none; once set it never changes."""
     tier_mode: NotRequired[BillingTier]
     tiers: NotRequired[List[CreatePriceTierTypedDict]]
     r"""Tiers determines the pricing tiers for this line item"""
@@ -78,6 +80,9 @@ class UpdatePriceRequest(BaseModel):
     price_unit_tiers: Optional[List[CreatePriceTier]] = None
     r"""PriceUnitTiers are the price unit tiers (for CUSTOM price unit type, TIERED billing model)"""
 
+    product_id: Optional[str] = None
+    r"""ProductID sets the price's product while it has none; once set it never changes."""
+
     tier_mode: Optional[BillingTier] = None
 
     tiers: Optional[List[CreatePriceTier]] = None
@@ -100,6 +105,7 @@ class UpdatePriceRequest(BaseModel):
                 "metadata",
                 "price_unit_amount",
                 "price_unit_tiers",
+                "product_id",
                 "tier_mode",
                 "tiers",
                 "transform_quantity",

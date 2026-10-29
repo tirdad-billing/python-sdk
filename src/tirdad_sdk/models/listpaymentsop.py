@@ -40,6 +40,8 @@ class ListPaymentsRequestTypedDict(TypedDict):
     sort: NotRequired[str]
     start_time: NotRequired[str]
     status: NotRequired[ListPaymentsStatus]
+    updated_at_gte: NotRequired[str]
+    r"""UpdatedAtGTE bounds updated_at, which every lifecycle change bumps."""
 
 
 class ListPaymentsRequest(BaseModel):
@@ -129,6 +131,12 @@ class ListPaymentsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 
+    updated_at_gte: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""UpdatedAtGTE bounds updated_at, which every lifecycle change bumps."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
@@ -150,6 +158,7 @@ class ListPaymentsRequest(BaseModel):
                 "sort",
                 "start_time",
                 "status",
+                "updated_at_gte",
             ]
         )
         serialized = handler(self)

@@ -1,0 +1,16 @@
+# ListProductsRequest
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `end_time`                                                             | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `expand`                                                               | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `limit`                                                                | *Optional[int]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `lookup_keys`                                                          | List[*str*]                                                            | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `offset`                                                               | *Optional[int]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `order`                                                                | [Optional[models.ListProductsOrder]](../models/listproductsorder.md)   | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `product_ids`                                                          | List[*str*]                                                            | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `start_time`                                                           | *Optional[str]*                                                        | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `status`                                                               | [Optional[models.ListProductsStatus]](../models/listproductsstatus.md) | :heavy_minus_sign:                                                     | N/A                                                                    |

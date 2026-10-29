@@ -35,6 +35,7 @@ class PriceFilterTypedDict(TypedDict):
     plan_ids: NotRequired[List[str]]
     r"""Price override filtering fields"""
     price_ids: NotRequired[List[str]]
+    product_ids: NotRequired[List[str]]
     sort: NotRequired[str]
     start_date_lt: NotRequired[str]
     start_time: NotRequired[datetime]
@@ -78,6 +79,8 @@ class PriceFilter(BaseModel):
 
     price_ids: Optional[List[str]] = None
 
+    product_ids: Optional[List[str]] = None
+
     sort: Optional[str] = None
 
     start_date_lt: Optional[str] = None
@@ -112,6 +115,7 @@ class PriceFilter(BaseModel):
                 "parent_price_id",
                 "plan_ids",
                 "price_ids",
+                "product_ids",
                 "sort",
                 "start_date_lt",
                 "start_time",

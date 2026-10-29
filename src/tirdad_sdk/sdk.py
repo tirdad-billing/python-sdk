@@ -15,6 +15,7 @@ from typing import Any, Callable, Dict, Optional, TYPE_CHECKING, Union, cast
 import weakref
 
 if TYPE_CHECKING:
+    from tirdad_sdk.accounting_periods import AccountingPeriods
     from tirdad_sdk.activity import Activity
     from tirdad_sdk.addons import Addons
     from tirdad_sdk.alerts import Alerts
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.analytics import Analytics
     from tirdad_sdk.checkout import Checkout
     from tirdad_sdk.commitments import Commitments
+    from tirdad_sdk.contracts import Contracts
     from tirdad_sdk.costs import Costs
     from tirdad_sdk.coupon_associations import CouponAssociations
     from tirdad_sdk.coupons import Coupons
@@ -36,13 +38,17 @@ if TYPE_CHECKING:
     from tirdad_sdk.groups import Groups
     from tirdad_sdk.integrations import Integrations
     from tirdad_sdk.invoices import Invoices
+    from tirdad_sdk.journal_entries import JournalEntries
     from tirdad_sdk.marketplace import Marketplace
     from tirdad_sdk.payments import Payments
+    from tirdad_sdk.performance_obligations import PerformanceObligations
     from tirdad_sdk.plans import Plans
     from tirdad_sdk.price_units import PriceUnits
     from tirdad_sdk.prices import Prices
+    from tirdad_sdk.products import Products
     from tirdad_sdk.rbac import Rbac
     from tirdad_sdk.refunds import Refunds
+    from tirdad_sdk.revenue_reports import RevenueReports
     from tirdad_sdk.scheduled_tasks import ScheduledTasks
     from tirdad_sdk.secrets import Secrets
     from tirdad_sdk.selfbilling import SelfBilling
@@ -61,6 +67,7 @@ if TYPE_CHECKING:
 class Tirdad(BaseSDK):
     r"""Flexprice API: Flexprice API Service"""
 
+    accounting_periods: "AccountingPeriods"
     activity: "Activity"
     addons: "Addons"
     credit_grants: "CreditGrants"
@@ -70,6 +77,7 @@ class Tirdad(BaseSDK):
     analytics: "Analytics"
     checkout: "Checkout"
     commitments: "Commitments"
+    contracts: "Contracts"
     costs: "Costs"
     coupons: "Coupons"
     coupon_associations: "CouponAssociations"
@@ -83,14 +91,18 @@ class Tirdad(BaseSDK):
     fx_rates: "FXRates"
     groups: "Groups"
     integrations: "Integrations"
+    journal_entries: "JournalEntries"
     marketplace: "Marketplace"
     payments: "Payments"
+    performance_obligations: "PerformanceObligations"
     plans: "Plans"
     self_billing: "SelfBilling"
     prices: "Prices"
     price_units: "PriceUnits"
+    products: "Products"
     rbac: "Rbac"
     refunds: "Refunds"
+    revenue_reports: "RevenueReports"
     secrets: "Secrets"
     subscriptions: "Subscriptions"
     tasks: "Tasks"
@@ -103,6 +115,7 @@ class Tirdad(BaseSDK):
     webhook_events: "WebhookEvents"
     workflows: "Workflows"
     _sub_sdk_map = {
+        "accounting_periods": ("tirdad_sdk.accounting_periods", "AccountingPeriods"),
         "activity": ("tirdad_sdk.activity", "Activity"),
         "addons": ("tirdad_sdk.addons", "Addons"),
         "credit_grants": ("tirdad_sdk.credit_grants", "CreditGrants"),
@@ -112,6 +125,7 @@ class Tirdad(BaseSDK):
         "analytics": ("tirdad_sdk.analytics", "Analytics"),
         "checkout": ("tirdad_sdk.checkout", "Checkout"),
         "commitments": ("tirdad_sdk.commitments", "Commitments"),
+        "contracts": ("tirdad_sdk.contracts", "Contracts"),
         "costs": ("tirdad_sdk.costs", "Costs"),
         "coupons": ("tirdad_sdk.coupons", "Coupons"),
         "coupon_associations": ("tirdad_sdk.coupon_associations", "CouponAssociations"),
@@ -125,14 +139,21 @@ class Tirdad(BaseSDK):
         "fx_rates": ("tirdad_sdk.fx_rates", "FXRates"),
         "groups": ("tirdad_sdk.groups", "Groups"),
         "integrations": ("tirdad_sdk.integrations", "Integrations"),
+        "journal_entries": ("tirdad_sdk.journal_entries", "JournalEntries"),
         "marketplace": ("tirdad_sdk.marketplace", "Marketplace"),
         "payments": ("tirdad_sdk.payments", "Payments"),
+        "performance_obligations": (
+            "tirdad_sdk.performance_obligations",
+            "PerformanceObligations",
+        ),
         "plans": ("tirdad_sdk.plans", "Plans"),
         "self_billing": ("tirdad_sdk.selfbilling", "SelfBilling"),
         "prices": ("tirdad_sdk.prices", "Prices"),
         "price_units": ("tirdad_sdk.price_units", "PriceUnits"),
+        "products": ("tirdad_sdk.products", "Products"),
         "rbac": ("tirdad_sdk.rbac", "Rbac"),
         "refunds": ("tirdad_sdk.refunds", "Refunds"),
+        "revenue_reports": ("tirdad_sdk.revenue_reports", "RevenueReports"),
         "secrets": ("tirdad_sdk.secrets", "Secrets"),
         "subscriptions": ("tirdad_sdk.subscriptions", "Subscriptions"),
         "tasks": ("tirdad_sdk.tasks", "Tasks"),

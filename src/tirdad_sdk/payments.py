@@ -30,6 +30,7 @@ class Payments(BaseSDK):
         sort: Optional[str] = None,
         start_time: Optional[str] = None,
         status: Optional[models.ListPaymentsStatus] = None,
+        updated_at_gte: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -56,6 +57,7 @@ class Payments(BaseSDK):
         :param sort:
         :param start_time:
         :param status:
+        :param updated_at_gte: UpdatedAtGTE bounds updated_at, which every lifecycle change bumps.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -89,6 +91,7 @@ class Payments(BaseSDK):
             sort=sort,
             start_time=start_time,
             status=status,
+            updated_at_gte=updated_at_gte,
         )
 
         req = self._build_request(
@@ -177,6 +180,7 @@ class Payments(BaseSDK):
         sort: Optional[str] = None,
         start_time: Optional[str] = None,
         status: Optional[models.ListPaymentsStatus] = None,
+        updated_at_gte: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -203,6 +207,7 @@ class Payments(BaseSDK):
         :param sort:
         :param start_time:
         :param status:
+        :param updated_at_gte: UpdatedAtGTE bounds updated_at, which every lifecycle change bumps.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -236,6 +241,7 @@ class Payments(BaseSDK):
             sort=sort,
             start_time=start_time,
             status=status,
+            updated_at_gte=updated_at_gte,
         )
 
         req = self._build_request_async(
