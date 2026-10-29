@@ -19,6 +19,7 @@ if TYPE_CHECKING:
         ActivateSubscriptionRequest,
         ActivateSubscriptionRequestTypedDict,
     )
+    from .activewindow import ActiveWindow, ActiveWindowTypedDict
     from .activityactor import ActivityActor, ActivityActorTypedDict
     from .activityentity import ActivityEntity, ActivityEntityTypedDict
     from .activitypagination import ActivityPagination, ActivityPaginationTypedDict
@@ -243,12 +244,39 @@ if TYPE_CHECKING:
     from .collectionmethod import CollectionMethod
     from .columnrole import ColumnRole
     from .columntype import ColumnType
+    from .commitment_filter import (
+        CommitmentFilter,
+        CommitmentFilterOrder,
+        CommitmentFilterTypedDict,
+    )
     from .commitmentbucketrequest import (
         CommitmentBucketRequest,
         CommitmentBucketRequestTypedDict,
     )
+    from .commitmentcollectionmethod import CommitmentCollectionMethod
+    from .commitmentearlytermination import CommitmentEarlyTermination
     from .commitmentinfo import CommitmentInfo, CommitmentInfoTypedDict
+    from .commitmentmeasurement import CommitmentMeasurement
+    from .commitmentpriceinput import (
+        CommitmentPriceInput,
+        CommitmentPriceInputTypedDict,
+    )
+    from .commitmentresponse import CommitmentResponse, CommitmentResponseTypedDict
+    from .commitmentscopeinput import (
+        CommitmentScopeInput,
+        CommitmentScopeInputTypedDict,
+    )
+    from .commitmentscopetype import CommitmentScopeType
+    from .commitmentstatus import CommitmentStatus
     from .commitmenttype import CommitmentType
+    from .commitmentusagebreakdown import (
+        CommitmentUsageBreakdown,
+        CommitmentUsageBreakdownTypedDict,
+    )
+    from .commitmentusagevalue import (
+        CommitmentUsageValue,
+        CommitmentUsageValueTypedDict,
+    )
     from .configurationdetails import (
         ConfigurationDetails,
         ConfigurationDetailsTypedDict,
@@ -300,6 +328,10 @@ if TYPE_CHECKING:
     from .createcheckoutsessionrequest import (
         CreateCheckoutSessionRequest,
         CreateCheckoutSessionRequestTypedDict,
+    )
+    from .createcommitmentrequest import (
+        CreateCommitmentRequest,
+        CreateCommitmentRequestTypedDict,
     )
     from .createcostsheetrequest import (
         CreateCostsheetRequest,
@@ -497,6 +529,15 @@ if TYPE_CHECKING:
         DeleteEntitlementRequest,
         DeleteEntitlementRequestTypedDict,
     )
+    from .deleteeventsop import (
+        DeleteEventsResponseResponse,
+        DeleteEventsResponseResponseTypedDict,
+    )
+    from .deleteeventsrequest import DeleteEventsRequest, DeleteEventsRequestTypedDict
+    from .deleteeventsresponse import (
+        DeleteEventsResponse,
+        DeleteEventsResponseTypedDict,
+    )
     from .deletefeatureop import DeleteFeatureRequest, DeleteFeatureRequestTypedDict
     from .deletefxrateop import DeleteFXRateRequest, DeleteFXRateRequestTypedDict
     from .deletegroupop import DeleteGroupRequest, DeleteGroupRequestTypedDict
@@ -667,6 +708,7 @@ if TYPE_CHECKING:
         GetCheckoutSessionRequest,
         GetCheckoutSessionRequestTypedDict,
     )
+    from .getcommitmentop import GetCommitmentRequest, GetCommitmentRequestTypedDict
     from .getcostanalyticsrequest import (
         GetCostAnalyticsRequest,
         GetCostAnalyticsRequestTypedDict,
@@ -961,6 +1003,10 @@ if TYPE_CHECKING:
         ListAnalyticsViewsRequestTypedDict,
     )
     from .listapikeysop import ListAPIKeysRequest, ListAPIKeysRequestTypedDict
+    from .listcommitmentsresponse import (
+        ListCommitmentsResponse,
+        ListCommitmentsResponseTypedDict,
+    )
     from .listcostsheetresponse import (
         ListCostsheetResponse,
         ListCostsheetResponseTypedDict,
@@ -1370,6 +1416,10 @@ if TYPE_CHECKING:
     from .secretresponse import SecretResponse, SecretResponseTypedDict
     from .secrettype import SecretType
     from .security import Security, SecurityTypedDict
+    from .selfbillingchargeresponse import (
+        SelfBillingChargeResponse,
+        SelfBillingChargeResponseTypedDict,
+    )
     from .selfbillingcheckoutrequest import (
         SelfBillingCheckoutRequest,
         SelfBillingCheckoutRequestTypedDict,
@@ -1379,6 +1429,10 @@ if TYPE_CHECKING:
         SelfBillingCheckoutResponseTypedDict,
     )
     from .selfbillinginvoice import SelfBillingInvoice, SelfBillingInvoiceTypedDict
+    from .selfbillingplanresponse import (
+        SelfBillingPlanResponse,
+        SelfBillingPlanResponseTypedDict,
+    )
     from .selfbillingportalresponse import (
         SelfBillingPortalResponse,
         SelfBillingPortalResponseTypedDict,
@@ -1592,6 +1646,14 @@ if TYPE_CHECKING:
     )
     from .tenantinternalstatus import TenantInternalStatus
     from .tenantresponse import TenantResponse, TenantResponseTypedDict
+    from .terminatecommitmentop import (
+        TerminateCommitmentRequestRequest,
+        TerminateCommitmentRequestRequestTypedDict,
+    )
+    from .terminatecommitmentrequest import (
+        TerminateCommitmentRequest,
+        TerminateCommitmentRequestTypedDict,
+    )
     from .terminatewalletop import (
         TerminateWalletRequest,
         TerminateWalletRequestTypedDict,
@@ -1641,6 +1703,14 @@ if TYPE_CHECKING:
     from .updateanalyticsviewop import (
         UpdateAnalyticsViewRequest,
         UpdateAnalyticsViewRequestTypedDict,
+    )
+    from .updatecommitmentop import (
+        UpdateCommitmentRequestRequest,
+        UpdateCommitmentRequestRequestTypedDict,
+    )
+    from .updatecommitmentrequest import (
+        UpdateCommitmentRequest,
+        UpdateCommitmentRequestTypedDict,
     )
     from .updatecostsheetop import (
         UpdateCostsheetRequestRequest,
@@ -1881,6 +1951,10 @@ if TYPE_CHECKING:
         WebhookDtoCheckoutSessionWebhookPayload,
         WebhookDtoCheckoutSessionWebhookPayloadTypedDict,
     )
+    from .webhookdto_commitmentwebhookpayload import (
+        WebhookDtoCommitmentWebhookPayload,
+        WebhookDtoCommitmentWebhookPayloadTypedDict,
+    )
     from .webhookdto_communicationwebhookpayload import (
         WebhookDtoCommunicationWebhookPayload,
         WebhookDtoCommunicationWebhookPayloadTypedDict,
@@ -2018,6 +2092,12 @@ if TYPE_CHECKING:
         WorkflowExecutionFilterOrder,
         WorkflowExecutionFilterTypedDict,
     )
+    from .zohopaymentgateway import ZohoPaymentGateway
+    from .zohopaymentgatewaysettings import (
+        ZohoPaymentGatewaySettings,
+        ZohoPaymentGatewaySettingsTypedDict,
+    )
+    from .zohopaypalpaymentmethod import ZohoPayPalPaymentMethod
     from . import errors  # Pydantic models with forward references
 PriceResponse.model_rebuild()
 PlanResponse.model_rebuild()
@@ -2036,6 +2116,8 @@ __all__ = [
     "ActivateDraftSubscriptionRequestTypedDict",
     "ActivateSubscriptionRequest",
     "ActivateSubscriptionRequestTypedDict",
+    "ActiveWindow",
+    "ActiveWindowTypedDict",
     "ActivityActor",
     "ActivityActorTypedDict",
     "ActivityEntity",
@@ -2213,9 +2295,27 @@ __all__ = [
     "ColumnType",
     "CommitmentBucketRequest",
     "CommitmentBucketRequestTypedDict",
+    "CommitmentCollectionMethod",
+    "CommitmentEarlyTermination",
+    "CommitmentFilter",
+    "CommitmentFilterOrder",
+    "CommitmentFilterTypedDict",
     "CommitmentInfo",
     "CommitmentInfoTypedDict",
+    "CommitmentMeasurement",
+    "CommitmentPriceInput",
+    "CommitmentPriceInputTypedDict",
+    "CommitmentResponse",
+    "CommitmentResponseTypedDict",
+    "CommitmentScopeInput",
+    "CommitmentScopeInputTypedDict",
+    "CommitmentScopeType",
+    "CommitmentStatus",
     "CommitmentType",
+    "CommitmentUsageBreakdown",
+    "CommitmentUsageBreakdownTypedDict",
+    "CommitmentUsageValue",
+    "CommitmentUsageValueTypedDict",
     "ConfigValue",
     "ConfigValueTypedDict",
     "ConfigurationDetails",
@@ -2261,6 +2361,8 @@ __all__ = [
     "CreateBulkPriceResponseTypedDict",
     "CreateCheckoutSessionRequest",
     "CreateCheckoutSessionRequestTypedDict",
+    "CreateCommitmentRequest",
+    "CreateCommitmentRequestTypedDict",
     "CreateCostsheetRequest",
     "CreateCostsheetRequestTypedDict",
     "CreateCostsheetResponse",
@@ -2402,6 +2504,12 @@ __all__ = [
     "DeleteCustomerRequestTypedDict",
     "DeleteEntitlementRequest",
     "DeleteEntitlementRequestTypedDict",
+    "DeleteEventsRequest",
+    "DeleteEventsRequestTypedDict",
+    "DeleteEventsResponse",
+    "DeleteEventsResponseResponse",
+    "DeleteEventsResponseResponseTypedDict",
+    "DeleteEventsResponseTypedDict",
     "DeleteFXRateRequest",
     "DeleteFXRateRequestTypedDict",
     "DeleteFeatureRequest",
@@ -2549,6 +2657,8 @@ __all__ = [
     "GetAnalyticsViewRequestTypedDict",
     "GetCheckoutSessionRequest",
     "GetCheckoutSessionRequestTypedDict",
+    "GetCommitmentRequest",
+    "GetCommitmentRequestTypedDict",
     "GetCostAnalyticsRequest",
     "GetCostAnalyticsRequestTypedDict",
     "GetCostsheetRequest",
@@ -2773,6 +2883,8 @@ __all__ = [
     "ListAllSubscriptionSchedulesScheduleType",
     "ListAnalyticsViewsRequest",
     "ListAnalyticsViewsRequestTypedDict",
+    "ListCommitmentsResponse",
+    "ListCommitmentsResponseTypedDict",
     "ListCostsheetResponse",
     "ListCostsheetResponseTypedDict",
     "ListCouponAssociationsRequest",
@@ -3096,12 +3208,16 @@ __all__ = [
     "SecretType",
     "Security",
     "SecurityTypedDict",
+    "SelfBillingChargeResponse",
+    "SelfBillingChargeResponseTypedDict",
     "SelfBillingCheckoutRequest",
     "SelfBillingCheckoutRequestTypedDict",
     "SelfBillingCheckoutResponse",
     "SelfBillingCheckoutResponseTypedDict",
     "SelfBillingInvoice",
     "SelfBillingInvoiceTypedDict",
+    "SelfBillingPlanResponse",
+    "SelfBillingPlanResponseTypedDict",
     "SelfBillingPortalResponse",
     "SelfBillingPortalResponseTypedDict",
     "SelfBillingStatusResponse",
@@ -3252,6 +3368,10 @@ __all__ = [
     "TenantInternalStatus",
     "TenantResponse",
     "TenantResponseTypedDict",
+    "TerminateCommitmentRequest",
+    "TerminateCommitmentRequestRequest",
+    "TerminateCommitmentRequestRequestTypedDict",
+    "TerminateCommitmentRequestTypedDict",
     "TerminateWalletRequest",
     "TerminateWalletRequestTypedDict",
     "TimeOfDayBucket",
@@ -3289,6 +3409,10 @@ __all__ = [
     "UpdateAlertSettingsRequestTypedDict",
     "UpdateAnalyticsViewRequest",
     "UpdateAnalyticsViewRequestTypedDict",
+    "UpdateCommitmentRequest",
+    "UpdateCommitmentRequestRequest",
+    "UpdateCommitmentRequestRequestTypedDict",
+    "UpdateCommitmentRequestTypedDict",
     "UpdateCostsheetRequest",
     "UpdateCostsheetRequestRequest",
     "UpdateCostsheetRequestRequestTypedDict",
@@ -3454,6 +3578,8 @@ __all__ = [
     "WebhookDtoCheckoutSessionTypedDict",
     "WebhookDtoCheckoutSessionWebhookPayload",
     "WebhookDtoCheckoutSessionWebhookPayloadTypedDict",
+    "WebhookDtoCommitmentWebhookPayload",
+    "WebhookDtoCommitmentWebhookPayloadTypedDict",
     "WebhookDtoCommunicationWebhookPayload",
     "WebhookDtoCommunicationWebhookPayloadTypedDict",
     "WebhookDtoCouponApplication",
@@ -3539,6 +3665,10 @@ __all__ = [
     "WorkflowExecutionFilter",
     "WorkflowExecutionFilterOrder",
     "WorkflowExecutionFilterTypedDict",
+    "ZohoPayPalPaymentMethod",
+    "ZohoPaymentGateway",
+    "ZohoPaymentGatewaySettings",
+    "ZohoPaymentGatewaySettingsTypedDict",
 ]
 
 _dynamic_imports: dict[str, str] = {
@@ -3546,6 +3676,8 @@ _dynamic_imports: dict[str, str] = {
     "ActivateDraftSubscriptionRequestTypedDict": ".activatedraftsubscriptionrequest",
     "ActivateSubscriptionRequest": ".activatesubscriptionop",
     "ActivateSubscriptionRequestTypedDict": ".activatesubscriptionop",
+    "ActiveWindow": ".activewindow",
+    "ActiveWindowTypedDict": ".activewindow",
     "ActivityActor": ".activityactor",
     "ActivityActorTypedDict": ".activityactor",
     "ActivityEntity": ".activityentity",
@@ -3728,11 +3860,29 @@ _dynamic_imports: dict[str, str] = {
     "CollectionMethod": ".collectionmethod",
     "ColumnRole": ".columnrole",
     "ColumnType": ".columntype",
+    "CommitmentFilter": ".commitment_filter",
+    "CommitmentFilterOrder": ".commitment_filter",
+    "CommitmentFilterTypedDict": ".commitment_filter",
     "CommitmentBucketRequest": ".commitmentbucketrequest",
     "CommitmentBucketRequestTypedDict": ".commitmentbucketrequest",
+    "CommitmentCollectionMethod": ".commitmentcollectionmethod",
+    "CommitmentEarlyTermination": ".commitmentearlytermination",
     "CommitmentInfo": ".commitmentinfo",
     "CommitmentInfoTypedDict": ".commitmentinfo",
+    "CommitmentMeasurement": ".commitmentmeasurement",
+    "CommitmentPriceInput": ".commitmentpriceinput",
+    "CommitmentPriceInputTypedDict": ".commitmentpriceinput",
+    "CommitmentResponse": ".commitmentresponse",
+    "CommitmentResponseTypedDict": ".commitmentresponse",
+    "CommitmentScopeInput": ".commitmentscopeinput",
+    "CommitmentScopeInputTypedDict": ".commitmentscopeinput",
+    "CommitmentScopeType": ".commitmentscopetype",
+    "CommitmentStatus": ".commitmentstatus",
     "CommitmentType": ".commitmenttype",
+    "CommitmentUsageBreakdown": ".commitmentusagebreakdown",
+    "CommitmentUsageBreakdownTypedDict": ".commitmentusagebreakdown",
+    "CommitmentUsageValue": ".commitmentusagevalue",
+    "CommitmentUsageValueTypedDict": ".commitmentusagevalue",
     "ConfigurationDetails": ".configurationdetails",
     "ConfigurationDetailsTypedDict": ".configurationdetails",
     "CostAnalyticItem": ".costanalyticitem",
@@ -3776,6 +3926,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateBulkPriceResponseTypedDict": ".createbulkpriceresponse",
     "CreateCheckoutSessionRequest": ".createcheckoutsessionrequest",
     "CreateCheckoutSessionRequestTypedDict": ".createcheckoutsessionrequest",
+    "CreateCommitmentRequest": ".createcommitmentrequest",
+    "CreateCommitmentRequestTypedDict": ".createcommitmentrequest",
     "CreateCostsheetRequest": ".createcostsheetrequest",
     "CreateCostsheetRequestTypedDict": ".createcostsheetrequest",
     "CreateCostsheetResponse": ".createcostsheetresponse",
@@ -3916,6 +4068,12 @@ _dynamic_imports: dict[str, str] = {
     "DeleteCustomerRequestTypedDict": ".deletecustomerop",
     "DeleteEntitlementRequest": ".deleteentitlementop",
     "DeleteEntitlementRequestTypedDict": ".deleteentitlementop",
+    "DeleteEventsResponseResponse": ".deleteeventsop",
+    "DeleteEventsResponseResponseTypedDict": ".deleteeventsop",
+    "DeleteEventsRequest": ".deleteeventsrequest",
+    "DeleteEventsRequestTypedDict": ".deleteeventsrequest",
+    "DeleteEventsResponse": ".deleteeventsresponse",
+    "DeleteEventsResponseTypedDict": ".deleteeventsresponse",
     "DeleteFeatureRequest": ".deletefeatureop",
     "DeleteFeatureRequestTypedDict": ".deletefeatureop",
     "DeleteFXRateRequest": ".deletefxrateop",
@@ -4059,6 +4217,8 @@ _dynamic_imports: dict[str, str] = {
     "GetAnalyticsViewRequestTypedDict": ".getanalyticsviewop",
     "GetCheckoutSessionRequest": ".getcheckoutsessionop",
     "GetCheckoutSessionRequestTypedDict": ".getcheckoutsessionop",
+    "GetCommitmentRequest": ".getcommitmentop",
+    "GetCommitmentRequestTypedDict": ".getcommitmentop",
     "GetCostAnalyticsRequest": ".getcostanalyticsrequest",
     "GetCostAnalyticsRequestTypedDict": ".getcostanalyticsrequest",
     "GetCostsheetRequest": ".getcostsheetop",
@@ -4283,6 +4443,8 @@ _dynamic_imports: dict[str, str] = {
     "ListAnalyticsViewsRequestTypedDict": ".listanalyticsviewsop",
     "ListAPIKeysRequest": ".listapikeysop",
     "ListAPIKeysRequestTypedDict": ".listapikeysop",
+    "ListCommitmentsResponse": ".listcommitmentsresponse",
+    "ListCommitmentsResponseTypedDict": ".listcommitmentsresponse",
     "ListCostsheetResponse": ".listcostsheetresponse",
     "ListCostsheetResponseTypedDict": ".listcostsheetresponse",
     "ListCouponAssociationsRequest": ".listcouponassociationsop",
@@ -4603,12 +4765,16 @@ _dynamic_imports: dict[str, str] = {
     "SecretType": ".secrettype",
     "Security": ".security",
     "SecurityTypedDict": ".security",
+    "SelfBillingChargeResponse": ".selfbillingchargeresponse",
+    "SelfBillingChargeResponseTypedDict": ".selfbillingchargeresponse",
     "SelfBillingCheckoutRequest": ".selfbillingcheckoutrequest",
     "SelfBillingCheckoutRequestTypedDict": ".selfbillingcheckoutrequest",
     "SelfBillingCheckoutResponse": ".selfbillingcheckoutresponse",
     "SelfBillingCheckoutResponseTypedDict": ".selfbillingcheckoutresponse",
     "SelfBillingInvoice": ".selfbillinginvoice",
     "SelfBillingInvoiceTypedDict": ".selfbillinginvoice",
+    "SelfBillingPlanResponse": ".selfbillingplanresponse",
+    "SelfBillingPlanResponseTypedDict": ".selfbillingplanresponse",
     "SelfBillingPortalResponse": ".selfbillingportalresponse",
     "SelfBillingPortalResponseTypedDict": ".selfbillingportalresponse",
     "SelfBillingStatusResponse": ".selfbillingstatusresponse",
@@ -4755,6 +4921,10 @@ _dynamic_imports: dict[str, str] = {
     "TenantInternalStatus": ".tenantinternalstatus",
     "TenantResponse": ".tenantresponse",
     "TenantResponseTypedDict": ".tenantresponse",
+    "TerminateCommitmentRequestRequest": ".terminatecommitmentop",
+    "TerminateCommitmentRequestRequestTypedDict": ".terminatecommitmentop",
+    "TerminateCommitmentRequest": ".terminatecommitmentrequest",
+    "TerminateCommitmentRequestTypedDict": ".terminatecommitmentrequest",
     "TerminateWalletRequest": ".terminatewalletop",
     "TerminateWalletRequestTypedDict": ".terminatewalletop",
     "TimeOfDayBucket": ".timeofdaybucket",
@@ -4791,6 +4961,10 @@ _dynamic_imports: dict[str, str] = {
     "UpdateAlertSettingsRequestTypedDict": ".updatealertsettingsrequest",
     "UpdateAnalyticsViewRequest": ".updateanalyticsviewop",
     "UpdateAnalyticsViewRequestTypedDict": ".updateanalyticsviewop",
+    "UpdateCommitmentRequestRequest": ".updatecommitmentop",
+    "UpdateCommitmentRequestRequestTypedDict": ".updatecommitmentop",
+    "UpdateCommitmentRequest": ".updatecommitmentrequest",
+    "UpdateCommitmentRequestTypedDict": ".updatecommitmentrequest",
     "UpdateCostsheetRequestRequest": ".updatecostsheetop",
     "UpdateCostsheetRequestRequestTypedDict": ".updatecostsheetop",
     "UpdateCostsheetRequest": ".updatecostsheetrequest",
@@ -4956,6 +5130,8 @@ _dynamic_imports: dict[str, str] = {
     "WebhookDtoCheckoutSessionTypedDict": ".webhookdto_checkoutsession",
     "WebhookDtoCheckoutSessionWebhookPayload": ".webhookdto_checkoutsessionwebhookpayload",
     "WebhookDtoCheckoutSessionWebhookPayloadTypedDict": ".webhookdto_checkoutsessionwebhookpayload",
+    "WebhookDtoCommitmentWebhookPayload": ".webhookdto_commitmentwebhookpayload",
+    "WebhookDtoCommitmentWebhookPayloadTypedDict": ".webhookdto_commitmentwebhookpayload",
     "WebhookDtoCommunicationWebhookPayload": ".webhookdto_communicationwebhookpayload",
     "WebhookDtoCommunicationWebhookPayloadTypedDict": ".webhookdto_communicationwebhookpayload",
     "WebhookDtoCouponApplication": ".webhookdto_couponapplication",
@@ -5041,6 +5217,10 @@ _dynamic_imports: dict[str, str] = {
     "WorkflowExecutionFilter": ".workflowexecutionfilter",
     "WorkflowExecutionFilterOrder": ".workflowexecutionfilter",
     "WorkflowExecutionFilterTypedDict": ".workflowexecutionfilter",
+    "ZohoPaymentGateway": ".zohopaymentgateway",
+    "ZohoPaymentGatewaySettings": ".zohopaymentgatewaysettings",
+    "ZohoPaymentGatewaySettingsTypedDict": ".zohopaymentgatewaysettings",
+    "ZohoPayPalPaymentMethod": ".zohopaypalpaymentmethod",
 }
 
 _sub_packages = ["errors"]

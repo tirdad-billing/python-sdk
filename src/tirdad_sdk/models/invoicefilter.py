@@ -64,12 +64,16 @@ class InvoiceFilterTypedDict(TypedDict):
     r"""payment_status filters by the payment state of invoices
     Multiple statuses can be specified to include invoices with any of the listed payment states
     """
+    period_end_gt: NotRequired[str]
+    r"""period_end_gt filters invoices with period_end > value"""
     period_end_gte: NotRequired[str]
     r"""period_end_gte filters invoices with period_end >= value"""
     period_end_lte: NotRequired[str]
     r"""period_end_lte filters invoices with period_end <= value"""
     period_start_gte: NotRequired[str]
     r"""period_start_gte filters invoices with period_start >= value"""
+    period_start_lt: NotRequired[str]
+    r"""period_start_lt filters invoices with period_start < value"""
     period_start_lte: NotRequired[str]
     r"""period_start_lte filters invoices with period_start <= value"""
     skip_line_items: NotRequired[bool]
@@ -147,6 +151,9 @@ class InvoiceFilter(BaseModel):
     Multiple statuses can be specified to include invoices with any of the listed payment states
     """
 
+    period_end_gt: Optional[str] = None
+    r"""period_end_gt filters invoices with period_end > value"""
+
     period_end_gte: Optional[str] = None
     r"""period_end_gte filters invoices with period_end >= value"""
 
@@ -155,6 +162,9 @@ class InvoiceFilter(BaseModel):
 
     period_start_gte: Optional[str] = None
     r"""period_start_gte filters invoices with period_start >= value"""
+
+    period_start_lt: Optional[str] = None
+    r"""period_start_lt filters invoices with period_start < value"""
 
     period_start_lte: Optional[str] = None
     r"""period_start_lte filters invoices with period_start <= value"""
@@ -200,9 +210,11 @@ class InvoiceFilter(BaseModel):
                 "offset",
                 "order",
                 "payment_status",
+                "period_end_gt",
                 "period_end_gte",
                 "period_end_lte",
                 "period_start_gte",
+                "period_start_lt",
                 "period_start_lte",
                 "skip_line_items",
                 "sort",

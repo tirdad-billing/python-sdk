@@ -18,6 +18,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"invoice"`
 - `"credit_topups"`
 - `"wallet_debits"`
+- `"wallet_ledger"`
 - `"credit_usage"`
 - `"usage_analytics"`
 - `"revenue_facts"`

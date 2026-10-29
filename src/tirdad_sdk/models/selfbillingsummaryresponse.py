@@ -6,6 +6,10 @@ from .customerusagesummaryresponse import (
     CustomerUsageSummaryResponseTypedDict,
 )
 from .selfbillinginvoice import SelfBillingInvoice, SelfBillingInvoiceTypedDict
+from .selfbillingplanresponse import (
+    SelfBillingPlanResponse,
+    SelfBillingPlanResponseTypedDict,
+)
 from .subscriptionstatus import SubscriptionStatus
 from .tenantinternalstatus import TenantInternalStatus
 from datetime import datetime
@@ -17,6 +21,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class SelfBillingSummaryResponseTypedDict(TypedDict):
     invoices: NotRequired[List[SelfBillingInvoiceTypedDict]]
+    plan: NotRequired[SelfBillingPlanResponseTypedDict]
     status: NotRequired[TenantInternalStatus]
     subscription_status: NotRequired[SubscriptionStatus]
     trial_ends_at: NotRequired[datetime]
@@ -25,6 +30,8 @@ class SelfBillingSummaryResponseTypedDict(TypedDict):
 
 class SelfBillingSummaryResponse(BaseModel):
     invoices: Optional[List[SelfBillingInvoice]] = None
+
+    plan: Optional[SelfBillingPlanResponse] = None
 
     status: Optional[TenantInternalStatus] = None
 
@@ -37,7 +44,14 @@ class SelfBillingSummaryResponse(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["invoices", "status", "subscription_status", "trial_ends_at", "usage"]
+            [
+                "invoices",
+                "plan",
+                "status",
+                "subscription_status",
+                "trial_ends_at",
+                "usage",
+            ]
         )
         serialized = handler(self)
         m = {}

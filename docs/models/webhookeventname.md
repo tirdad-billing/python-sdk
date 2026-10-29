@@ -32,6 +32,9 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"entitlement.created"`
 - `"entitlement.updated"`
 - `"entitlement.deleted"`
+- `"commitment.created"`
+- `"commitment.updated"`
+- `"commitment.terminated"`
 - `"wallet.created"`
 - `"wallet.updated"`
 - `"wallet.terminated"`

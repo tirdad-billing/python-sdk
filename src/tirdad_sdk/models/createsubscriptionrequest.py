@@ -9,6 +9,10 @@ from .billingcycle import BillingCycle
 from .billingperiod import BillingPeriod
 from .checkoutparams import CheckoutParams, CheckoutParamsTypedDict
 from .collectionmethod import CollectionMethod
+from .createcommitmentrequest import (
+    CreateCommitmentRequest,
+    CreateCommitmentRequestTypedDict,
+)
 from .createcreditgrantrequest import (
     CreateCreditGrantRequest,
     CreateCreditGrantRequestTypedDict,
@@ -74,6 +78,10 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     collection_method: NotRequired[CollectionMethod]
     commitment_amount: NotRequired[str]
     commitment_duration: NotRequired[BillingPeriod]
+    commitments: NotRequired[List[CreateCommitmentRequestTypedDict]]
+    r"""Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
+    are set server-side.
+    """
     coupons: NotRequired[List[str]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     credit_grants: NotRequired[List[CreateCreditGrantRequestTypedDict]]
@@ -158,6 +166,11 @@ class CreateSubscriptionRequest(BaseModel):
     commitment_amount: Optional[str] = None
 
     commitment_duration: Optional[BillingPeriod] = None
+
+    commitments: Optional[List[CreateCommitmentRequest]] = None
+    r"""Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
+    are set server-side.
+    """
 
     coupons: Optional[List[str]] = None
     r"""Deprecated: use SubscriptionCoupons instead."""
@@ -253,6 +266,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "collection_method",
                 "commitment_amount",
                 "commitment_duration",
+                "commitments",
                 "coupons",
                 "credit_grants",
                 "customer_id",

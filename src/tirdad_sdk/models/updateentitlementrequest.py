@@ -25,6 +25,7 @@ class UpdateEntitlementRequestTypedDict(TypedDict):
     is_soft_limit: NotRequired[bool]
     static_value: NotRequired[str]
     usage_limit: NotRequired[int]
+    r"""Deprecated: use grant_quota."""
     usage_reset_period: NotRequired[EntitlementUsageResetPeriod]
 
 
@@ -52,6 +53,7 @@ class UpdateEntitlementRequest(BaseModel):
     static_value: Optional[str] = None
 
     usage_limit: Optional[int] = None
+    r"""Deprecated: use grant_quota."""
 
     usage_reset_period: Optional[EntitlementUsageResetPeriod] = None
 

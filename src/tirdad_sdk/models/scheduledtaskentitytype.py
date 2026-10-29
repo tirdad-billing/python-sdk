@@ -11,6 +11,7 @@ ScheduledTaskEntityType = Union[
         "invoice",
         "credit_topups",
         "wallet_debits",
+        "wallet_ledger",
         "credit_usage",
         "usage_analytics",
         "revenue_facts",

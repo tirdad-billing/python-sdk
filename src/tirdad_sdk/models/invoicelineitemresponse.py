@@ -23,6 +23,8 @@ class InvoiceLineItemResponseTypedDict(TypedDict):
     Nil when no entitlement was applied. Raw usage = Quantity + AdjustedEntitlementQuantity.
     """
     amount: NotRequired[str]
+    commitment_id: NotRequired[str]
+    r"""commitment_id links this line item to the commitment it bills."""
     commitment_info: NotRequired[CommitmentInfoTypedDict]
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
@@ -78,6 +80,9 @@ class InvoiceLineItemResponse(BaseModel):
     """
 
     amount: Optional[str] = None
+
+    commitment_id: Optional[str] = None
+    r"""commitment_id links this line item to the commitment it bills."""
 
     commitment_info: Optional[CommitmentInfo] = None
 
@@ -168,6 +173,7 @@ class InvoiceLineItemResponse(BaseModel):
             [
                 "adjusted_entitlement_quantity",
                 "amount",
+                "commitment_id",
                 "commitment_info",
                 "created_at",
                 "created_by",

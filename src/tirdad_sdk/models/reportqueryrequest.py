@@ -38,6 +38,7 @@ class ReportQueryRequestTypedDict(TypedDict):
     filters: NotRequired[List[ReportFilterTypedDict]]
     grain: NotRequired[ReportQueryRequestGrain]
     limit: NotRequired[int]
+    offset: NotRequired[int]
     sort: NotRequired[List[ReportSortTypedDict]]
 
 
@@ -58,12 +59,23 @@ class ReportQueryRequest(BaseModel):
 
     limit: Optional[int] = None
 
+    offset: Optional[int] = None
+
     sort: Optional[List[ReportSort]] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = set(
-            ["compare", "currency", "dimensions", "filters", "grain", "limit", "sort"]
+            [
+                "compare",
+                "currency",
+                "dimensions",
+                "filters",
+                "grain",
+                "limit",
+                "offset",
+                "sort",
+            ]
         )
         serialized = handler(self)
         m = {}

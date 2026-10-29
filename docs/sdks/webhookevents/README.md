@@ -8,6 +8,9 @@
 * [post_webhook_events_checkout_session_expired](#post_webhook_events_checkout_session_expired) - checkout.session.expired
 * [post_webhook_events_checkout_session_failed](#post_webhook_events_checkout_session_failed) - checkout.session.failed
 * [post_webhook_events_checkout_session_initiated](#post_webhook_events_checkout_session_initiated) - checkout.session.initiated
+* [post_webhook_events_commitment_created](#post_webhook_events_commitment_created) - commitment.created
+* [post_webhook_events_commitment_terminated](#post_webhook_events_commitment_terminated) - commitment.terminated
+* [post_webhook_events_commitment_updated](#post_webhook_events_commitment_updated) - commitment.updated
 * [post_webhook_events_credit_note_created](#post_webhook_events_credit_note_created) - credit_note.created
 * [post_webhook_events_credit_note_updated](#post_webhook_events_credit_note_updated) - credit_note.updated
 * [post_webhook_events_customer_created](#post_webhook_events_customer_created) - customer.created
@@ -212,6 +215,120 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoCheckoutSessionWebhookPayload](../../models/webhookdtocheckoutsessionwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_commitment_created
+
+Fired when a commitment is created on a subscription. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/commitment.created" method="post" path="/webhook-events/commitment.created" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_commitment_created()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCommitmentWebhookPayload](../../models/webhookdtocommitmentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_commitment_terminated
+
+Fired when a commitment is terminated. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/commitment.terminated" method="post" path="/webhook-events/commitment.terminated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_commitment_terminated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCommitmentWebhookPayload](../../models/webhookdtocommitmentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_commitment_updated
+
+Fired when a commitment's descriptive fields are updated. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/commitment.updated" method="post" path="/webhook-events/commitment.updated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_commitment_updated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoCommitmentWebhookPayload](../../models/webhookdtocommitmentwebhookpayload.md)**
 
 ### Errors
 

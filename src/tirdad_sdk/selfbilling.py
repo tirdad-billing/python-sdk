@@ -1009,7 +1009,7 @@ class SelfBilling(BaseSDK):
     ) -> models.SelfBillingSummaryResponse:
         r"""Get self-billing summary
 
-        Returns the caller tenant's billing status, subscription, recent invoices and usage.
+        Returns billing status, recent invoices, usage and a plan with charges. Charges use expanded subscription line-item prices, including overrides; without a current subscription they use the configured self-serve plan. Pricing terms are not an invoice total.
 
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1101,7 +1101,7 @@ class SelfBilling(BaseSDK):
     ) -> models.SelfBillingSummaryResponse:
         r"""Get self-billing summary
 
-        Returns the caller tenant's billing status, subscription, recent invoices and usage.
+        Returns billing status, recent invoices, usage and a plan with charges. Charges use expanded subscription line-item prices, including overrides; without a current subscription they use the configured self-serve plan. Pricing terms are not an invoice total.
 
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

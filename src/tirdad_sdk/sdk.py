@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.alertsettings import AlertSettings
     from tirdad_sdk.analytics import Analytics
     from tirdad_sdk.checkout import Checkout
+    from tirdad_sdk.commitments import Commitments
     from tirdad_sdk.costs import Costs
     from tirdad_sdk.coupon_associations import CouponAssociations
     from tirdad_sdk.coupons import Coupons
@@ -68,6 +69,7 @@ class Tirdad(BaseSDK):
     alert_settings: "AlertSettings"
     analytics: "Analytics"
     checkout: "Checkout"
+    commitments: "Commitments"
     costs: "Costs"
     coupons: "Coupons"
     coupon_associations: "CouponAssociations"
@@ -109,6 +111,7 @@ class Tirdad(BaseSDK):
         "alert_settings": ("tirdad_sdk.alertsettings", "AlertSettings"),
         "analytics": ("tirdad_sdk.analytics", "Analytics"),
         "checkout": ("tirdad_sdk.checkout", "Checkout"),
+        "commitments": ("tirdad_sdk.commitments", "Commitments"),
         "costs": ("tirdad_sdk.costs", "Costs"),
         "coupons": ("tirdad_sdk.coupons", "Coupons"),
         "coupon_associations": ("tirdad_sdk.coupon_associations", "CouponAssociations"),

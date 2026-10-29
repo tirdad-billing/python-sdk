@@ -7,6 +7,7 @@
 * [ingest_event](#ingest_event) - Ingest event
 * [get_usage_analytics](#get_usage_analytics) - Get usage analytics
 * [ingest_events_bulk](#ingest_events_bulk) - Bulk ingest events
+* [delete_events](#delete_events) - Delete events
 * [get_event](#get_event) - Get event
 * [list_raw_events](#list_raw_events) - List raw events
 * [get_usage_statistics](#get_usage_statistics) - Get usage statistics
@@ -151,6 +152,56 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## delete_events
+
+Hard-deletes ingested events and the meter usage they produced for the named customers and period, optionally narrowed by feature or by exact event id. Refused when anything in scope has already been invoiced. Irreversible.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="deleteEvents" method="post" path="/events/delete" -->
+```python
+from tirdad_sdk import Tirdad
+from tirdad_sdk.utils import parse_datetime
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.events.delete_events(external_customer_ids=[
+        "<value 1>",
+        "<value 2>",
+    ], period_end=parse_datetime("2026-03-28T00:00:00Z"), period_start=parse_datetime("2026-03-01T00:00:00Z"))
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                         | Type                                                                                                                                                                                                              | Required                                                                                                                                                                                                          | Description                                                                                                                                                                                                       | Example                                                                                                                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `external_customer_ids`                                                                                                                                                                                           | List[*str*]                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                                | N/A                                                                                                                                                                                                               |                                                                                                                                                                                                                   |
+| `period_end`                                                                                                                                                                                                      | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                | N/A                                                                                                                                                                                                               | 2026-03-28T00:00:00Z                                                                                                                                                                                              |
+| `period_start`                                                                                                                                                                                                    | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                                                                                                                              | :heavy_check_mark:                                                                                                                                                                                                | N/A                                                                                                                                                                                                               | 2026-03-01T00:00:00Z                                                                                                                                                                                              |
+| `event_ids`                                                                                                                                                                                                       | List[*str*]                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                | EventIDs narrows the deletion to exact event ids. Requires exactly one<br/>customer and no feature_ids.                                                                                                           |                                                                                                                                                                                                                   |
+| `feature_ids`                                                                                                                                                                                                     | List[*str*]                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                | FeatureIDs narrows the deletion to the meters these features resolve to.                                                                                                                                          |                                                                                                                                                                                                                   |
+| `skip_payload`                                                                                                                                                                                                    | *Optional[bool]*                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                | SkipPayload stores the audit row's properties as '' so the deletion leaves<br/>no payload copy. Defaults to true: a deletion is usually an erasure, and<br/>keeping the payload would defeat it. Send false to retain it. |                                                                                                                                                                                                                   |
+| `retries`                                                                                                                                                                                                         | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                | Configuration to override the default retry behavior of the client.                                                                                                                                               |                                                                                                                                                                                                                   |
+
+### Response
+
+**[models.DeleteEventsResponseResponse](../../models/deleteeventsresponseresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 403, 409                    | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 

@@ -8,6 +8,10 @@ from .serviceperiodcustomfields import (
     ServicePeriodCustomFields,
     ServicePeriodCustomFieldsTypedDict,
 )
+from .zohopaymentgatewaysettings import (
+    ZohoPaymentGatewaySettings,
+    ZohoPaymentGatewaySettingsTypedDict,
+)
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
@@ -26,6 +30,7 @@ class InvoiceSyncSettingsTypedDict(TypedDict):
     metadata_custom_fields: NotRequired[List[MetadataCustomFieldTypedDict]]
     r"""Copies metadata values onto Zoho invoice custom fields verbatim."""
     normalize_fixed_to: NotRequired[BillingPeriod]
+    payment_gateways: NotRequired[ZohoPaymentGatewaySettingsTypedDict]
     payment_mode: NotRequired[str]
     r"""Zoho payment modes are merchant-editable free strings with no id, so this is passed
     through verbatim. Empty means DefaultZohoPaymentMode.
@@ -53,6 +58,8 @@ class InvoiceSyncSettings(BaseModel):
 
     normalize_fixed_to: Optional[BillingPeriod] = None
 
+    payment_gateways: Optional[ZohoPaymentGatewaySettings] = None
+
     payment_mode: Optional[str] = None
     r"""Zoho payment modes are merchant-editable free strings with no id, so this is passed
     through verbatim. Empty means DefaultZohoPaymentMode.
@@ -73,6 +80,7 @@ class InvoiceSyncSettings(BaseModel):
                 "global_custom_fields",
                 "metadata_custom_fields",
                 "normalize_fixed_to",
+                "payment_gateways",
                 "payment_mode",
                 "service_period_custom_fields",
                 "submit_for_approval",

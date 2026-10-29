@@ -4,16 +4,21 @@ from __future__ import annotations
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
 
 class TriggerForceRunRequestTypedDict(TypedDict):
+    customer_external_ids: List[str]
+    r"""Limits a wallet_ledger export to these customers; empty means every customer."""
     end_time: NotRequired[datetime]
     start_time: NotRequired[datetime]
 
 
 class TriggerForceRunRequest(BaseModel):
+    customer_external_ids: List[str]
+    r"""Limits a wallet_ledger export to these customers; empty means every customer."""
+
     end_time: Optional[datetime] = None
 
     start_time: Optional[datetime] = None

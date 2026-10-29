@@ -738,6 +738,258 @@ class Events(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def delete_events(
+        self,
+        *,
+        external_customer_ids: Iterable[str],
+        period_end: datetime,
+        period_start: datetime,
+        event_ids: Optional[Iterable[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
+        skip_payload: Optional[bool] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.DeleteEventsResponseResponse:
+        r"""Delete events
+
+        Hard-deletes ingested events and the meter usage they produced for the named customers and period, optionally narrowed by feature or by exact event id. Refused when anything in scope has already been invoiced. Irreversible.
+
+        :param external_customer_ids:
+        :param period_end:
+        :param period_start:
+        :param event_ids: EventIDs narrows the deletion to exact event ids. Requires exactly one
+            customer and no feature_ids.
+        :param feature_ids: FeatureIDs narrows the deletion to the meters these features resolve to.
+        :param skip_payload: SkipPayload stores the audit row's properties as '' so the deletion leaves
+            no payload copy. Defaults to true: a deletion is usually an erasure, and
+            keeping the payload would defeat it. Send false to retain it.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.DeleteEventsRequest(
+            event_ids=utils.unmarshal(event_ids, Optional[List[str]]),
+            external_customer_ids=utils.unmarshal(external_customer_ids, List[str]),
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
+            period_end=period_end,
+            period_start=period_start,
+            skip_payload=skip_payload,
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/events/delete",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", models.DeleteEventsRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteEvents",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "delete",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.DeleteEventsResponseResponse(
+                result=unmarshal_json_response(models.DeleteEventsResponse, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, ["400", "403", "409"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def delete_events_async(
+        self,
+        *,
+        external_customer_ids: Iterable[str],
+        period_end: datetime,
+        period_start: datetime,
+        event_ids: Optional[Iterable[str]] = None,
+        feature_ids: Optional[Iterable[str]] = None,
+        skip_payload: Optional[bool] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.DeleteEventsResponseResponse:
+        r"""Delete events
+
+        Hard-deletes ingested events and the meter usage they produced for the named customers and period, optionally narrowed by feature or by exact event id. Refused when anything in scope has already been invoiced. Irreversible.
+
+        :param external_customer_ids:
+        :param period_end:
+        :param period_start:
+        :param event_ids: EventIDs narrows the deletion to exact event ids. Requires exactly one
+            customer and no feature_ids.
+        :param feature_ids: FeatureIDs narrows the deletion to the meters these features resolve to.
+        :param skip_payload: SkipPayload stores the audit row's properties as '' so the deletion leaves
+            no payload copy. Defaults to true: a deletion is usually an erasure, and
+            keeping the payload would defeat it. Send false to retain it.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.DeleteEventsRequest(
+            event_ids=utils.unmarshal(event_ids, Optional[List[str]]),
+            external_customer_ids=utils.unmarshal(external_customer_ids, List[str]),
+            feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
+            period_end=period_end,
+            period_start=period_start,
+            skip_payload=skip_payload,
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/events/delete",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", models.DeleteEventsRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="deleteEvents",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Events"],
+                extensions={
+                    "x-codegen-request-body-name": "request",
+                    "x-scope": "delete",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return models.DeleteEventsResponseResponse(
+                result=unmarshal_json_response(models.DeleteEventsResponse, http_res),
+                headers=utils.get_response_headers(http_res.headers),
+            )
+        if utils.match_response(http_res, ["400", "403", "409"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def get_event(
         self,
         *,

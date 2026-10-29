@@ -1,0 +1,12 @@
+# CommitmentPriceInput
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `amount`                                                                       | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `billing_model`                                                                | [Optional[models.BillingModel]](../models/billingmodel.md)                     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `tier_mode`                                                                    | [Optional[models.BillingTier]](../models/billingtier.md)                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `tiers`                                                                        | List[[models.CreatePriceTier](../models/createpricetier.md)]                   | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `transform_quantity`                                                           | [Optional[models.PriceTransformQuantity]](../models/pricetransformquantity.md) | :heavy_minus_sign:                                                             | N/A                                                                            |

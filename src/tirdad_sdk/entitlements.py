@@ -262,7 +262,7 @@ class Entitlements(BaseSDK):
         :param plan_id:
         :param start_date:
         :param static_value:
-        :param usage_limit:
+        :param usage_limit: Deprecated: use grant_quota; a metered usage_limit is converted to a grant on create.
         :param usage_reset_period:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -426,7 +426,7 @@ class Entitlements(BaseSDK):
         :param plan_id:
         :param start_date:
         :param static_value:
-        :param usage_limit:
+        :param usage_limit: Deprecated: use grant_quota; a metered usage_limit is converted to a grant on create.
         :param usage_reset_period:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1308,7 +1308,7 @@ class Entitlements(BaseSDK):
         :param is_enabled:
         :param is_soft_limit:
         :param static_value:
-        :param usage_limit:
+        :param usage_limit: Deprecated: use grant_quota.
         :param usage_reset_period:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1453,7 +1453,7 @@ class Entitlements(BaseSDK):
         :param is_enabled:
         :param is_soft_limit:
         :param static_value:
-        :param usage_limit:
+        :param usage_limit: Deprecated: use grant_quota.
         :param usage_reset_period:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method

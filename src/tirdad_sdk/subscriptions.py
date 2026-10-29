@@ -33,6 +33,12 @@ class Subscriptions(BaseSDK):
         collection_method: Optional[models.CollectionMethod] = None,
         commitment_amount: Optional[str] = None,
         commitment_duration: Optional[models.BillingPeriod] = None,
+        commitments: Optional[
+            Union[
+                Iterable[models.CreateCommitmentRequest],
+                Iterable[models.CreateCommitmentRequestTypedDict],
+            ]
+        ] = None,
         coupons: Optional[Iterable[str]] = None,
         credit_grants: Optional[
             Union[
@@ -132,6 +138,8 @@ class Subscriptions(BaseSDK):
         :param collection_method:
         :param commitment_amount:
         :param commitment_duration:
+        :param commitments: Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
+            are set server-side.
         :param coupons: Deprecated: use SubscriptionCoupons instead.
         :param credit_grants:
         :param customer_id: CustomerID takes priority over ExternalCustomerID when both are provided.
@@ -201,6 +209,9 @@ class Subscriptions(BaseSDK):
             collection_method=collection_method,
             commitment_amount=commitment_amount,
             commitment_duration=commitment_duration,
+            commitments=utils.get_pydantic_model(
+                commitments, Optional[List[models.CreateCommitmentRequest]]
+            ),
             coupons=utils.unmarshal(coupons, Optional[List[str]]),
             credit_grants=utils.get_pydantic_model(
                 credit_grants, Optional[List[models.CreateCreditGrantRequest]]
@@ -348,6 +359,12 @@ class Subscriptions(BaseSDK):
         collection_method: Optional[models.CollectionMethod] = None,
         commitment_amount: Optional[str] = None,
         commitment_duration: Optional[models.BillingPeriod] = None,
+        commitments: Optional[
+            Union[
+                Iterable[models.CreateCommitmentRequest],
+                Iterable[models.CreateCommitmentRequestTypedDict],
+            ]
+        ] = None,
         coupons: Optional[Iterable[str]] = None,
         credit_grants: Optional[
             Union[
@@ -447,6 +464,8 @@ class Subscriptions(BaseSDK):
         :param collection_method:
         :param commitment_amount:
         :param commitment_duration:
+        :param commitments: Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
+            are set server-side.
         :param coupons: Deprecated: use SubscriptionCoupons instead.
         :param credit_grants:
         :param customer_id: CustomerID takes priority over ExternalCustomerID when both are provided.
@@ -516,6 +535,9 @@ class Subscriptions(BaseSDK):
             collection_method=collection_method,
             commitment_amount=commitment_amount,
             commitment_duration=commitment_duration,
+            commitments=utils.get_pydantic_model(
+                commitments, Optional[List[models.CreateCommitmentRequest]]
+            ),
             coupons=utils.unmarshal(coupons, Optional[List[str]]),
             credit_grants=utils.get_pydantic_model(
                 credit_grants, Optional[List[models.CreateCreditGrantRequest]]

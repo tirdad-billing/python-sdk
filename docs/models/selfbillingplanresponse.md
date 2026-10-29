@@ -1,0 +1,11 @@
+# SelfBillingPlanResponse
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `charges`                                                                        | List[[models.SelfBillingChargeResponse](../models/selfbillingchargeresponse.md)] | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `description`                                                                    | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `id`                                                                             | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | N/A                                                                              |
+| `name`                                                                           | *Optional[str]*                                                                  | :heavy_minus_sign:                                                               | N/A                                                                              |

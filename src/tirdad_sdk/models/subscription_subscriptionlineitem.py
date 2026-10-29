@@ -47,6 +47,8 @@ class SubscriptionSubscriptionLineItemTypedDict(TypedDict):
     meter_display_name: NotRequired[str]
     meter_id: NotRequired[str]
     plan_display_name: NotRequired[str]
+    predecessor_line_item_id: NotRequired[str]
+    r"""Version lineage, set by the service when a line item is replaced by a new version"""
     price: NotRequired[PricePriceTypedDict]
     price_id: NotRequired[str]
     price_type: NotRequired[PriceType]
@@ -57,6 +59,7 @@ class SubscriptionSubscriptionLineItemTypedDict(TypedDict):
     status: NotRequired[Status]
     subscription_id: NotRequired[str]
     subscription_phase_id: NotRequired[str]
+    successor_line_item_id: NotRequired[str]
     tenant_id: NotRequired[str]
     updated_at: NotRequired[datetime]
     updated_by: NotRequired[str]
@@ -119,6 +122,9 @@ class SubscriptionSubscriptionLineItem(BaseModel):
 
     plan_display_name: Optional[str] = None
 
+    predecessor_line_item_id: Optional[str] = None
+    r"""Version lineage, set by the service when a line item is replaced by a new version"""
+
     price: Optional[PricePrice] = None
 
     price_id: Optional[str] = None
@@ -138,6 +144,8 @@ class SubscriptionSubscriptionLineItem(BaseModel):
     subscription_id: Optional[str] = None
 
     subscription_phase_id: Optional[str] = None
+
+    successor_line_item_id: Optional[str] = None
 
     tenant_id: Optional[str] = None
 
@@ -176,6 +184,7 @@ class SubscriptionSubscriptionLineItem(BaseModel):
                 "meter_display_name",
                 "meter_id",
                 "plan_display_name",
+                "predecessor_line_item_id",
                 "price",
                 "price_id",
                 "price_type",
@@ -186,6 +195,7 @@ class SubscriptionSubscriptionLineItem(BaseModel):
                 "status",
                 "subscription_id",
                 "subscription_phase_id",
+                "successor_line_item_id",
                 "tenant_id",
                 "updated_at",
                 "updated_by",
