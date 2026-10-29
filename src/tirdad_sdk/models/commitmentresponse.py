@@ -28,6 +28,7 @@ class CommitmentResponseTypedDict(TypedDict):
     currency: NotRequired[str]
     customer_id: NotRequired[str]
     end_date: NotRequired[datetime]
+    r"""EndDate is exclusive; nil for an open-ended commitment, which runs until terminated."""
     environment_id: NotRequired[str]
     id: NotRequired[str]
     idempotency_key: NotRequired[str]
@@ -78,6 +79,7 @@ class CommitmentResponse(BaseModel):
     customer_id: Optional[str] = None
 
     end_date: Optional[datetime] = None
+    r"""EndDate is exclusive; nil for an open-ended commitment, which runs until terminated."""
 
     environment_id: Optional[str] = None
 

@@ -15,7 +15,6 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CreateCommitmentRequestTypedDict(TypedDict):
-    end_date: datetime
     measurement: CommitmentMeasurement
     name: str
     scope: CommitmentScopeInputTypedDict
@@ -26,6 +25,8 @@ class CreateCommitmentRequestTypedDict(TypedDict):
     r"""default false"""
     collection_method: NotRequired[CommitmentCollectionMethod]
     committed_price: NotRequired[CommitmentPriceInputTypedDict]
+    end_date: NotRequired[datetime]
+    r"""EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated."""
     idempotency_key: NotRequired[str]
     invoice_description: NotRequired[str]
     invoice_label: NotRequired[str]
@@ -39,8 +40,6 @@ class CreateCommitmentRequestTypedDict(TypedDict):
 
 
 class CreateCommitmentRequest(BaseModel):
-    end_date: datetime
-
     measurement: CommitmentMeasurement
 
     name: str
@@ -59,6 +58,9 @@ class CreateCommitmentRequest(BaseModel):
     collection_method: Optional[CommitmentCollectionMethod] = None
 
     committed_price: Optional[CommitmentPriceInput] = None
+
+    end_date: Optional[datetime] = None
+    r"""EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated."""
 
     idempotency_key: Optional[str] = None
 
@@ -87,6 +89,7 @@ class CreateCommitmentRequest(BaseModel):
                 "binding",
                 "collection_method",
                 "committed_price",
+                "end_date",
                 "idempotency_key",
                 "invoice_description",
                 "invoice_label",

@@ -13,7 +13,6 @@ class Commitments(BaseSDK):
     def create_commitment(
         self,
         *,
-        end_date: datetime,
         measurement: models.CommitmentMeasurement,
         name: str,
         scope: Union[models.CommitmentScopeInput, models.CommitmentScopeInputTypedDict],
@@ -27,6 +26,7 @@ class Commitments(BaseSDK):
         committed_price: Optional[
             Union[models.CommitmentPriceInput, models.CommitmentPriceInputTypedDict]
         ] = None,
+        end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
@@ -47,7 +47,6 @@ class Commitments(BaseSDK):
 
         Creates a commitment on a subscription: a minimum spend or quantity over a term, with optional committed and overage rates.
 
-        :param end_date:
         :param measurement:
         :param name:
         :param scope:
@@ -57,6 +56,7 @@ class Commitments(BaseSDK):
         :param binding: default false
         :param collection_method:
         :param committed_price:
+        :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
         :param invoice_description:
         :param invoice_label:
@@ -181,7 +181,6 @@ class Commitments(BaseSDK):
     async def create_commitment_async(
         self,
         *,
-        end_date: datetime,
         measurement: models.CommitmentMeasurement,
         name: str,
         scope: Union[models.CommitmentScopeInput, models.CommitmentScopeInputTypedDict],
@@ -195,6 +194,7 @@ class Commitments(BaseSDK):
         committed_price: Optional[
             Union[models.CommitmentPriceInput, models.CommitmentPriceInputTypedDict]
         ] = None,
+        end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
@@ -215,7 +215,6 @@ class Commitments(BaseSDK):
 
         Creates a commitment on a subscription: a minimum spend or quantity over a term, with optional committed and overage rates.
 
-        :param end_date:
         :param measurement:
         :param name:
         :param scope:
@@ -225,6 +224,7 @@ class Commitments(BaseSDK):
         :param binding: default false
         :param collection_method:
         :param committed_price:
+        :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
         :param invoice_description:
         :param invoice_label:
@@ -349,7 +349,6 @@ class Commitments(BaseSDK):
     def preview_commitment(
         self,
         *,
-        end_date: datetime,
         measurement: models.CommitmentMeasurement,
         name: str,
         scope: Union[models.CommitmentScopeInput, models.CommitmentScopeInputTypedDict],
@@ -363,6 +362,7 @@ class Commitments(BaseSDK):
         committed_price: Optional[
             Union[models.CommitmentPriceInput, models.CommitmentPriceInputTypedDict]
         ] = None,
+        end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
@@ -383,7 +383,6 @@ class Commitments(BaseSDK):
 
         Validates a commitment and returns its computed value without creating it.
 
-        :param end_date:
         :param measurement:
         :param name:
         :param scope:
@@ -393,6 +392,7 @@ class Commitments(BaseSDK):
         :param binding: default false
         :param collection_method:
         :param committed_price:
+        :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
         :param invoice_description:
         :param invoice_label:
@@ -520,7 +520,6 @@ class Commitments(BaseSDK):
     async def preview_commitment_async(
         self,
         *,
-        end_date: datetime,
         measurement: models.CommitmentMeasurement,
         name: str,
         scope: Union[models.CommitmentScopeInput, models.CommitmentScopeInputTypedDict],
@@ -534,6 +533,7 @@ class Commitments(BaseSDK):
         committed_price: Optional[
             Union[models.CommitmentPriceInput, models.CommitmentPriceInputTypedDict]
         ] = None,
+        end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
@@ -554,7 +554,6 @@ class Commitments(BaseSDK):
 
         Validates a commitment and returns its computed value without creating it.
 
-        :param end_date:
         :param measurement:
         :param name:
         :param scope:
@@ -564,6 +563,7 @@ class Commitments(BaseSDK):
         :param binding: default false
         :param collection_method:
         :param committed_price:
+        :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
         :param invoice_description:
         :param invoice_label:

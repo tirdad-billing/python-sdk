@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
-id: fe7518e1-dc7e-42f9-9d3a-709aa6e510e4
+id: 35739605-c3ec-4fbd-9616-7682782cf8c8
 management:
-  docChecksum: a72b86372248009e2458379cd9eff984
+  docChecksum: 68e016337fe02bacc60ca1b4c0b1e21e
   docVersion: "1.0"
   speakeasyVersion: 1.802.0
   generationVersion: 2.948.4
-  releaseVersion: 2.1.45
-  configChecksum: 4cad465c38c6391578b17406748e095f
+  releaseVersion: 2.1.46
+  configChecksum: 6ee4b4e176d305689653f4adfb679206
   published: true
 persistentEdits:
-  generation_id: 95037acc-0fc5-432b-a65a-14e301713175
-  pristine_commit_hash: 011246d7d5b075d4705511c37c0aa0c2b9a4504c
-  pristine_tree_hash: 6ad5ba62458d46998dcbea293e5c4dbfc868c65f
+  generation_id: 4598a408-2499-45f4-8ef1-31c1adbdb4cc
+  pristine_commit_hash: 4a7e5e72ee4a228dc0b4f630ccbee6cd910db8d8
+  pristine_tree_hash: 4a8f722f4eedbf0996e655d715237e51308e80b5
 features:
   python:
     additionalDependencies: 1.1.0
@@ -538,8 +538,8 @@ trackedFiles:
     pristine_git_object: 93e460d19f274194f705a1a0572ff3b705758db4
   docs/models/commitmentresponse.md:
     id: e4a5fb234fad
-    last_write_checksum: sha1:442d765f91c5eaab4181a2fa2a63a346d56f335f
-    pristine_git_object: 99bb61761b388eb02e1a5768a1d0b4423f76365d
+    last_write_checksum: sha1:5e06e487354bf5cccf1d00c7dae0b04fe3df8f5f
+    pristine_git_object: 932c7f1afd838f44acb39feb2b36500235d36535
   docs/models/commitmentscopeinput.md:
     id: 43030e77e292
     last_write_checksum: sha1:961a0c40f1e88cc46b32c9a1e75f2a5e1803b9c5
@@ -682,8 +682,8 @@ trackedFiles:
     pristine_git_object: 01d0d778446131d849a99fe6e1ccc74d3d1a2a71
   docs/models/createcommitmentrequest.md:
     id: 477367c5b961
-    last_write_checksum: sha1:711023f4d883e7fb95a8ff17181407e0f3724c1e
-    pristine_git_object: 8ba3ccca2f59a62fa10b011ba02f890b3adf5cac
+    last_write_checksum: sha1:0d3cec8bd297b08588a227209a75a3b8810c3f28
+    pristine_git_object: 80323771a5578d08b37a76c821daf5c1498d88d6
   docs/models/createcostsheetrequest.md:
     id: 26b32a28a71b
     last_write_checksum: sha1:e7279dcdfaf84a19206aba3254bbb8e419a1dc07
@@ -3866,8 +3866,8 @@ trackedFiles:
     pristine_git_object: 5da566ac8a2a3182035e5a1239e134b666610c23
   docs/sdks/commitments/README.md:
     id: b2feef677029
-    last_write_checksum: sha1:ac3970c80a278665142e9b2078c55533a896c573
-    pristine_git_object: 9e14f69897d207523daa3f86ea562c07a8ec5d01
+    last_write_checksum: sha1:9ad35032c25da1985f7a793241d2be9b624a46fb
+    pristine_git_object: bf42d86456c442722e6e092e2a93394e4b03f75d
   docs/sdks/contracts/README.md:
     id: da897d096992
     last_write_checksum: sha1:079c9002ae980cd791edbeb075c943631b6caa81
@@ -4034,8 +4034,8 @@ trackedFiles:
     pristine_git_object: 7f0d9ece48da15eb6a946ca0be15d7b30235b467
   pyproject.toml:
     id: 5d07e7d72637
-    last_write_checksum: sha1:719b2e0a9fd553c574f71fa463bf92a43f0a837b
-    pristine_git_object: 3bd717a6a64f43d770457560305fed4b8e0c61bc
+    last_write_checksum: sha1:8b8dbb219b63505d156190fc918ba220b1ccfb98
+    pristine_git_object: 2b82064f4160a8b625ef53332e864a31456fdc27
   scripts/publish.sh:
     id: fe273b08f514
     last_write_checksum: sha1:adc9b741c12ad1591ab4870eabe20f0d0a86cd1a
@@ -4058,8 +4058,8 @@ trackedFiles:
     pristine_git_object: 25287402d8a523280da352f25ab6fd511e50f499
   src/tirdad_sdk/_version.py:
     id: 55a4ad0b1139
-    last_write_checksum: sha1:6e920ae67c1cc76421b91ee6f69521c2871fa552
-    pristine_git_object: 82c968c6662d73538ed5ab7c769f35765ea824cd
+    last_write_checksum: sha1:6757f489d6265d48c37fdf52166a6f6748063b97
+    pristine_git_object: 093251a2c3e557bab8158f3397565275ccfb4857
   src/tirdad_sdk/accounting_periods.py:
     id: cfbc1b1ff3b8
     last_write_checksum: sha1:cf4083680bd89f41d1ed6b8f5df1ec32fa5f8c17
@@ -4094,8 +4094,8 @@ trackedFiles:
     pristine_git_object: c86a45c025e777a2e85fbf4906c52f28b80bd269
   src/tirdad_sdk/commitments.py:
     id: 72bd73e1b646
-    last_write_checksum: sha1:98fb7cd03a9622617f501d606eb781aac6d29181
-    pristine_git_object: 7adc33337350686a6a9838693e89325b118ee861
+    last_write_checksum: sha1:8f9a8148cba67dfe558b49517b56f315bddce83b
+    pristine_git_object: aa816ff7d23e9750425b82a386ff22c46659fbaf
   src/tirdad_sdk/contracts.py:
     id: 4f501d16835f
     last_write_checksum: sha1:b9274f20a41ac60af37efd56101efc7a6ad112ea
@@ -4634,8 +4634,8 @@ trackedFiles:
     pristine_git_object: 835cf38a9a339ad34fb44c2ab02e4d6f5ca6b437
   src/tirdad_sdk/models/commitmentresponse.py:
     id: f45a65a73d85
-    last_write_checksum: sha1:a792024c867e7bf2bc0c1bd34c963715547f682c
-    pristine_git_object: 9fe324dbbe7b75e43c0594816f560b2eb3bfb023
+    last_write_checksum: sha1:0efa68d5e1bb7ac5a73e8d72007072df94dd9893
+    pristine_git_object: f576d980590978cb9db5addbc07f26dff36b7ad6
   src/tirdad_sdk/models/commitmentscopeinput.py:
     id: 703496d53251
     last_write_checksum: sha1:9b20fdc7ebbe9929bb23a5e69483645d0601a3aa
@@ -4766,8 +4766,8 @@ trackedFiles:
     pristine_git_object: 615a70719ccf6b6781fd228ecac2c3f3b4c816a8
   src/tirdad_sdk/models/createcommitmentrequest.py:
     id: d8770f5d289e
-    last_write_checksum: sha1:0472cf84f799aa881de5293eaa4ad714b5248a12
-    pristine_git_object: 8762834faf66493b3192627ac071c35e0a9a2f79
+    last_write_checksum: sha1:c74acb9aeddac97bb1b3aa4497936e47fbac80c1
+    pristine_git_object: 90457a9aeedec050e9e9f5958b208bcc73c81ab2
   src/tirdad_sdk/models/createcostsheetrequest.py:
     id: 546fc6669b9f
     last_write_checksum: sha1:d7c588111df774ec2b6c4e92b1a52331f87b19f1
@@ -8431,7 +8431,7 @@ examples:
   createCommitment:
     speakeasy-default-create-commitment:
       requestBody:
-        application/json: {"end_date": "2024-12-01T13:56:43.281Z", "measurement": "billing_period", "name": "<value>", "scope": {"entity_type": "group"}, "start_date": "2026-08-30T15:34:29.816Z", "type": "amount"}
+        application/json: {"measurement": "billing_period", "name": "<value>", "scope": {"entity_type": "group"}, "start_date": "2025-03-05T22:53:12.661Z", "type": "quantity"}
       responses:
         "201":
           application/json: {}
@@ -8442,7 +8442,7 @@ examples:
   previewCommitment:
     speakeasy-default-preview-commitment:
       requestBody:
-        application/json: {"end_date": "2025-03-29T18:57:47.888Z", "measurement": "window", "name": "<value>", "scope": {"entity_type": "group"}, "start_date": "2024-09-25T08:18:25.213Z", "type": "amount"}
+        application/json: {"measurement": "billing_period", "name": "<value>", "scope": {"entity_type": "meter"}, "start_date": "2024-11-23T11:41:25.905Z", "type": "amount"}
       responses:
         "200":
           application/json: {}
