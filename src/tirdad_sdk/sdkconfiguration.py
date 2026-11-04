@@ -20,6 +20,10 @@ SERVERS = [
     # US Region
     "https://api.cloud.flexprice.io/v1",
     # India Region
+    "https://canada.api.flexprice.io/v1",
+    # Canada Region
+    "https://eu.api.flexprice.io/v1",
+    # EU Region
 ]
 """Contains the list of servers available to the SDK"""
 

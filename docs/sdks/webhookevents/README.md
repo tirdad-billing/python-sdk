@@ -33,6 +33,7 @@
 * [post_webhook_events_invoice_update_finalized](#post_webhook_events_invoice_update_finalized) - invoice.update.finalized
 * [post_webhook_events_invoice_update_payment](#post_webhook_events_invoice_update_payment) - invoice.update.payment
 * [post_webhook_events_invoice_update_voided](#post_webhook_events_invoice_update_voided) - invoice.update.voided
+* [post_webhook_events_payment_attempt_failed](#post_webhook_events_payment_attempt_failed) - payment.attempt.failed
 * [post_webhook_events_payment_created](#post_webhook_events_payment_created) - payment.created
 * [post_webhook_events_payment_failed](#post_webhook_events_payment_failed) - payment.failed
 * [post_webhook_events_payment_pending](#post_webhook_events_payment_pending) - payment.pending
@@ -1165,6 +1166,44 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoInvoiceWebhookPayload](../../models/webhookdtoinvoicewebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_payment_attempt_failed
+
+Fired when one charge attempt is declined and the payment stays open for retry. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/payment.attempt.failed" method="post" path="/webhook-events/payment.attempt.failed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_payment_attempt_failed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoPaymentAttemptWebhookPayload](../../models/webhookdtopaymentattemptwebhookpayload.md)**
 
 ### Errors
 

@@ -13,6 +13,7 @@ class PaymentAttemptResponseTypedDict(TypedDict):
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     error_message: NotRequired[str]
+    gateway_attempt_id: NotRequired[str]
     id: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     payment_id: NotRequired[str]
@@ -29,6 +30,8 @@ class PaymentAttemptResponse(BaseModel):
     created_by: Optional[str] = None
 
     error_message: Optional[str] = None
+
+    gateway_attempt_id: Optional[str] = None
 
     id: Optional[str] = None
 
@@ -50,6 +53,7 @@ class PaymentAttemptResponse(BaseModel):
                 "created_at",
                 "created_by",
                 "error_message",
+                "gateway_attempt_id",
                 "id",
                 "metadata",
                 "payment_id",

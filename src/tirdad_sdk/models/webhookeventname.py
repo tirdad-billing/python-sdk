@@ -36,6 +36,7 @@ WebhookEventName = Union[
         "payment.created",
         "payment.updated",
         "payment.failed",
+        "payment.attempt.failed",
         "payment.success",
         "payment.pending",
         "refund.created",

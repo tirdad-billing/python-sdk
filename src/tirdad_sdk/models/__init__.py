@@ -841,6 +841,10 @@ if TYPE_CHECKING:
         GetPriceByLookupKeyRequest,
         GetPriceByLookupKeyRequestTypedDict,
     )
+    from .getpricehistoryop import (
+        GetPriceHistoryRequest,
+        GetPriceHistoryRequestTypedDict,
+    )
     from .getpriceop import GetPriceRequest, GetPriceRequestTypedDict
     from .getpriceunitbycodeop import (
         GetPriceUnitByCodeRequest,
@@ -861,6 +865,10 @@ if TYPE_CHECKING:
     from .getsubscriptionentitlementsop import (
         GetSubscriptionEntitlementsRequest,
         GetSubscriptionEntitlementsRequestTypedDict,
+    )
+    from .getsubscriptionlineitemhistoryop import (
+        GetSubscriptionLineItemHistoryRequest,
+        GetSubscriptionLineItemHistoryRequestTypedDict,
     )
     from .getsubscriptionop import (
         GetSubscriptionRequest,
@@ -2128,6 +2136,14 @@ if TYPE_CHECKING:
     )
     from .webhookdto_meter import WebhookDtoMeter, WebhookDtoMeterTypedDict
     from .webhookdto_payment import WebhookDtoPayment, WebhookDtoPaymentTypedDict
+    from .webhookdto_paymentattempt import (
+        WebhookDtoPaymentAttempt,
+        WebhookDtoPaymentAttemptTypedDict,
+    )
+    from .webhookdto_paymentattemptwebhookpayload import (
+        WebhookDtoPaymentAttemptWebhookPayload,
+        WebhookDtoPaymentAttemptWebhookPayloadTypedDict,
+    )
     from .webhookdto_paymentwebhookpayload import (
         WebhookDtoPaymentWebhookPayload,
         WebhookDtoPaymentWebhookPayloadTypedDict,
@@ -2875,6 +2891,8 @@ __all__ = [
     "GetPreviewInvoiceRequestTypedDict",
     "GetPriceByLookupKeyRequest",
     "GetPriceByLookupKeyRequestTypedDict",
+    "GetPriceHistoryRequest",
+    "GetPriceHistoryRequestTypedDict",
     "GetPriceRequest",
     "GetPriceRequestTypedDict",
     "GetPriceUnitByCodeRequest",
@@ -2893,6 +2911,8 @@ __all__ = [
     "GetSubscriptionAddonAssociationsRequestTypedDict",
     "GetSubscriptionEntitlementsRequest",
     "GetSubscriptionEntitlementsRequestTypedDict",
+    "GetSubscriptionLineItemHistoryRequest",
+    "GetSubscriptionLineItemHistoryRequestTypedDict",
     "GetSubscriptionRequest",
     "GetSubscriptionRequestTypedDict",
     "GetSubscriptionScheduleRequest",
@@ -3825,6 +3845,10 @@ __all__ = [
     "WebhookDtoMeter",
     "WebhookDtoMeterTypedDict",
     "WebhookDtoPayment",
+    "WebhookDtoPaymentAttempt",
+    "WebhookDtoPaymentAttemptTypedDict",
+    "WebhookDtoPaymentAttemptWebhookPayload",
+    "WebhookDtoPaymentAttemptWebhookPayloadTypedDict",
     "WebhookDtoPaymentTypedDict",
     "WebhookDtoPaymentWebhookPayload",
     "WebhookDtoPaymentWebhookPayloadTypedDict",
@@ -4527,6 +4551,8 @@ _dynamic_imports: dict[str, str] = {
     "GetPreviewInvoiceRequestTypedDict": ".getpreviewinvoicerequest",
     "GetPriceByLookupKeyRequest": ".getpricebylookupkeyop",
     "GetPriceByLookupKeyRequestTypedDict": ".getpricebylookupkeyop",
+    "GetPriceHistoryRequest": ".getpricehistoryop",
+    "GetPriceHistoryRequestTypedDict": ".getpricehistoryop",
     "GetPriceRequest": ".getpriceop",
     "GetPriceRequestTypedDict": ".getpriceop",
     "GetPriceUnitByCodeRequest": ".getpriceunitbycodeop",
@@ -4545,6 +4571,8 @@ _dynamic_imports: dict[str, str] = {
     "GetSubscriptionAddonAssociationsRequestTypedDict": ".getsubscriptionaddonassociationsop",
     "GetSubscriptionEntitlementsRequest": ".getsubscriptionentitlementsop",
     "GetSubscriptionEntitlementsRequestTypedDict": ".getsubscriptionentitlementsop",
+    "GetSubscriptionLineItemHistoryRequest": ".getsubscriptionlineitemhistoryop",
+    "GetSubscriptionLineItemHistoryRequestTypedDict": ".getsubscriptionlineitemhistoryop",
     "GetSubscriptionRequest": ".getsubscriptionop",
     "GetSubscriptionRequestTypedDict": ".getsubscriptionop",
     "GetSubscriptionScheduleRequest": ".getsubscriptionscheduleop",
@@ -5470,6 +5498,10 @@ _dynamic_imports: dict[str, str] = {
     "WebhookDtoMeterTypedDict": ".webhookdto_meter",
     "WebhookDtoPayment": ".webhookdto_payment",
     "WebhookDtoPaymentTypedDict": ".webhookdto_payment",
+    "WebhookDtoPaymentAttempt": ".webhookdto_paymentattempt",
+    "WebhookDtoPaymentAttemptTypedDict": ".webhookdto_paymentattempt",
+    "WebhookDtoPaymentAttemptWebhookPayload": ".webhookdto_paymentattemptwebhookpayload",
+    "WebhookDtoPaymentAttemptWebhookPayloadTypedDict": ".webhookdto_paymentattemptwebhookpayload",
     "WebhookDtoPaymentWebhookPayload": ".webhookdto_paymentwebhookpayload",
     "WebhookDtoPaymentWebhookPayloadTypedDict": ".webhookdto_paymentwebhookpayload",
     "WebhookDtoPlan": ".webhookdto_plan",

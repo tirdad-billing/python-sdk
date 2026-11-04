@@ -1,0 +1,11 @@
+# WebhookDtoPaymentAttemptWebhookPayload
+
+
+## Fields
+
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `attempt`                                                                            | [Optional[models.WebhookDtoPaymentAttempt]](../models/webhookdtopaymentattempt.md)   | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `checkout_session`                                                                   | [Optional[models.WebhookDtoCheckoutSession]](../models/webhookdtocheckoutsession.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `event_type`                                                                         | [Optional[models.WebhookEventName]](../models/webhookeventname.md)                   | :heavy_minus_sign:                                                                   | N/A                                                                                  |
+| `payment`                                                                            | [Optional[models.WebhookDtoPayment]](../models/webhookdtopayment.md)                 | :heavy_minus_sign:                                                                   | N/A                                                                                  |

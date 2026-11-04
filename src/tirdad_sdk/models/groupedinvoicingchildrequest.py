@@ -30,6 +30,7 @@ from .overridelineitemrequest import (
     OverrideLineItemRequest,
     OverrideLineItemRequestTypedDict,
 )
+from .prorationbehavior import ProrationBehavior
 from .subscriptioncouponinput import (
     SubscriptionCouponInput,
     SubscriptionCouponInputTypedDict,
@@ -66,6 +67,7 @@ class GroupedInvoicingChildRequestTypedDict(TypedDict):
     override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
     r"""OverrideLineItems overrides specific plan prices for this subscription."""
     phases: NotRequired[List[SubscriptionPhaseCreateRequestTypedDict]]
+    proration_behavior: NotRequired[ProrationBehavior]
     subscription_coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
     r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
     Accepts coupon_code; optionally targets a line item via price_id.
@@ -115,6 +117,8 @@ class GroupedInvoicingChildRequest(BaseModel):
 
     phases: Optional[List[SubscriptionPhaseCreateRequest]] = None
 
+    proration_behavior: Optional[ProrationBehavior] = None
+
     subscription_coupons: Optional[List[SubscriptionCouponInput]] = None
     r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
     Accepts coupon_code; optionally targets a line item via price_id.
@@ -147,6 +151,7 @@ class GroupedInvoicingChildRequest(BaseModel):
                 "override_entitlements",
                 "override_line_items",
                 "phases",
+                "proration_behavior",
                 "subscription_coupons",
                 "subscription_entitlement_grants",
                 "tax_rate_overrides",

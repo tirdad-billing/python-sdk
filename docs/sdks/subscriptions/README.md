@@ -10,6 +10,7 @@
 * [query_subscription_line_items](#query_subscription_line_items) - Search subscription line items
 * [update_subscription_line_item](#update_subscription_line_item) - Update subscription line item
 * [delete_subscription_line_item](#delete_subscription_line_item) - Delete subscription line item
+* [get_subscription_line_item_history](#get_subscription_line_item_history) - Get subscription line item history
 * [list_all_subscription_schedules](#list_all_subscription_schedules) - List all subscription schedules
 * [get_subscription_schedule](#get_subscription_schedule) - Get subscription schedule
 * [cancel_subscription_schedule](#cancel_subscription_schedule) - Cancel subscription schedule
@@ -382,6 +383,47 @@ with Tirdad(
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
+## get_subscription_line_item_history
+
+Use when you need every version of a subscription line item, oldest first. Pass the ID of any version; the same timeline is returned. Versions cancelled before they started are left out unless requested directly.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getSubscriptionLineItemHistory" method="get" path="/subscriptions/lineitems/{id}/history" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.subscriptions.get_subscription_line_item_history(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Line item ID                                                        |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ListSubscriptionLineItemsResponse](../../models/listsubscriptionlineitemsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
 ## list_all_subscription_schedules
 
 Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
@@ -689,6 +731,7 @@ with Tirdad(
 | `cancel_at`                                                                                             | [date](https://docs.python.org/3/library/datetime.html#date-objects)                                    | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `cancel_at_period_end`                                                                                  | *Optional[bool]*                                                                                        | :heavy_minus_sign:                                                                                      | Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.              |
 | `parent_subscription_id`                                                                                | *Optional[str]*                                                                                         | :heavy_minus_sign:                                                                                      | ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send "" to clear. |
+| `proration_behavior`                                                                                    | [Optional[models.ProrationBehavior]](../../models/prorationbehavior.md)                                 | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `status`                                                                                                | [Optional[models.SubscriptionStatus]](../../models/subscriptionstatus.md)                               | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `retries`                                                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                        | :heavy_minus_sign:                                                                                      | Configuration to override the default retry behavior of the client.                                     |
 
