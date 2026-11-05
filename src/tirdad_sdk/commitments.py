@@ -21,6 +21,12 @@ class Commitments(BaseSDK):
         active_windows: Optional[
             Union[Iterable[models.ActiveWindow], Iterable[models.ActiveWindowTypedDict]]
         ] = None,
+        billing_terms: Optional[
+            Union[
+                Iterable[models.BillingTermInput],
+                Iterable[models.BillingTermInputTypedDict],
+            ]
+        ] = None,
         binding: Optional[bool] = None,
         collection_method: Optional[models.CommitmentCollectionMethod] = None,
         committed_price: Optional[
@@ -28,6 +34,7 @@ class Commitments(BaseSDK):
         ] = None,
         end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
+        instalment_invoicing: Optional[models.InstalmentDelivery] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -50,14 +57,16 @@ class Commitments(BaseSDK):
         :param measurement:
         :param name:
         :param scope:
-        :param start_date:
+        :param start_date: StartDate and EndDate within a second after a billing period edge are taken as that edge.
         :param type:
         :param active_windows:
+        :param billing_terms: BillingTerms apply only to collection_method billing_terms, which requires at least one.
         :param binding: default false
         :param collection_method:
         :param committed_price:
         :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
+        :param instalment_invoicing:
         :param invoice_description:
         :param invoice_label:
         :param metadata:
@@ -85,6 +94,9 @@ class Commitments(BaseSDK):
             active_windows=utils.get_pydantic_model(
                 active_windows, Optional[List[models.ActiveWindow]]
             ),
+            billing_terms=utils.get_pydantic_model(
+                billing_terms, Optional[List[models.BillingTermInput]]
+            ),
             binding=binding,
             collection_method=collection_method,
             committed_price=utils.get_pydantic_model(
@@ -92,6 +104,7 @@ class Commitments(BaseSDK):
             ),
             end_date=end_date,
             idempotency_key=idempotency_key,
+            instalment_invoicing=instalment_invoicing,
             invoice_description=invoice_description,
             invoice_label=invoice_label,
             measurement=measurement,
@@ -189,6 +202,12 @@ class Commitments(BaseSDK):
         active_windows: Optional[
             Union[Iterable[models.ActiveWindow], Iterable[models.ActiveWindowTypedDict]]
         ] = None,
+        billing_terms: Optional[
+            Union[
+                Iterable[models.BillingTermInput],
+                Iterable[models.BillingTermInputTypedDict],
+            ]
+        ] = None,
         binding: Optional[bool] = None,
         collection_method: Optional[models.CommitmentCollectionMethod] = None,
         committed_price: Optional[
@@ -196,6 +215,7 @@ class Commitments(BaseSDK):
         ] = None,
         end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
+        instalment_invoicing: Optional[models.InstalmentDelivery] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -218,14 +238,16 @@ class Commitments(BaseSDK):
         :param measurement:
         :param name:
         :param scope:
-        :param start_date:
+        :param start_date: StartDate and EndDate within a second after a billing period edge are taken as that edge.
         :param type:
         :param active_windows:
+        :param billing_terms: BillingTerms apply only to collection_method billing_terms, which requires at least one.
         :param binding: default false
         :param collection_method:
         :param committed_price:
         :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
+        :param instalment_invoicing:
         :param invoice_description:
         :param invoice_label:
         :param metadata:
@@ -253,6 +275,9 @@ class Commitments(BaseSDK):
             active_windows=utils.get_pydantic_model(
                 active_windows, Optional[List[models.ActiveWindow]]
             ),
+            billing_terms=utils.get_pydantic_model(
+                billing_terms, Optional[List[models.BillingTermInput]]
+            ),
             binding=binding,
             collection_method=collection_method,
             committed_price=utils.get_pydantic_model(
@@ -260,6 +285,7 @@ class Commitments(BaseSDK):
             ),
             end_date=end_date,
             idempotency_key=idempotency_key,
+            instalment_invoicing=instalment_invoicing,
             invoice_description=invoice_description,
             invoice_label=invoice_label,
             measurement=measurement,
@@ -357,6 +383,12 @@ class Commitments(BaseSDK):
         active_windows: Optional[
             Union[Iterable[models.ActiveWindow], Iterable[models.ActiveWindowTypedDict]]
         ] = None,
+        billing_terms: Optional[
+            Union[
+                Iterable[models.BillingTermInput],
+                Iterable[models.BillingTermInputTypedDict],
+            ]
+        ] = None,
         binding: Optional[bool] = None,
         collection_method: Optional[models.CommitmentCollectionMethod] = None,
         committed_price: Optional[
@@ -364,6 +396,7 @@ class Commitments(BaseSDK):
         ] = None,
         end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
+        instalment_invoicing: Optional[models.InstalmentDelivery] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -386,14 +419,16 @@ class Commitments(BaseSDK):
         :param measurement:
         :param name:
         :param scope:
-        :param start_date:
+        :param start_date: StartDate and EndDate within a second after a billing period edge are taken as that edge.
         :param type:
         :param active_windows:
+        :param billing_terms: BillingTerms apply only to collection_method billing_terms, which requires at least one.
         :param binding: default false
         :param collection_method:
         :param committed_price:
         :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
+        :param instalment_invoicing:
         :param invoice_description:
         :param invoice_label:
         :param metadata:
@@ -421,6 +456,9 @@ class Commitments(BaseSDK):
             active_windows=utils.get_pydantic_model(
                 active_windows, Optional[List[models.ActiveWindow]]
             ),
+            billing_terms=utils.get_pydantic_model(
+                billing_terms, Optional[List[models.BillingTermInput]]
+            ),
             binding=binding,
             collection_method=collection_method,
             committed_price=utils.get_pydantic_model(
@@ -428,6 +466,7 @@ class Commitments(BaseSDK):
             ),
             end_date=end_date,
             idempotency_key=idempotency_key,
+            instalment_invoicing=instalment_invoicing,
             invoice_description=invoice_description,
             invoice_label=invoice_label,
             measurement=measurement,
@@ -528,6 +567,12 @@ class Commitments(BaseSDK):
         active_windows: Optional[
             Union[Iterable[models.ActiveWindow], Iterable[models.ActiveWindowTypedDict]]
         ] = None,
+        billing_terms: Optional[
+            Union[
+                Iterable[models.BillingTermInput],
+                Iterable[models.BillingTermInputTypedDict],
+            ]
+        ] = None,
         binding: Optional[bool] = None,
         collection_method: Optional[models.CommitmentCollectionMethod] = None,
         committed_price: Optional[
@@ -535,6 +580,7 @@ class Commitments(BaseSDK):
         ] = None,
         end_date: Optional[datetime] = None,
         idempotency_key: Optional[str] = None,
+        instalment_invoicing: Optional[models.InstalmentDelivery] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -557,14 +603,16 @@ class Commitments(BaseSDK):
         :param measurement:
         :param name:
         :param scope:
-        :param start_date:
+        :param start_date: StartDate and EndDate within a second after a billing period edge are taken as that edge.
         :param type:
         :param active_windows:
+        :param billing_terms: BillingTerms apply only to collection_method billing_terms, which requires at least one.
         :param binding: default false
         :param collection_method:
         :param committed_price:
         :param end_date: EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
         :param idempotency_key:
+        :param instalment_invoicing:
         :param invoice_description:
         :param invoice_label:
         :param metadata:
@@ -592,6 +640,9 @@ class Commitments(BaseSDK):
             active_windows=utils.get_pydantic_model(
                 active_windows, Optional[List[models.ActiveWindow]]
             ),
+            billing_terms=utils.get_pydantic_model(
+                billing_terms, Optional[List[models.BillingTermInput]]
+            ),
             binding=binding,
             collection_method=collection_method,
             committed_price=utils.get_pydantic_model(
@@ -599,6 +650,7 @@ class Commitments(BaseSDK):
             ),
             end_date=end_date,
             idempotency_key=idempotency_key,
+            instalment_invoicing=instalment_invoicing,
             invoice_description=invoice_description,
             invoice_label=invoice_label,
             measurement=measurement,
@@ -1212,6 +1264,7 @@ class Commitments(BaseSDK):
         self,
         *,
         id: str,
+        end_date: Optional[datetime] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -1226,6 +1279,7 @@ class Commitments(BaseSDK):
         Updates the descriptive fields of a commitment. Economic terms are immutable.
 
         :param id: Commitment ID
+        :param end_date: EndDate can't be changed yet; terminate the commitment to end it.
         :param invoice_description:
         :param invoice_label:
         :param metadata:
@@ -1248,6 +1302,7 @@ class Commitments(BaseSDK):
         request = models.UpdateCommitmentRequestRequest(
             id=id,
             body=models.UpdateCommitmentRequest(
+                end_date=end_date,
                 invoice_description=invoice_description,
                 invoice_label=invoice_label,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
@@ -1328,6 +1383,7 @@ class Commitments(BaseSDK):
         self,
         *,
         id: str,
+        end_date: Optional[datetime] = None,
         invoice_description: Optional[str] = None,
         invoice_label: Optional[str] = None,
         metadata: Optional[Mapping[str, str]] = None,
@@ -1342,6 +1398,7 @@ class Commitments(BaseSDK):
         Updates the descriptive fields of a commitment. Economic terms are immutable.
 
         :param id: Commitment ID
+        :param end_date: EndDate can't be changed yet; terminate the commitment to end it.
         :param invoice_description:
         :param invoice_label:
         :param metadata:
@@ -1364,6 +1421,7 @@ class Commitments(BaseSDK):
         request = models.UpdateCommitmentRequestRequest(
             id=id,
             body=models.UpdateCommitmentRequest(
+                end_date=end_date,
                 invoice_description=invoice_description,
                 invoice_label=invoice_label,
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
@@ -1440,11 +1498,1097 @@ class Commitments(BaseSDK):
 
         raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
 
+    def get_commitment_billing_terms(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingTermsResponse:
+        r"""Get billing terms
+
+        Returns the commitment's current billing terms with its scheduled and invoiced instalments in billing order. Invoiced instalments may come from terms an edit replaced. Cancelled instalments are listed by the instalments endpoint.
+
+        :param id: Commitment ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetCommitmentBillingTermsRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/commitments/{id}/billing-terms",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getCommitmentBillingTerms",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingTermsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def get_commitment_billing_terms_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingTermsResponse:
+        r"""Get billing terms
+
+        Returns the commitment's current billing terms with its scheduled and invoiced instalments in billing order. Invoiced instalments may come from terms an edit replaced. Cancelled instalments are listed by the instalments endpoint.
+
+        :param id: Commitment ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.GetCommitmentBillingTermsRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/commitments/{id}/billing-terms",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getCommitmentBillingTerms",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingTermsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def replace_commitment_billing_terms(
+        self,
+        *,
+        id: str,
+        billing_terms: Union[
+            Iterable[models.BillingTermInput],
+            Iterable[models.BillingTermInputTypedDict],
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingTermsResponse:
+        r"""Edit billing terms
+
+        Replaces the whole set of billing terms of an active commitment. Its scheduled instalments are cancelled and the new terms generate instalments for what the invoiced ones leave of the commitment total; invoiced instalments and their invoices are kept. A term without bill_on or start_date starts at the billing period holding now, or at the commitment start once its term has ended. Returns the new terms with the scheduled and invoiced instalments in billing order.
+
+        :param id: Commitment ID
+        :param billing_terms:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ReplaceCommitmentBillingTermsRequest(
+            id=id,
+            body=models.ReplaceBillingTermsRequest(
+                billing_terms=utils.get_pydantic_model(
+                    billing_terms, List[models.BillingTermInput]
+                ),
+            ),
+        )
+
+        req = self._build_request(
+            method="PUT",
+            path="/commitments/{id}/billing-terms",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ReplaceBillingTermsRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="replaceCommitmentBillingTerms",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-codegen-request-body-name": "billing_terms"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingTermsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def replace_commitment_billing_terms_async(
+        self,
+        *,
+        id: str,
+        billing_terms: Union[
+            Iterable[models.BillingTermInput],
+            Iterable[models.BillingTermInputTypedDict],
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingTermsResponse:
+        r"""Edit billing terms
+
+        Replaces the whole set of billing terms of an active commitment. Its scheduled instalments are cancelled and the new terms generate instalments for what the invoiced ones leave of the commitment total; invoiced instalments and their invoices are kept. A term without bill_on or start_date starts at the billing period holding now, or at the commitment start once its term has ended. Returns the new terms with the scheduled and invoiced instalments in billing order.
+
+        :param id: Commitment ID
+        :param billing_terms:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ReplaceCommitmentBillingTermsRequest(
+            id=id,
+            body=models.ReplaceBillingTermsRequest(
+                billing_terms=utils.get_pydantic_model(
+                    billing_terms, List[models.BillingTermInput]
+                ),
+            ),
+        )
+
+        req = self._build_request_async(
+            method="PUT",
+            path="/commitments/{id}/billing-terms",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ReplaceBillingTermsRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="replaceCommitmentBillingTerms",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-codegen-request-body-name": "billing_terms"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingTermsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def preview_commitment_billing_terms(
+        self,
+        *,
+        id: str,
+        billing_terms: Union[
+            Iterable[models.BillingTermInput],
+            Iterable[models.BillingTermInputTypedDict],
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingTermsResponse:
+        r"""Preview billing terms edit
+
+        Returns what editing the billing terms would produce, without saving anything: the new terms with the invoiced and new instalments in billing order.
+
+        :param id: Commitment ID
+        :param billing_terms:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.PreviewCommitmentBillingTermsRequest(
+            id=id,
+            body=models.ReplaceBillingTermsRequest(
+                billing_terms=utils.get_pydantic_model(
+                    billing_terms, List[models.BillingTermInput]
+                ),
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/commitments/{id}/billing-terms/preview",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ReplaceBillingTermsRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="previewCommitmentBillingTerms",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={
+                    "x-codegen-request-body-name": "billing_terms",
+                    "x-scope": "read",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingTermsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def preview_commitment_billing_terms_async(
+        self,
+        *,
+        id: str,
+        billing_terms: Union[
+            Iterable[models.BillingTermInput],
+            Iterable[models.BillingTermInputTypedDict],
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingTermsResponse:
+        r"""Preview billing terms edit
+
+        Returns what editing the billing terms would produce, without saving anything: the new terms with the invoiced and new instalments in billing order.
+
+        :param id: Commitment ID
+        :param billing_terms:
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.PreviewCommitmentBillingTermsRequest(
+            id=id,
+            body=models.ReplaceBillingTermsRequest(
+                billing_terms=utils.get_pydantic_model(
+                    billing_terms, List[models.BillingTermInput]
+                ),
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/commitments/{id}/billing-terms/preview",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body, False, False, "json", models.ReplaceBillingTermsRequest
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="previewCommitmentBillingTerms",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={
+                    "x-codegen-request-body-name": "billing_terms",
+                    "x-scope": "read",
+                },
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingTermsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def list_commitment_instalments(
+        self,
+        *,
+        id: str,
+        status: Optional[Iterable[str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ListInstalmentsResponse:
+        r"""List instalments
+
+        Lists the instalments of the commitment in billing order. Without a status filter every instalment is listed, cancelled ones included.
+
+        :param id: Commitment ID
+        :param status: Only instalments in these statuses (scheduled, invoiced, cancelled)
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListCommitmentInstalmentsRequest(
+            id=id,
+            status=utils.unmarshal(status, Optional[List[str]]),
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/commitments/{id}/instalments",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listCommitmentInstalments",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ListInstalmentsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def list_commitment_instalments_async(
+        self,
+        *,
+        id: str,
+        status: Optional[Iterable[str]] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.ListInstalmentsResponse:
+        r"""List instalments
+
+        Lists the instalments of the commitment in billing order. Without a status filter every instalment is listed, cancelled ones included.
+
+        :param id: Commitment ID
+        :param status: Only instalments in these statuses (scheduled, invoiced, cancelled)
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListCommitmentInstalmentsRequest(
+            id=id,
+            status=utils.unmarshal(status, Optional[List[str]]),
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/commitments/{id}/instalments",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listCommitmentInstalments",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.ListInstalmentsResponse, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def trigger_commitment_instalment(
+        self,
+        *,
+        id: str,
+        instalment_id: str,
+        bill_on: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingtermInstalment:
+        r"""Trigger instalment
+
+        Bills a manual instalment of an active commitment on bill_on, now by default, which must fall within the commitment term. The instalment goes on the first subscription invoice at or after that date, or on its own invoice once due when its instalment_invoicing, the term's or else the commitment's, is separate_invoice. Either way it waits while the subscription is trialing or paused. Until it is triggered, a manual instalment waits at the end of the term, and bill_on can only move earlier; edit the billing terms to bill it later.
+
+        :param id: Commitment ID
+        :param instalment_id: Instalment ID
+        :param bill_on: BillOn within a second after a billing period edge is taken as that edge.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.TriggerCommitmentInstalmentRequest(
+            id=id,
+            instalment_id=instalment_id,
+            body=models.TriggerInstalmentRequest(
+                bill_on=bill_on,
+            ),
+        )
+
+        req = self._build_request(
+            method="POST",
+            path="/commitments/{id}/instalments/{instalment_id}/trigger",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.TriggerInstalmentRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="triggerCommitmentInstalment",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-codegen-request-body-name": "trigger"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingtermInstalment, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def trigger_commitment_instalment_async(
+        self,
+        *,
+        id: str,
+        instalment_id: str,
+        bill_on: Optional[str] = None,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.BillingtermInstalment:
+        r"""Trigger instalment
+
+        Bills a manual instalment of an active commitment on bill_on, now by default, which must fall within the commitment term. The instalment goes on the first subscription invoice at or after that date, or on its own invoice once due when its instalment_invoicing, the term's or else the commitment's, is separate_invoice. Either way it waits while the subscription is trialing or paused. Until it is triggered, a manual instalment waits at the end of the term, and bill_on can only move earlier; edit the billing terms to bill it later.
+
+        :param id: Commitment ID
+        :param instalment_id: Instalment ID
+        :param bill_on: BillOn within a second after a billing period edge is taken as that edge.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.TriggerCommitmentInstalmentRequest(
+            id=id,
+            instalment_id=instalment_id,
+            body=models.TriggerInstalmentRequest(
+                bill_on=bill_on,
+            ),
+        )
+
+        req = self._build_request_async(
+            method="POST",
+            path="/commitments/{id}/instalments/{instalment_id}/trigger",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.body if request is not None else None,
+                False,
+                True,
+                "json",
+                Optional[models.TriggerInstalmentRequest],
+            ),
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="triggerCommitmentInstalment",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Commitments"],
+                extensions={"x-codegen-request-body-name": "trigger"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.BillingtermInstalment, http_res)
+        if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
     def terminate_commitment(
         self,
         *,
         id: str,
-        cancellation_fee: Optional[str] = None,
+        cancellation_fee: Optional[
+            Union[models.CancellationFeeInput, models.CancellationFeeInputTypedDict]
+        ] = None,
         effective_at: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1453,11 +2597,11 @@ class Commitments(BaseSDK):
     ) -> models.CommitmentResponse:
         r"""Terminate commitment
 
-        Ends a commitment early, effective at the given time or now.
+        Ends a commitment immediately. effective_at defaults to now and cannot be in the future. Under billing terms, its scheduled instalments are cancelled, and those already due by effective_at are billed together as one settlement; later instalments are not billed and nothing is refunded. The settlement and a fixed cancellation fee, when given, are billed together on one one-off invoice.
 
         :param id: Commitment ID
         :param cancellation_fee:
-        :param effective_at:
+        :param effective_at: EffectiveAt defaults to now; within a second after a billing period edge it is taken as that edge.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1476,7 +2620,9 @@ class Commitments(BaseSDK):
         request = models.TerminateCommitmentRequestRequest(
             id=id,
             body=models.TerminateCommitmentRequest(
-                cancellation_fee=cancellation_fee,
+                cancellation_fee=utils.get_pydantic_model(
+                    cancellation_fee, Optional[models.CancellationFeeInput]
+                ),
                 effective_at=effective_at,
             ),
         )
@@ -1561,7 +2707,9 @@ class Commitments(BaseSDK):
         self,
         *,
         id: str,
-        cancellation_fee: Optional[str] = None,
+        cancellation_fee: Optional[
+            Union[models.CancellationFeeInput, models.CancellationFeeInputTypedDict]
+        ] = None,
         effective_at: Optional[datetime] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1570,11 +2718,11 @@ class Commitments(BaseSDK):
     ) -> models.CommitmentResponse:
         r"""Terminate commitment
 
-        Ends a commitment early, effective at the given time or now.
+        Ends a commitment immediately. effective_at defaults to now and cannot be in the future. Under billing terms, its scheduled instalments are cancelled, and those already due by effective_at are billed together as one settlement; later instalments are not billed and nothing is refunded. The settlement and a fixed cancellation fee, when given, are billed together on one one-off invoice.
 
         :param id: Commitment ID
         :param cancellation_fee:
-        :param effective_at:
+        :param effective_at: EffectiveAt defaults to now; within a second after a billing period edge it is taken as that edge.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1593,7 +2741,9 @@ class Commitments(BaseSDK):
         request = models.TerminateCommitmentRequestRequest(
             id=id,
             body=models.TerminateCommitmentRequest(
-                cancellation_fee=cancellation_fee,
+                cancellation_fee=utils.get_pydantic_model(
+                    cancellation_fee, Optional[models.CancellationFeeInput]
+                ),
                 effective_at=effective_at,
             ),
         )

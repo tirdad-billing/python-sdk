@@ -3,9 +3,10 @@
 
 ## Fields
 
-| Field                 | Type                  | Required              | Description           |
-| --------------------- | --------------------- | --------------------- | --------------------- |
-| `invoice_description` | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
-| `invoice_label`       | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
-| `metadata`            | Dict[str, *str*]      | :heavy_minus_sign:    | N/A                   |
-| `name`                | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `end_date`                                                           | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | EndDate can't be changed yet; terminate the commitment to end it.    |
+| `invoice_description`                                                | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `invoice_label`                                                      | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `metadata`                                                           | Dict[str, *str*]                                                     | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `name`                                                               | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |

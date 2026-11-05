@@ -163,6 +163,20 @@ if TYPE_CHECKING:
     from .billingperiodbehaviour import BillingPeriodBehaviour
     from .billingperiodconfig import BillingPeriodConfig, BillingPeriodConfigTypedDict
     from .billingperiodinfo import BillingPeriodInfo, BillingPeriodInfoTypedDict
+    from .billingterm_instalment import (
+        BillingtermInstalment,
+        BillingtermInstalmentTypedDict,
+    )
+    from .billingterm_term import BillingtermTerm, BillingtermTermTypedDict
+    from .billingterminput import BillingTermInput, BillingTermInputTypedDict
+    from .billingtermkind import BillingTermKind
+    from .billingtermownertype import BillingTermOwnerType
+    from .billingtermsplit import BillingTermSplit
+    from .billingtermsresponse import (
+        BillingTermsResponse,
+        BillingTermsResponseTypedDict,
+    )
+    from .billingtermvaluetype import BillingTermValueType
     from .billingtier import BillingTier
     from .bucket import Bucket, BucketTypedDict
     from .bucketsummary import BucketSummary, BucketSummaryTypedDict
@@ -175,6 +189,11 @@ if TYPE_CHECKING:
         CancelCheckoutSessionRequestTypedDict,
     )
     from .cancelimmediatelyinvoicepolicy import CancelImmediatelyInvoicePolicy
+    from .cancellationfeeinput import (
+        CancellationFeeInput,
+        CancellationFeeInputTypedDict,
+    )
+    from .cancellationfeetype import CancellationFeeType
     from .cancellationtype import CancellationType
     from .cancelschedulerequest import (
         CancelScheduleRequest,
@@ -740,6 +759,10 @@ if TYPE_CHECKING:
         GetCheckoutSessionRequest,
         GetCheckoutSessionRequestTypedDict,
     )
+    from .getcommitmentbillingtermsop import (
+        GetCommitmentBillingTermsRequest,
+        GetCommitmentBillingTermsRequestTypedDict,
+    )
     from .getcommitmentop import GetCommitmentRequest, GetCommitmentRequestTypedDict
     from .getcontractop import GetContractRequest, GetContractRequestTypedDict
     from .getcostanalyticsrequest import (
@@ -966,6 +989,10 @@ if TYPE_CHECKING:
     from .ingesteventrequest import IngestEventRequest, IngestEventRequestTypedDict
     from .inheritanceaction import InheritanceAction
     from .inlinefxrate import InlineFXRate, InlineFXRateTypedDict
+    from .instalmentbilltrigger import InstalmentBillTrigger
+    from .instalmentdelivery import InstalmentDelivery
+    from .instalmentkind import InstalmentKind
+    from .instalmentstatus import InstalmentStatus
     from .integrationconfigentry import (
         IntegrationConfigEntry,
         IntegrationConfigEntryTypedDict,
@@ -1070,6 +1097,10 @@ if TYPE_CHECKING:
         ListAnalyticsViewsRequestTypedDict,
     )
     from .listapikeysop import ListAPIKeysRequest, ListAPIKeysRequestTypedDict
+    from .listcommitmentinstalmentsop import (
+        ListCommitmentInstalmentsRequest,
+        ListCommitmentInstalmentsRequestTypedDict,
+    )
     from .listcommitmentsresponse import (
         ListCommitmentsResponse,
         ListCommitmentsResponseTypedDict,
@@ -1121,6 +1152,10 @@ if TYPE_CHECKING:
     )
     from .listfxratesresponse import ListFXRatesResponse, ListFXRatesResponseTypedDict
     from .listgroupsresponse import ListGroupsResponse, ListGroupsResponseTypedDict
+    from .listinstalmentsresponse import (
+        ListInstalmentsResponse,
+        ListInstalmentsResponseTypedDict,
+    )
     from .listinvoicesresponse import (
         ListInvoicesResponse,
         ListInvoicesResponseTypedDict,
@@ -1341,6 +1376,10 @@ if TYPE_CHECKING:
         PortalSessionResponse,
         PortalSessionResponseTypedDict,
     )
+    from .previewcommitmentbillingtermsop import (
+        PreviewCommitmentBillingTermsRequest,
+        PreviewCommitmentBillingTermsRequestTypedDict,
+    )
     from .previewsubscriptionchangeop import (
         PreviewSubscriptionChangeRequest,
         PreviewSubscriptionChangeRequestTypedDict,
@@ -1430,6 +1469,14 @@ if TYPE_CHECKING:
     from .removeaddonref import RemoveAddonRef, RemoveAddonRefTypedDict
     from .removeaddonrequest import RemoveAddonRequest, RemoveAddonRequestTypedDict
     from .removeuserop import RemoveUserRequest, RemoveUserRequestTypedDict
+    from .replacebillingtermsrequest import (
+        ReplaceBillingTermsRequest,
+        ReplaceBillingTermsRequestTypedDict,
+    )
+    from .replacecommitmentbillingtermsop import (
+        ReplaceCommitmentBillingTermsRequest,
+        ReplaceCommitmentBillingTermsRequestTypedDict,
+    )
     from .reportcatalogentry import (
         DefaultShape,
         ReportCatalogEntry,
@@ -1787,6 +1834,10 @@ if TYPE_CHECKING:
     from .transactionstatus import TransactionStatus
     from .transactiontype import TransactionType
     from .trialendaction import TrialEndAction
+    from .triggercommitmentinstalmentop import (
+        TriggerCommitmentInstalmentRequest,
+        TriggerCommitmentInstalmentRequestTypedDict,
+    )
     from .triggerforcerunrequest import (
         TriggerForceRunRequest,
         TriggerForceRunRequestTypedDict,
@@ -1794,6 +1845,10 @@ if TYPE_CHECKING:
     from .triggerforcerunresponse import (
         TriggerForceRunResponse,
         TriggerForceRunResponseTypedDict,
+    )
+    from .triggerinstalmentrequest import (
+        TriggerInstalmentRequest,
+        TriggerInstalmentRequestTypedDict,
     )
     from .triggerinvoicecommswebhookop import (
         TriggerInvoiceCommsWebhookRequest,
@@ -2070,6 +2125,14 @@ if TYPE_CHECKING:
     from .webhookdto_alertwebhookpayload import (
         WebhookDtoAlertWebhookPayload,
         WebhookDtoAlertWebhookPayloadTypedDict,
+    )
+    from .webhookdto_billinginstalmentwebhookpayload import (
+        WebhookDtoBillingInstalmentWebhookPayload,
+        WebhookDtoBillingInstalmentWebhookPayloadTypedDict,
+    )
+    from .webhookdto_billingtermswebhookpayload import (
+        WebhookDtoBillingTermsWebhookPayload,
+        WebhookDtoBillingTermsWebhookPayloadTypedDict,
     )
     from .webhookdto_checkoutsession import (
         WebhookDtoCheckoutSession,
@@ -2368,7 +2431,19 @@ __all__ = [
     "BillingPeriodConfigTypedDict",
     "BillingPeriodInfo",
     "BillingPeriodInfoTypedDict",
+    "BillingTermInput",
+    "BillingTermInputTypedDict",
+    "BillingTermKind",
+    "BillingTermOwnerType",
+    "BillingTermSplit",
+    "BillingTermValueType",
+    "BillingTermsResponse",
+    "BillingTermsResponseTypedDict",
     "BillingTier",
+    "BillingtermInstalment",
+    "BillingtermInstalmentTypedDict",
+    "BillingtermTerm",
+    "BillingtermTermTypedDict",
     "Bucket",
     "BucketSummary",
     "BucketSummaryTypedDict",
@@ -2392,6 +2467,9 @@ __all__ = [
     "CancelSubscriptionResponseTypedDict",
     "CancelSubscriptionScheduleRequest",
     "CancelSubscriptionScheduleRequestTypedDict",
+    "CancellationFeeInput",
+    "CancellationFeeInputTypedDict",
+    "CancellationFeeType",
     "CancellationType",
     "ChangedAddonAssociation",
     "ChangedAddonAssociationAction",
@@ -2815,6 +2893,8 @@ __all__ = [
     "GetAnalyticsViewRequestTypedDict",
     "GetCheckoutSessionRequest",
     "GetCheckoutSessionRequestTypedDict",
+    "GetCommitmentBillingTermsRequest",
+    "GetCommitmentBillingTermsRequestTypedDict",
     "GetCommitmentRequest",
     "GetCommitmentRequestTypedDict",
     "GetContractRequest",
@@ -2989,6 +3069,10 @@ __all__ = [
     "InheritanceAction",
     "InlineFXRate",
     "InlineFXRateTypedDict",
+    "InstalmentBillTrigger",
+    "InstalmentDelivery",
+    "InstalmentKind",
+    "InstalmentStatus",
     "IntegrationConfigEntry",
     "IntegrationConfigEntryTypedDict",
     "IntegrationConfigResponse",
@@ -3065,6 +3149,8 @@ __all__ = [
     "ListAllSubscriptionSchedulesScheduleType",
     "ListAnalyticsViewsRequest",
     "ListAnalyticsViewsRequestTypedDict",
+    "ListCommitmentInstalmentsRequest",
+    "ListCommitmentInstalmentsRequestTypedDict",
     "ListCommitmentsResponse",
     "ListCommitmentsResponseTypedDict",
     "ListContractsResponse",
@@ -3095,6 +3181,8 @@ __all__ = [
     "ListFeaturesResponseTypedDict",
     "ListGroupsResponse",
     "ListGroupsResponseTypedDict",
+    "ListInstalmentsResponse",
+    "ListInstalmentsResponseTypedDict",
     "ListInvoicesResponse",
     "ListInvoicesResponseTypedDict",
     "ListJournalEntriesResponse",
@@ -3261,6 +3349,8 @@ __all__ = [
     "PollSelfBillingCheckoutRequestTypedDict",
     "PortalSessionResponse",
     "PortalSessionResponseTypedDict",
+    "PreviewCommitmentBillingTermsRequest",
+    "PreviewCommitmentBillingTermsRequestTypedDict",
     "PreviewSubscriptionChangeRequest",
     "PreviewSubscriptionChangeRequestTypedDict",
     "PreviewSubscriptionModifyRequest",
@@ -3340,6 +3430,10 @@ __all__ = [
     "RemoveAddonRequestTypedDict",
     "RemoveUserRequest",
     "RemoveUserRequestTypedDict",
+    "ReplaceBillingTermsRequest",
+    "ReplaceBillingTermsRequestTypedDict",
+    "ReplaceCommitmentBillingTermsRequest",
+    "ReplaceCommitmentBillingTermsRequestTypedDict",
     "ReportCatalogEntry",
     "ReportCatalogEntryGrain",
     "ReportCatalogEntryShape",
@@ -3610,10 +3704,14 @@ __all__ = [
     "TransactionStatus",
     "TransactionType",
     "TrialEndAction",
+    "TriggerCommitmentInstalmentRequest",
+    "TriggerCommitmentInstalmentRequestTypedDict",
     "TriggerForceRunRequest",
     "TriggerForceRunRequestTypedDict",
     "TriggerForceRunResponse",
     "TriggerForceRunResponseTypedDict",
+    "TriggerInstalmentRequest",
+    "TriggerInstalmentRequestTypedDict",
     "TriggerInvoiceCommsWebhookRequest",
     "TriggerInvoiceCommsWebhookRequestTypedDict",
     "TriggerScheduledTaskRunRequest",
@@ -3806,6 +3904,10 @@ __all__ = [
     "WaterfallRowTypedDict",
     "WebhookDtoAlertWebhookPayload",
     "WebhookDtoAlertWebhookPayloadTypedDict",
+    "WebhookDtoBillingInstalmentWebhookPayload",
+    "WebhookDtoBillingInstalmentWebhookPayloadTypedDict",
+    "WebhookDtoBillingTermsWebhookPayload",
+    "WebhookDtoBillingTermsWebhookPayloadTypedDict",
     "WebhookDtoCheckoutSession",
     "WebhookDtoCheckoutSessionTypedDict",
     "WebhookDtoCheckoutSessionWebhookPayload",
@@ -4035,6 +4137,18 @@ _dynamic_imports: dict[str, str] = {
     "BillingPeriodConfigTypedDict": ".billingperiodconfig",
     "BillingPeriodInfo": ".billingperiodinfo",
     "BillingPeriodInfoTypedDict": ".billingperiodinfo",
+    "BillingtermInstalment": ".billingterm_instalment",
+    "BillingtermInstalmentTypedDict": ".billingterm_instalment",
+    "BillingtermTerm": ".billingterm_term",
+    "BillingtermTermTypedDict": ".billingterm_term",
+    "BillingTermInput": ".billingterminput",
+    "BillingTermInputTypedDict": ".billingterminput",
+    "BillingTermKind": ".billingtermkind",
+    "BillingTermOwnerType": ".billingtermownertype",
+    "BillingTermSplit": ".billingtermsplit",
+    "BillingTermsResponse": ".billingtermsresponse",
+    "BillingTermsResponseTypedDict": ".billingtermsresponse",
+    "BillingTermValueType": ".billingtermvaluetype",
     "BillingTier": ".billingtier",
     "Bucket": ".bucket",
     "BucketTypedDict": ".bucket",
@@ -4045,6 +4159,9 @@ _dynamic_imports: dict[str, str] = {
     "CancelCheckoutSessionRequest": ".cancelcheckoutsessionop",
     "CancelCheckoutSessionRequestTypedDict": ".cancelcheckoutsessionop",
     "CancelImmediatelyInvoicePolicy": ".cancelimmediatelyinvoicepolicy",
+    "CancellationFeeInput": ".cancellationfeeinput",
+    "CancellationFeeInputTypedDict": ".cancellationfeeinput",
+    "CancellationFeeType": ".cancellationfeetype",
     "CancellationType": ".cancellationtype",
     "CancelScheduleRequest": ".cancelschedulerequest",
     "CancelScheduleRequestTypedDict": ".cancelschedulerequest",
@@ -4475,6 +4592,8 @@ _dynamic_imports: dict[str, str] = {
     "GetAnalyticsViewRequestTypedDict": ".getanalyticsviewop",
     "GetCheckoutSessionRequest": ".getcheckoutsessionop",
     "GetCheckoutSessionRequestTypedDict": ".getcheckoutsessionop",
+    "GetCommitmentBillingTermsRequest": ".getcommitmentbillingtermsop",
+    "GetCommitmentBillingTermsRequestTypedDict": ".getcommitmentbillingtermsop",
     "GetCommitmentRequest": ".getcommitmentop",
     "GetCommitmentRequestTypedDict": ".getcommitmentop",
     "GetContractRequest": ".getcontractop",
@@ -4651,6 +4770,10 @@ _dynamic_imports: dict[str, str] = {
     "InheritanceAction": ".inheritanceaction",
     "InlineFXRate": ".inlinefxrate",
     "InlineFXRateTypedDict": ".inlinefxrate",
+    "InstalmentBillTrigger": ".instalmentbilltrigger",
+    "InstalmentDelivery": ".instalmentdelivery",
+    "InstalmentKind": ".instalmentkind",
+    "InstalmentStatus": ".instalmentstatus",
     "IntegrationConfigEntry": ".integrationconfigentry",
     "IntegrationConfigEntryTypedDict": ".integrationconfigentry",
     "IntegrationConfigResponse": ".integrationconfigresponse",
@@ -4725,6 +4848,8 @@ _dynamic_imports: dict[str, str] = {
     "ListAnalyticsViewsRequestTypedDict": ".listanalyticsviewsop",
     "ListAPIKeysRequest": ".listapikeysop",
     "ListAPIKeysRequestTypedDict": ".listapikeysop",
+    "ListCommitmentInstalmentsRequest": ".listcommitmentinstalmentsop",
+    "ListCommitmentInstalmentsRequestTypedDict": ".listcommitmentinstalmentsop",
     "ListCommitmentsResponse": ".listcommitmentsresponse",
     "ListCommitmentsResponseTypedDict": ".listcommitmentsresponse",
     "ListContractsResponse": ".listcontractsresponse",
@@ -4755,6 +4880,8 @@ _dynamic_imports: dict[str, str] = {
     "ListFXRatesResponseTypedDict": ".listfxratesresponse",
     "ListGroupsResponse": ".listgroupsresponse",
     "ListGroupsResponseTypedDict": ".listgroupsresponse",
+    "ListInstalmentsResponse": ".listinstalmentsresponse",
+    "ListInstalmentsResponseTypedDict": ".listinstalmentsresponse",
     "ListInvoicesResponse": ".listinvoicesresponse",
     "ListInvoicesResponseTypedDict": ".listinvoicesresponse",
     "ListJournalEntriesResponse": ".listjournalentriesresponse",
@@ -4918,6 +5045,8 @@ _dynamic_imports: dict[str, str] = {
     "PollSelfBillingCheckoutRequestTypedDict": ".pollselfbillingcheckoutop",
     "PortalSessionResponse": ".portalsessionresponse",
     "PortalSessionResponseTypedDict": ".portalsessionresponse",
+    "PreviewCommitmentBillingTermsRequest": ".previewcommitmentbillingtermsop",
+    "PreviewCommitmentBillingTermsRequestTypedDict": ".previewcommitmentbillingtermsop",
     "PreviewSubscriptionChangeRequest": ".previewsubscriptionchangeop",
     "PreviewSubscriptionChangeRequestTypedDict": ".previewsubscriptionchangeop",
     "PreviewSubscriptionModifyRequest": ".previewsubscriptionmodifyop",
@@ -4995,6 +5124,10 @@ _dynamic_imports: dict[str, str] = {
     "RemoveAddonRequestTypedDict": ".removeaddonrequest",
     "RemoveUserRequest": ".removeuserop",
     "RemoveUserRequestTypedDict": ".removeuserop",
+    "ReplaceBillingTermsRequest": ".replacebillingtermsrequest",
+    "ReplaceBillingTermsRequestTypedDict": ".replacebillingtermsrequest",
+    "ReplaceCommitmentBillingTermsRequest": ".replacecommitmentbillingtermsop",
+    "ReplaceCommitmentBillingTermsRequestTypedDict": ".replacecommitmentbillingtermsop",
     "DefaultShape": ".reportcatalogentry",
     "ReportCatalogEntry": ".reportcatalogentry",
     "ReportCatalogEntryGrain": ".reportcatalogentry",
@@ -5263,10 +5396,14 @@ _dynamic_imports: dict[str, str] = {
     "TransactionStatus": ".transactionstatus",
     "TransactionType": ".transactiontype",
     "TrialEndAction": ".trialendaction",
+    "TriggerCommitmentInstalmentRequest": ".triggercommitmentinstalmentop",
+    "TriggerCommitmentInstalmentRequestTypedDict": ".triggercommitmentinstalmentop",
     "TriggerForceRunRequest": ".triggerforcerunrequest",
     "TriggerForceRunRequestTypedDict": ".triggerforcerunrequest",
     "TriggerForceRunResponse": ".triggerforcerunresponse",
     "TriggerForceRunResponseTypedDict": ".triggerforcerunresponse",
+    "TriggerInstalmentRequest": ".triggerinstalmentrequest",
+    "TriggerInstalmentRequestTypedDict": ".triggerinstalmentrequest",
     "TriggerInvoiceCommsWebhookRequest": ".triggerinvoicecommswebhookop",
     "TriggerInvoiceCommsWebhookRequestTypedDict": ".triggerinvoicecommswebhookop",
     "TriggerScheduledTaskRunRequest": ".triggerscheduledtaskrunop",
@@ -5458,6 +5595,10 @@ _dynamic_imports: dict[str, str] = {
     "WaterfallRowTypedDict": ".waterfallrow",
     "WebhookDtoAlertWebhookPayload": ".webhookdto_alertwebhookpayload",
     "WebhookDtoAlertWebhookPayloadTypedDict": ".webhookdto_alertwebhookpayload",
+    "WebhookDtoBillingInstalmentWebhookPayload": ".webhookdto_billinginstalmentwebhookpayload",
+    "WebhookDtoBillingInstalmentWebhookPayloadTypedDict": ".webhookdto_billinginstalmentwebhookpayload",
+    "WebhookDtoBillingTermsWebhookPayload": ".webhookdto_billingtermswebhookpayload",
+    "WebhookDtoBillingTermsWebhookPayloadTypedDict": ".webhookdto_billingtermswebhookpayload",
     "WebhookDtoCheckoutSession": ".webhookdto_checkoutsession",
     "WebhookDtoCheckoutSessionTypedDict": ".webhookdto_checkoutsession",
     "WebhookDtoCheckoutSessionWebhookPayload": ".webhookdto_checkoutsessionwebhookpayload",

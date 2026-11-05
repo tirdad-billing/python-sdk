@@ -4,6 +4,12 @@
 
 ### Available Operations
 
+* [post_webhook_events_billing_instalment_cancelled](#post_webhook_events_billing_instalment_cancelled) - billing_instalment.cancelled
+* [post_webhook_events_billing_instalment_created](#post_webhook_events_billing_instalment_created) - billing_instalment.created
+* [post_webhook_events_billing_instalment_invoiced](#post_webhook_events_billing_instalment_invoiced) - billing_instalment.invoiced
+* [post_webhook_events_billing_instalment_updated](#post_webhook_events_billing_instalment_updated) - billing_instalment.updated
+* [post_webhook_events_billing_terms_created](#post_webhook_events_billing_terms_created) - billing_terms.created
+* [post_webhook_events_billing_terms_updated](#post_webhook_events_billing_terms_updated) - billing_terms.updated
 * [post_webhook_events_checkout_session_completed](#post_webhook_events_checkout_session_completed) - checkout.session.completed
 * [post_webhook_events_checkout_session_expired](#post_webhook_events_checkout_session_expired) - checkout.session.expired
 * [post_webhook_events_checkout_session_failed](#post_webhook_events_checkout_session_failed) - checkout.session.failed
@@ -70,6 +76,234 @@
 * [post_webhook_events_wallet_transaction_created](#post_webhook_events_wallet_transaction_created) - wallet.transaction.created
 * [post_webhook_events_wallet_transaction_updated](#post_webhook_events_wallet_transaction_updated) - wallet.transaction.updated
 * [post_webhook_events_wallet_updated](#post_webhook_events_wallet_updated) - wallet.updated
+
+## post_webhook_events_billing_instalment_cancelled
+
+Fired when a billing instalment is cancelled. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/billing_instalment.cancelled" method="post" path="/webhook-events/billing_instalment.cancelled" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_billing_instalment_cancelled()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoBillingInstalmentWebhookPayload](../../models/webhookdtobillinginstalmentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_billing_instalment_created
+
+Fired when a billing instalment is scheduled for an entity (like a commitment). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/billing_instalment.created" method="post" path="/webhook-events/billing_instalment.created" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_billing_instalment_created()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoBillingInstalmentWebhookPayload](../../models/webhookdtobillinginstalmentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_billing_instalment_invoiced
+
+Fired when the invoice carrying a billing instalment is finalized. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/billing_instalment.invoiced" method="post" path="/webhook-events/billing_instalment.invoiced" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_billing_instalment_invoiced()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoBillingInstalmentWebhookPayload](../../models/webhookdtobillinginstalmentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_billing_instalment_updated
+
+Fired when a trigger moves a billing instalment's bill date, or a voided invoice puts it back on schedule. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/billing_instalment.updated" method="post" path="/webhook-events/billing_instalment.updated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_billing_instalment_updated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoBillingInstalmentWebhookPayload](../../models/webhookdtobillinginstalmentwebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_billing_terms_created
+
+Fired when billing terms are saved against an entity (like a commitment). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/billing_terms.created" method="post" path="/webhook-events/billing_terms.created" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_billing_terms_created()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoBillingTermsWebhookPayload](../../models/webhookdtobillingtermswebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_billing_terms_updated
+
+Fired when an entity's (like a commitment's) billing terms are replaced. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/billing_terms.updated" method="post" path="/webhook-events/billing_terms.updated" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_billing_terms_updated()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoBillingTermsWebhookPayload](../../models/webhookdtobillingtermswebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
 ## post_webhook_events_checkout_session_completed
 

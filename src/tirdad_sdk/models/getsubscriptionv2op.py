@@ -12,7 +12,7 @@ class GetSubscriptionV2RequestTypedDict(TypedDict):
     id: str
     r"""Subscription ID"""
     expand: NotRequired[str]
-    r"""Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan')"""
+    r"""Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan,commitments')"""
 
 
 class GetSubscriptionV2Request(BaseModel):
@@ -25,7 +25,7 @@ class GetSubscriptionV2Request(BaseModel):
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
-    r"""Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan')"""
+    r"""Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan,commitments')"""
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

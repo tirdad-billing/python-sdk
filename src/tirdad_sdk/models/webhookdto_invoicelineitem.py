@@ -13,6 +13,7 @@ from typing_extensions import NotRequired, TypedDict
 class WebhookDtoInvoiceLineItemTypedDict(TypedDict):
     adjusted_entitlement_quantity: NotRequired[str]
     amount: NotRequired[str]
+    billing_instalment_id: NotRequired[str]
     commitment_info: NotRequired[CommitmentInfoTypedDict]
     currency: NotRequired[str]
     display_name: NotRequired[str]
@@ -41,6 +42,8 @@ class WebhookDtoInvoiceLineItem(BaseModel):
     adjusted_entitlement_quantity: Optional[str] = None
 
     amount: Optional[str] = None
+
+    billing_instalment_id: Optional[str] = None
 
     commitment_info: Optional[CommitmentInfo] = None
 
@@ -92,6 +95,7 @@ class WebhookDtoInvoiceLineItem(BaseModel):
             [
                 "adjusted_entitlement_quantity",
                 "amount",
+                "billing_instalment_id",
                 "commitment_info",
                 "currency",
                 "display_name",

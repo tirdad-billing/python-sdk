@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 from .activewindow import ActiveWindow, ActiveWindowTypedDict
+from .billingterminput import BillingTermInput, BillingTermInputTypedDict
 from .commitmentcollectionmethod import CommitmentCollectionMethod
 from .commitmentmeasurement import CommitmentMeasurement
 from .commitmentpriceinput import CommitmentPriceInput, CommitmentPriceInputTypedDict
 from .commitmentscopeinput import CommitmentScopeInput, CommitmentScopeInputTypedDict
 from .commitmenttype import CommitmentType
+from .instalmentdelivery import InstalmentDelivery
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -19,8 +21,11 @@ class CreateCommitmentRequestTypedDict(TypedDict):
     name: str
     scope: CommitmentScopeInputTypedDict
     start_date: datetime
+    r"""StartDate and EndDate within a second after a billing period edge are taken as that edge."""
     type: CommitmentType
     active_windows: NotRequired[List[ActiveWindowTypedDict]]
+    billing_terms: NotRequired[List[BillingTermInputTypedDict]]
+    r"""BillingTerms apply only to collection_method billing_terms, which requires at least one."""
     binding: NotRequired[bool]
     r"""default false"""
     collection_method: NotRequired[CommitmentCollectionMethod]
@@ -28,6 +33,7 @@ class CreateCommitmentRequestTypedDict(TypedDict):
     end_date: NotRequired[datetime]
     r"""EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated."""
     idempotency_key: NotRequired[str]
+    instalment_invoicing: NotRequired[InstalmentDelivery]
     invoice_description: NotRequired[str]
     invoice_label: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
@@ -47,10 +53,14 @@ class CreateCommitmentRequest(BaseModel):
     scope: CommitmentScopeInput
 
     start_date: datetime
+    r"""StartDate and EndDate within a second after a billing period edge are taken as that edge."""
 
     type: CommitmentType
 
     active_windows: Optional[List[ActiveWindow]] = None
+
+    billing_terms: Optional[List[BillingTermInput]] = None
+    r"""BillingTerms apply only to collection_method billing_terms, which requires at least one."""
 
     binding: Optional[bool] = None
     r"""default false"""
@@ -63,6 +73,8 @@ class CreateCommitmentRequest(BaseModel):
     r"""EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated."""
 
     idempotency_key: Optional[str] = None
+
+    instalment_invoicing: Optional[InstalmentDelivery] = None
 
     invoice_description: Optional[str] = None
 
@@ -86,11 +98,13 @@ class CreateCommitmentRequest(BaseModel):
         optional_fields = set(
             [
                 "active_windows",
+                "billing_terms",
                 "binding",
                 "collection_method",
                 "committed_price",
                 "end_date",
                 "idempotency_key",
+                "instalment_invoicing",
                 "invoice_description",
                 "invoice_label",
                 "metadata",

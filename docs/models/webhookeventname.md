@@ -35,6 +35,12 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"commitment.created"`
 - `"commitment.updated"`
 - `"commitment.terminated"`
+- `"billing_terms.created"`
+- `"billing_terms.updated"`
+- `"billing_instalment.created"`
+- `"billing_instalment.updated"`
+- `"billing_instalment.cancelled"`
+- `"billing_instalment.invoiced"`
 - `"wallet.created"`
 - `"wallet.updated"`
 - `"wallet.terminated"`

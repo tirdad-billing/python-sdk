@@ -8186,7 +8186,7 @@ class Subscriptions(BaseSDK):
         Use when you need a subscription with related data (line items, prices, plan). Supports expand for detailed payloads without extra round-trips.
 
         :param id: Subscription ID
-        :param expand: Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan')
+        :param expand: Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan,commitments')
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -8288,7 +8288,7 @@ class Subscriptions(BaseSDK):
         Use when you need a subscription with related data (line items, prices, plan). Supports expand for detailed payloads without extra round-trips.
 
         :param id: Subscription ID
-        :param expand: Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan')
+        :param expand: Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan,commitments')
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds

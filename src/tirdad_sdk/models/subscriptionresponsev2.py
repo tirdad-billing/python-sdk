@@ -4,6 +4,7 @@ from __future__ import annotations
 from .billingcadence import BillingCadence
 from .billingcycle import BillingCycle
 from .billingperiod import BillingPeriod
+from .commitmentresponse import CommitmentResponse, CommitmentResponseTypedDict
 from .couponassociationresponse import (
     CouponAssociationResponse,
     CouponAssociationResponseTypedDict,
@@ -68,6 +69,8 @@ class SubscriptionResponseV2TypedDict(TypedDict):
     commitment_amount: NotRequired[str]
     r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
     commitment_duration: NotRequired[BillingPeriod]
+    commitments: NotRequired[List[CommitmentResponseTypedDict]]
+    r"""Commitments are included when \"commitments\" is in expand parameter"""
     coupon_associations: NotRequired[List[CouponAssociationResponseTypedDict]]
     r"""CouponAssociations are included when \"coupon_associations\" is in expand parameter"""
     created_at: NotRequired[datetime]
@@ -195,6 +198,9 @@ class SubscriptionResponseV2(BaseModel):
     r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
 
     commitment_duration: Optional[BillingPeriod] = None
+
+    commitments: Optional[List[CommitmentResponse]] = None
+    r"""Commitments are included when \"commitments\" is in expand parameter"""
 
     coupon_associations: Optional[List[CouponAssociationResponse]] = None
     r"""CouponAssociations are included when \"coupon_associations\" is in expand parameter"""
@@ -337,6 +343,7 @@ class SubscriptionResponseV2(BaseModel):
                 "collection_method",
                 "commitment_amount",
                 "commitment_duration",
+                "commitments",
                 "coupon_associations",
                 "created_at",
                 "created_by",

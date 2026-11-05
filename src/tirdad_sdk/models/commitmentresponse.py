@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 from .activewindow import ActiveWindow, ActiveWindowTypedDict
+from .billingterm_instalment import (
+    BillingtermInstalment,
+    BillingtermInstalmentTypedDict,
+)
+from .billingterm_term import BillingtermTerm, BillingtermTermTypedDict
 from .commitmentcollectionmethod import CommitmentCollectionMethod
 from .commitmentearlytermination import CommitmentEarlyTermination
 from .commitmentmeasurement import CommitmentMeasurement
 from .commitmentscopetype import CommitmentScopeType
 from .commitmentstatus import CommitmentStatus
 from .commitmenttype import CommitmentType
+from .instalmentdelivery import InstalmentDelivery
 from .status import Status
 from datetime import datetime
 from pydantic import model_serializer
@@ -18,6 +24,8 @@ from typing_extensions import NotRequired, TypedDict
 
 class CommitmentResponseTypedDict(TypedDict):
     active_windows: NotRequired[List[ActiveWindowTypedDict]]
+    billing_terms: NotRequired[List[BillingtermTermTypedDict]]
+    r"""BillingTerms and Instalments are set by create and preview."""
     binding: NotRequired[bool]
     collection_method: NotRequired[CommitmentCollectionMethod]
     commitment_status: NotRequired[CommitmentStatus]
@@ -32,7 +40,8 @@ class CommitmentResponseTypedDict(TypedDict):
     environment_id: NotRequired[str]
     id: NotRequired[str]
     idempotency_key: NotRequired[str]
-    instalment_invoicing: NotRequired[str]
+    instalment_invoicing: NotRequired[InstalmentDelivery]
+    instalments: NotRequired[List[BillingtermInstalmentTypedDict]]
     invoice_description: NotRequired[str]
     invoice_label: NotRequired[str]
     measurement: NotRequired[CommitmentMeasurement]
@@ -59,6 +68,9 @@ class CommitmentResponseTypedDict(TypedDict):
 
 class CommitmentResponse(BaseModel):
     active_windows: Optional[List[ActiveWindow]] = None
+
+    billing_terms: Optional[List[BillingtermTerm]] = None
+    r"""BillingTerms and Instalments are set by create and preview."""
 
     binding: Optional[bool] = None
 
@@ -87,7 +99,9 @@ class CommitmentResponse(BaseModel):
 
     idempotency_key: Optional[str] = None
 
-    instalment_invoicing: Optional[str] = None
+    instalment_invoicing: Optional[InstalmentDelivery] = None
+
+    instalments: Optional[List[BillingtermInstalment]] = None
 
     invoice_description: Optional[str] = None
 
@@ -138,6 +152,7 @@ class CommitmentResponse(BaseModel):
         optional_fields = set(
             [
                 "active_windows",
+                "billing_terms",
                 "binding",
                 "collection_method",
                 "commitment_status",
@@ -152,6 +167,7 @@ class CommitmentResponse(BaseModel):
                 "id",
                 "idempotency_key",
                 "instalment_invoicing",
+                "instalments",
                 "invoice_description",
                 "invoice_label",
                 "measurement",

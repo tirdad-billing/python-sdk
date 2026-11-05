@@ -9,6 +9,7 @@ from .checkoutsessionresponse import (
     CheckoutSessionResponse,
     CheckoutSessionResponseTypedDict,
 )
+from .commitmentresponse import CommitmentResponse, CommitmentResponseTypedDict
 from .couponassociationresponse import (
     CouponAssociationResponse,
     CouponAssociationResponseTypedDict,
@@ -77,6 +78,8 @@ class SubscriptionResponseTypedDict(TypedDict):
     commitment_amount: NotRequired[str]
     r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
     commitment_duration: NotRequired[BillingPeriod]
+    commitments: NotRequired[List[CommitmentResponseTypedDict]]
+    r"""Commitments are the commitments created with the subscription; set on create only."""
     coupon_associations: NotRequired[List[CouponAssociationResponseTypedDict]]
     r"""CouponAssociations are the coupon associations for this subscription"""
     created_at: NotRequired[datetime]
@@ -203,6 +206,9 @@ class SubscriptionResponse(BaseModel):
     r"""CommitmentAmount is the minimum amount a customer commits to paying for a billing period"""
 
     commitment_duration: Optional[BillingPeriod] = None
+
+    commitments: Optional[List[CommitmentResponse]] = None
+    r"""Commitments are the commitments created with the subscription; set on create only."""
 
     coupon_associations: Optional[List[CouponAssociationResponse]] = None
     r"""CouponAssociations are the coupon associations for this subscription"""
@@ -344,6 +350,7 @@ class SubscriptionResponse(BaseModel):
                 "collection_method",
                 "commitment_amount",
                 "commitment_duration",
+                "commitments",
                 "coupon_associations",
                 "created_at",
                 "created_by",
