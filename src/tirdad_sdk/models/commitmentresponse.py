@@ -58,7 +58,6 @@ class CommitmentResponseTypedDict(TypedDict):
     tenant_id: NotRequired[str]
     terminated_at: NotRequired[datetime]
     termination_invoice_id: NotRequired[str]
-    timezone: NotRequired[str]
     total_amount: NotRequired[str]
     type: NotRequired[CommitmentType]
     updated_at: NotRequired[datetime]
@@ -135,8 +134,6 @@ class CommitmentResponse(BaseModel):
 
     termination_invoice_id: Optional[str] = None
 
-    timezone: Optional[str] = None
-
     total_amount: Optional[str] = None
 
     type: Optional[CommitmentType] = None
@@ -184,7 +181,6 @@ class CommitmentResponse(BaseModel):
                 "tenant_id",
                 "terminated_at",
                 "termination_invoice_id",
-                "timezone",
                 "total_amount",
                 "type",
                 "updated_at",

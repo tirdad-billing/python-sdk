@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 from .customanalyticitem import CustomAnalyticItem, CustomAnalyticItemTypedDict
+from .usageanalyticinstalment import (
+    UsageAnalyticInstalment,
+    UsageAnalyticInstalmentTypedDict,
+)
 from .usageanalyticitem import UsageAnalyticItem, UsageAnalyticItemTypedDict
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -12,10 +16,16 @@ from typing_extensions import NotRequired, TypedDict
 class GetUsageAnalyticsResponseTypedDict(TypedDict):
     currency: NotRequired[str]
     custom_analytics: NotRequired[List[CustomAnalyticItemTypedDict]]
+    instalments: NotRequired[List[UsageAnalyticInstalmentTypedDict]]
+    r"""Instalments lists, with expand \"instalments\", the instalments invoiced in the range for the v2 commitments covering
+    a queried meter; it is empty with property or source filters, or when no usage line runs in the range.
+    """
     items: NotRequired[List[UsageAnalyticItemTypedDict]]
     subtotal: NotRequired[str]
     total_cost: NotRequired[str]
     r"""TotalCost is the final cost after discount (Subtotal - TotalDiscount)"""
+    total_cost_with_instalments: NotRequired[str]
+    r"""TotalCostWithInstalments is TotalCost plus the amounts of Instalments, set when expand includes \"instalments\"."""
     total_discount: NotRequired[str]
 
 
@@ -24,12 +34,20 @@ class GetUsageAnalyticsResponse(BaseModel):
 
     custom_analytics: Optional[List[CustomAnalyticItem]] = None
 
+    instalments: Optional[List[UsageAnalyticInstalment]] = None
+    r"""Instalments lists, with expand \"instalments\", the instalments invoiced in the range for the v2 commitments covering
+    a queried meter; it is empty with property or source filters, or when no usage line runs in the range.
+    """
+
     items: Optional[List[UsageAnalyticItem]] = None
 
     subtotal: Optional[str] = None
 
     total_cost: Optional[str] = None
     r"""TotalCost is the final cost after discount (Subtotal - TotalDiscount)"""
+
+    total_cost_with_instalments: Optional[str] = None
+    r"""TotalCostWithInstalments is TotalCost plus the amounts of Instalments, set when expand includes \"instalments\"."""
 
     total_discount: Optional[str] = None
 
@@ -39,9 +57,11 @@ class GetUsageAnalyticsResponse(BaseModel):
             [
                 "currency",
                 "custom_analytics",
+                "instalments",
                 "items",
                 "subtotal",
                 "total_cost",
+                "total_cost_with_instalments",
                 "total_discount",
             ]
         )

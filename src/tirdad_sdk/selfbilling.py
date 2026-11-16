@@ -20,6 +20,7 @@ class SelfBilling(BaseSDK):
         name: str,
         address_line2: Optional[str] = None,
         address_state: Optional[str] = None,
+        plan_id: Optional[str] = None,
         tax_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -38,6 +39,7 @@ class SelfBilling(BaseSDK):
         :param name:
         :param address_line2:
         :param address_state:
+        :param plan_id: PlanID is the offered plan to buy; empty means the default plan, or a negotiated trial's own plan.
         :param tax_id:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -63,6 +65,7 @@ class SelfBilling(BaseSDK):
             address_state=address_state,
             email=email,
             name=name,
+            plan_id=plan_id,
             tax_id=tax_id,
         )
 
@@ -149,6 +152,7 @@ class SelfBilling(BaseSDK):
         name: str,
         address_line2: Optional[str] = None,
         address_state: Optional[str] = None,
+        plan_id: Optional[str] = None,
         tax_id: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -167,6 +171,7 @@ class SelfBilling(BaseSDK):
         :param name:
         :param address_line2:
         :param address_state:
+        :param plan_id: PlanID is the offered plan to buy; empty means the default plan, or a negotiated trial's own plan.
         :param tax_id:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -192,6 +197,7 @@ class SelfBilling(BaseSDK):
             address_state=address_state,
             email=email,
             name=name,
+            plan_id=plan_id,
             tax_id=tax_id,
         )
 

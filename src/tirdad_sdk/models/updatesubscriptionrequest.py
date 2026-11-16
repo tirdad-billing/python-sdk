@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .prorationbehavior import ProrationBehavior
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .subscriptionstatus import SubscriptionStatus
 from datetime import datetime
 from pydantic import model_serializer
@@ -17,6 +18,7 @@ class UpdateSubscriptionRequestTypedDict(TypedDict):
     parent_subscription_id: NotRequired[str]
     r"""ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear."""
     proration_behavior: NotRequired[ProrationBehavior]
+    settings: NotRequired[SettingsOverrideTypedDict]
     status: NotRequired[SubscriptionStatus]
 
 
@@ -31,6 +33,8 @@ class UpdateSubscriptionRequest(BaseModel):
 
     proration_behavior: Optional[ProrationBehavior] = None
 
+    settings: Optional[SettingsOverride] = None
+
     status: Optional[SubscriptionStatus] = None
 
     @model_serializer(mode="wrap")
@@ -41,6 +45,7 @@ class UpdateSubscriptionRequest(BaseModel):
                 "cancel_at_period_end",
                 "parent_subscription_id",
                 "proration_behavior",
+                "settings",
                 "status",
             ]
         )

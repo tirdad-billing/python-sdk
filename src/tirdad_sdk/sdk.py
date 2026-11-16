@@ -21,6 +21,7 @@ if TYPE_CHECKING:
     from tirdad_sdk.alerts import Alerts
     from tirdad_sdk.alertsettings import AlertSettings
     from tirdad_sdk.analytics import Analytics
+    from tirdad_sdk.billing_entities import BillingEntities
     from tirdad_sdk.checkout import Checkout
     from tirdad_sdk.commitments import Commitments
     from tirdad_sdk.contracts import Contracts
@@ -75,6 +76,7 @@ class Tirdad(BaseSDK):
     alerts: "Alerts"
     alert_settings: "AlertSettings"
     analytics: "Analytics"
+    billing_entities: "BillingEntities"
     checkout: "Checkout"
     commitments: "Commitments"
     contracts: "Contracts"
@@ -123,6 +125,7 @@ class Tirdad(BaseSDK):
         "alerts": ("tirdad_sdk.alerts", "Alerts"),
         "alert_settings": ("tirdad_sdk.alertsettings", "AlertSettings"),
         "analytics": ("tirdad_sdk.analytics", "Analytics"),
+        "billing_entities": ("tirdad_sdk.billing_entities", "BillingEntities"),
         "checkout": ("tirdad_sdk.checkout", "Checkout"),
         "commitments": ("tirdad_sdk.commitments", "Commitments"),
         "contracts": ("tirdad_sdk.contracts", "Contracts"),

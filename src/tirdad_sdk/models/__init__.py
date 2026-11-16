@@ -155,9 +155,20 @@ if TYPE_CHECKING:
         AzureMarketplaceAgreement,
         AzureMarketplaceAgreementTypedDict,
     )
+    from .billingaddress import BillingAddress, BillingAddressTypedDict
     from .billingcadence import BillingCadence
     from .billingcycle import BillingCycle
     from .billingcycleinfo import BillingCycleInfo, BillingCycleInfoTypedDict
+    from .billingdetails import BillingDetails, BillingDetailsTypedDict
+    from .billingentitymode import BillingEntityMode
+    from .billingentitymoderesponse import (
+        BillingEntityModeResponse,
+        BillingEntityModeResponseTypedDict,
+    )
+    from .billingentityresponse import (
+        BillingEntityResponse,
+        BillingEntityResponseTypedDict,
+    )
     from .billingmodel import BillingModel
     from .billingperiod import BillingPeriod
     from .billingperiodbehaviour import BillingPeriodBehaviour
@@ -349,6 +360,10 @@ if TYPE_CHECKING:
     from .createapikeyresponse import (
         CreateAPIKeyResponse,
         CreateAPIKeyResponseTypedDict,
+    )
+    from .createbillingentityrequest import (
+        CreateBillingEntityRequest,
+        CreateBillingEntityRequestTypedDict,
     )
     from .createbulkentitlementrequest import (
         CreateBulkEntitlementRequest,
@@ -755,6 +770,10 @@ if TYPE_CHECKING:
         GetAnalyticsViewRequest,
         GetAnalyticsViewRequestTypedDict,
     )
+    from .getbillingentityop import (
+        GetBillingEntityRequest,
+        GetBillingEntityRequestTypedDict,
+    )
     from .getcheckoutsessionop import (
         GetCheckoutSessionRequest,
         GetCheckoutSessionRequestTypedDict,
@@ -1002,6 +1021,10 @@ if TYPE_CHECKING:
         IntegrationConfigResponseTypedDict,
     )
     from .integrationentitytype import IntegrationEntityType
+    from .invoicebillingentity import (
+        InvoiceBillingEntity,
+        InvoiceBillingEntityTypedDict,
+    )
     from .invoicebillingreason import InvoiceBillingReason
     from .invoicecadence import InvoiceCadence
     from .invoicecoupon import InvoiceCoupon, InvoiceCouponTypedDict
@@ -1028,6 +1051,7 @@ if TYPE_CHECKING:
         InvoiceModifyResponseTypedDict,
     )
     from .invoicemodifytype import InvoiceModifyType
+    from .invoicepaymentfailurereason import InvoicePaymentFailureReason
     from .invoicepreview import InvoicePreview, InvoicePreviewTypedDict
     from .invoicesourcetype import InvoiceSourceType
     from .invoicestatus import InvoiceStatus
@@ -1097,6 +1121,16 @@ if TYPE_CHECKING:
         ListAnalyticsViewsRequestTypedDict,
     )
     from .listapikeysop import ListAPIKeysRequest, ListAPIKeysRequestTypedDict
+    from .listbillingentitiesop import (
+        ListBillingEntitiesOrder,
+        ListBillingEntitiesRequest,
+        ListBillingEntitiesRequestTypedDict,
+        ListBillingEntitiesStatus,
+    )
+    from .listbillingentitiesresponse import (
+        ListBillingEntitiesResponse,
+        ListBillingEntitiesResponseTypedDict,
+    )
     from .listcommitmentinstalmentsop import (
         ListCommitmentInstalmentsRequest,
         ListCommitmentInstalmentsRequestTypedDict,
@@ -1553,10 +1587,6 @@ if TYPE_CHECKING:
         SavedRecurringPaymentDetailsTypedDict,
     )
     from .savedupidetails import SavedUPIDetails, SavedUPIDetailsTypedDict
-    from .scheduledraftfinalizationop import (
-        ScheduleDraftFinalizationResponse,
-        ScheduleDraftFinalizationResponseTypedDict,
-    )
     from .scheduledtaskentitytype import ScheduledTaskEntityType
     from .scheduledtaskinterval import ScheduledTaskInterval
     from .scheduledtaskresponse import (
@@ -1565,12 +1595,6 @@ if TYPE_CHECKING:
     )
     from .schedulestatus import ScheduleStatus
     from .scheduletype import ScheduleType
-    from .scheduleupdatebillingperiodop import (
-        ScheduleUpdateBillingPeriodRequest,
-        ScheduleUpdateBillingPeriodRequestTypedDict,
-        ScheduleUpdateBillingPeriodResponse,
-        ScheduleUpdateBillingPeriodResponseTypedDict,
-    )
     from .secretprovider import SecretProvider
     from .secretresponse import SecretResponse, SecretResponseTypedDict
     from .secrettype import SecretType
@@ -1608,6 +1632,7 @@ if TYPE_CHECKING:
         ServicePeriodCustomFields,
         ServicePeriodCustomFieldsTypedDict,
     )
+    from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
     from .shape import Shape
     from .sortcondition import SortCondition, SortConditionTypedDict
     from .sortdirection import SortDirection
@@ -1694,6 +1719,10 @@ if TYPE_CHECKING:
     from .subscriptionchangev2response import (
         SubscriptionChangeV2Response,
         SubscriptionChangeV2ResponseTypedDict,
+    )
+    from .subscriptionconfigoverride import (
+        SubscriptionConfigOverride,
+        SubscriptionConfigOverrideTypedDict,
     )
     from .subscriptioncouponinput import (
         SubscriptionCouponInput,
@@ -1874,6 +1903,14 @@ if TYPE_CHECKING:
     from .updateanalyticsviewop import (
         UpdateAnalyticsViewRequest,
         UpdateAnalyticsViewRequestTypedDict,
+    )
+    from .updatebillingentityop import (
+        UpdateBillingEntityRequestRequest,
+        UpdateBillingEntityRequestRequestTypedDict,
+    )
+    from .updatebillingentityrequest import (
+        UpdateBillingEntityRequest,
+        UpdateBillingEntityRequestTypedDict,
     )
     from .updatecommitmentop import (
         UpdateCommitmentRequestRequest,
@@ -2072,6 +2109,10 @@ if TYPE_CHECKING:
         UpdateWalletRequestRequestTypedDict,
     )
     from .updatewalletrequest import UpdateWalletRequest, UpdateWalletRequestTypedDict
+    from .usageanalyticinstalment import (
+        UsageAnalyticInstalment,
+        UsageAnalyticInstalmentTypedDict,
+    )
     from .usageanalyticitem import UsageAnalyticItem, UsageAnalyticItemTypedDict
     from .usageanalyticpoint import UsageAnalyticPoint, UsageAnalyticPointTypedDict
     from .usagebreakdownitem import UsageBreakdownItem, UsageBreakdownItemTypedDict
@@ -2188,6 +2229,10 @@ if TYPE_CHECKING:
     from .webhookdto_invoicelineitem import (
         WebhookDtoInvoiceLineItem,
         WebhookDtoInvoiceLineItemTypedDict,
+    )
+    from .webhookdto_invoicepaymentfailedwebhookpayload import (
+        WebhookDtoInvoicePaymentFailedWebhookPayload,
+        WebhookDtoInvoicePaymentFailedWebhookPayloadTypedDict,
     )
     from .webhookdto_invoicesyncwebhookpayload import (
         WebhookDtoInvoiceSyncWebhookPayload,
@@ -2420,10 +2465,19 @@ __all__ = [
     "AutoTopupTypedDict",
     "AzureMarketplaceAgreement",
     "AzureMarketplaceAgreementTypedDict",
+    "BillingAddress",
+    "BillingAddressTypedDict",
     "BillingCadence",
     "BillingCycle",
     "BillingCycleInfo",
     "BillingCycleInfoTypedDict",
+    "BillingDetails",
+    "BillingDetailsTypedDict",
+    "BillingEntityMode",
+    "BillingEntityModeResponse",
+    "BillingEntityModeResponseTypedDict",
+    "BillingEntityResponse",
+    "BillingEntityResponseTypedDict",
     "BillingModel",
     "BillingPeriod",
     "BillingPeriodBehaviour",
@@ -2580,6 +2634,8 @@ __all__ = [
     "CreateAddonResponseTypedDict",
     "CreateAlertSettingsRequest",
     "CreateAlertSettingsRequestTypedDict",
+    "CreateBillingEntityRequest",
+    "CreateBillingEntityRequestTypedDict",
     "CreateBulkEntitlementRequest",
     "CreateBulkEntitlementRequestTypedDict",
     "CreateBulkEntitlementResponse",
@@ -2891,6 +2947,8 @@ __all__ = [
     "GetAlertSettingsRequestTypedDict",
     "GetAnalyticsViewRequest",
     "GetAnalyticsViewRequestTypedDict",
+    "GetBillingEntityRequest",
+    "GetBillingEntityRequestTypedDict",
     "GetCheckoutSessionRequest",
     "GetCheckoutSessionRequestTypedDict",
     "GetCommitmentBillingTermsRequest",
@@ -3078,6 +3136,8 @@ __all__ = [
     "IntegrationConfigResponse",
     "IntegrationConfigResponseTypedDict",
     "IntegrationEntityType",
+    "InvoiceBillingEntity",
+    "InvoiceBillingEntityTypedDict",
     "InvoiceBillingReason",
     "InvoiceCadence",
     "InvoiceCoupon",
@@ -3097,6 +3157,7 @@ __all__ = [
     "InvoiceModifyResponse",
     "InvoiceModifyResponseTypedDict",
     "InvoiceModifyType",
+    "InvoicePaymentFailureReason",
     "InvoicePreview",
     "InvoicePreviewTypedDict",
     "InvoiceResponse",
@@ -3149,6 +3210,12 @@ __all__ = [
     "ListAllSubscriptionSchedulesScheduleType",
     "ListAnalyticsViewsRequest",
     "ListAnalyticsViewsRequestTypedDict",
+    "ListBillingEntitiesOrder",
+    "ListBillingEntitiesRequest",
+    "ListBillingEntitiesRequestTypedDict",
+    "ListBillingEntitiesResponse",
+    "ListBillingEntitiesResponseTypedDict",
+    "ListBillingEntitiesStatus",
     "ListCommitmentInstalmentsRequest",
     "ListCommitmentInstalmentsRequestTypedDict",
     "ListCommitmentsResponse",
@@ -3501,14 +3568,8 @@ __all__ = [
     "SavedRecurringPaymentDetailsTypedDict",
     "SavedUPIDetails",
     "SavedUPIDetailsTypedDict",
-    "ScheduleDraftFinalizationResponse",
-    "ScheduleDraftFinalizationResponseTypedDict",
     "ScheduleStatus",
     "ScheduleType",
-    "ScheduleUpdateBillingPeriodRequest",
-    "ScheduleUpdateBillingPeriodRequestTypedDict",
-    "ScheduleUpdateBillingPeriodResponse",
-    "ScheduleUpdateBillingPeriodResponseTypedDict",
     "ScheduledTaskEntityType",
     "ScheduledTaskInterval",
     "ScheduledTaskResponse",
@@ -3538,6 +3599,8 @@ __all__ = [
     "SelfBillingSummaryResponseTypedDict",
     "ServicePeriodCustomFields",
     "ServicePeriodCustomFieldsTypedDict",
+    "SettingsOverride",
+    "SettingsOverrideTypedDict",
     "Shape",
     "SortCondition",
     "SortConditionTypedDict",
@@ -3589,6 +3652,8 @@ __all__ = [
     "SubscriptionChangeV2RequestTypedDict",
     "SubscriptionChangeV2Response",
     "SubscriptionChangeV2ResponseTypedDict",
+    "SubscriptionConfigOverride",
+    "SubscriptionConfigOverrideTypedDict",
     "SubscriptionCouponInput",
     "SubscriptionCouponInputTypedDict",
     "SubscriptionEntitlementGrantsResponse",
@@ -3727,6 +3792,10 @@ __all__ = [
     "UpdateAlertSettingsRequestTypedDict",
     "UpdateAnalyticsViewRequest",
     "UpdateAnalyticsViewRequestTypedDict",
+    "UpdateBillingEntityRequest",
+    "UpdateBillingEntityRequestRequest",
+    "UpdateBillingEntityRequestRequestTypedDict",
+    "UpdateBillingEntityRequestTypedDict",
     "UpdateCommitmentRequest",
     "UpdateCommitmentRequestRequest",
     "UpdateCommitmentRequestRequestTypedDict",
@@ -3839,6 +3908,8 @@ __all__ = [
     "UpdateWalletRequestRequest",
     "UpdateWalletRequestRequestTypedDict",
     "UpdateWalletRequestTypedDict",
+    "UsageAnalyticInstalment",
+    "UsageAnalyticInstalmentTypedDict",
     "UsageAnalyticItem",
     "UsageAnalyticItemTypedDict",
     "UsageAnalyticPoint",
@@ -3939,6 +4010,8 @@ __all__ = [
     "WebhookDtoInvoice",
     "WebhookDtoInvoiceLineItem",
     "WebhookDtoInvoiceLineItemTypedDict",
+    "WebhookDtoInvoicePaymentFailedWebhookPayload",
+    "WebhookDtoInvoicePaymentFailedWebhookPayloadTypedDict",
     "WebhookDtoInvoiceSyncWebhookPayload",
     "WebhookDtoInvoiceSyncWebhookPayloadTypedDict",
     "WebhookDtoInvoiceTypedDict",
@@ -4126,10 +4199,19 @@ _dynamic_imports: dict[str, str] = {
     "AWSMarketplaceSyncConfigTypedDict": ".awsmarketplacesyncconfig",
     "AzureMarketplaceAgreement": ".azuremarketplaceagreement",
     "AzureMarketplaceAgreementTypedDict": ".azuremarketplaceagreement",
+    "BillingAddress": ".billingaddress",
+    "BillingAddressTypedDict": ".billingaddress",
     "BillingCadence": ".billingcadence",
     "BillingCycle": ".billingcycle",
     "BillingCycleInfo": ".billingcycleinfo",
     "BillingCycleInfoTypedDict": ".billingcycleinfo",
+    "BillingDetails": ".billingdetails",
+    "BillingDetailsTypedDict": ".billingdetails",
+    "BillingEntityMode": ".billingentitymode",
+    "BillingEntityModeResponse": ".billingentitymoderesponse",
+    "BillingEntityModeResponseTypedDict": ".billingentitymoderesponse",
+    "BillingEntityResponse": ".billingentityresponse",
+    "BillingEntityResponseTypedDict": ".billingentityresponse",
     "BillingModel": ".billingmodel",
     "BillingPeriod": ".billingperiod",
     "BillingPeriodBehaviour": ".billingperiodbehaviour",
@@ -4284,6 +4366,8 @@ _dynamic_imports: dict[str, str] = {
     "CreateAPIKeyRequestTypedDict": ".createapikeyrequest",
     "CreateAPIKeyResponse": ".createapikeyresponse",
     "CreateAPIKeyResponseTypedDict": ".createapikeyresponse",
+    "CreateBillingEntityRequest": ".createbillingentityrequest",
+    "CreateBillingEntityRequestTypedDict": ".createbillingentityrequest",
     "CreateBulkEntitlementRequest": ".createbulkentitlementrequest",
     "CreateBulkEntitlementRequestTypedDict": ".createbulkentitlementrequest",
     "CreateBulkEntitlementResponse": ".createbulkentitlementresponse",
@@ -4590,6 +4674,8 @@ _dynamic_imports: dict[str, str] = {
     "GetAlertSettingsRequestTypedDict": ".getalertsettingsop",
     "GetAnalyticsViewRequest": ".getanalyticsviewop",
     "GetAnalyticsViewRequestTypedDict": ".getanalyticsviewop",
+    "GetBillingEntityRequest": ".getbillingentityop",
+    "GetBillingEntityRequestTypedDict": ".getbillingentityop",
     "GetCheckoutSessionRequest": ".getcheckoutsessionop",
     "GetCheckoutSessionRequestTypedDict": ".getcheckoutsessionop",
     "GetCommitmentBillingTermsRequest": ".getcommitmentbillingtermsop",
@@ -4779,6 +4865,8 @@ _dynamic_imports: dict[str, str] = {
     "IntegrationConfigResponse": ".integrationconfigresponse",
     "IntegrationConfigResponseTypedDict": ".integrationconfigresponse",
     "IntegrationEntityType": ".integrationentitytype",
+    "InvoiceBillingEntity": ".invoicebillingentity",
+    "InvoiceBillingEntityTypedDict": ".invoicebillingentity",
     "InvoiceBillingReason": ".invoicebillingreason",
     "InvoiceCadence": ".invoicecadence",
     "InvoiceCoupon": ".invoicecoupon",
@@ -4798,6 +4886,7 @@ _dynamic_imports: dict[str, str] = {
     "InvoiceModifyResponse": ".invoicemodifyresponse",
     "InvoiceModifyResponseTypedDict": ".invoicemodifyresponse",
     "InvoiceModifyType": ".invoicemodifytype",
+    "InvoicePaymentFailureReason": ".invoicepaymentfailurereason",
     "InvoicePreview": ".invoicepreview",
     "InvoicePreviewTypedDict": ".invoicepreview",
     "InvoiceSourceType": ".invoicesourcetype",
@@ -4848,6 +4937,12 @@ _dynamic_imports: dict[str, str] = {
     "ListAnalyticsViewsRequestTypedDict": ".listanalyticsviewsop",
     "ListAPIKeysRequest": ".listapikeysop",
     "ListAPIKeysRequestTypedDict": ".listapikeysop",
+    "ListBillingEntitiesOrder": ".listbillingentitiesop",
+    "ListBillingEntitiesRequest": ".listbillingentitiesop",
+    "ListBillingEntitiesRequestTypedDict": ".listbillingentitiesop",
+    "ListBillingEntitiesStatus": ".listbillingentitiesop",
+    "ListBillingEntitiesResponse": ".listbillingentitiesresponse",
+    "ListBillingEntitiesResponseTypedDict": ".listbillingentitiesresponse",
     "ListCommitmentInstalmentsRequest": ".listcommitmentinstalmentsop",
     "ListCommitmentInstalmentsRequestTypedDict": ".listcommitmentinstalmentsop",
     "ListCommitmentsResponse": ".listcommitmentsresponse",
@@ -5198,18 +5293,12 @@ _dynamic_imports: dict[str, str] = {
     "SavedRecurringPaymentDetailsTypedDict": ".savedrecurringpaymentdetails",
     "SavedUPIDetails": ".savedupidetails",
     "SavedUPIDetailsTypedDict": ".savedupidetails",
-    "ScheduleDraftFinalizationResponse": ".scheduledraftfinalizationop",
-    "ScheduleDraftFinalizationResponseTypedDict": ".scheduledraftfinalizationop",
     "ScheduledTaskEntityType": ".scheduledtaskentitytype",
     "ScheduledTaskInterval": ".scheduledtaskinterval",
     "ScheduledTaskResponse": ".scheduledtaskresponse",
     "ScheduledTaskResponseTypedDict": ".scheduledtaskresponse",
     "ScheduleStatus": ".schedulestatus",
     "ScheduleType": ".scheduletype",
-    "ScheduleUpdateBillingPeriodRequest": ".scheduleupdatebillingperiodop",
-    "ScheduleUpdateBillingPeriodRequestTypedDict": ".scheduleupdatebillingperiodop",
-    "ScheduleUpdateBillingPeriodResponse": ".scheduleupdatebillingperiodop",
-    "ScheduleUpdateBillingPeriodResponseTypedDict": ".scheduleupdatebillingperiodop",
     "SecretProvider": ".secretprovider",
     "SecretResponse": ".secretresponse",
     "SecretResponseTypedDict": ".secretresponse",
@@ -5234,6 +5323,8 @@ _dynamic_imports: dict[str, str] = {
     "SelfBillingSummaryResponseTypedDict": ".selfbillingsummaryresponse",
     "ServicePeriodCustomFields": ".serviceperiodcustomfields",
     "ServicePeriodCustomFieldsTypedDict": ".serviceperiodcustomfields",
+    "SettingsOverride": ".settingsoverride",
+    "SettingsOverrideTypedDict": ".settingsoverride",
     "Shape": ".shape",
     "SortCondition": ".sortcondition",
     "SortConditionTypedDict": ".sortcondition",
@@ -5287,6 +5378,8 @@ _dynamic_imports: dict[str, str] = {
     "SubscriptionChangeV2RequestTypedDict": ".subscriptionchangev2request",
     "SubscriptionChangeV2Response": ".subscriptionchangev2response",
     "SubscriptionChangeV2ResponseTypedDict": ".subscriptionchangev2response",
+    "SubscriptionConfigOverride": ".subscriptionconfigoverride",
+    "SubscriptionConfigOverrideTypedDict": ".subscriptionconfigoverride",
     "SubscriptionCouponInput": ".subscriptioncouponinput",
     "SubscriptionCouponInputTypedDict": ".subscriptioncouponinput",
     "SubscriptionEntitlementGrantsResponse": ".subscriptionentitlementgrantsresponse",
@@ -5418,6 +5511,10 @@ _dynamic_imports: dict[str, str] = {
     "UpdateAlertSettingsRequestTypedDict": ".updatealertsettingsrequest",
     "UpdateAnalyticsViewRequest": ".updateanalyticsviewop",
     "UpdateAnalyticsViewRequestTypedDict": ".updateanalyticsviewop",
+    "UpdateBillingEntityRequestRequest": ".updatebillingentityop",
+    "UpdateBillingEntityRequestRequestTypedDict": ".updatebillingentityop",
+    "UpdateBillingEntityRequest": ".updatebillingentityrequest",
+    "UpdateBillingEntityRequestTypedDict": ".updatebillingentityrequest",
     "UpdateCommitmentRequestRequest": ".updatecommitmentop",
     "UpdateCommitmentRequestRequestTypedDict": ".updatecommitmentop",
     "UpdateCommitmentRequest": ".updatecommitmentrequest",
@@ -5530,6 +5627,8 @@ _dynamic_imports: dict[str, str] = {
     "UpdateWalletRequestRequestTypedDict": ".updatewalletop",
     "UpdateWalletRequest": ".updatewalletrequest",
     "UpdateWalletRequestTypedDict": ".updatewalletrequest",
+    "UsageAnalyticInstalment": ".usageanalyticinstalment",
+    "UsageAnalyticInstalmentTypedDict": ".usageanalyticinstalment",
     "UsageAnalyticItem": ".usageanalyticitem",
     "UsageAnalyticItemTypedDict": ".usageanalyticitem",
     "UsageAnalyticPoint": ".usageanalyticpoint",
@@ -5631,6 +5730,8 @@ _dynamic_imports: dict[str, str] = {
     "WebhookDtoInvoiceTypedDict": ".webhookdto_invoice",
     "WebhookDtoInvoiceLineItem": ".webhookdto_invoicelineitem",
     "WebhookDtoInvoiceLineItemTypedDict": ".webhookdto_invoicelineitem",
+    "WebhookDtoInvoicePaymentFailedWebhookPayload": ".webhookdto_invoicepaymentfailedwebhookpayload",
+    "WebhookDtoInvoicePaymentFailedWebhookPayloadTypedDict": ".webhookdto_invoicepaymentfailedwebhookpayload",
     "WebhookDtoInvoiceSyncWebhookPayload": ".webhookdto_invoicesyncwebhookpayload",
     "WebhookDtoInvoiceSyncWebhookPayloadTypedDict": ".webhookdto_invoicesyncwebhookpayload",
     "WebhookDtoInvoiceWebhookPayload": ".webhookdto_invoicewebhookpayload",

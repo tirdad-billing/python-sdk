@@ -18,6 +18,8 @@ from typing_extensions import NotRequired, TypedDict
 class PaymentResponseTypedDict(TypedDict):
     amount: NotRequired[str]
     attempts: NotRequired[List[PaymentAttemptResponseTypedDict]]
+    connection_id: NotRequired[str]
+    r"""connection_id is the connection that took this payment; null when no gateway connection was used"""
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     currency: NotRequired[str]
@@ -52,6 +54,9 @@ class PaymentResponse(BaseModel):
     amount: Optional[str] = None
 
     attempts: Optional[List[PaymentAttemptResponse]] = None
+
+    connection_id: Optional[str] = None
+    r"""connection_id is the connection that took this payment; null when no gateway connection was used"""
 
     created_at: Optional[datetime] = None
 
@@ -115,6 +120,7 @@ class PaymentResponse(BaseModel):
             [
                 "amount",
                 "attempts",
+                "connection_id",
                 "created_at",
                 "created_by",
                 "currency",

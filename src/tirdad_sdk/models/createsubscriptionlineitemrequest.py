@@ -21,14 +21,19 @@ from typing_extensions import NotRequired, TypedDict
 
 class CreateSubscriptionLineItemRequestTypedDict(TypedDict):
     commitment_amount: NotRequired[float]
-    r"""Commitment fields"""
+    r"""Deprecated: use POST /commitments instead."""
     commitment_duration: NotRequired[BillingPeriod]
     commitment_overage_factor: NotRequired[float]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_quantity: NotRequired[float]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_time_buckets: NotRequired[List[CommitmentBucketRequestTypedDict]]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_true_up_enabled: NotRequired[bool]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_type: NotRequired[CommitmentType]
     commitment_windowed: NotRequired[bool]
+    r"""Deprecated: use POST /commitments instead."""
     display_name: NotRequired[str]
     end_date: NotRequired[datetime]
     metadata: NotRequired[Dict[str, str]]
@@ -43,21 +48,26 @@ class CreateSubscriptionLineItemRequestTypedDict(TypedDict):
 
 class CreateSubscriptionLineItemRequest(BaseModel):
     commitment_amount: Optional[float] = None
-    r"""Commitment fields"""
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_duration: Optional[BillingPeriod] = None
 
     commitment_overage_factor: Optional[float] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_quantity: Optional[float] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_time_buckets: Optional[List[CommitmentBucketRequest]] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_true_up_enabled: Optional[bool] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_type: Optional[CommitmentType] = None
 
     commitment_windowed: Optional[bool] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     display_name: Optional[str] = None
 

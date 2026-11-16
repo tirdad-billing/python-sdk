@@ -9,6 +9,7 @@ from .customer_contactperson import (
     CustomerContactPerson,
     CustomerContactPersonTypedDict,
 )
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .taxrateoverride import TaxRateOverride, TaxRateOverrideTypedDict
 from .taxtreatment import TaxTreatment
 from pydantic import model_serializer
@@ -38,6 +39,10 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""address_state is the state, province, or region name with maximum 100 characters"""
     billing_currency: NotRequired[str]
     r"""billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is"""
+    billing_entity_id: NotRequired[str]
+    r"""billing_entity_id is the billing entity that bills this customer; defaults to the environment's
+    default entity. Accepted only once billing entities are enabled, and never changes afterwards.
+    """
     contact: NotRequired[str]
     r"""contact is an optional contact number for the customer (e.g. phone)"""
     contact_persons: NotRequired[List[CustomerContactPersonTypedDict]]
@@ -52,6 +57,7 @@ class CreateCustomerRequestTypedDict(TypedDict):
     r"""metadata contains additional key-value pairs for storing extra information"""
     onboarding_workflow_name: NotRequired[str]
     r"""onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer"""
+    settings: NotRequired[SettingsOverrideTypedDict]
     skip_onboarding_workflow: NotRequired[bool]
     r"""skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
     This is used internally when a customer is created via a workflow to prevent infinite loops
@@ -96,6 +102,11 @@ class CreateCustomerRequest(BaseModel):
     billing_currency: Optional[str] = None
     r"""billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is"""
 
+    billing_entity_id: Optional[str] = None
+    r"""billing_entity_id is the billing entity that bills this customer; defaults to the environment's
+    default entity. Accepted only once billing entities are enabled, and never changes afterwards.
+    """
+
     contact: Optional[str] = None
     r"""contact is an optional contact number for the customer (e.g. phone)"""
 
@@ -115,6 +126,8 @@ class CreateCustomerRequest(BaseModel):
 
     onboarding_workflow_name: Optional[str] = None
     r"""onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer"""
+
+    settings: Optional[SettingsOverride] = None
 
     skip_onboarding_workflow: Optional[bool] = None
     r"""skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
@@ -143,12 +156,14 @@ class CreateCustomerRequest(BaseModel):
                 "address_postal_code",
                 "address_state",
                 "billing_currency",
+                "billing_entity_id",
                 "contact",
                 "contact_persons",
                 "email",
                 "integration_entity_mapping",
                 "metadata",
                 "onboarding_workflow_name",
+                "settings",
                 "skip_onboarding_workflow",
                 "tax_rate_overrides",
                 "tax_treatment",

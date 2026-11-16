@@ -12,6 +12,7 @@ from .couponapplicationresponse import (
 from .customcurrency import CustomCurrency, CustomCurrencyTypedDict
 from .customerresponse import CustomerResponse, CustomerResponseTypedDict
 from .fxconversion import FxConversion, FxConversionTypedDict
+from .invoicebillingentity import InvoiceBillingEntity, InvoiceBillingEntityTypedDict
 from .invoicelineitemresponse import (
     InvoiceLineItemResponse,
     InvoiceLineItemResponseTypedDict,
@@ -48,6 +49,9 @@ class InvoiceResponseTypedDict(TypedDict):
     r"""amount_paid is the amount that has already been paid towards this invoice"""
     amount_remaining: NotRequired[str]
     r"""amount_remaining is the outstanding amount still owed on this invoice (calculated as amount_due minus amount_paid)"""
+    billing_entity: NotRequired[InvoiceBillingEntityTypedDict]
+    billing_entity_id: NotRequired[str]
+    r"""BillingEntityID is the entity that bills the invoice; nil while the environment has no billing entities. Never changes once set."""
     billing_period: NotRequired[str]
     r"""billing_period describes the billing period this invoice covers (e.g., \"January 2024\", \"Q1 2024\")"""
     billing_reason: NotRequired[str]
@@ -161,6 +165,11 @@ class InvoiceResponse(BaseModel):
 
     amount_remaining: Optional[str] = None
     r"""amount_remaining is the outstanding amount still owed on this invoice (calculated as amount_due minus amount_paid)"""
+
+    billing_entity: Optional[InvoiceBillingEntity] = None
+
+    billing_entity_id: Optional[str] = None
+    r"""BillingEntityID is the entity that bills the invoice; nil while the environment has no billing entities. Never changes once set."""
 
     billing_period: Optional[str] = None
     r"""billing_period describes the billing period this invoice covers (e.g., \"January 2024\", \"Q1 2024\")"""
@@ -320,6 +329,8 @@ class InvoiceResponse(BaseModel):
                 "amount_due",
                 "amount_paid",
                 "amount_remaining",
+                "billing_entity",
+                "billing_entity_id",
                 "billing_period",
                 "billing_reason",
                 "billing_sequence",

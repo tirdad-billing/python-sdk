@@ -22,6 +22,7 @@ class Customers(BaseSDK):
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
         billing_currency: Optional[str] = None,
+        billing_entity_id: Optional[str] = None,
         contact: Optional[str] = None,
         contact_persons: Optional[
             Union[
@@ -39,6 +40,9 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         tax_treatment: Optional[models.TaxTreatment] = None,
         timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -59,6 +63,7 @@ class Customers(BaseSDK):
         :param address_postal_code: address_postal_code is the updated postal code with maximum 20 characters
         :param address_state: address_state is the updated state, province, or region name with maximum 100 characters
         :param billing_currency: billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency
+        :param billing_entity_id: billing_entity_id cannot be changed; sending it is rejected
         :param contact: contact is the updated contact number for the customer (e.g. phone)
         :param contact_persons: contact_persons replaces the customer's contact persons when provided; at most one may be primary
         :param email: email is the updated email address and must be a valid email format if provided
@@ -66,6 +71,7 @@ class Customers(BaseSDK):
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains updated key-value pairs that will replace existing metadata
         :param name: name is the updated name or company name for the customer
+        :param settings:
         :param tax_treatment:
         :param timezone: timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")
         :param retries: Override the default retry configuration for this method
@@ -94,6 +100,7 @@ class Customers(BaseSDK):
                 address_postal_code=address_postal_code,
                 address_state=address_state,
                 billing_currency=billing_currency,
+                billing_entity_id=billing_entity_id,
                 contact=contact,
                 contact_persons=utils.get_pydantic_model(
                     contact_persons, Optional[List[models.CustomerContactPerson]]
@@ -106,6 +113,9 @@ class Customers(BaseSDK):
                 ),
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
+                settings=utils.get_pydantic_model(
+                    settings, Optional[models.SettingsOverride]
+                ),
                 tax_treatment=tax_treatment,
                 timezone=timezone,
             ),
@@ -192,6 +202,7 @@ class Customers(BaseSDK):
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
         billing_currency: Optional[str] = None,
+        billing_entity_id: Optional[str] = None,
         contact: Optional[str] = None,
         contact_persons: Optional[
             Union[
@@ -209,6 +220,9 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         name: Optional[str] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         tax_treatment: Optional[models.TaxTreatment] = None,
         timezone: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
@@ -229,6 +243,7 @@ class Customers(BaseSDK):
         :param address_postal_code: address_postal_code is the updated postal code with maximum 20 characters
         :param address_state: address_state is the updated state, province, or region name with maximum 100 characters
         :param billing_currency: billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency
+        :param billing_entity_id: billing_entity_id cannot be changed; sending it is rejected
         :param contact: contact is the updated contact number for the customer (e.g. phone)
         :param contact_persons: contact_persons replaces the customer's contact persons when provided; at most one may be primary
         :param email: email is the updated email address and must be a valid email format if provided
@@ -236,6 +251,7 @@ class Customers(BaseSDK):
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains updated key-value pairs that will replace existing metadata
         :param name: name is the updated name or company name for the customer
+        :param settings:
         :param tax_treatment:
         :param timezone: timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")
         :param retries: Override the default retry configuration for this method
@@ -264,6 +280,7 @@ class Customers(BaseSDK):
                 address_postal_code=address_postal_code,
                 address_state=address_state,
                 billing_currency=billing_currency,
+                billing_entity_id=billing_entity_id,
                 contact=contact,
                 contact_persons=utils.get_pydantic_model(
                     contact_persons, Optional[List[models.CustomerContactPerson]]
@@ -276,6 +293,9 @@ class Customers(BaseSDK):
                 ),
                 metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
                 name=name,
+                settings=utils.get_pydantic_model(
+                    settings, Optional[models.SettingsOverride]
+                ),
                 tax_treatment=tax_treatment,
                 timezone=timezone,
             ),
@@ -362,6 +382,7 @@ class Customers(BaseSDK):
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
         billing_currency: Optional[str] = None,
+        billing_entity_id: Optional[str] = None,
         contact: Optional[str] = None,
         contact_persons: Optional[
             Union[
@@ -378,6 +399,9 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         onboarding_workflow_name: Optional[str] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         skip_onboarding_workflow: Optional[bool] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -405,12 +429,15 @@ class Customers(BaseSDK):
         :param address_postal_code: address_postal_code is the ZIP code or postal code with maximum 20 characters
         :param address_state: address_state is the state, province, or region name with maximum 100 characters
         :param billing_currency: billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is
+        :param billing_entity_id: billing_entity_id is the billing entity that bills this customer; defaults to the environment's
+            default entity. Accepted only once billing entities are enabled, and never changes afterwards.
         :param contact: contact is an optional contact number for the customer (e.g. phone)
         :param contact_persons: contact_persons are people at the customer; at most one may be primary
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains additional key-value pairs for storing extra information
         :param onboarding_workflow_name: onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer
+        :param settings:
         :param skip_onboarding_workflow: skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
@@ -441,6 +468,7 @@ class Customers(BaseSDK):
             address_postal_code=address_postal_code,
             address_state=address_state,
             billing_currency=billing_currency,
+            billing_entity_id=billing_entity_id,
             contact=contact,
             contact_persons=utils.get_pydantic_model(
                 contact_persons, Optional[List[models.CustomerContactPerson]]
@@ -454,6 +482,9 @@ class Customers(BaseSDK):
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
             onboarding_workflow_name=onboarding_workflow_name,
+            settings=utils.get_pydantic_model(
+                settings, Optional[models.SettingsOverride]
+            ),
             skip_onboarding_workflow=skip_onboarding_workflow,
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
@@ -546,6 +577,7 @@ class Customers(BaseSDK):
         address_postal_code: Optional[str] = None,
         address_state: Optional[str] = None,
         billing_currency: Optional[str] = None,
+        billing_entity_id: Optional[str] = None,
         contact: Optional[str] = None,
         contact_persons: Optional[
             Union[
@@ -562,6 +594,9 @@ class Customers(BaseSDK):
         ] = None,
         metadata: Optional[Mapping[str, str]] = None,
         onboarding_workflow_name: Optional[str] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         skip_onboarding_workflow: Optional[bool] = None,
         tax_rate_overrides: Optional[
             Union[
@@ -589,12 +624,15 @@ class Customers(BaseSDK):
         :param address_postal_code: address_postal_code is the ZIP code or postal code with maximum 20 characters
         :param address_state: address_state is the state, province, or region name with maximum 100 characters
         :param billing_currency: billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is
+        :param billing_entity_id: billing_entity_id is the billing entity that bills this customer; defaults to the environment's
+            default entity. Accepted only once billing entities are enabled, and never changes afterwards.
         :param contact: contact is an optional contact number for the customer (e.g. phone)
         :param contact_persons: contact_persons are people at the customer; at most one may be primary
         :param email: email is the customer's email address and must be a valid email format if provided
         :param integration_entity_mapping: integration_entity_mapping contains provider integration mappings for this customer
         :param metadata: metadata contains additional key-value pairs for storing extra information
         :param onboarding_workflow_name: onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer
+        :param settings:
         :param skip_onboarding_workflow: skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
             This is used internally when a customer is created via a workflow to prevent infinite loops
             Default: false
@@ -625,6 +663,7 @@ class Customers(BaseSDK):
             address_postal_code=address_postal_code,
             address_state=address_state,
             billing_currency=billing_currency,
+            billing_entity_id=billing_entity_id,
             contact=contact,
             contact_persons=utils.get_pydantic_model(
                 contact_persons, Optional[List[models.CustomerContactPerson]]
@@ -638,6 +677,9 @@ class Customers(BaseSDK):
             metadata=utils.unmarshal(metadata, Optional[Dict[str, str]]),
             name=name,
             onboarding_workflow_name=onboarding_workflow_name,
+            settings=utils.get_pydantic_model(
+                settings, Optional[models.SettingsOverride]
+            ),
             skip_onboarding_workflow=skip_onboarding_workflow,
             tax_rate_overrides=utils.get_pydantic_model(
                 tax_rate_overrides, Optional[List[models.TaxRateOverride]]
@@ -1523,6 +1565,7 @@ class Customers(BaseSDK):
     def query_customer(
         self,
         *,
+        billing_entity_id: Optional[str] = None,
         customer_ids: Optional[Iterable[str]] = None,
         email: Optional[str] = None,
         end_time: Optional[datetime] = None,
@@ -1555,6 +1598,7 @@ class Customers(BaseSDK):
 
         Use when listing or searching customers (e.g. admin CRM or reporting). Returns a paginated list; supports filtering and sorting.
 
+        :param billing_entity_id: billing_entity_id filters by the customer's billing entity
         :param customer_ids:
         :param email:
         :param end_time:
@@ -1585,6 +1629,7 @@ class Customers(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CustomerFilter(
+            billing_entity_id=billing_entity_id,
             customer_ids=utils.unmarshal(customer_ids, Optional[List[str]]),
             email=email,
             end_time=end_time,
@@ -1675,6 +1720,7 @@ class Customers(BaseSDK):
     async def query_customer_async(
         self,
         *,
+        billing_entity_id: Optional[str] = None,
         customer_ids: Optional[Iterable[str]] = None,
         email: Optional[str] = None,
         end_time: Optional[datetime] = None,
@@ -1707,6 +1753,7 @@ class Customers(BaseSDK):
 
         Use when listing or searching customers (e.g. admin CRM or reporting). Returns a paginated list; supports filtering and sorting.
 
+        :param billing_entity_id: billing_entity_id filters by the customer's billing entity
         :param customer_ids:
         :param email:
         :param end_time:
@@ -1737,6 +1784,7 @@ class Customers(BaseSDK):
             base_url = self._get_url(base_url, url_variables)
 
         request = models.CustomerFilter(
+            billing_entity_id=billing_entity_id,
             customer_ids=utils.unmarshal(customer_ids, Optional[List[str]]),
             email=email,
             end_time=end_time,

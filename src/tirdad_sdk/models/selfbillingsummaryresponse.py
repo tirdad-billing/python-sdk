@@ -21,7 +21,10 @@ from typing_extensions import NotRequired, TypedDict
 
 class SelfBillingSummaryResponseTypedDict(TypedDict):
     invoices: NotRequired[List[SelfBillingInvoiceTypedDict]]
-    plan: NotRequired[SelfBillingPlanResponseTypedDict]
+    plans: NotRequired[List[SelfBillingPlanResponseTypedDict]]
+    r"""Plans are the plans a tenant can buy at checkout: during a self-serve trial and once no subscription is live.
+    The first plan is the default.
+    """
     status: NotRequired[TenantInternalStatus]
     subscription_status: NotRequired[SubscriptionStatus]
     trial_ends_at: NotRequired[datetime]
@@ -31,7 +34,10 @@ class SelfBillingSummaryResponseTypedDict(TypedDict):
 class SelfBillingSummaryResponse(BaseModel):
     invoices: Optional[List[SelfBillingInvoice]] = None
 
-    plan: Optional[SelfBillingPlanResponse] = None
+    plans: Optional[List[SelfBillingPlanResponse]] = None
+    r"""Plans are the plans a tenant can buy at checkout: during a self-serve trial and once no subscription is live.
+    The first plan is the default.
+    """
 
     status: Optional[TenantInternalStatus] = None
 
@@ -46,7 +52,7 @@ class SelfBillingSummaryResponse(BaseModel):
         optional_fields = set(
             [
                 "invoices",
-                "plan",
+                "plans",
                 "status",
                 "subscription_status",
                 "trial_ends_at",

@@ -16,6 +16,7 @@ from .pausestatus import PauseStatus
 from .paymentterms import PaymentTerms
 from .planresponse import PlanResponse, PlanResponseTypedDict
 from .prorationbehavior import ProrationBehavior
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .status import Status
 from .subscription_subscriptionpause import (
     SubscriptionSubscriptionPause,
@@ -133,6 +134,7 @@ class SubscriptionResponseV2TypedDict(TypedDict):
     changes have not yet been reconciled into this subscription's line items.
     """
     proration_behavior: NotRequired[ProrationBehavior]
+    settings: NotRequired[SettingsOverrideTypedDict]
     start_date: NotRequired[datetime]
     r"""StartDate is the start date of the subscription"""
     status: NotRequired[Status]
@@ -294,6 +296,8 @@ class SubscriptionResponseV2(BaseModel):
 
     proration_behavior: Optional[ProrationBehavior] = None
 
+    settings: Optional[SettingsOverride] = None
+
     start_date: Optional[datetime] = None
     r"""StartDate is the start date of the subscription"""
 
@@ -374,6 +378,7 @@ class SubscriptionResponseV2(BaseModel):
                 "plan_id",
                 "plan_prices_out_of_sync",
                 "proration_behavior",
+                "settings",
                 "start_date",
                 "status",
                 "subscription_status",

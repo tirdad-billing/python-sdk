@@ -19,3 +19,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"invoice"`
 - `"tenant"`
 - `"credit_note"`
+- `"billing_entity"`

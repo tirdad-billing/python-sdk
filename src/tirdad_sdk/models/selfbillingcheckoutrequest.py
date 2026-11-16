@@ -16,6 +16,8 @@ class SelfBillingCheckoutRequestTypedDict(TypedDict):
     name: str
     address_line2: NotRequired[str]
     address_state: NotRequired[str]
+    plan_id: NotRequired[str]
+    r"""PlanID is the offered plan to buy; empty means the default plan, or a negotiated trial's own plan."""
     tax_id: NotRequired[str]
 
 
@@ -36,11 +38,14 @@ class SelfBillingCheckoutRequest(BaseModel):
 
     address_state: Optional[str] = None
 
+    plan_id: Optional[str] = None
+    r"""PlanID is the offered plan to buy; empty means the default plan, or a negotiated trial's own plan."""
+
     tax_id: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["address_line2", "address_state", "tax_id"])
+        optional_fields = set(["address_line2", "address_state", "plan_id", "tax_id"])
         serialized = handler(self)
         m = {}
 

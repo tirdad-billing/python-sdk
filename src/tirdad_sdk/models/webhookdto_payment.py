@@ -13,6 +13,7 @@ from typing_extensions import NotRequired, TypedDict
 
 class WebhookDtoPaymentTypedDict(TypedDict):
     amount: NotRequired[str]
+    connection_id: NotRequired[str]
     currency: NotRequired[str]
     destination_id: NotRequired[str]
     destination_type: NotRequired[PaymentDestinationType]
@@ -30,6 +31,8 @@ class WebhookDtoPaymentTypedDict(TypedDict):
 
 class WebhookDtoPayment(BaseModel):
     amount: Optional[str] = None
+
+    connection_id: Optional[str] = None
 
     currency: Optional[str] = None
 
@@ -62,6 +65,7 @@ class WebhookDtoPayment(BaseModel):
         optional_fields = set(
             [
                 "amount",
+                "connection_id",
                 "currency",
                 "destination_id",
                 "destination_type",

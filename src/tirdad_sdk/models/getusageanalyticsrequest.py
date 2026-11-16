@@ -18,7 +18,7 @@ class GetUsageAnalyticsRequestTypedDict(TypedDict):
     """
     end_time: NotRequired[datetime]
     expand: NotRequired[List[str]]
-    r"""allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\" """
+    r"""allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\",\"source\",\"instalments\" """
     external_customer_id: NotRequired[str]
     r"""ExternalCustomerID is the single external customer ID.
     Optional when ExternalCustomerIDs is provided; required otherwise.
@@ -48,7 +48,7 @@ class GetUsageAnalyticsRequest(BaseModel):
     end_time: Optional[datetime] = None
 
     expand: Optional[List[str]] = None
-    r"""allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\" """
+    r"""allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\",\"source\",\"instalments\" """
 
     external_customer_id: Optional[str] = None
     r"""ExternalCustomerID is the single external customer ID.

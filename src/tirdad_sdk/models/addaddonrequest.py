@@ -33,7 +33,7 @@ class AddAddonRequestTypedDict(TypedDict):
     coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
     r"""Coupons apply to this addon's line items; price_id targets one price, omitted targets all."""
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
-    r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
+    r"""Deprecated: use POST /commitments instead."""
     metadata: NotRequired[Dict[str, Any]]
     override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
     r"""OverrideLineItems allows overriding price/quantity/billing model for specific addon prices"""
@@ -56,7 +56,7 @@ class AddAddonRequest(BaseModel):
     r"""Coupons apply to this addon's line items; price_id targets one price, omitted targets all."""
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
-    r"""LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)"""
+    r"""Deprecated: use POST /commitments instead."""
 
     metadata: Optional[Dict[str, Any]] = None
 

@@ -42,6 +42,7 @@ from .overridelineitemrequest import (
 from .paymentbehavior import PaymentBehavior
 from .paymentterms import PaymentTerms
 from .prorationbehavior import ProrationBehavior
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .subscriptioncouponinput import (
     SubscriptionCouponInput,
     SubscriptionCouponInputTypedDict,
@@ -81,6 +82,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     checkout: NotRequired[CheckoutParamsTypedDict]
     collection_method: NotRequired[CollectionMethod]
     commitment_amount: NotRequired[str]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_duration: NotRequired[BillingPeriod]
     commitments: NotRequired[List[CreateCommitmentRequestTypedDict]]
     r"""Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
@@ -92,6 +94,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     customer_id: NotRequired[str]
     r"""CustomerID takes priority over ExternalCustomerID when both are provided."""
     enable_true_up: NotRequired[bool]
+    r"""Deprecated: use POST /commitments instead."""
     end_date: NotRequired[datetime]
     external_customer_id: NotRequired[str]
     fx_rates: NotRequired[List[InlineFXRateTypedDict]]
@@ -112,7 +115,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     """
     inheritance: NotRequired[SubscriptionInheritanceConfigTypedDict]
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
-    r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
+    r"""Deprecated: use POST /commitments instead."""
     line_item_coupons: NotRequired[Dict[str, List[str]]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     line_item_grouping: NotRequired[LineItemGrouping]
@@ -121,6 +124,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     lookup_key: NotRequired[str]
     metadata: NotRequired[Dict[str, str]]
     overage_factor: NotRequired[str]
+    r"""Deprecated: use POST /commitments instead."""
     override_entitlements: NotRequired[List[OverrideEntitlementRequestTypedDict]]
     override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
     r"""OverrideLineItems overrides specific plan prices for this subscription."""
@@ -128,6 +132,7 @@ class CreateSubscriptionRequestTypedDict(TypedDict):
     payment_terms: NotRequired[PaymentTerms]
     phases: NotRequired[List[SubscriptionPhaseCreateRequestTypedDict]]
     proration_behavior: NotRequired[ProrationBehavior]
+    settings: NotRequired[SettingsOverrideTypedDict]
     start_date: NotRequired[datetime]
     subscription_coupons: NotRequired[List[SubscriptionCouponInputTypedDict]]
     r"""SubscriptionCoupons is the preferred way to attach coupons at creation.
@@ -172,6 +177,7 @@ class CreateSubscriptionRequest(BaseModel):
     collection_method: Optional[CollectionMethod] = None
 
     commitment_amount: Optional[str] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_duration: Optional[BillingPeriod] = None
 
@@ -189,6 +195,7 @@ class CreateSubscriptionRequest(BaseModel):
     r"""CustomerID takes priority over ExternalCustomerID when both are provided."""
 
     enable_true_up: Optional[bool] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     end_date: Optional[datetime] = None
 
@@ -216,7 +223,7 @@ class CreateSubscriptionRequest(BaseModel):
     inheritance: Optional[SubscriptionInheritanceConfig] = None
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
-    r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
+    r"""Deprecated: use POST /commitments instead."""
 
     line_item_coupons: Optional[Dict[str, List[str]]] = None
     r"""Deprecated: use SubscriptionCoupons instead."""
@@ -231,6 +238,7 @@ class CreateSubscriptionRequest(BaseModel):
     metadata: Optional[Dict[str, str]] = None
 
     overage_factor: Optional[str] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     override_entitlements: Optional[List[OverrideEntitlementRequest]] = None
 
@@ -244,6 +252,8 @@ class CreateSubscriptionRequest(BaseModel):
     phases: Optional[List[SubscriptionPhaseCreateRequest]] = None
 
     proration_behavior: Optional[ProrationBehavior] = None
+
+    settings: Optional[SettingsOverride] = None
 
     start_date: Optional[datetime] = None
 
@@ -303,6 +313,7 @@ class CreateSubscriptionRequest(BaseModel):
                 "payment_terms",
                 "phases",
                 "proration_behavior",
+                "settings",
                 "start_date",
                 "subscription_coupons",
                 "subscription_entitlement_grants",

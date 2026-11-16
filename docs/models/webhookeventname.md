@@ -63,6 +63,7 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"invoice.update.voided"`
 - `"invoice.update"`
 - `"invoice.payment.overdue"`
+- `"invoice.payment.failed"`
 - `"invoice.sync.success"`
 - `"invoice.sync.failed"`
 - `"wallet.credit_balance.dropped"`

@@ -21,6 +21,7 @@ from .pausestatus import PauseStatus
 from .paymentterms import PaymentTerms
 from .planresponse import PlanResponse, PlanResponseTypedDict
 from .prorationbehavior import ProrationBehavior
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .status import Status
 from .subscription_subscriptionlineitem import (
     SubscriptionSubscriptionLineItem,
@@ -139,6 +140,7 @@ class SubscriptionResponseTypedDict(TypedDict):
     plan_id: NotRequired[str]
     r"""PlanID is the identifier for the plan in our system"""
     proration_behavior: NotRequired[ProrationBehavior]
+    settings: NotRequired[SettingsOverrideTypedDict]
     start_date: NotRequired[datetime]
     r"""StartDate is the start date of the subscription"""
     status: NotRequired[Status]
@@ -300,6 +302,8 @@ class SubscriptionResponse(BaseModel):
 
     proration_behavior: Optional[ProrationBehavior] = None
 
+    settings: Optional[SettingsOverride] = None
+
     start_date: Optional[datetime] = None
     r"""StartDate is the start date of the subscription"""
 
@@ -382,6 +386,7 @@ class SubscriptionResponse(BaseModel):
                 "plan",
                 "plan_id",
                 "proration_behavior",
+                "settings",
                 "start_date",
                 "status",
                 "subscription_status",

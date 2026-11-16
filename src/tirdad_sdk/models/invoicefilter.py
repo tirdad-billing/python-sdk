@@ -30,6 +30,8 @@ class InvoiceFilterTypedDict(TypedDict):
     r"""amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
     Useful for finding invoices that still have significant unpaid amounts
     """
+    billing_entity_id: NotRequired[str]
+    r"""billing_entity_id filters by the customer's billing entity"""
     billing_reason: NotRequired[InvoiceBillingReason]
     currency: NotRequired[str]
     r"""currency filters invoices by their currency (ISO 4217 code, e.g. \"usd\", \"eur\").
@@ -103,6 +105,9 @@ class InvoiceFilter(BaseModel):
     r"""amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
     Useful for finding invoices that still have significant unpaid amounts
     """
+
+    billing_entity_id: Optional[str] = None
+    r"""billing_entity_id filters by the customer's billing entity"""
 
     billing_reason: Optional[InvoiceBillingReason] = None
 
@@ -200,6 +205,7 @@ class InvoiceFilter(BaseModel):
             [
                 "amount_due_gt",
                 "amount_remaining_gt",
+                "billing_entity_id",
                 "billing_reason",
                 "currency",
                 "customer_id",

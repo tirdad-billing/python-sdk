@@ -283,7 +283,7 @@ class Events(BaseSDK):
             and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
             Default: false (opt-in, backward compatible).
         :param end_time:
-        :param expand: allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\"
+        :param expand: allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\",\"source\",\"instalments\"
         :param external_customer_id: ExternalCustomerID is the single external customer ID.
             Optional when ExternalCustomerIDs is provided; required otherwise.
         :param feature_ids:
@@ -427,7 +427,7 @@ class Events(BaseSDK):
             and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
             Default: false (opt-in, backward compatible).
         :param end_time:
-        :param expand: allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\"
+        :param expand: allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\",\"source\",\"instalments\"
         :param external_customer_id: ExternalCustomerID is the single external customer ID.
             Optional when ExternalCustomerIDs is provided; required otherwise.
         :param feature_ids:

@@ -6,8 +6,6 @@
 
 * [list_scheduled_tasks](#list_scheduled_tasks) - List scheduled tasks
 * [create_scheduled_task](#create_scheduled_task) - Create scheduled task
-* [schedule_draft_finalization](#schedule_draft_finalization) - Schedule draft finalization
-* [schedule_update_billing_period](#schedule_update_billing_period) - Schedule update billing period
 * [get_scheduled_task](#get_scheduled_task) - Get scheduled task
 * [update_scheduled_task](#update_scheduled_task) - Update a scheduled task
 * [delete_scheduled_task](#delete_scheduled_task) - Delete a scheduled task
@@ -95,87 +93,6 @@ with Tirdad(
 ### Response
 
 **[models.ScheduledTaskResponse](../../models/scheduledtaskresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 400                              | application/json                 |
-| models.errors.ErrorResponse      | 500                              | application/json                 |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## schedule_draft_finalization
-
-Triggers the draft invoice finalization workflow that scans computed draft invoices whose finalization delay has elapsed and finalizes them (assign invoice number, sync to vendors, attempt payment).
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="scheduleDraftFinalization" method="post" path="/tasks/scheduled/schedule-draft-finalization" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.scheduled_tasks.schedule_draft_finalization()
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.ScheduleDraftFinalizationResponse](../../models/scheduledraftfinalizationresponse.md)**
-
-### Errors
-
-| Error Type                       | Status Code                      | Content Type                     |
-| -------------------------------- | -------------------------------- | -------------------------------- |
-| models.errors.ErrorResponse      | 400                              | application/json                 |
-| models.errors.ErrorResponse      | 500                              | application/json                 |
-| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
-
-## schedule_update_billing_period
-
-Use when you need to trigger a billing-period update workflow (e.g. to recalculate or sync billing windows).
-
-### Example Usage
-
-<!-- UsageSnippet language="python" operationID="scheduleUpdateBillingPeriod" method="post" path="/tasks/scheduled/schedule-update-billing-period" -->
-```python
-from tirdad_sdk import Tirdad
-
-
-with Tirdad(
-    api_key_auth="<YOUR_API_KEY_HERE>",
-) as tirdad:
-
-    res = tirdad.scheduled_tasks.schedule_update_billing_period(request={})
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `request`                                                                                       | [models.ScheduleUpdateBillingPeriodRequest](../../models/scheduleupdatebillingperiodrequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-| `retries`                                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                | :heavy_minus_sign:                                                                              | Configuration to override the default retry behavior of the client.                             |
-
-### Response
-
-**[models.ScheduleUpdateBillingPeriodResponse](../../models/scheduleupdatebillingperiodresponse.md)**
 
 ### Errors
 

@@ -29,6 +29,8 @@ class BillingtermInstalmentTypedDict(TypedDict):
     instalment_status: NotRequired[InstalmentStatus]
     invoice_id: NotRequired[str]
     invoice_label: NotRequired[str]
+    invoiced_at: NotRequired[datetime]
+    r"""InvoicedAt is when the invoice billing the instalment was finalized."""
     kind: NotRequired[InstalmentKind]
     metadata: NotRequired[Dict[str, str]]
     owner_id: NotRequired[str]
@@ -72,6 +74,9 @@ class BillingtermInstalment(BaseModel):
 
     invoice_label: Optional[str] = None
 
+    invoiced_at: Optional[datetime] = None
+    r"""InvoicedAt is when the invoice billing the instalment was finalized."""
+
     kind: Optional[InstalmentKind] = None
 
     metadata: Optional[Dict[str, str]] = None
@@ -114,6 +119,7 @@ class BillingtermInstalment(BaseModel):
                 "instalment_status",
                 "invoice_id",
                 "invoice_label",
+                "invoiced_at",
                 "kind",
                 "metadata",
                 "owner_id",

@@ -11,10 +11,17 @@ from typing_extensions import NotRequired, TypedDict
 
 class CommitmentInfoTypedDict(TypedDict):
     amount: NotRequired[str]
+    r"""Amount is the commitment amount (v1), or computed_commitment_utilized_amount + computed_true_up_amount (v2)."""
     computed_commitment_utilized_amount: NotRequired[str]
+    computed_commitment_utilized_quantity: NotRequired[str]
+    r"""Usage units behind the computed amounts: usage a billing-terms commitment covers counts as utilized at no
+    charge, and a quantity commitment's true-up counts its unused units.
+    """
     computed_overage_amount: NotRequired[str]
+    computed_overage_quantity: NotRequired[str]
     computed_true_up_amount: NotRequired[str]
     r"""total_cost = computed_commitment_utilized_amount + computed_overage_amount + computed_true_up_amount"""
+    computed_true_up_quantity: NotRequired[str]
     duration: NotRequired[BillingPeriod]
     is_windowed: NotRequired[bool]
     overage_factor: NotRequired[str]
@@ -26,13 +33,23 @@ class CommitmentInfoTypedDict(TypedDict):
 
 class CommitmentInfo(BaseModel):
     amount: Optional[str] = None
+    r"""Amount is the commitment amount (v1), or computed_commitment_utilized_amount + computed_true_up_amount (v2)."""
 
     computed_commitment_utilized_amount: Optional[str] = None
 
+    computed_commitment_utilized_quantity: Optional[str] = None
+    r"""Usage units behind the computed amounts: usage a billing-terms commitment covers counts as utilized at no
+    charge, and a quantity commitment's true-up counts its unused units.
+    """
+
     computed_overage_amount: Optional[str] = None
+
+    computed_overage_quantity: Optional[str] = None
 
     computed_true_up_amount: Optional[str] = None
     r"""total_cost = computed_commitment_utilized_amount + computed_overage_amount + computed_true_up_amount"""
+
+    computed_true_up_quantity: Optional[str] = None
 
     duration: Optional[BillingPeriod] = None
 
@@ -53,8 +70,11 @@ class CommitmentInfo(BaseModel):
             [
                 "amount",
                 "computed_commitment_utilized_amount",
+                "computed_commitment_utilized_quantity",
                 "computed_overage_amount",
+                "computed_overage_quantity",
                 "computed_true_up_amount",
+                "computed_true_up_quantity",
                 "duration",
                 "is_windowed",
                 "overage_factor",

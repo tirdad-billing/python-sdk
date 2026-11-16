@@ -9,6 +9,7 @@ from .entityintegrationmappingresponse import (
     EntityIntegrationMappingResponse,
     EntityIntegrationMappingResponseTypedDict,
 )
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .status import Status
 from .taxtreatment import TaxTreatment
 from datetime import datetime
@@ -35,6 +36,8 @@ class CustomerResponseTypedDict(TypedDict):
     r"""AddressState is the state of the customer's address"""
     billing_currency: NotRequired[str]
     r"""BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is."""
+    billing_entity_id: NotRequired[str]
+    r"""BillingEntityID is the entity that bills the customer; nil while the environment has no billing entities. Never changes once set."""
     contact: NotRequired[str]
     r"""Contact is an optional contact number for the customer (e.g. phone)"""
     contact_persons: NotRequired[List[CustomerContactPersonTypedDict]]
@@ -53,6 +56,7 @@ class CustomerResponseTypedDict(TypedDict):
     r"""Metadata"""
     name: NotRequired[str]
     r"""Name is the name of the customer"""
+    settings: NotRequired[SettingsOverrideTypedDict]
     status: NotRequired[Status]
     tax_treatment: NotRequired[TaxTreatment]
     tenant_id: NotRequired[str]
@@ -88,6 +92,9 @@ class CustomerResponse(BaseModel):
     billing_currency: Optional[str] = None
     r"""BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is."""
 
+    billing_entity_id: Optional[str] = None
+    r"""BillingEntityID is the entity that bills the customer; nil while the environment has no billing entities. Never changes once set."""
+
     contact: Optional[str] = None
     r"""Contact is an optional contact number for the customer (e.g. phone)"""
 
@@ -117,6 +124,8 @@ class CustomerResponse(BaseModel):
     name: Optional[str] = None
     r"""Name is the name of the customer"""
 
+    settings: Optional[SettingsOverride] = None
+
     status: Optional[Status] = None
 
     tax_treatment: Optional[TaxTreatment] = None
@@ -143,6 +152,7 @@ class CustomerResponse(BaseModel):
                 "address_postal_code",
                 "address_state",
                 "billing_currency",
+                "billing_entity_id",
                 "contact",
                 "contact_persons",
                 "created_at",
@@ -154,6 +164,7 @@ class CustomerResponse(BaseModel):
                 "integrations",
                 "metadata",
                 "name",
+                "settings",
                 "status",
                 "tax_treatment",
                 "tenant_id",

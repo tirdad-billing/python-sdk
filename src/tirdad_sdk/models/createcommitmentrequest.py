@@ -41,7 +41,6 @@ class CreateCommitmentRequestTypedDict(TypedDict):
     priority: NotRequired[int]
     subscription_id: NotRequired[str]
     r"""SubscriptionID is required on POST /commitments and set server-side on inline commitments."""
-    timezone: NotRequired[str]
     value: NotRequired[str]
 
 
@@ -89,8 +88,6 @@ class CreateCommitmentRequest(BaseModel):
     subscription_id: Optional[str] = None
     r"""SubscriptionID is required on POST /commitments and set server-side on inline commitments."""
 
-    timezone: Optional[str] = None
-
     value: Optional[str] = None
 
     @model_serializer(mode="wrap")
@@ -111,7 +108,6 @@ class CreateCommitmentRequest(BaseModel):
                 "overage_price",
                 "priority",
                 "subscription_id",
-                "timezone",
                 "value",
             ]
         )

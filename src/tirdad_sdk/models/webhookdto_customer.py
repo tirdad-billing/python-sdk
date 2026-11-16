@@ -14,6 +14,7 @@ class WebhookDtoCustomerTypedDict(TypedDict):
     address_line2: NotRequired[str]
     address_postal_code: NotRequired[str]
     address_state: NotRequired[str]
+    billing_entity_id: NotRequired[str]
     email: NotRequired[str]
     environment_id: NotRequired[str]
     external_id: NotRequired[str]
@@ -35,6 +36,8 @@ class WebhookDtoCustomer(BaseModel):
     address_postal_code: Optional[str] = None
 
     address_state: Optional[str] = None
+
+    billing_entity_id: Optional[str] = None
 
     email: Optional[str] = None
 
@@ -60,6 +63,7 @@ class WebhookDtoCustomer(BaseModel):
                 "address_line2",
                 "address_postal_code",
                 "address_state",
+                "billing_entity_id",
                 "email",
                 "environment_id",
                 "external_id",

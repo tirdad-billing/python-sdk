@@ -51,18 +51,21 @@ class GroupedInvoicingChildRequestTypedDict(TypedDict):
     plan_id: str
     addons: NotRequired[List[AddAddonToSubscriptionRequestTypedDict]]
     commitment_amount: NotRequired[str]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_duration: NotRequired[BillingPeriod]
     coupons: NotRequired[List[str]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     credit_grants: NotRequired[List[CreateCreditGrantRequestTypedDict]]
     enable_true_up: NotRequired[bool]
+    r"""Deprecated: use POST /commitments instead."""
     line_item_commitments: NotRequired[Dict[str, LineItemCommitmentConfigTypedDict]]
-    r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
+    r"""Deprecated: use POST /commitments instead."""
     line_item_coupons: NotRequired[Dict[str, List[str]]]
     r"""Deprecated: use SubscriptionCoupons instead."""
     line_items: NotRequired[List[CreateSubscriptionLineItemRequestTypedDict]]
     r"""LineItems are extra (non-plan) line items added at creation."""
     overage_factor: NotRequired[str]
+    r"""Deprecated: use POST /commitments instead."""
     override_entitlements: NotRequired[List[OverrideEntitlementRequestTypedDict]]
     override_line_items: NotRequired[List[OverrideLineItemRequestTypedDict]]
     r"""OverrideLineItems overrides specific plan prices for this subscription."""
@@ -89,6 +92,7 @@ class GroupedInvoicingChildRequest(BaseModel):
     addons: Optional[List[AddAddonToSubscriptionRequest]] = None
 
     commitment_amount: Optional[str] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_duration: Optional[BillingPeriod] = None
 
@@ -98,9 +102,10 @@ class GroupedInvoicingChildRequest(BaseModel):
     credit_grants: Optional[List[CreateCreditGrantRequest]] = None
 
     enable_true_up: Optional[bool] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     line_item_commitments: Optional[Dict[str, LineItemCommitmentConfig]] = None
-    r"""LineItemCommitments sets per-line-item commitment config, keyed by price_id."""
+    r"""Deprecated: use POST /commitments instead."""
 
     line_item_coupons: Optional[Dict[str, List[str]]] = None
     r"""Deprecated: use SubscriptionCoupons instead."""
@@ -109,6 +114,7 @@ class GroupedInvoicingChildRequest(BaseModel):
     r"""LineItems are extra (non-plan) line items added at creation."""
 
     overage_factor: Optional[str] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     override_entitlements: Optional[List[OverrideEntitlementRequest]] = None
 

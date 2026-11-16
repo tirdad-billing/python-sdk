@@ -99,6 +99,9 @@ class Subscriptions(BaseSDK):
             ]
         ] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         start_date: Optional[datetime] = None,
         subscription_coupons: Optional[
             Union[
@@ -142,14 +145,14 @@ class Subscriptions(BaseSDK):
         :param billing_period_count:
         :param checkout:
         :param collection_method:
-        :param commitment_amount:
+        :param commitment_amount: Deprecated: use POST /commitments instead.
         :param commitment_duration:
         :param commitments: Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
             are set server-side.
         :param coupons: Deprecated: use SubscriptionCoupons instead.
         :param credit_grants:
         :param customer_id: CustomerID takes priority over ExternalCustomerID when both are provided.
-        :param enable_true_up:
+        :param enable_true_up: Deprecated: use POST /commitments instead.
         :param end_date:
         :param external_customer_id:
         :param fx_rates: FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
@@ -165,19 +168,20 @@ class Subscriptions(BaseSDK):
             in the OpenAPI schema and breaks callers that omit the field. Per-element
             non-emptiness is enforced explicitly in Validate() below.
         :param inheritance:
-        :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
+        :param line_item_commitments: Deprecated: use POST /commitments instead.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
         :param line_item_grouping:
         :param line_items: LineItems are extra (non-plan) line items added at creation.
         :param lookup_key:
         :param metadata:
-        :param overage_factor:
+        :param overage_factor: Deprecated: use POST /commitments instead.
         :param override_entitlements:
         :param override_line_items: OverrideLineItems overrides specific plan prices for this subscription.
         :param payment_behavior:
         :param payment_terms:
         :param phases:
         :param proration_behavior:
+        :param settings:
         :param start_date:
         :param subscription_coupons: SubscriptionCoupons is the preferred way to attach coupons at creation.
             Accepts coupon_code; optionally targets a line item via price_id.
@@ -263,6 +267,9 @@ class Subscriptions(BaseSDK):
             ),
             plan_id=plan_id,
             proration_behavior=proration_behavior,
+            settings=utils.get_pydantic_model(
+                settings, Optional[models.SettingsOverride]
+            ),
             start_date=start_date,
             subscription_coupons=utils.get_pydantic_model(
                 subscription_coupons, Optional[List[models.SubscriptionCouponInput]]
@@ -436,6 +443,9 @@ class Subscriptions(BaseSDK):
             ]
         ] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         start_date: Optional[datetime] = None,
         subscription_coupons: Optional[
             Union[
@@ -479,14 +489,14 @@ class Subscriptions(BaseSDK):
         :param billing_period_count:
         :param checkout:
         :param collection_method:
-        :param commitment_amount:
+        :param commitment_amount: Deprecated: use POST /commitments instead.
         :param commitment_duration:
         :param commitments: Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
             are set server-side.
         :param coupons: Deprecated: use SubscriptionCoupons instead.
         :param credit_grants:
         :param customer_id: CustomerID takes priority over ExternalCustomerID when both are provided.
-        :param enable_true_up:
+        :param enable_true_up: Deprecated: use POST /commitments instead.
         :param end_date:
         :param external_customer_id:
         :param fx_rates: FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
@@ -502,19 +512,20 @@ class Subscriptions(BaseSDK):
             in the OpenAPI schema and breaks callers that omit the field. Per-element
             non-emptiness is enforced explicitly in Validate() below.
         :param inheritance:
-        :param line_item_commitments: LineItemCommitments sets per-line-item commitment config, keyed by price_id.
+        :param line_item_commitments: Deprecated: use POST /commitments instead.
         :param line_item_coupons: Deprecated: use SubscriptionCoupons instead.
         :param line_item_grouping:
         :param line_items: LineItems are extra (non-plan) line items added at creation.
         :param lookup_key:
         :param metadata:
-        :param overage_factor:
+        :param overage_factor: Deprecated: use POST /commitments instead.
         :param override_entitlements:
         :param override_line_items: OverrideLineItems overrides specific plan prices for this subscription.
         :param payment_behavior:
         :param payment_terms:
         :param phases:
         :param proration_behavior:
+        :param settings:
         :param start_date:
         :param subscription_coupons: SubscriptionCoupons is the preferred way to attach coupons at creation.
             Accepts coupon_code; optionally targets a line item via price_id.
@@ -600,6 +611,9 @@ class Subscriptions(BaseSDK):
             ),
             plan_id=plan_id,
             proration_behavior=proration_behavior,
+            settings=utils.get_pydantic_model(
+                settings, Optional[models.SettingsOverride]
+            ),
             start_date=start_date,
             subscription_coupons=utils.get_pydantic_model(
                 subscription_coupons, Optional[List[models.SubscriptionCouponInput]]
@@ -735,7 +749,7 @@ class Subscriptions(BaseSDK):
         :param change_at:
         :param checkout:
         :param coupons: Coupons apply to this addon's line items; price_id targets one price, omitted targets all.
-        :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
+        :param line_item_commitments: Deprecated: use POST /commitments instead.
         :param metadata:
         :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
         :param proration_behavior:
@@ -899,7 +913,7 @@ class Subscriptions(BaseSDK):
         :param change_at:
         :param checkout:
         :param coupons: Coupons apply to this addon's line items; price_id targets one price, omitted targets all.
-        :param line_item_commitments: LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
+        :param line_item_commitments: Deprecated: use POST /commitments instead.
         :param metadata:
         :param override_line_items: OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
         :param proration_behavior:
@@ -1659,14 +1673,16 @@ class Subscriptions(BaseSDK):
         :param amount: Amount is the new price amount that overrides the original price
         :param billing_model:
         :param bucket_size:
-        :param commitment_amount: Commitment fields
+        :param commitment_amount: Deprecated: use POST /commitments instead.
         :param commitment_duration:
-        :param commitment_overage_factor:
-        :param commitment_quantity:
+        :param commitment_overage_factor: Deprecated: use POST /commitments instead.
+        :param commitment_quantity: Deprecated: use POST /commitments instead.
         :param commitment_time_buckets: Pointer so an explicit empty array can clear existing buckets (omission keeps them).
-        :param commitment_true_up_enabled:
+
+            Deprecated: use POST /commitments instead.
+        :param commitment_true_up_enabled: Deprecated: use POST /commitments instead.
         :param commitment_type:
-        :param commitment_windowed:
+        :param commitment_windowed: Deprecated: use POST /commitments instead.
         :param effective_from: EffectiveFrom for the existing line item (if not provided, defaults to now)
         :param metadata: Metadata for the new line item
         :param price_unit_amount: PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
@@ -1849,14 +1865,16 @@ class Subscriptions(BaseSDK):
         :param amount: Amount is the new price amount that overrides the original price
         :param billing_model:
         :param bucket_size:
-        :param commitment_amount: Commitment fields
+        :param commitment_amount: Deprecated: use POST /commitments instead.
         :param commitment_duration:
-        :param commitment_overage_factor:
-        :param commitment_quantity:
+        :param commitment_overage_factor: Deprecated: use POST /commitments instead.
+        :param commitment_quantity: Deprecated: use POST /commitments instead.
         :param commitment_time_buckets: Pointer so an explicit empty array can clear existing buckets (omission keeps them).
-        :param commitment_true_up_enabled:
+
+            Deprecated: use POST /commitments instead.
+        :param commitment_true_up_enabled: Deprecated: use POST /commitments instead.
         :param commitment_type:
-        :param commitment_windowed:
+        :param commitment_windowed: Deprecated: use POST /commitments instead.
         :param effective_from: EffectiveFrom for the existing line item (if not provided, defaults to now)
         :param metadata: Metadata for the new line item
         :param price_unit_amount: PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
@@ -3897,6 +3915,9 @@ class Subscriptions(BaseSDK):
         cancel_at_period_end: Optional[bool] = None,
         parent_subscription_id: Optional[str] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         status: Optional[models.SubscriptionStatus] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -3912,6 +3933,7 @@ class Subscriptions(BaseSDK):
         :param cancel_at_period_end: Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.
         :param parent_subscription_id: ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear.
         :param proration_behavior:
+        :param settings:
         :param status:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -3935,6 +3957,9 @@ class Subscriptions(BaseSDK):
                 cancel_at_period_end=cancel_at_period_end,
                 parent_subscription_id=parent_subscription_id,
                 proration_behavior=proration_behavior,
+                settings=utils.get_pydantic_model(
+                    settings, Optional[models.SettingsOverride]
+                ),
                 status=status,
             ),
         )
@@ -4016,6 +4041,9 @@ class Subscriptions(BaseSDK):
         cancel_at_period_end: Optional[bool] = None,
         parent_subscription_id: Optional[str] = None,
         proration_behavior: Optional[models.ProrationBehavior] = None,
+        settings: Optional[
+            Union[models.SettingsOverride, models.SettingsOverrideTypedDict]
+        ] = None,
         status: Optional[models.SubscriptionStatus] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -4031,6 +4059,7 @@ class Subscriptions(BaseSDK):
         :param cancel_at_period_end: Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.
         :param parent_subscription_id: ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send \"\" to clear.
         :param proration_behavior:
+        :param settings:
         :param status:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -4054,6 +4083,9 @@ class Subscriptions(BaseSDK):
                 cancel_at_period_end=cancel_at_period_end,
                 parent_subscription_id=parent_subscription_id,
                 proration_behavior=proration_behavior,
+                settings=utils.get_pydantic_model(
+                    settings, Optional[models.SettingsOverride]
+                ),
                 status=status,
             ),
         )
@@ -4652,7 +4684,7 @@ class Subscriptions(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.CancelSubscriptionResponse, http_res)
-        if utils.match_response(http_res, "400", "application/json"):
+        if utils.match_response(http_res, ["400", "409"], "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
             )
@@ -4776,7 +4808,7 @@ class Subscriptions(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return unmarshal_json_response(models.CancelSubscriptionResponse, http_res)
-        if utils.match_response(http_res, "400", "application/json"):
+        if utils.match_response(http_res, ["400", "409"], "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
             )
@@ -6406,14 +6438,14 @@ class Subscriptions(BaseSDK):
         Use when adding a new charge or seat to a subscription (e.g. extra seat or one-time add). Supports price_id or inline price.
 
         :param id: Subscription ID
-        :param commitment_amount: Commitment fields
+        :param commitment_amount: Deprecated: use POST /commitments instead.
         :param commitment_duration:
-        :param commitment_overage_factor:
-        :param commitment_quantity:
-        :param commitment_time_buckets:
-        :param commitment_true_up_enabled:
+        :param commitment_overage_factor: Deprecated: use POST /commitments instead.
+        :param commitment_quantity: Deprecated: use POST /commitments instead.
+        :param commitment_time_buckets: Deprecated: use POST /commitments instead.
+        :param commitment_true_up_enabled: Deprecated: use POST /commitments instead.
         :param commitment_type:
-        :param commitment_windowed:
+        :param commitment_windowed: Deprecated: use POST /commitments instead.
         :param display_name:
         :param end_date:
         :param metadata:
@@ -6582,14 +6614,14 @@ class Subscriptions(BaseSDK):
         Use when adding a new charge or seat to a subscription (e.g. extra seat or one-time add). Supports price_id or inline price.
 
         :param id: Subscription ID
-        :param commitment_amount: Commitment fields
+        :param commitment_amount: Deprecated: use POST /commitments instead.
         :param commitment_duration:
-        :param commitment_overage_factor:
-        :param commitment_quantity:
-        :param commitment_time_buckets:
-        :param commitment_true_up_enabled:
+        :param commitment_overage_factor: Deprecated: use POST /commitments instead.
+        :param commitment_quantity: Deprecated: use POST /commitments instead.
+        :param commitment_time_buckets: Deprecated: use POST /commitments instead.
+        :param commitment_true_up_enabled: Deprecated: use POST /commitments instead.
         :param commitment_type:
-        :param commitment_windowed:
+        :param commitment_windowed: Deprecated: use POST /commitments instead.
         :param display_name:
         :param end_date:
         :param metadata:

@@ -20,8 +20,12 @@ class UsageAnalyticPointTypedDict(TypedDict):
     """
     computed_commitment_utilized_amount: NotRequired[str]
     r"""Commitment breakdown (only populated for windowed commitments)"""
+    computed_commitment_utilized_quantity: NotRequired[str]
+    r"""Usage units behind the commitment breakdown, for v2 commitments"""
     computed_overage_amount: NotRequired[str]
+    computed_overage_quantity: NotRequired[str]
     computed_true_up_amount: NotRequired[str]
+    computed_true_up_quantity: NotRequired[str]
     cost: NotRequired[str]
     r"""Cost is the final cost after discount (Subtotal - Discount)"""
     discount: NotRequired[str]
@@ -46,9 +50,16 @@ class UsageAnalyticPoint(BaseModel):
     computed_commitment_utilized_amount: Optional[str] = None
     r"""Commitment breakdown (only populated for windowed commitments)"""
 
+    computed_commitment_utilized_quantity: Optional[str] = None
+    r"""Usage units behind the commitment breakdown, for v2 commitments"""
+
     computed_overage_amount: Optional[str] = None
 
+    computed_overage_quantity: Optional[str] = None
+
     computed_true_up_amount: Optional[str] = None
+
+    computed_true_up_quantity: Optional[str] = None
 
     cost: Optional[str] = None
     r"""Cost is the final cost after discount (Subtotal - Discount)"""
@@ -70,8 +81,11 @@ class UsageAnalyticPoint(BaseModel):
             [
                 "buckets",
                 "computed_commitment_utilized_amount",
+                "computed_commitment_utilized_quantity",
                 "computed_overage_amount",
+                "computed_overage_quantity",
                 "computed_true_up_amount",
+                "computed_true_up_quantity",
                 "cost",
                 "discount",
                 "event_count",

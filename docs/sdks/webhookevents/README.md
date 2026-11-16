@@ -32,6 +32,7 @@
 * [post_webhook_events_feature_wallet_balance_alert](#post_webhook_events_feature_wallet_balance_alert) - feature.wallet_balance.alert
 * [post_webhook_events_invoice_communication_triggered](#post_webhook_events_invoice_communication_triggered) - invoice.communication.triggered
 * [post_webhook_events_invoice_create_drafted](#post_webhook_events_invoice_create_drafted) - invoice.create.drafted
+* [post_webhook_events_invoice_payment_failed](#post_webhook_events_invoice_payment_failed) - invoice.payment.failed
 * [post_webhook_events_invoice_payment_overdue](#post_webhook_events_invoice_payment_overdue) - invoice.payment.overdue
 * [post_webhook_events_invoice_sync_failed](#post_webhook_events_invoice_sync_failed) - invoice.sync.failed
 * [post_webhook_events_invoice_sync_success](#post_webhook_events_invoice_sync_success) - invoice.sync.success
@@ -1134,6 +1135,44 @@ with Tirdad(
 ### Response
 
 **[models.WebhookDtoInvoiceWebhookPayload](../../models/webhookdtoinvoicewebhookpayload.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## post_webhook_events_invoice_payment_failed
+
+Fired when a payment of an invoice does not succeed. `reason` is `payment_method_unavailable`, `provider_error` or `declined`; `is_auto_charge_attempt` is true when Tirdad charged the saved payment method. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="post_/webhook-events/invoice.payment.failed" method="post" path="/webhook-events/invoice.payment.failed" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.webhook_events.post_webhook_events_invoice_payment_failed()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.WebhookDtoInvoicePaymentFailedWebhookPayload](../../models/webhookdtoinvoicepaymentfailedwebhookpayload.md)**
 
 ### Errors
 

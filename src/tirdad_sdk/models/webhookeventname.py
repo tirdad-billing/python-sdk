@@ -56,6 +56,7 @@ WebhookEventName = Union[
         "invoice.update.voided",
         "invoice.update",
         "invoice.payment.overdue",
+        "invoice.payment.failed",
         "invoice.sync.success",
         "invoice.sync.failed",
         "wallet.credit_balance.dropped",

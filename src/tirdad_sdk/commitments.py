@@ -43,7 +43,6 @@ class Commitments(BaseSDK):
         ] = None,
         priority: Optional[int] = None,
         subscription_id: Optional[str] = None,
-        timezone: Optional[str] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -73,7 +72,6 @@ class Commitments(BaseSDK):
         :param overage_price:
         :param priority:
         :param subscription_id: SubscriptionID is required on POST /commitments and set server-side on inline commitments.
-        :param timezone:
         :param value:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -117,7 +115,6 @@ class Commitments(BaseSDK):
             scope=utils.get_pydantic_model(scope, models.CommitmentScopeInput),
             start_date=start_date,
             subscription_id=subscription_id,
-            timezone=timezone,
             type=type_,
             value=value,
         )
@@ -224,7 +221,6 @@ class Commitments(BaseSDK):
         ] = None,
         priority: Optional[int] = None,
         subscription_id: Optional[str] = None,
-        timezone: Optional[str] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -254,7 +250,6 @@ class Commitments(BaseSDK):
         :param overage_price:
         :param priority:
         :param subscription_id: SubscriptionID is required on POST /commitments and set server-side on inline commitments.
-        :param timezone:
         :param value:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -298,7 +293,6 @@ class Commitments(BaseSDK):
             scope=utils.get_pydantic_model(scope, models.CommitmentScopeInput),
             start_date=start_date,
             subscription_id=subscription_id,
-            timezone=timezone,
             type=type_,
             value=value,
         )
@@ -405,7 +399,6 @@ class Commitments(BaseSDK):
         ] = None,
         priority: Optional[int] = None,
         subscription_id: Optional[str] = None,
-        timezone: Optional[str] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -435,7 +428,6 @@ class Commitments(BaseSDK):
         :param overage_price:
         :param priority:
         :param subscription_id: SubscriptionID is required on POST /commitments and set server-side on inline commitments.
-        :param timezone:
         :param value:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -479,7 +471,6 @@ class Commitments(BaseSDK):
             scope=utils.get_pydantic_model(scope, models.CommitmentScopeInput),
             start_date=start_date,
             subscription_id=subscription_id,
-            timezone=timezone,
             type=type_,
             value=value,
         )
@@ -589,7 +580,6 @@ class Commitments(BaseSDK):
         ] = None,
         priority: Optional[int] = None,
         subscription_id: Optional[str] = None,
-        timezone: Optional[str] = None,
         value: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -619,7 +609,6 @@ class Commitments(BaseSDK):
         :param overage_price:
         :param priority:
         :param subscription_id: SubscriptionID is required on POST /commitments and set server-side on inline commitments.
-        :param timezone:
         :param value:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -663,7 +652,6 @@ class Commitments(BaseSDK):
             scope=utils.get_pydantic_model(scope, models.CommitmentScopeInput),
             start_date=start_date,
             subscription_id=subscription_id,
-            timezone=timezone,
             type=type_,
             value=value,
         )

@@ -27,15 +27,22 @@ class UpdateSubscriptionLineItemRequestTypedDict(TypedDict):
     billing_model: NotRequired[BillingModel]
     bucket_size: NotRequired[WindowSize]
     commitment_amount: NotRequired[float]
-    r"""Commitment fields"""
+    r"""Deprecated: use POST /commitments instead."""
     commitment_duration: NotRequired[BillingPeriod]
     commitment_overage_factor: NotRequired[float]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_quantity: NotRequired[float]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_time_buckets: NotRequired[List[CommitmentBucketRequestTypedDict]]
-    r"""Pointer so an explicit empty array can clear existing buckets (omission keeps them)."""
+    r"""Pointer so an explicit empty array can clear existing buckets (omission keeps them).
+
+    Deprecated: use POST /commitments instead.
+    """
     commitment_true_up_enabled: NotRequired[bool]
+    r"""Deprecated: use POST /commitments instead."""
     commitment_type: NotRequired[CommitmentType]
     commitment_windowed: NotRequired[bool]
+    r"""Deprecated: use POST /commitments instead."""
     effective_from: NotRequired[str]
     r"""EffectiveFrom for the existing line item (if not provided, defaults to now)"""
     metadata: NotRequired[Dict[str, str]]
@@ -59,22 +66,29 @@ class UpdateSubscriptionLineItemRequest(BaseModel):
     bucket_size: Optional[WindowSize] = None
 
     commitment_amount: Optional[float] = None
-    r"""Commitment fields"""
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_duration: Optional[BillingPeriod] = None
 
     commitment_overage_factor: Optional[float] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_quantity: Optional[float] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_time_buckets: Optional[List[CommitmentBucketRequest]] = None
-    r"""Pointer so an explicit empty array can clear existing buckets (omission keeps them)."""
+    r"""Pointer so an explicit empty array can clear existing buckets (omission keeps them).
+
+    Deprecated: use POST /commitments instead.
+    """
 
     commitment_true_up_enabled: Optional[bool] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     commitment_type: Optional[CommitmentType] = None
 
     commitment_windowed: Optional[bool] = None
+    r"""Deprecated: use POST /commitments instead."""
 
     effective_from: Optional[str] = None
     r"""EffectiveFrom for the existing line item (if not provided, defaults to now)"""

@@ -18,6 +18,8 @@ CustomerFilterOrder = Literal[
 
 
 class CustomerFilterTypedDict(TypedDict):
+    billing_entity_id: NotRequired[str]
+    r"""billing_entity_id filters by the customer's billing entity"""
     customer_ids: NotRequired[List[str]]
     email: NotRequired[str]
     end_time: NotRequired[datetime]
@@ -35,6 +37,9 @@ class CustomerFilterTypedDict(TypedDict):
 
 
 class CustomerFilter(BaseModel):
+    billing_entity_id: Optional[str] = None
+    r"""billing_entity_id filters by the customer's billing entity"""
+
     customer_ids: Optional[List[str]] = None
 
     email: Optional[str] = None
@@ -67,6 +72,7 @@ class CustomerFilter(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "billing_entity_id",
                 "customer_ids",
                 "email",
                 "end_time",

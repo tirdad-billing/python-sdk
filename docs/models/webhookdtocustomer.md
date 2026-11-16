@@ -11,6 +11,7 @@
 | `address_line2`       | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
 | `address_postal_code` | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
 | `address_state`       | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
+| `billing_entity_id`   | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
 | `email`               | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
 | `environment_id`      | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |
 | `external_id`         | *Optional[str]*       | :heavy_minus_sign:    | N/A                   |

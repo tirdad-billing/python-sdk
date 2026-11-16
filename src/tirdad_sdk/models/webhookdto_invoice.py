@@ -31,6 +31,7 @@ class WebhookDtoInvoiceTypedDict(TypedDict):
     amount_due: NotRequired[str]
     amount_paid: NotRequired[str]
     amount_remaining: NotRequired[str]
+    billing_entity_id: NotRequired[str]
     billing_period: NotRequired[str]
     billing_reason: NotRequired[str]
     billing_sequence: NotRequired[int]
@@ -75,6 +76,8 @@ class WebhookDtoInvoice(BaseModel):
     amount_paid: Optional[str] = None
 
     amount_remaining: Optional[str] = None
+
+    billing_entity_id: Optional[str] = None
 
     billing_period: Optional[str] = None
 
@@ -155,6 +158,7 @@ class WebhookDtoInvoice(BaseModel):
                 "amount_due",
                 "amount_paid",
                 "amount_remaining",
+                "billing_entity_id",
                 "billing_period",
                 "billing_reason",
                 "billing_sequence",

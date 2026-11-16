@@ -9,6 +9,7 @@ from .customer_contactperson import (
     CustomerContactPerson,
     CustomerContactPersonTypedDict,
 )
+from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
 from .taxtreatment import TaxTreatment
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -33,6 +34,8 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""address_state is the updated state, province, or region name with maximum 100 characters"""
     billing_currency: NotRequired[str]
     r"""billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency"""
+    billing_entity_id: NotRequired[str]
+    r"""billing_entity_id cannot be changed; sending it is rejected"""
     contact: NotRequired[str]
     r"""contact is the updated contact number for the customer (e.g. phone)"""
     contact_persons: NotRequired[List[CustomerContactPersonTypedDict]]
@@ -49,6 +52,7 @@ class UpdateCustomerRequestTypedDict(TypedDict):
     r"""metadata contains updated key-value pairs that will replace existing metadata"""
     name: NotRequired[str]
     r"""name is the updated name or company name for the customer"""
+    settings: NotRequired[SettingsOverrideTypedDict]
     tax_treatment: NotRequired[TaxTreatment]
     timezone: NotRequired[str]
     r"""timezone is the updated IANA timezone name for the customer (e.g. \"Asia/Kolkata\", \"America/New_York\")"""
@@ -78,6 +82,9 @@ class UpdateCustomerRequest(BaseModel):
     billing_currency: Optional[str] = None
     r"""billing_currency updates the invoicing currency; send \"\" to clear it back to the charge currency"""
 
+    billing_entity_id: Optional[str] = None
+    r"""billing_entity_id cannot be changed; sending it is rejected"""
+
     contact: Optional[str] = None
     r"""contact is the updated contact number for the customer (e.g. phone)"""
 
@@ -101,6 +108,8 @@ class UpdateCustomerRequest(BaseModel):
     name: Optional[str] = None
     r"""name is the updated name or company name for the customer"""
 
+    settings: Optional[SettingsOverride] = None
+
     tax_treatment: Optional[TaxTreatment] = None
 
     timezone: Optional[str] = None
@@ -117,6 +126,7 @@ class UpdateCustomerRequest(BaseModel):
                 "address_postal_code",
                 "address_state",
                 "billing_currency",
+                "billing_entity_id",
                 "contact",
                 "contact_persons",
                 "email",
@@ -124,6 +134,7 @@ class UpdateCustomerRequest(BaseModel):
                 "integration_entity_mapping",
                 "metadata",
                 "name",
+                "settings",
                 "tax_treatment",
                 "timezone",
             ]
