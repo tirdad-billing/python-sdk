@@ -86,4 +86,10 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"checkout.session.completed"`
 - `"checkout.session.failed"`
 - `"checkout.session.expired"`
+- `"checkout.session.cancelled"`
+- `"mandate.confirmed"`
+- `"mandate.rejected"`
+- `"mandate.cancelled"`
+- `"mandate.setup_attempt_failed"`
+- `"mandate.setup_expired"`
 - `"event.rejected"`

@@ -9,6 +9,7 @@ InstalmentKind = Union[
     Literal[
         "instalment",
         "settlement",
+        "cancellation_fee",
     ],
     UnrecognizedStr,
 ]

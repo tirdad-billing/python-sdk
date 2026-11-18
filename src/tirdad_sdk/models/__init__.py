@@ -68,6 +68,10 @@ if TYPE_CHECKING:
         AddonPriceSyncStatusResponseTypedDict,
     )
     from .addonstatus import AddonStatus
+    from .addpaymentmethodoptions import (
+        AddPaymentMethodOptions,
+        AddPaymentMethodOptionsTypedDict,
+    )
     from .address import Address, AddressTypedDict
     from .aggregatedentitlement import (
         AggregatedEntitlement,
@@ -217,6 +221,11 @@ if TYPE_CHECKING:
     from .cancelselfbillingcheckoutop import (
         CancelSelfBillingCheckoutRequest,
         CancelSelfBillingCheckoutRequestTypedDict,
+    )
+    from .cancelsetupintentop import (
+        CancelSetupIntentProvider,
+        CancelSetupIntentRequest,
+        CancelSetupIntentRequestTypedDict,
     )
     from .cancelsubscriptionop import (
         CancelSubscriptionRequestRequest,
@@ -647,6 +656,16 @@ if TYPE_CHECKING:
         DownloadTaskExportRequestTypedDict,
     )
     from .durationunit import DurationUnit
+    from .emaildeliverystatus import EmailDeliveryStatus
+    from .emaillogfilter import (
+        EmailLogFilter,
+        EmailLogFilterOrder,
+        EmailLogFilterTypedDict,
+    )
+    from .emaillogresponse import EmailLogResponse, EmailLogResponseTypedDict
+    from .emailprovider import EmailProvider
+    from .emailtemplatekey import EmailTemplateKey
+    from .emailtrigger import EmailTrigger
     from .entitlementaggregationmode import EntitlementAggregationMode
     from .entitlemententitytype import EntitlementEntityType
     from .entitlementfilter import (
@@ -900,6 +919,11 @@ if TYPE_CHECKING:
         GetScheduledTaskRequest,
         GetScheduledTaskRequestTypedDict,
     )
+    from .getsetupintentop import (
+        GetSetupIntentProvider,
+        GetSetupIntentRequest,
+        GetSetupIntentRequestTypedDict,
+    )
     from .getsubscriptionaddonassociationsop import (
         GetSubscriptionAddonAssociationsRequest,
         GetSubscriptionAddonAssociationsRequestTypedDict,
@@ -1005,6 +1029,7 @@ if TYPE_CHECKING:
     from .groupfilter import GroupFilter, GroupFilterOrder, GroupFilterTypedDict
     from .groupresponse import GroupResponse, GroupResponseTypedDict
     from .improvementdirection import ImprovementDirection
+    from .inflightcharge import InFlightCharge, InFlightChargeTypedDict
     from .ingesteventrequest import IngestEventRequest, IngestEventRequestTypedDict
     from .inheritanceaction import InheritanceAction
     from .inlinefxrate import InlineFXRate, InlineFXRateTypedDict
@@ -1012,6 +1037,11 @@ if TYPE_CHECKING:
     from .instalmentdelivery import InstalmentDelivery
     from .instalmentkind import InstalmentKind
     from .instalmentstatus import InstalmentStatus
+    from .integrationcapability import (
+        IntegrationCapability,
+        IntegrationCapabilityTypedDict,
+    )
+    from .integrationcapabilitytype import IntegrationCapabilityType
     from .integrationconfigentry import (
         IntegrationConfigEntry,
         IntegrationConfigEntryTypedDict,
@@ -1021,6 +1051,10 @@ if TYPE_CHECKING:
         IntegrationConfigResponseTypedDict,
     )
     from .integrationentitytype import IntegrationEntityType
+    from .integrationsresponse import (
+        IntegrationsResponse,
+        IntegrationsResponseTypedDict,
+    )
     from .invoicebillingentity import (
         InvoiceBillingEntity,
         InvoiceBillingEntityTypedDict,
@@ -1164,6 +1198,10 @@ if TYPE_CHECKING:
         ListCreditGrantsResponse,
         ListCreditGrantsResponseTypedDict,
     )
+    from .listcustomerpaymentintegrationsop import (
+        ListCustomerPaymentIntegrationsRequest,
+        ListCustomerPaymentIntegrationsRequestTypedDict,
+    )
     from .listcustomerpaymentmethodsop import (
         ListCustomerPaymentMethodsRequest,
         ListCustomerPaymentMethodsRequestTypedDict,
@@ -1171,6 +1209,10 @@ if TYPE_CHECKING:
     from .listcustomersresponse import (
         ListCustomersResponse,
         ListCustomersResponseTypedDict,
+    )
+    from .listemaillogsresponse import (
+        ListEmailLogsResponse,
+        ListEmailLogsResponseTypedDict,
     )
     from .listentitlementsresponse import (
         ListEntitlementsResponse,
@@ -1189,6 +1231,10 @@ if TYPE_CHECKING:
     from .listinstalmentsresponse import (
         ListInstalmentsResponse,
         ListInstalmentsResponseTypedDict,
+    )
+    from .listinvoiceemailsop import (
+        ListInvoiceEmailsRequest,
+        ListInvoiceEmailsRequestTypedDict,
     )
     from .listinvoicesresponse import (
         ListInvoicesResponse,
@@ -1371,6 +1417,7 @@ if TYPE_CHECKING:
         PaymentGatewayOptionsTypedDict,
     )
     from .paymentgatewaytype import PaymentGatewayType
+    from .paymentintegration import PaymentIntegration, PaymentIntegrationTypedDict
     from .paymentmethodstatus import PaymentMethodStatus
     from .paymentmethodtype import PaymentMethodType
     from .paymentresponse import PaymentResponse, PaymentResponseTypedDict
@@ -1476,6 +1523,10 @@ if TYPE_CHECKING:
         QueryAnalyticsViewRequestTypedDict,
     )
     from .queryfilter import QueryFilter, QueryFilterOrder, QueryFilterTypedDict
+    from .razorpaypaymentgatewayoptions import (
+        RazorpayPaymentGatewayOptions,
+        RazorpayPaymentGatewayOptionsTypedDict,
+    )
     from .recalculateinvoiceop import (
         RecalculateInvoiceRequest,
         RecalculateInvoiceRequestTypedDict,
@@ -1576,6 +1627,10 @@ if TYPE_CHECKING:
     from .s3compressiontype import S3CompressionType
     from .s3encryptiontype import S3EncryptionType
     from .s3jobconfig import S3JobConfig, S3JobConfigTypedDict
+    from .savedbankaccountdetails import (
+        SavedBankAccountDetails,
+        SavedBankAccountDetailsTypedDict,
+    )
     from .savedcarddetails import SavedCardDetails, SavedCardDetailsTypedDict
     from .savedpaymentmethod import SavedPaymentMethod, SavedPaymentMethodTypedDict
     from .savedpaymentmethodsresponse import (
@@ -1628,11 +1683,20 @@ if TYPE_CHECKING:
         SelfBillingSummaryResponse,
         SelfBillingSummaryResponseTypedDict,
     )
+    from .sendinvoiceemailop import (
+        SendInvoiceEmailRequestRequest,
+        SendInvoiceEmailRequestRequestTypedDict,
+    )
+    from .sendinvoiceemailrequest import (
+        SendInvoiceEmailRequest,
+        SendInvoiceEmailRequestTypedDict,
+    )
     from .serviceperiodcustomfields import (
         ServicePeriodCustomFields,
         ServicePeriodCustomFieldsTypedDict,
     )
     from .settingsoverride import SettingsOverride, SettingsOverrideTypedDict
+    from .setupintentresponse import SetupIntentResponse, SetupIntentResponseTypedDict
     from .shape import Shape
     from .sortcondition import SortCondition, SortConditionTypedDict
     from .sortdirection import SortDirection
@@ -1804,6 +1868,7 @@ if TYPE_CHECKING:
     )
     from .syncconfig import SyncConfig, SyncConfigTypedDict
     from .syncplanpricesop import SyncPlanPricesRequest, SyncPlanPricesRequestTypedDict
+    from .systementitytype import SystemEntityType
     from .taskresponse import TaskResponse, TaskResponseTypedDict
     from .taskstatus import TaskStatus
     from .tasktype import TaskType
@@ -2242,6 +2307,23 @@ if TYPE_CHECKING:
         WebhookDtoInvoiceWebhookPayload,
         WebhookDtoInvoiceWebhookPayloadTypedDict,
     )
+    from .webhookdto_mandate import WebhookDtoMandate, WebhookDtoMandateTypedDict
+    from .webhookdto_mandatebankaccount import (
+        WebhookDtoMandateBankAccount,
+        WebhookDtoMandateBankAccountTypedDict,
+    )
+    from .webhookdto_mandatecard import (
+        WebhookDtoMandateCard,
+        WebhookDtoMandateCardTypedDict,
+    )
+    from .webhookdto_mandateupi import (
+        WebhookDtoMandateUPI,
+        WebhookDtoMandateUPITypedDict,
+    )
+    from .webhookdto_mandatewebhookpayload import (
+        WebhookDtoMandateWebhookPayload,
+        WebhookDtoMandateWebhookPayloadTypedDict,
+    )
     from .webhookdto_meter import WebhookDtoMeter, WebhookDtoMeterTypedDict
     from .webhookdto_payment import WebhookDtoPayment, WebhookDtoPaymentTypedDict
     from .webhookdto_paymentattempt import (
@@ -2388,6 +2470,8 @@ __all__ = [
     "AddAddonToSubscriptionResponseTypedDict",
     "AddLineItemRequest",
     "AddLineItemRequestTypedDict",
+    "AddPaymentMethodOptions",
+    "AddPaymentMethodOptionsTypedDict",
     "Addon",
     "AddonAssociationEntityType",
     "AddonAssociationResponse",
@@ -2513,6 +2597,9 @@ __all__ = [
     "CancelScheduleResponseTypedDict",
     "CancelSelfBillingCheckoutRequest",
     "CancelSelfBillingCheckoutRequestTypedDict",
+    "CancelSetupIntentProvider",
+    "CancelSetupIntentRequest",
+    "CancelSetupIntentRequestTypedDict",
     "CancelSubscriptionRequest",
     "CancelSubscriptionRequestRequest",
     "CancelSubscriptionRequestRequestTypedDict",
@@ -2836,6 +2923,15 @@ __all__ = [
     "DownloadTaskExportRequest",
     "DownloadTaskExportRequestTypedDict",
     "DurationUnit",
+    "EmailDeliveryStatus",
+    "EmailLogFilter",
+    "EmailLogFilterOrder",
+    "EmailLogFilterTypedDict",
+    "EmailLogResponse",
+    "EmailLogResponseTypedDict",
+    "EmailProvider",
+    "EmailTemplateKey",
+    "EmailTrigger",
     "EntitlementAggregationMode",
     "EntitlementEntityType",
     "EntitlementFilter",
@@ -3045,6 +3141,9 @@ __all__ = [
     "GetRefundRequestTypedDict",
     "GetScheduledTaskRequest",
     "GetScheduledTaskRequestTypedDict",
+    "GetSetupIntentProvider",
+    "GetSetupIntentRequest",
+    "GetSetupIntentRequestTypedDict",
     "GetSubscriptionAddonAssociationsRequest",
     "GetSubscriptionAddonAssociationsRequestTypedDict",
     "GetSubscriptionEntitlementsRequest",
@@ -3122,6 +3221,8 @@ __all__ = [
     "GroupedInvoicingChildRequest",
     "GroupedInvoicingChildRequestTypedDict",
     "ImprovementDirection",
+    "InFlightCharge",
+    "InFlightChargeTypedDict",
     "IngestEventRequest",
     "IngestEventRequestTypedDict",
     "InheritanceAction",
@@ -3131,11 +3232,16 @@ __all__ = [
     "InstalmentDelivery",
     "InstalmentKind",
     "InstalmentStatus",
+    "IntegrationCapability",
+    "IntegrationCapabilityType",
+    "IntegrationCapabilityTypedDict",
     "IntegrationConfigEntry",
     "IntegrationConfigEntryTypedDict",
     "IntegrationConfigResponse",
     "IntegrationConfigResponseTypedDict",
     "IntegrationEntityType",
+    "IntegrationsResponse",
+    "IntegrationsResponseTypedDict",
     "InvoiceBillingEntity",
     "InvoiceBillingEntityTypedDict",
     "InvoiceBillingReason",
@@ -3234,10 +3340,14 @@ __all__ = [
     "ListCreditGrantApplicationsResponseTypedDict",
     "ListCreditGrantsResponse",
     "ListCreditGrantsResponseTypedDict",
+    "ListCustomerPaymentIntegrationsRequest",
+    "ListCustomerPaymentIntegrationsRequestTypedDict",
     "ListCustomerPaymentMethodsRequest",
     "ListCustomerPaymentMethodsRequestTypedDict",
     "ListCustomersResponse",
     "ListCustomersResponseTypedDict",
+    "ListEmailLogsResponse",
+    "ListEmailLogsResponseTypedDict",
     "ListEntitlementsResponse",
     "ListEntitlementsResponseTypedDict",
     "ListEntityIntegrationMappingsResponse",
@@ -3250,6 +3360,8 @@ __all__ = [
     "ListGroupsResponseTypedDict",
     "ListInstalmentsResponse",
     "ListInstalmentsResponseTypedDict",
+    "ListInvoiceEmailsRequest",
+    "ListInvoiceEmailsRequestTypedDict",
     "ListInvoicesResponse",
     "ListInvoicesResponseTypedDict",
     "ListJournalEntriesResponse",
@@ -3381,6 +3493,8 @@ __all__ = [
     "PaymentGatewayOptions",
     "PaymentGatewayOptionsTypedDict",
     "PaymentGatewayType",
+    "PaymentIntegration",
+    "PaymentIntegrationTypedDict",
     "PaymentMethodStatus",
     "PaymentMethodType",
     "PaymentResponse",
@@ -3474,6 +3588,8 @@ __all__ = [
     "QueryFilter",
     "QueryFilterOrder",
     "QueryFilterTypedDict",
+    "RazorpayPaymentGatewayOptions",
+    "RazorpayPaymentGatewayOptionsTypedDict",
     "RecalculateInvoiceRequest",
     "RecalculateInvoiceRequestTypedDict",
     "RecalculateInvoiceV2Request",
@@ -3558,6 +3674,8 @@ __all__ = [
     "S3EncryptionType",
     "S3JobConfig",
     "S3JobConfigTypedDict",
+    "SavedBankAccountDetails",
+    "SavedBankAccountDetailsTypedDict",
     "SavedCardDetails",
     "SavedCardDetailsTypedDict",
     "SavedPaymentMethod",
@@ -3597,10 +3715,16 @@ __all__ = [
     "SelfBillingStatusResponseTypedDict",
     "SelfBillingSummaryResponse",
     "SelfBillingSummaryResponseTypedDict",
+    "SendInvoiceEmailRequest",
+    "SendInvoiceEmailRequestRequest",
+    "SendInvoiceEmailRequestRequestTypedDict",
+    "SendInvoiceEmailRequestTypedDict",
     "ServicePeriodCustomFields",
     "ServicePeriodCustomFieldsTypedDict",
     "SettingsOverride",
     "SettingsOverrideTypedDict",
+    "SetupIntentResponse",
+    "SetupIntentResponseTypedDict",
     "Shape",
     "SortCondition",
     "SortConditionTypedDict",
@@ -3710,6 +3834,7 @@ __all__ = [
     "SyncConfigTypedDict",
     "SyncPlanPricesRequest",
     "SyncPlanPricesRequestTypedDict",
+    "SystemEntityType",
     "TaskResponse",
     "TaskResponseTypedDict",
     "TaskStatus",
@@ -4017,6 +4142,16 @@ __all__ = [
     "WebhookDtoInvoiceTypedDict",
     "WebhookDtoInvoiceWebhookPayload",
     "WebhookDtoInvoiceWebhookPayloadTypedDict",
+    "WebhookDtoMandate",
+    "WebhookDtoMandateBankAccount",
+    "WebhookDtoMandateBankAccountTypedDict",
+    "WebhookDtoMandateCard",
+    "WebhookDtoMandateCardTypedDict",
+    "WebhookDtoMandateTypedDict",
+    "WebhookDtoMandateUPI",
+    "WebhookDtoMandateUPITypedDict",
+    "WebhookDtoMandateWebhookPayload",
+    "WebhookDtoMandateWebhookPayloadTypedDict",
     "WebhookDtoMeter",
     "WebhookDtoMeterTypedDict",
     "WebhookDtoPayment",
@@ -4131,6 +4266,8 @@ _dynamic_imports: dict[str, str] = {
     "AddonPriceSyncStatusResponse": ".addonpricesyncstatusresponse",
     "AddonPriceSyncStatusResponseTypedDict": ".addonpricesyncstatusresponse",
     "AddonStatus": ".addonstatus",
+    "AddPaymentMethodOptions": ".addpaymentmethodoptions",
+    "AddPaymentMethodOptionsTypedDict": ".addpaymentmethodoptions",
     "Address": ".address",
     "AddressTypedDict": ".address",
     "AggregatedEntitlement": ".aggregatedentitlement",
@@ -4251,6 +4388,9 @@ _dynamic_imports: dict[str, str] = {
     "CancelScheduleResponseTypedDict": ".cancelscheduleresponse",
     "CancelSelfBillingCheckoutRequest": ".cancelselfbillingcheckoutop",
     "CancelSelfBillingCheckoutRequestTypedDict": ".cancelselfbillingcheckoutop",
+    "CancelSetupIntentProvider": ".cancelsetupintentop",
+    "CancelSetupIntentRequest": ".cancelsetupintentop",
+    "CancelSetupIntentRequestTypedDict": ".cancelsetupintentop",
     "CancelSubscriptionRequestRequest": ".cancelsubscriptionop",
     "CancelSubscriptionRequestRequestTypedDict": ".cancelsubscriptionop",
     "CancelSubscriptionRequest": ".cancelsubscriptionrequest",
@@ -4565,6 +4705,15 @@ _dynamic_imports: dict[str, str] = {
     "DownloadTaskExportRequest": ".downloadtaskexportop",
     "DownloadTaskExportRequestTypedDict": ".downloadtaskexportop",
     "DurationUnit": ".durationunit",
+    "EmailDeliveryStatus": ".emaildeliverystatus",
+    "EmailLogFilter": ".emaillogfilter",
+    "EmailLogFilterOrder": ".emaillogfilter",
+    "EmailLogFilterTypedDict": ".emaillogfilter",
+    "EmailLogResponse": ".emaillogresponse",
+    "EmailLogResponseTypedDict": ".emaillogresponse",
+    "EmailProvider": ".emailprovider",
+    "EmailTemplateKey": ".emailtemplatekey",
+    "EmailTrigger": ".emailtrigger",
     "EntitlementAggregationMode": ".entitlementaggregationmode",
     "EntitlementEntityType": ".entitlemententitytype",
     "EntitlementFilter": ".entitlementfilter",
@@ -4772,6 +4921,9 @@ _dynamic_imports: dict[str, str] = {
     "GetRefundRequestTypedDict": ".getrefundop",
     "GetScheduledTaskRequest": ".getscheduledtaskop",
     "GetScheduledTaskRequestTypedDict": ".getscheduledtaskop",
+    "GetSetupIntentProvider": ".getsetupintentop",
+    "GetSetupIntentRequest": ".getsetupintentop",
+    "GetSetupIntentRequestTypedDict": ".getsetupintentop",
     "GetSubscriptionAddonAssociationsRequest": ".getsubscriptionaddonassociationsop",
     "GetSubscriptionAddonAssociationsRequestTypedDict": ".getsubscriptionaddonassociationsop",
     "GetSubscriptionEntitlementsRequest": ".getsubscriptionentitlementsop",
@@ -4851,6 +5003,8 @@ _dynamic_imports: dict[str, str] = {
     "GroupResponse": ".groupresponse",
     "GroupResponseTypedDict": ".groupresponse",
     "ImprovementDirection": ".improvementdirection",
+    "InFlightCharge": ".inflightcharge",
+    "InFlightChargeTypedDict": ".inflightcharge",
     "IngestEventRequest": ".ingesteventrequest",
     "IngestEventRequestTypedDict": ".ingesteventrequest",
     "InheritanceAction": ".inheritanceaction",
@@ -4860,11 +5014,16 @@ _dynamic_imports: dict[str, str] = {
     "InstalmentDelivery": ".instalmentdelivery",
     "InstalmentKind": ".instalmentkind",
     "InstalmentStatus": ".instalmentstatus",
+    "IntegrationCapability": ".integrationcapability",
+    "IntegrationCapabilityTypedDict": ".integrationcapability",
+    "IntegrationCapabilityType": ".integrationcapabilitytype",
     "IntegrationConfigEntry": ".integrationconfigentry",
     "IntegrationConfigEntryTypedDict": ".integrationconfigentry",
     "IntegrationConfigResponse": ".integrationconfigresponse",
     "IntegrationConfigResponseTypedDict": ".integrationconfigresponse",
     "IntegrationEntityType": ".integrationentitytype",
+    "IntegrationsResponse": ".integrationsresponse",
+    "IntegrationsResponseTypedDict": ".integrationsresponse",
     "InvoiceBillingEntity": ".invoicebillingentity",
     "InvoiceBillingEntityTypedDict": ".invoicebillingentity",
     "InvoiceBillingReason": ".invoicebillingreason",
@@ -4961,10 +5120,14 @@ _dynamic_imports: dict[str, str] = {
     "ListCreditGrantApplicationsResponseTypedDict": ".listcreditgrantapplicationsresponse",
     "ListCreditGrantsResponse": ".listcreditgrantsresponse",
     "ListCreditGrantsResponseTypedDict": ".listcreditgrantsresponse",
+    "ListCustomerPaymentIntegrationsRequest": ".listcustomerpaymentintegrationsop",
+    "ListCustomerPaymentIntegrationsRequestTypedDict": ".listcustomerpaymentintegrationsop",
     "ListCustomerPaymentMethodsRequest": ".listcustomerpaymentmethodsop",
     "ListCustomerPaymentMethodsRequestTypedDict": ".listcustomerpaymentmethodsop",
     "ListCustomersResponse": ".listcustomersresponse",
     "ListCustomersResponseTypedDict": ".listcustomersresponse",
+    "ListEmailLogsResponse": ".listemaillogsresponse",
+    "ListEmailLogsResponseTypedDict": ".listemaillogsresponse",
     "ListEntitlementsResponse": ".listentitlementsresponse",
     "ListEntitlementsResponseTypedDict": ".listentitlementsresponse",
     "ListEntityIntegrationMappingsResponse": ".listentityintegrationmappingsresponse",
@@ -4977,6 +5140,8 @@ _dynamic_imports: dict[str, str] = {
     "ListGroupsResponseTypedDict": ".listgroupsresponse",
     "ListInstalmentsResponse": ".listinstalmentsresponse",
     "ListInstalmentsResponseTypedDict": ".listinstalmentsresponse",
+    "ListInvoiceEmailsRequest": ".listinvoiceemailsop",
+    "ListInvoiceEmailsRequestTypedDict": ".listinvoiceemailsop",
     "ListInvoicesResponse": ".listinvoicesresponse",
     "ListInvoicesResponseTypedDict": ".listinvoicesresponse",
     "ListJournalEntriesResponse": ".listjournalentriesresponse",
@@ -5107,6 +5272,8 @@ _dynamic_imports: dict[str, str] = {
     "PaymentGatewayOptions": ".paymentgatewayoptions",
     "PaymentGatewayOptionsTypedDict": ".paymentgatewayoptions",
     "PaymentGatewayType": ".paymentgatewaytype",
+    "PaymentIntegration": ".paymentintegration",
+    "PaymentIntegrationTypedDict": ".paymentintegration",
     "PaymentMethodStatus": ".paymentmethodstatus",
     "PaymentMethodType": ".paymentmethodtype",
     "PaymentResponse": ".paymentresponse",
@@ -5196,6 +5363,8 @@ _dynamic_imports: dict[str, str] = {
     "QueryFilter": ".queryfilter",
     "QueryFilterOrder": ".queryfilter",
     "QueryFilterTypedDict": ".queryfilter",
+    "RazorpayPaymentGatewayOptions": ".razorpaypaymentgatewayoptions",
+    "RazorpayPaymentGatewayOptionsTypedDict": ".razorpaypaymentgatewayoptions",
     "RecalculateInvoiceRequest": ".recalculateinvoiceop",
     "RecalculateInvoiceRequestTypedDict": ".recalculateinvoiceop",
     "RecalculateInvoiceV2Request": ".recalculateinvoicev2op",
@@ -5283,6 +5452,8 @@ _dynamic_imports: dict[str, str] = {
     "S3EncryptionType": ".s3encryptiontype",
     "S3JobConfig": ".s3jobconfig",
     "S3JobConfigTypedDict": ".s3jobconfig",
+    "SavedBankAccountDetails": ".savedbankaccountdetails",
+    "SavedBankAccountDetailsTypedDict": ".savedbankaccountdetails",
     "SavedCardDetails": ".savedcarddetails",
     "SavedCardDetailsTypedDict": ".savedcarddetails",
     "SavedPaymentMethod": ".savedpaymentmethod",
@@ -5321,10 +5492,16 @@ _dynamic_imports: dict[str, str] = {
     "SelfBillingStatusResponseTypedDict": ".selfbillingstatusresponse",
     "SelfBillingSummaryResponse": ".selfbillingsummaryresponse",
     "SelfBillingSummaryResponseTypedDict": ".selfbillingsummaryresponse",
+    "SendInvoiceEmailRequestRequest": ".sendinvoiceemailop",
+    "SendInvoiceEmailRequestRequestTypedDict": ".sendinvoiceemailop",
+    "SendInvoiceEmailRequest": ".sendinvoiceemailrequest",
+    "SendInvoiceEmailRequestTypedDict": ".sendinvoiceemailrequest",
     "ServicePeriodCustomFields": ".serviceperiodcustomfields",
     "ServicePeriodCustomFieldsTypedDict": ".serviceperiodcustomfields",
     "SettingsOverride": ".settingsoverride",
     "SettingsOverrideTypedDict": ".settingsoverride",
+    "SetupIntentResponse": ".setupintentresponse",
+    "SetupIntentResponseTypedDict": ".setupintentresponse",
     "Shape": ".shape",
     "SortCondition": ".sortcondition",
     "SortConditionTypedDict": ".sortcondition",
@@ -5430,6 +5607,7 @@ _dynamic_imports: dict[str, str] = {
     "SyncConfigTypedDict": ".syncconfig",
     "SyncPlanPricesRequest": ".syncplanpricesop",
     "SyncPlanPricesRequestTypedDict": ".syncplanpricesop",
+    "SystemEntityType": ".systementitytype",
     "TaskResponse": ".taskresponse",
     "TaskResponseTypedDict": ".taskresponse",
     "TaskStatus": ".taskstatus",
@@ -5736,6 +5914,16 @@ _dynamic_imports: dict[str, str] = {
     "WebhookDtoInvoiceSyncWebhookPayloadTypedDict": ".webhookdto_invoicesyncwebhookpayload",
     "WebhookDtoInvoiceWebhookPayload": ".webhookdto_invoicewebhookpayload",
     "WebhookDtoInvoiceWebhookPayloadTypedDict": ".webhookdto_invoicewebhookpayload",
+    "WebhookDtoMandate": ".webhookdto_mandate",
+    "WebhookDtoMandateTypedDict": ".webhookdto_mandate",
+    "WebhookDtoMandateBankAccount": ".webhookdto_mandatebankaccount",
+    "WebhookDtoMandateBankAccountTypedDict": ".webhookdto_mandatebankaccount",
+    "WebhookDtoMandateCard": ".webhookdto_mandatecard",
+    "WebhookDtoMandateCardTypedDict": ".webhookdto_mandatecard",
+    "WebhookDtoMandateUPI": ".webhookdto_mandateupi",
+    "WebhookDtoMandateUPITypedDict": ".webhookdto_mandateupi",
+    "WebhookDtoMandateWebhookPayload": ".webhookdto_mandatewebhookpayload",
+    "WebhookDtoMandateWebhookPayloadTypedDict": ".webhookdto_mandatewebhookpayload",
     "WebhookDtoMeter": ".webhookdto_meter",
     "WebhookDtoMeterTypedDict": ".webhookdto_meter",
     "WebhookDtoPayment": ".webhookdto_payment",

@@ -24,6 +24,7 @@ ListPaymentsStatus = Literal[
 class ListPaymentsRequestTypedDict(TypedDict):
     currency: NotRequired[str]
     destination_id: NotRequired[str]
+    destination_ids: NotRequired[List[str]]
     destination_type: NotRequired[str]
     end_time: NotRequired[str]
     expand: NotRequired[str]
@@ -53,6 +54,11 @@ class ListPaymentsRequest(BaseModel):
     destination_id: Annotated[
         Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+
+    destination_ids: Annotated[
+        Optional[List[str]],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
 
     destination_type: Annotated[
@@ -143,6 +149,7 @@ class ListPaymentsRequest(BaseModel):
             [
                 "currency",
                 "destination_id",
+                "destination_ids",
                 "destination_type",
                 "end_time",
                 "expand",

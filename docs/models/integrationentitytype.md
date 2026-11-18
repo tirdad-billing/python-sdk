@@ -26,3 +26,4 @@ This is an open enum. Unrecognized values will not fail type checks.
 - `"price"`
 - `"invoice_line_item"`
 - `"subscription_line_item"`
+- `"payment_method_setup"`

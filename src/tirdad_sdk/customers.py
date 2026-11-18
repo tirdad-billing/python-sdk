@@ -962,6 +962,7 @@ class Customers(BaseSDK):
         self,
         *,
         external_id: str,
+        refresh_grants: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -972,6 +973,7 @@ class Customers(BaseSDK):
         Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
 
         :param external_id: Customer External ID
+        :param refresh_grants: Evaluate entitlement grants before returning their usage (slower)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -989,6 +991,7 @@ class Customers(BaseSDK):
 
         request = models.GetCustomerEntitlementsByExternalIDRequest(
             external_id=external_id,
+            refresh_grants=refresh_grants,
         )
 
         req = self._build_request(
@@ -1063,6 +1066,7 @@ class Customers(BaseSDK):
         self,
         *,
         external_id: str,
+        refresh_grants: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -1073,6 +1077,7 @@ class Customers(BaseSDK):
         Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
 
         :param external_id: Customer External ID
+        :param refresh_grants: Evaluate entitlement grants before returning their usage (slower)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -1090,6 +1095,7 @@ class Customers(BaseSDK):
 
         request = models.GetCustomerEntitlementsByExternalIDRequest(
             external_id=external_id,
+            refresh_grants=refresh_grants,
         )
 
         req = self._build_request_async(
@@ -1879,6 +1885,7 @@ class Customers(BaseSDK):
         customer_lookup_key: Optional[str] = None,
         feature_ids: Optional[Iterable[str]] = None,
         feature_lookup_keys: Optional[Iterable[str]] = None,
+        refresh_grants: Optional[bool] = None,
         subscription_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -1893,6 +1900,7 @@ class Customers(BaseSDK):
         :param customer_lookup_key:
         :param feature_ids:
         :param feature_lookup_keys:
+        :param refresh_grants: RefreshGrants evaluates entitlement grants before returning their usage, so the read is slower.
         :param subscription_ids:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -1916,6 +1924,7 @@ class Customers(BaseSDK):
             feature_lookup_keys=utils.unmarshal(
                 feature_lookup_keys, Optional[List[str]]
             ),
+            refresh_grants=refresh_grants,
             subscription_ids=utils.unmarshal(subscription_ids, Optional[List[str]]),
         )
 
@@ -1994,6 +2003,7 @@ class Customers(BaseSDK):
         customer_lookup_key: Optional[str] = None,
         feature_ids: Optional[Iterable[str]] = None,
         feature_lookup_keys: Optional[Iterable[str]] = None,
+        refresh_grants: Optional[bool] = None,
         subscription_ids: Optional[Iterable[str]] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
@@ -2008,6 +2018,7 @@ class Customers(BaseSDK):
         :param customer_lookup_key:
         :param feature_ids:
         :param feature_lookup_keys:
+        :param refresh_grants: RefreshGrants evaluates entitlement grants before returning their usage, so the read is slower.
         :param subscription_ids:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
@@ -2031,6 +2042,7 @@ class Customers(BaseSDK):
             feature_lookup_keys=utils.unmarshal(
                 feature_lookup_keys, Optional[List[str]]
             ),
+            refresh_grants=refresh_grants,
             subscription_ids=utils.unmarshal(subscription_ids, Optional[List[str]]),
         )
 
@@ -2502,6 +2514,7 @@ class Customers(BaseSDK):
         self,
         *,
         id: str,
+        refresh_grants: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -2512,6 +2525,7 @@ class Customers(BaseSDK):
         Use when checking what a customer can access (e.g. feature gating or usage limits). Supports optional filters (feature_ids, subscription_ids).
 
         :param id: Customer ID
+        :param refresh_grants: Evaluate entitlement grants before returning their usage (slower)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -2529,6 +2543,7 @@ class Customers(BaseSDK):
 
         request = models.GetCustomerEntitlementsRequest(
             id=id,
+            refresh_grants=refresh_grants,
         )
 
         req = self._build_request(
@@ -2603,6 +2618,7 @@ class Customers(BaseSDK):
         self,
         *,
         id: str,
+        refresh_grants: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -2613,6 +2629,7 @@ class Customers(BaseSDK):
         Use when checking what a customer can access (e.g. feature gating or usage limits). Supports optional filters (feature_ids, subscription_ids).
 
         :param id: Customer ID
+        :param refresh_grants: Evaluate entitlement grants before returning their usage (slower)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -2630,6 +2647,7 @@ class Customers(BaseSDK):
 
         request = models.GetCustomerEntitlementsRequest(
             id=id,
+            refresh_grants=refresh_grants,
         )
 
         req = self._build_request_async(
@@ -2880,6 +2898,204 @@ class Customers(BaseSDK):
                 models.ListCreditGrantApplicationsResponse, http_res
             )
         if utils.match_response(http_res, ["400", "404"], "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    def list_customer_payment_integrations(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.IntegrationsResponse:
+        r"""List customer payment integrations
+
+        Use to learn which connected gateways can serve this customer and what each can do: check out, auto-charge, list methods, add a method (with the method types it sets up, e.g. enach for Razorpay), set a default.
+
+        :param id: Customer ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListCustomerPaymentIntegrationsRequest(
+            id=id,
+        )
+
+        req = self._build_request(
+            method="GET",
+            path="/customers/{id}/payment-integrations",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listCustomerPaymentIntegrations",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.IntegrationsResponse, http_res)
+        if utils.match_response(http_res, "404", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "500", "application/json"):
+            response_data = unmarshal_json_response(
+                models.errors.ErrorResponseData, http_res
+            )
+            raise models.errors.ErrorResponse(response_data, http_res)
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise models.errors.TirdadDefaultError(
+                "API error occurred", http_res, http_res_text
+            )
+
+        raise models.errors.TirdadDefaultError("Unexpected response received", http_res)
+
+    async def list_customer_payment_integrations_async(
+        self,
+        *,
+        id: str,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> models.IntegrationsResponse:
+        r"""List customer payment integrations
+
+        Use to learn which connected gateways can serve this customer and what each can do: check out, auto-charge, list methods, add a method (with the method types it sets up, e.g. enach for Razorpay), set a default.
+
+        :param id: Customer ID
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        request = models.ListCustomerPaymentIntegrationsRequest(
+            id=id,
+        )
+
+        req = self._build_request_async(
+            method="GET",
+            path="/customers/{id}/payment-integrations",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            allow_empty_value=None,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="listCustomerPaymentIntegrations",
+                oauth2_scopes=None,
+                security_source=self.sdk_configuration.security,
+                tags=["Customers"],
+                extensions={"x-scope": "read"},
+            ),
+            request=req,
+            is_error_status_code=lambda c: utils.match_status_codes(["4XX", "5XX"], c),
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return unmarshal_json_response(models.IntegrationsResponse, http_res)
+        if utils.match_response(http_res, "404", "application/json"):
             response_data = unmarshal_json_response(
                 models.errors.ErrorResponseData, http_res
             )

@@ -17,7 +17,7 @@ class TimeOfDayBucketTypedDict(TypedDict):
     r"""ID is server-assigned. Stable for the lifetime of the line item;
     invoice breakdown and analytics responses reference this ID.
     """
-    overage_factor: NotRequired[float]
+    overage_factor: NotRequired[str]
     price_id: NotRequired[str]
     r"""PriceID is the SUBSCRIPTION-scoped price created at bucket-creation time.
     Immutable post-create; changing pricing requires a successor line item.
@@ -38,7 +38,7 @@ class TimeOfDayBucket(BaseModel):
     invoice breakdown and analytics responses reference this ID.
     """
 
-    overage_factor: Optional[float] = None
+    overage_factor: Optional[str] = None
 
     price_id: Optional[str] = None
     r"""PriceID is the SUBSCRIPTION-scoped price created at bucket-creation time.

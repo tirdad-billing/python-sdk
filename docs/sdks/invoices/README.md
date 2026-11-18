@@ -5,12 +5,15 @@
 ### Available Operations
 
 * [get_customer_invoice_summary](#get_customer_invoice_summary) - Get customer invoice summary
+* [query_email](#query_email) - Search emails
 * [create_invoice](#create_invoice) - Create one-off invoice
 * [get_invoice_preview](#get_invoice_preview) - Get invoice preview
 * [query_invoice](#query_invoice) - Query invoices
 * [get_invoice](#get_invoice) - Get invoice
 * [update_invoice](#update_invoice) - Update invoice
 * [trigger_invoice_comms_webhook](#trigger_invoice_comms_webhook) - Trigger invoice communication webhook
+* [send_invoice_email](#send_invoice_email) - Email invoice to customer
+* [list_invoice_emails](#list_invoice_emails) - List invoice emails
 * [finalize_invoice](#finalize_invoice) - Finalize invoice
 * [execute_invoice_modify](#execute_invoice_modify) - Execute invoice modification
 * [update_invoice_payment_status](#update_invoice_payment_status) - Update invoice payment status
@@ -52,6 +55,59 @@ with Tirdad(
 ### Response
 
 **[models.CustomerMultiCurrencyInvoiceSummary](../../models/customermulticurrencyinvoicesummary.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400                              | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## query_email
+
+Use when reviewing emails sent to customers, for example every bounced email this month or every email to one customer. Filter by delivery status, trigger, customer, document and date. Newest first; paginated.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="queryEmail" method="post" path="/emails/search" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.invoices.query_email()
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `customer_ids`                                                              | List[*str*]                                                                 | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `delivery_statuses`                                                         | List[[models.EmailDeliveryStatus](../../models/emaildeliverystatus.md)]     | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `end_time`                                                                  | [date](https://docs.python.org/3/library/datetime.html#date-objects)        | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `entity_ids`                                                                | List[*str*]                                                                 | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `entity_type`                                                               | [Optional[models.SystemEntityType]](../../models/systementitytype.md)       | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `expand`                                                                    | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `limit`                                                                     | *Optional[int]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `offset`                                                                    | *Optional[int]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `order`                                                                     | [Optional[models.EmailLogFilterOrder]](../../models/emaillogfilterorder.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `sort`                                                                      | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `start_time`                                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects)        | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `status`                                                                    | [Optional[models.Status]](../../models/status.md)                           | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `triggers`                                                                  | List[[models.EmailTrigger](../../models/emailtrigger.md)]                   | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
+
+### Response
+
+**[models.ListEmailLogsResponse](../../models/listemaillogsresponse.md)**
 
 ### Errors
 
@@ -375,6 +431,91 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## send_invoice_email
+
+Use when you want Tirdad to email a finalized invoice to the customer, with a link to the hosted invoice and the PDF attached. Sends to the customer's email unless `to` is given. Returns the queued email; delivery happens in the background.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="sendInvoiceEmail" method="post" path="/invoices/{id}/email" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.invoices.send_invoice_email(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Invoice ID                                                          |
+| `cc`                                                                | List[*str*]                                                         | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `idempotency_key`                                                   | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `to`                                                                | List[*str*]                                                         | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.EmailLogResponse](../../models/emaillogresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## list_invoice_emails
+
+Use when showing which emails were sent for an invoice and whether each was delivered. Newest first.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="listInvoiceEmails" method="get" path="/invoices/{id}/emails" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.invoices.list_invoice_emails(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Invoice ID                                                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.ListEmailLogsResponse](../../models/listemaillogsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 404                              | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 

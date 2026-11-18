@@ -13,6 +13,8 @@ class GetCustomerUsageSummaryRequestTypedDict(TypedDict):
     customer_lookup_key: NotRequired[str]
     feature_ids: NotRequired[List[str]]
     feature_lookup_keys: NotRequired[List[str]]
+    refresh_grants: NotRequired[bool]
+    r"""RefreshGrants evaluates entitlement grants before returning their usage, so the read is slower."""
     subscription_ids: NotRequired[List[str]]
 
 
@@ -37,6 +39,12 @@ class GetCustomerUsageSummaryRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
     ] = None
 
+    refresh_grants: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""RefreshGrants evaluates entitlement grants before returning their usage, so the read is slower."""
+
     subscription_ids: Annotated[
         Optional[List[str]],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=False)),
@@ -50,6 +58,7 @@ class GetCustomerUsageSummaryRequest(BaseModel):
                 "customer_lookup_key",
                 "feature_ids",
                 "feature_lookup_keys",
+                "refresh_grants",
                 "subscription_ids",
             ]
         )

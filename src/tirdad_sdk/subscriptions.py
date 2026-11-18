@@ -1683,7 +1683,8 @@ class Subscriptions(BaseSDK):
         :param commitment_true_up_enabled: Deprecated: use POST /commitments instead.
         :param commitment_type:
         :param commitment_windowed: Deprecated: use POST /commitments instead.
-        :param effective_from: EffectiveFrom for the existing line item (if not provided, defaults to now)
+        :param effective_from: EffectiveFrom is when the new version starts and the current one ends (defaults to now). A date before
+            the current version's start_date replaces it from that date instead, and price fields become optional.
         :param metadata: Metadata for the new line item
         :param price_unit_amount: PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
         :param price_unit_tiers: PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)
@@ -1875,7 +1876,8 @@ class Subscriptions(BaseSDK):
         :param commitment_true_up_enabled: Deprecated: use POST /commitments instead.
         :param commitment_type:
         :param commitment_windowed: Deprecated: use POST /commitments instead.
-        :param effective_from: EffectiveFrom for the existing line item (if not provided, defaults to now)
+        :param effective_from: EffectiveFrom is when the new version starts and the current one ends (defaults to now). A date before
+            the current version's start_date replaces it from that date instead, and price fields become optional.
         :param metadata: Metadata for the new line item
         :param price_unit_amount: PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
         :param price_unit_tiers: PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)
@@ -5992,6 +5994,7 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         feature_ids: Optional[Iterable[str]] = None,
+        refresh_grants: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -6003,6 +6006,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param feature_ids: Feature IDs to filter by
+        :param refresh_grants: Evaluate entitlement grants before returning their usage (slower)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -6021,6 +6025,7 @@ class Subscriptions(BaseSDK):
         request = models.GetSubscriptionEntitlementsRequest(
             id=id,
             feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
+            refresh_grants=refresh_grants,
         )
 
         req = self._build_request(
@@ -6096,6 +6101,7 @@ class Subscriptions(BaseSDK):
         *,
         id: str,
         feature_ids: Optional[Iterable[str]] = None,
+        refresh_grants: Optional[bool] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -6107,6 +6113,7 @@ class Subscriptions(BaseSDK):
 
         :param id: Subscription ID
         :param feature_ids: Feature IDs to filter by
+        :param refresh_grants: Evaluate entitlement grants before returning their usage (slower)
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -6125,6 +6132,7 @@ class Subscriptions(BaseSDK):
         request = models.GetSubscriptionEntitlementsRequest(
             id=id,
             feature_ids=utils.unmarshal(feature_ids, Optional[List[str]]),
+            refresh_grants=refresh_grants,
         )
 
         req = self._build_request_async(

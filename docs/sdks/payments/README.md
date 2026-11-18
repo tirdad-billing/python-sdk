@@ -6,6 +6,8 @@
 
 * [list_payments](#list_payments) - List payments
 * [create_payment](#create_payment) - Create payment
+* [get_setup_intent](#get_setup_intent) - Get setup intent
+* [cancel_setup_intent](#cancel_setup_intent) - Cancel setup intent
 * [get_payment](#get_payment) - Get payment
 * [update_payment](#update_payment) - Update payment
 * [delete_payment](#delete_payment) - Delete payment
@@ -39,6 +41,7 @@ with Tirdad(
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `currency`                                                                | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
 | `destination_id`                                                          | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `destination_ids`                                                         | List[*str*]                                                               | :heavy_minus_sign:                                                        | N/A                                                                       |
 | `destination_type`                                                        | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
 | `end_time`                                                                | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
 | `expand`                                                                  | *Optional[str]*                                                           | :heavy_minus_sign:                                                        | N/A                                                                       |
@@ -121,6 +124,88 @@ with Tirdad(
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400                              | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## get_setup_intent
+
+Returns the live state of the customer's latest setup link. Razorpay only.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="getSetupIntent" method="get" path="/payments/customers/{id}/setup/intent" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.payments.get_setup_intent(id="<id>", provider="razorpay")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `id`                                                                    | *str*                                                                   | :heavy_check_mark:                                                      | Customer ID                                                             |
+| `provider`                                                              | [models.GetSetupIntentProvider](../../models/getsetupintentprovider.md) | :heavy_check_mark:                                                      | Payment provider                                                        |
+| `retries`                                                               | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)        | :heavy_minus_sign:                                                      | Configuration to override the default retry behavior of the client.     |
+
+### Response
+
+**[models.SetupIntentResponse](../../models/setupintentresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## cancel_setup_intent
+
+Cancels the customer's latest setup link if it hasn't been completed. Razorpay only.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="cancelSetupIntent" method="post" path="/payments/customers/{id}/setup/intent/cancel" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.payments.cancel_setup_intent(id="<id>", provider="razorpay")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `id`                                                                          | *str*                                                                         | :heavy_check_mark:                                                            | Customer ID                                                                   |
+| `provider`                                                                    | [models.CancelSetupIntentProvider](../../models/cancelsetupintentprovider.md) | :heavy_check_mark:                                                            | Payment provider                                                              |
+| `retries`                                                                     | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)              | :heavy_minus_sign:                                                            | Configuration to override the default retry behavior of the client.           |
+
+### Response
+
+**[models.SetupIntentResponse](../../models/setupintentresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 400, 404                         | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 
 ## get_payment

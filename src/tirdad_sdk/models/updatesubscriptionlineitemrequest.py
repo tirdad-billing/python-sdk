@@ -44,7 +44,9 @@ class UpdateSubscriptionLineItemRequestTypedDict(TypedDict):
     commitment_windowed: NotRequired[bool]
     r"""Deprecated: use POST /commitments instead."""
     effective_from: NotRequired[str]
-    r"""EffectiveFrom for the existing line item (if not provided, defaults to now)"""
+    r"""EffectiveFrom is when the new version starts and the current one ends (defaults to now). A date before
+    the current version's start_date replaces it from that date instead, and price fields become optional.
+    """
     metadata: NotRequired[Dict[str, str]]
     r"""Metadata for the new line item"""
     price_unit_amount: NotRequired[str]
@@ -91,7 +93,9 @@ class UpdateSubscriptionLineItemRequest(BaseModel):
     r"""Deprecated: use POST /commitments instead."""
 
     effective_from: Optional[str] = None
-    r"""EffectiveFrom for the existing line item (if not provided, defaults to now)"""
+    r"""EffectiveFrom is when the new version starts and the current one ends (defaults to now). A date before
+    the current version's start_date replaces it from that date instead, and price fields become optional.
+    """
 
     metadata: Optional[Dict[str, str]] = None
     r"""Metadata for the new line item"""

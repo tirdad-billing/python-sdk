@@ -21,6 +21,7 @@ class WalletBalanceResponseTypedDict(TypedDict):
     alert_state: NotRequired[AlertState]
     auto_topup: NotRequired[AutoTopupTypedDict]
     balance: NotRequired[str]
+    balance_alert_status: NotRequired[AlertState]
     balance_updated_at: NotRequired[datetime]
     config: NotRequired[WalletConfigTypedDict]
     conversion_rate: NotRequired[str]
@@ -72,6 +73,8 @@ class WalletBalanceResponse(BaseModel):
     auto_topup: Optional[AutoTopup] = None
 
     balance: Optional[str] = None
+
+    balance_alert_status: Optional[AlertState] = None
 
     balance_updated_at: Optional[datetime] = None
 
@@ -148,6 +151,7 @@ class WalletBalanceResponse(BaseModel):
                 "alert_state",
                 "auto_topup",
                 "balance",
+                "balance_alert_status",
                 "balance_updated_at",
                 "config",
                 "conversion_rate",

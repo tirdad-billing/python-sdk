@@ -4,6 +4,10 @@ from __future__ import annotations
 from .paymentgatewaytype import PaymentGatewayType
 from .paymentmethodstatus import PaymentMethodStatus
 from .paymentmethodtype import PaymentMethodType
+from .savedbankaccountdetails import (
+    SavedBankAccountDetails,
+    SavedBankAccountDetailsTypedDict,
+)
 from .savedcarddetails import SavedCardDetails, SavedCardDetailsTypedDict
 from .savedrecurringpaymentdetails import (
     SavedRecurringPaymentDetails,
@@ -17,6 +21,7 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class SavedPaymentMethodTypedDict(TypedDict):
+    bank_account: NotRequired[SavedBankAccountDetailsTypedDict]
     can_auto_charge: NotRequired[bool]
     r"""Capability, not permission: could this be charged with nobody present.
     True for any active Chargebee or Stripe card (both vault off-session by
@@ -37,6 +42,8 @@ class SavedPaymentMethodTypedDict(TypedDict):
 
 
 class SavedPaymentMethod(BaseModel):
+    bank_account: Optional[SavedBankAccountDetails] = None
+
     can_auto_charge: Optional[bool] = None
     r"""Capability, not permission: could this be charged with nobody present.
     True for any active Chargebee or Stripe card (both vault off-session by
@@ -68,6 +75,7 @@ class SavedPaymentMethod(BaseModel):
     def serialize_model(self, handler):
         optional_fields = set(
             [
+                "bank_account",
                 "can_auto_charge",
                 "card",
                 "id",

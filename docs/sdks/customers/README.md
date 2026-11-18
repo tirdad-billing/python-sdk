@@ -16,6 +16,7 @@
 * [delete_customer](#delete_customer) - Delete customer
 * [get_customer_entitlements](#get_customer_entitlements) - Get customer entitlements
 * [get_customer_upcoming_grants](#get_customer_upcoming_grants) - Get upcoming credit grant applications
+* [list_customer_payment_integrations](#list_customer_payment_integrations) - List customer payment integrations
 * [list_customer_payment_methods](#list_customer_payment_methods) - List customer payment methods
 
 ## update_customer
@@ -207,6 +208,7 @@ with Tirdad(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `external_id`                                                       | *str*                                                               | :heavy_check_mark:                                                  | Customer External ID                                                |
+| `refresh_grants`                                                    | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Evaluate entitlement grants before returning their usage (slower)   |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -383,14 +385,15 @@ with Tirdad(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `customer_id`                                                       | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `customer_lookup_key`                                               | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `feature_ids`                                                       | List[*str*]                                                         | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `feature_lookup_keys`                                               | List[*str*]                                                         | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `subscription_ids`                                                  | List[*str*]                                                         | :heavy_minus_sign:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `customer_id`                                                                                   | *Optional[str]*                                                                                 | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `customer_lookup_key`                                                                           | *Optional[str]*                                                                                 | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `feature_ids`                                                                                   | List[*str*]                                                                                     | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `feature_lookup_keys`                                                                           | List[*str*]                                                                                     | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `refresh_grants`                                                                                | *Optional[bool]*                                                                                | :heavy_minus_sign:                                                                              | RefreshGrants evaluates entitlement grants before returning their usage, so the read is slower. |
+| `subscription_ids`                                                                              | List[*str*]                                                                                     | :heavy_minus_sign:                                                                              | N/A                                                                                             |
+| `retries`                                                                                       | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                | :heavy_minus_sign:                                                                              | Configuration to override the default retry behavior of the client.                             |
 
 ### Response
 
@@ -508,6 +511,7 @@ with Tirdad(
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Customer ID                                                         |
+| `refresh_grants`                                                    | *Optional[bool]*                                                    | :heavy_minus_sign:                                                  | Evaluate entitlement grants before returning their usage (slower)   |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 ### Response
@@ -560,6 +564,47 @@ with Tirdad(
 | Error Type                       | Status Code                      | Content Type                     |
 | -------------------------------- | -------------------------------- | -------------------------------- |
 | models.errors.ErrorResponse      | 400, 404                         | application/json                 |
+| models.errors.ErrorResponse      | 500                              | application/json                 |
+| models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
+
+## list_customer_payment_integrations
+
+Use to learn which connected gateways can serve this customer and what each can do: check out, auto-charge, list methods, add a method (with the method types it sets up, e.g. enach for Razorpay), set a default.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="listCustomerPaymentIntegrations" method="get" path="/customers/{id}/payment-integrations" -->
+```python
+from tirdad_sdk import Tirdad
+
+
+with Tirdad(
+    api_key_auth="<YOUR_API_KEY_HERE>",
+) as tirdad:
+
+    res = tirdad.customers.list_customer_payment_integrations(id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | Customer ID                                                         |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+
+### Response
+
+**[models.IntegrationsResponse](../../models/integrationsresponse.md)**
+
+### Errors
+
+| Error Type                       | Status Code                      | Content Type                     |
+| -------------------------------- | -------------------------------- | -------------------------------- |
+| models.errors.ErrorResponse      | 404                              | application/json                 |
 | models.errors.ErrorResponse      | 500                              | application/json                 |
 | models.errors.TirdadDefaultError | 4XX, 5XX                         | \*/\*                            |
 

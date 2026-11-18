@@ -17,6 +17,8 @@ class CheckoutPaymentProviderConfigTypedDict(TypedDict):
     authorization link. Set true only from merchant-initiated paths (auto top-up).
     """
     max_mandate_limit: NotRequired[str]
+    notify_customer: NotRequired[bool]
+    r"""NotifyCustomer lets the gateway email/SMS the payment link to the customer."""
     payment_method: NotRequired[PaymentMethodType]
 
 
@@ -31,6 +33,9 @@ class CheckoutPaymentProviderConfig(BaseModel):
 
     max_mandate_limit: Optional[str] = None
 
+    notify_customer: Optional[bool] = None
+    r"""NotifyCustomer lets the gateway email/SMS the payment link to the customer."""
+
     payment_method: Optional[PaymentMethodType] = None
 
     @model_serializer(mode="wrap")
@@ -40,6 +45,7 @@ class CheckoutPaymentProviderConfig(BaseModel):
                 "collection_method",
                 "customer_not_present",
                 "max_mandate_limit",
+                "notify_customer",
                 "payment_method",
             ]
         )

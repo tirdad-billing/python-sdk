@@ -13,6 +13,8 @@ class GetSubscriptionEntitlementsRequestTypedDict(TypedDict):
     r"""Subscription ID"""
     feature_ids: NotRequired[List[str]]
     r"""Feature IDs to filter by"""
+    refresh_grants: NotRequired[bool]
+    r"""Evaluate entitlement grants before returning their usage (slower)"""
 
 
 class GetSubscriptionEntitlementsRequest(BaseModel):
@@ -27,9 +29,15 @@ class GetSubscriptionEntitlementsRequest(BaseModel):
     ] = None
     r"""Feature IDs to filter by"""
 
+    refresh_grants: Annotated[
+        Optional[bool],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""Evaluate entitlement grants before returning their usage (slower)"""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = set(["feature_ids"])
+        optional_fields = set(["feature_ids", "refresh_grants"])
         serialized = handler(self)
         m = {}
 

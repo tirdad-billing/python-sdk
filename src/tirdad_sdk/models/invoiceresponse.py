@@ -12,6 +12,7 @@ from .couponapplicationresponse import (
 from .customcurrency import CustomCurrency, CustomCurrencyTypedDict
 from .customerresponse import CustomerResponse, CustomerResponseTypedDict
 from .fxconversion import FxConversion, FxConversionTypedDict
+from .inflightcharge import InFlightCharge, InFlightChargeTypedDict
 from .invoicebillingentity import InvoiceBillingEntity, InvoiceBillingEntityTypedDict
 from .invoicelineitemresponse import (
     InvoiceLineItemResponse,
@@ -85,6 +86,7 @@ class InvoiceResponseTypedDict(TypedDict):
     r"""id is the unique identifier for this invoice"""
     idempotency_key: NotRequired[str]
     r"""idempotency_key is a unique key used to prevent duplicate invoice creation when retrying API calls"""
+    in_flight_charge: NotRequired[InFlightChargeTypedDict]
     invoice_number: NotRequired[str]
     r"""invoice_number is the human-readable invoice number displayed to customers (e.g., INV-2024-001)"""
     invoice_pdf_url: NotRequired[str]
@@ -223,6 +225,8 @@ class InvoiceResponse(BaseModel):
     idempotency_key: Optional[str] = None
     r"""idempotency_key is a unique key used to prevent duplicate invoice creation when retrying API calls"""
 
+    in_flight_charge: Optional[InFlightCharge] = None
+
     invoice_number: Optional[str] = None
     r"""invoice_number is the human-readable invoice number displayed to customers (e.g., INV-2024-001)"""
 
@@ -350,6 +354,7 @@ class InvoiceResponse(BaseModel):
                 "hosted_invoice_url",
                 "id",
                 "idempotency_key",
+                "in_flight_charge",
                 "invoice_number",
                 "invoice_pdf_url",
                 "invoice_status",

@@ -42,6 +42,8 @@ class PaymentResponseTypedDict(TypedDict):
     payment_url: NotRequired[str]
     refunded_at: NotRequired[datetime]
     save_card_and_make_default: NotRequired[bool]
+    submitted_for_processing: NotRequired[bool]
+    r"""SubmittedForProcessing is true while the gateway has the charge and its outcome is pending; it can't be processed again."""
     succeeded_at: NotRequired[datetime]
     tenant_id: NotRequired[str]
     track_attempts: NotRequired[bool]
@@ -102,6 +104,9 @@ class PaymentResponse(BaseModel):
 
     save_card_and_make_default: Optional[bool] = None
 
+    submitted_for_processing: Optional[bool] = None
+    r"""SubmittedForProcessing is true while the gateway has the charge and its outcome is pending; it can't be processed again."""
+
     succeeded_at: Optional[datetime] = None
 
     tenant_id: Optional[str] = None
@@ -143,6 +148,7 @@ class PaymentResponse(BaseModel):
                 "payment_url",
                 "refunded_at",
                 "save_card_and_make_default",
+                "submitted_for_processing",
                 "succeeded_at",
                 "tenant_id",
                 "track_attempts",

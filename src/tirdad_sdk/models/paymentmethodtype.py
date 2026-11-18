@@ -13,6 +13,7 @@ PaymentMethodType = Union[
         "CREDITS",
         "PAYMENT_LINK",
         "UPI",
+        "ENACH",
     ],
     UnrecognizedStr,
 ]
