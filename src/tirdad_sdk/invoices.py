@@ -1168,8 +1168,8 @@ class Invoices(BaseSDK):
     def query_invoice(
         self,
         *,
-        amount_due_gt: Optional[float] = None,
-        amount_remaining_gt: Optional[float] = None,
+        amount_due_gt: Optional[str] = None,
+        amount_remaining_gt: Optional[str] = None,
         billing_entity_id: Optional[str] = None,
         billing_reason: Optional[models.InvoiceBillingReason] = None,
         currency: Optional[str] = None,
@@ -1389,8 +1389,8 @@ class Invoices(BaseSDK):
     async def query_invoice_async(
         self,
         *,
-        amount_due_gt: Optional[float] = None,
-        amount_remaining_gt: Optional[float] = None,
+        amount_due_gt: Optional[str] = None,
+        amount_remaining_gt: Optional[str] = None,
         billing_entity_id: Optional[str] = None,
         billing_reason: Optional[models.InvoiceBillingReason] = None,
         currency: Optional[str] = None,

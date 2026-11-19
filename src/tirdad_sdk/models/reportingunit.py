@@ -8,7 +8,7 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class ReportingUnitTypedDict(TypedDict):
-    conversion_rate: NotRequired[float]
+    conversion_rate: NotRequired[str]
     r"""Multiplier: reporting_unit_value = unit_value * conversion_rate; must be > 0"""
     unit_plural: NotRequired[str]
     r"""Display unit label, plural (e.g. \"seconds\")"""
@@ -17,7 +17,7 @@ class ReportingUnitTypedDict(TypedDict):
 
 
 class ReportingUnit(BaseModel):
-    conversion_rate: Optional[float] = None
+    conversion_rate: Optional[str] = None
     r"""Multiplier: reporting_unit_value = unit_value * conversion_rate; must be > 0"""
 
     unit_plural: Optional[str] = None

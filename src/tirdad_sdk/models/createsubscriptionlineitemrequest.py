@@ -20,12 +20,12 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class CreateSubscriptionLineItemRequestTypedDict(TypedDict):
-    commitment_amount: NotRequired[float]
+    commitment_amount: NotRequired[str]
     r"""Deprecated: use POST /commitments instead."""
     commitment_duration: NotRequired[BillingPeriod]
-    commitment_overage_factor: NotRequired[float]
+    commitment_overage_factor: NotRequired[str]
     r"""Deprecated: use POST /commitments instead."""
-    commitment_quantity: NotRequired[float]
+    commitment_quantity: NotRequired[str]
     r"""Deprecated: use POST /commitments instead."""
     commitment_time_buckets: NotRequired[List[CommitmentBucketRequestTypedDict]]
     r"""Deprecated: use POST /commitments instead."""
@@ -41,21 +41,21 @@ class CreateSubscriptionLineItemRequestTypedDict(TypedDict):
     price_id: NotRequired[str]
     r"""PriceID references an existing price (plan, addon, or subscription-scoped). Exactly one of price_id or price must be set."""
     proration_behavior: NotRequired[ProrationBehavior]
-    quantity: NotRequired[float]
+    quantity: NotRequired[str]
     start_date: NotRequired[datetime]
     subscription_phase_id: NotRequired[str]
 
 
 class CreateSubscriptionLineItemRequest(BaseModel):
-    commitment_amount: Optional[float] = None
+    commitment_amount: Optional[str] = None
     r"""Deprecated: use POST /commitments instead."""
 
     commitment_duration: Optional[BillingPeriod] = None
 
-    commitment_overage_factor: Optional[float] = None
+    commitment_overage_factor: Optional[str] = None
     r"""Deprecated: use POST /commitments instead."""
 
-    commitment_quantity: Optional[float] = None
+    commitment_quantity: Optional[str] = None
     r"""Deprecated: use POST /commitments instead."""
 
     commitment_time_buckets: Optional[List[CommitmentBucketRequest]] = None
@@ -82,7 +82,7 @@ class CreateSubscriptionLineItemRequest(BaseModel):
 
     proration_behavior: Optional[ProrationBehavior] = None
 
-    quantity: Optional[float] = None
+    quantity: Optional[str] = None
 
     start_date: Optional[datetime] = None
 

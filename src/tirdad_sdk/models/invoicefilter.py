@@ -22,11 +22,11 @@ InvoiceFilterOrder = Literal[
 
 
 class InvoiceFilterTypedDict(TypedDict):
-    amount_due_gt: NotRequired[float]
+    amount_due_gt: NotRequired[str]
     r"""amount_due_gt filters invoices with a total amount due greater than the specified value
     Useful for finding invoices above a certain threshold or identifying high-value invoices
     """
-    amount_remaining_gt: NotRequired[float]
+    amount_remaining_gt: NotRequired[str]
     r"""amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
     Useful for finding invoices that still have significant unpaid amounts
     """
@@ -96,12 +96,12 @@ class InvoiceFilterTypedDict(TypedDict):
 
 
 class InvoiceFilter(BaseModel):
-    amount_due_gt: Optional[float] = None
+    amount_due_gt: Optional[str] = None
     r"""amount_due_gt filters invoices with a total amount due greater than the specified value
     Useful for finding invoices above a certain threshold or identifying high-value invoices
     """
 
-    amount_remaining_gt: Optional[float] = None
+    amount_remaining_gt: Optional[str] = None
     r"""amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
     Useful for finding invoices that still have significant unpaid amounts
     """

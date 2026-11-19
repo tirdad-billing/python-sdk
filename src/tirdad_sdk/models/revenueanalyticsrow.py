@@ -14,21 +14,21 @@ class RevenueAnalyticsRowTypedDict(TypedDict):
     r"""AdjustmentType labels rows broken out by include_adjustments:
     \"commitment_trueup\", \"overage\" or \"revert\". Empty for plain rows.
     """
-    billable_qty: NotRequired[float]
+    billable_qty: NotRequired[str]
     day: NotRequired[str]
     r"""Day is set for day granularity; PeriodStart/PeriodEnd for period."""
-    entitlement_amount: NotRequired[float]
-    entitlement_qty: NotRequired[float]
+    entitlement_amount: NotRequired[str]
+    entitlement_qty: NotRequired[str]
     group: NotRequired[Dict[str, str]]
     r"""Group holds the requested dimensions and their values for this bucket."""
-    invoice_discount: NotRequired[float]
-    line_discount: NotRequired[float]
-    net_amount: NotRequired[float]
+    invoice_discount: NotRequired[str]
+    line_discount: NotRequired[str]
+    net_amount: NotRequired[str]
     period_end: NotRequired[datetime]
     period_start: NotRequired[datetime]
     status: NotRequired[FactStatus]
-    tier_delta: NotRequired[float]
-    usage_at_list_rate: NotRequired[float]
+    tier_delta: NotRequired[str]
+    usage_at_list_rate: NotRequired[str]
 
 
 class RevenueAnalyticsRow(BaseModel):
@@ -37,23 +37,23 @@ class RevenueAnalyticsRow(BaseModel):
     \"commitment_trueup\", \"overage\" or \"revert\". Empty for plain rows.
     """
 
-    billable_qty: Optional[float] = None
+    billable_qty: Optional[str] = None
 
     day: Optional[str] = None
     r"""Day is set for day granularity; PeriodStart/PeriodEnd for period."""
 
-    entitlement_amount: Optional[float] = None
+    entitlement_amount: Optional[str] = None
 
-    entitlement_qty: Optional[float] = None
+    entitlement_qty: Optional[str] = None
 
     group: Optional[Dict[str, str]] = None
     r"""Group holds the requested dimensions and their values for this bucket."""
 
-    invoice_discount: Optional[float] = None
+    invoice_discount: Optional[str] = None
 
-    line_discount: Optional[float] = None
+    line_discount: Optional[str] = None
 
-    net_amount: Optional[float] = None
+    net_amount: Optional[str] = None
 
     period_end: Optional[datetime] = None
 
@@ -61,9 +61,9 @@ class RevenueAnalyticsRow(BaseModel):
 
     status: Optional[FactStatus] = None
 
-    tier_delta: Optional[float] = None
+    tier_delta: Optional[str] = None
 
-    usage_at_list_rate: Optional[float] = None
+    usage_at_list_rate: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

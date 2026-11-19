@@ -22,7 +22,7 @@ WalletTransactionFilterOrder = Literal[
 
 class WalletTransactionFilterTypedDict(TypedDict):
     created_by: NotRequired[str]
-    credits_available_gt: NotRequired[float]
+    credits_available_gt: NotRequired[str]
     end_time: NotRequired[datetime]
     expand: NotRequired[str]
     expiry_date_after: NotRequired[str]
@@ -47,7 +47,7 @@ class WalletTransactionFilterTypedDict(TypedDict):
 class WalletTransactionFilter(BaseModel):
     created_by: Optional[str] = None
 
-    credits_available_gt: Optional[float] = None
+    credits_available_gt: Optional[str] = None
 
     end_time: Optional[datetime] = None
 

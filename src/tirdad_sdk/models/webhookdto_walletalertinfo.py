@@ -11,8 +11,8 @@ from typing_extensions import NotRequired, TypedDict
 class WebhookDtoWalletAlertInfoTypedDict(TypedDict):
     alert_settings: NotRequired[AlertSettingsTypedDict]
     alert_type: NotRequired[str]
-    credit_balance: NotRequired[float]
-    current_balance: NotRequired[float]
+    credit_balance: NotRequired[str]
+    current_balance: NotRequired[str]
     state: NotRequired[str]
 
 
@@ -21,9 +21,9 @@ class WebhookDtoWalletAlertInfo(BaseModel):
 
     alert_type: Optional[str] = None
 
-    credit_balance: Optional[float] = None
+    credit_balance: Optional[str] = None
 
-    current_balance: Optional[float] = None
+    current_balance: Optional[str] = None
 
     state: Optional[str] = None
 

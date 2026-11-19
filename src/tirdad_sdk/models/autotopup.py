@@ -36,15 +36,15 @@ class AutoTopupDuration(BaseModel):
 
 
 class AutoTopupTypedDict(TypedDict):
-    amount: NotRequired[float]
+    amount: NotRequired[str]
     cooldown: NotRequired[AutoTopupDurationTypedDict]
     enabled: NotRequired[bool]
     invoicing: NotRequired[bool]
-    threshold: NotRequired[float]
+    threshold: NotRequired[str]
 
 
 class AutoTopup(BaseModel):
-    amount: Optional[float] = None
+    amount: Optional[str] = None
 
     cooldown: Optional[AutoTopupDuration] = None
 
@@ -52,7 +52,7 @@ class AutoTopup(BaseModel):
 
     invoicing: Optional[bool] = None
 
-    threshold: Optional[float] = None
+    threshold: Optional[str] = None
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):

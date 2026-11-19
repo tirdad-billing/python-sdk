@@ -55,7 +55,7 @@ class GetWalletTransactionsRequestTypedDict(TypedDict):
     id_path_parameter: str
     r"""Wallet ID"""
     created_by: NotRequired[str]
-    credits_available_gt: NotRequired[float]
+    credits_available_gt: NotRequired[str]
     end_time: NotRequired[str]
     expand: NotRequired[str]
     expiry_date_after: NotRequired[str]
@@ -88,7 +88,7 @@ class GetWalletTransactionsRequest(BaseModel):
     ] = None
 
     credits_available_gt: Annotated[
-        Optional[float],
+        Optional[str],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
 

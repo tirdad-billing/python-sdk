@@ -17,9 +17,8 @@ class GetUsageAnalyticsResponseTypedDict(TypedDict):
     currency: NotRequired[str]
     custom_analytics: NotRequired[List[CustomAnalyticItemTypedDict]]
     instalments: NotRequired[List[UsageAnalyticInstalmentTypedDict]]
-    r"""Instalments lists, with expand \"instalments\", the instalments of the v2 commitments covering a queried meter that
-    were invoiced in the range, or are still scheduled with a bill_on in it; it is empty with property or source
-    filters, or when no usage line runs in the range.
+    r"""Instalments lists the commitment instalments in the range with expand \"instalments\": start <= bill_on < end,
+    or start < bill_on <= end for an ARREAR one.
     """
     items: NotRequired[List[UsageAnalyticItemTypedDict]]
     subtotal: NotRequired[str]
@@ -38,9 +37,8 @@ class GetUsageAnalyticsResponse(BaseModel):
     custom_analytics: Optional[List[CustomAnalyticItem]] = None
 
     instalments: Optional[List[UsageAnalyticInstalment]] = None
-    r"""Instalments lists, with expand \"instalments\", the instalments of the v2 commitments covering a queried meter that
-    were invoiced in the range, or are still scheduled with a bill_on in it; it is empty with property or source
-    filters, or when no usage line runs in the range.
+    r"""Instalments lists the commitment instalments in the range with expand \"instalments\": start <= bill_on < end,
+    or start < bill_on <= end for an ARREAR one.
     """
 
     items: Optional[List[UsageAnalyticItem]] = None

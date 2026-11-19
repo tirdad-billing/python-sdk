@@ -3,6 +3,7 @@
 from __future__ import annotations
 from .instalmentkind import InstalmentKind
 from .instalmentstatus import InstalmentStatus
+from .invoicecadence import InvoiceCadence
 from datetime import datetime
 from pydantic import model_serializer
 from tirdad_sdk.types import BaseModel, UNSET_SENTINEL
@@ -18,6 +19,7 @@ class UsageAnalyticInstalmentTypedDict(TypedDict):
     currency: NotRequired[str]
     id: NotRequired[str]
     instalment_status: NotRequired[InstalmentStatus]
+    invoice_cadence: NotRequired[InvoiceCadence]
     invoice_id: NotRequired[str]
     invoice_label: NotRequired[str]
     invoiced_at: NotRequired[datetime]
@@ -41,6 +43,8 @@ class UsageAnalyticInstalment(BaseModel):
     id: Optional[str] = None
 
     instalment_status: Optional[InstalmentStatus] = None
+
+    invoice_cadence: Optional[InvoiceCadence] = None
 
     invoice_id: Optional[str] = None
 
@@ -67,6 +71,7 @@ class UsageAnalyticInstalment(BaseModel):
                 "currency",
                 "id",
                 "instalment_status",
+                "invoice_cadence",
                 "invoice_id",
                 "invoice_label",
                 "invoiced_at",

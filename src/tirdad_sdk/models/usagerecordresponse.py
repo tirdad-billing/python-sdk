@@ -11,7 +11,7 @@ from typing_extensions import NotRequired, TypedDict
 
 
 class UsageRecordResponseTypedDict(TypedDict):
-    amount: NotRequired[float]
+    amount: NotRequired[str]
     created_at: NotRequired[datetime]
     created_by: NotRequired[str]
     currency: NotRequired[str]
@@ -22,7 +22,7 @@ class UsageRecordResponseTypedDict(TypedDict):
     period_end: NotRequired[datetime]
     period_start: NotRequired[datetime]
     plan_id: NotRequired[str]
-    quantity: NotRequired[float]
+    quantity: NotRequired[str]
     status: NotRequired[Status]
     subscription_id: NotRequired[str]
     synced: NotRequired[bool]
@@ -33,7 +33,7 @@ class UsageRecordResponseTypedDict(TypedDict):
 
 
 class UsageRecordResponse(BaseModel):
-    amount: Optional[float] = None
+    amount: Optional[str] = None
 
     created_at: Optional[datetime] = None
 
@@ -55,7 +55,7 @@ class UsageRecordResponse(BaseModel):
 
     plan_id: Optional[str] = None
 
-    quantity: Optional[float] = None
+    quantity: Optional[str] = None
 
     status: Optional[Status] = None
 
